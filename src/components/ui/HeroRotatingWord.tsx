@@ -33,10 +33,10 @@ export function HeroRotatingWord({ className = "" }: { className?: string }) {
 
   return (
     <span
-      className={`relative inline-block min-w-[11ch] align-bottom sm:min-w-[12ch] ${className}`}
+      className={`relative inline-block min-w-[12ch] align-bottom sm:min-w-[13ch] ${className}`}
       aria-live="polite"
     >
-      <span className="relative block h-[1.15em] overflow-hidden">
+      <span className="relative block h-[1.45em] overflow-hidden pb-[0.14em]">
         <AnimatePresence mode="wait" initial={false}>
           <motion.span
             key={WORDS[index]}
@@ -44,7 +44,7 @@ export function HeroRotatingWord({ className = "" }: { className?: string }) {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: "-100%", opacity: 0 }}
             transition={wordTransition}
-            className="absolute inset-x-0 bottom-0 inline-block pr-1 font-serif italic text-accent"
+            className="absolute inset-x-0 bottom-[0.14em] inline-block pr-2 font-serif italic leading-[1.05] text-accent"
           >
             {WORDS[index]}
           </motion.span>
