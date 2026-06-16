@@ -78,7 +78,7 @@ function HeroStatItem({
       <p className="text-xl font-bold leading-none tracking-tight text-white sm:text-2xl lg:text-[1.75rem]">
         {display}
       </p>
-      <p className="mt-2 text-[9px] font-semibold uppercase tracking-[0.22em] text-white/45 sm:text-[10px]">
+      <p className="mt-2 text-[9px] font-semibold uppercase tracking-[0.22em] text-white/60 sm:text-[10px]">
         {label}
       </p>
     </div>
@@ -91,7 +91,7 @@ export function HeroStatsBento() {
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.65, duration: durationStandard, ease: easeHive }}
-      className="hero-stats-rail overflow-hidden rounded-2xl border border-white/10"
+      className="hero-stats-rail overflow-hidden rounded-2xl border border-white/15"
     >
       <div className="grid grid-cols-3">
         {heroStats.map((stat, i) => (
