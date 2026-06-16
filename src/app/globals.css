@@ -685,6 +685,21 @@
 
   .hero-video-wedge {
     clip-path: polygon(18% 0, 100% 0, 100% 100%, 0 100%);
+    isolation: isolate;
+  }
+
+  .hero-video {
+    object-fit: cover;
+    pointer-events: none;
+  }
+
+  .hero-video-edge-fade {
+    background: linear-gradient(
+      105deg,
+      rgba(6, 15, 50, 0.82) 0%,
+      rgba(6, 15, 50, 0.35) 32%,
+      transparent 52%
+    );
   }
 
   @media (max-width: 1023px) {

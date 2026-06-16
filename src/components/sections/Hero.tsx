@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { HeroRotatingWord } from "@/components/ui/HeroRotatingWord";
 import { HeroStatsBento } from "@/components/ui/HeroStatsBento";
 import { PillButton } from "@/components/ui/PillButton";
+import { HeroBackgroundVideo } from "@/components/ui/HeroBackgroundVideo";
 import { easeHive, durationStandard } from "@/lib/motion";
 
 function HeroChart() {
@@ -44,14 +45,7 @@ export function Hero() {
   return (
     <section className="relative hive-dark-band">
       <div className="relative min-h-[100svh] overflow-hidden">
-        <div className="hero-video-wedge absolute inset-0">
-          <iframe
-            src="https://www.youtube.com/embed/pNVzaRpfG14?autoplay=1&mute=1&loop=1&playlist=pNVzaRpfG14&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3"
-            title="HiveSchool campus"
-            allow="autoplay; encrypted-media"
-            className="pointer-events-none absolute left-[30%] top-1/2 h-[175%] w-[175%] max-w-none -translate-x-1/2 -translate-y-1/2 lg:left-[58%] lg:h-[165%] lg:w-[165%]"
-          />
-        </div>
+        <HeroBackgroundVideo />
 
         <div className="hero-slash pointer-events-none absolute inset-0 opacity-70" />
         <div className="hero-grid-lines pointer-events-none absolute inset-0" />
