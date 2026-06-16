@@ -595,10 +595,12 @@
 
   .hero-panel-slab {
     background: linear-gradient(
-      180deg,
+      105deg,
       rgba(6, 15, 50, 0.88) 0%,
-      rgba(6, 15, 50, 0.78) 40%,
-      rgba(6, 15, 50, 0.72) 100%
+      rgba(6, 15, 50, 0.7) 28%,
+      rgba(6, 15, 50, 0.32) 50%,
+      rgba(6, 15, 50, 0.1) 68%,
+      transparent 88%
     );
   }
 
@@ -696,9 +698,9 @@
   .hero-video-edge-fade {
     background: linear-gradient(
       105deg,
-      rgba(6, 15, 50, 0.82) 0%,
-      rgba(6, 15, 50, 0.35) 32%,
-      transparent 52%
+      rgba(6, 15, 50, 0.5) 0%,
+      rgba(6, 15, 50, 0.18) 26%,
+      transparent 40%
     );
   }
 
