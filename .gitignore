@@ -17,6 +17,9 @@
 /.next/
 /out/
 
+# copied static assets (source of truth is /assets)
+/public/assets
+
 # production
 /build
 
