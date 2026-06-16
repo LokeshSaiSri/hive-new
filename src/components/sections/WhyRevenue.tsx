@@ -12,27 +12,6 @@ import {
   supportPaths,
 } from "@/data/careerPaths";
 
-const sectionChapters = [
-  {
-    id: "why-compare",
-    step: "01",
-    title: "Support vs revenue",
-    description: "What most schools train for — and what we train for instead.",
-  },
-  {
-    id: "why-ladder",
-    step: "02",
-    title: "Career ladder",
-    description: "IC → Manager → Director → CEO. The revenue path up.",
-  },
-  {
-    id: "why-industries",
-    step: "03",
-    title: "4 industries",
-    description: "SaaS, D2C, Consumer Tech & FMCG — roles in each track.",
-  },
-] as const;
-
 const totalRoles = industryColumns.reduce(
   (sum, col) => sum + col.roles.length,
   0,
@@ -55,13 +34,6 @@ export function WhyRevenue() {
   const industry =
     industryColumns.find((col) => col.industry === activeIndustry) ??
     industryColumns[0];
-
-  const scrollToChapter = useCallback((id: string) => {
-    document.getElementById(id)?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  }, []);
 
   const selectIndustry = useCallback(
     (name: string) => {
@@ -89,40 +61,6 @@ export function WhyRevenue() {
           />
         </ScrollReveal>
 
-        <ScrollReveal className="mt-8 sm:mt-10">
-          <div className="border-y border-white/10 py-6 sm:py-8">
-            <p className="text-center text-[10px] font-bold uppercase tracking-[0.28em] text-white/40">
-              In this section
-            </p>
-            <div className="section-container mt-5 grid gap-4 sm:grid-cols-3">
-                {sectionChapters.map((chapter) => (
-                  <button
-                    key={chapter.id}
-                    type="button"
-                    onClick={() => scrollToChapter(chapter.id)}
-                    className="premium-frame-light group w-full text-left transition-transform duration-300 hover:-translate-y-0.5"
-                  >
-                    <span className="card-premium-elevated block p-5 text-center sm:p-6">
-                      <span className="text-[10px] font-bold tabular-nums tracking-[0.2em] text-electric-blue">
-                        {chapter.step}
-                      </span>
-                      <p className="mt-3 text-base font-bold text-ink sm:text-lg">
-                        {chapter.title}
-                      </p>
-                      <p className="mt-2 text-sm leading-relaxed text-mid-gray">
-                        {chapter.description}
-                      </p>
-                      <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-electric-blue opacity-0 transition-opacity group-hover:opacity-100">
-                        Jump to section
-                        <span aria-hidden>↓</span>
-                      </span>
-                    </span>
-                  </button>
-                ))}
-              </div>
-          </div>
-        </ScrollReveal>
-
         <div id="why-compare" className="scroll-mt-28">
           <ScrollReveal className="mt-14 sm:mt-16">
             <div className="text-center">
@@ -133,8 +71,7 @@ export function WhyRevenue() {
             </div>
 
             <div className="mt-8 grid gap-6 lg:grid-cols-2 lg:gap-8 lg:items-stretch">
-              <div className="premium-frame-light hover-lift-card">
-                <div className="card-premium-elevated h-full p-8 sm:p-10 lg:p-12">
+              <div className="h-full rounded-2xl border border-white/30 bg-white p-8 shadow-[0_16px_38px_rgba(6,15,50,0.12)] sm:p-10 lg:p-12">
                   <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-mid-gray">
                     Most MBA programs
                   </p>
@@ -161,7 +98,6 @@ export function WhyRevenue() {
                       </li>
                     ))}
                   </ul>
-                </div>
               </div>
 
               <div className="premium-frame-dark hover-lift-card lg:-translate-y-1">
@@ -232,8 +168,7 @@ export function WhyRevenue() {
 
         <div id="why-industries" className="scroll-mt-28">
           <ScrollReveal className="mt-14 sm:mt-20">
-            <div className="premium-frame-light hover-lift-card">
-              <div className="card-premium-elevated p-8 sm:p-12 lg:p-14">
+            <div className="rounded-2xl border border-white/25 bg-white p-8 shadow-[0_16px_42px_rgba(6,15,50,0.12)] sm:p-12 lg:p-14">
                 <div className="text-center">
                   <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-mid-gray">
                     03 · Where grads land
@@ -367,7 +302,6 @@ export function WhyRevenue() {
                     </motion.div>
                   </AnimatePresence>
                 </div>
-              </div>
             </div>
           </ScrollReveal>
         </div>
