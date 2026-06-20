@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "prepare-assets": "node scripts/prepare-assets.mjs",
+    "verify-assets": "node scripts/verify-assets.mjs",
     "predev": "npm run prepare-assets",
-    "prebuild": "npm run prepare-assets",
+    "prebuild": "npm run prepare-assets && npm run verify-assets",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -22,6 +23,7 @@
     "react-pageflip": "^2.0.3"
   },
   "devDependencies": {
+    "@netlify/plugin-nextjs": "^5.15.12",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
