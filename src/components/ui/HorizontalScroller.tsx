@@ -18,9 +18,13 @@ type HorizontalScrollerProps = {
   className?: string;
   slideClassName?: string;
   marquee?: boolean;
+  /** Always animate marquee even when content fits the viewport. */
+  marqueeAlways?: boolean;
   /** When false, marquee keeps moving on hover (e.g. mentor cards). */
   marqueePauseOnHover?: boolean;
   marqueeSpeed?: "slow" | "normal" | "fast";
+  /** When false, marquee track can overflow (e.g. hover-expanded cards). */
+  clipOverflow?: boolean;
   autoplay?: boolean;
   autoplayDelay?: number;
   /** Align first slide with section container edge */
@@ -32,8 +36,10 @@ export function HorizontalScroller({
   className = "",
   slideClassName = "",
   marquee = false,
+  marqueeAlways = false,
   marqueePauseOnHover = true,
   marqueeSpeed = "normal",
+  clipOverflow = true,
   autoplay = false,
   autoplayDelay = 4000,
   bleed = true,
@@ -45,10 +51,14 @@ export function HorizontalScroller({
     Autoplay({
       delay: autoplayDelay,
       playOnInit: true,
-      stopOnInteraction: true,
-      stopOnMouseEnter: true,
+      stopOnInteraction: false,
+      stopOnMouseEnter: false,
     }),
   );
+
+  useEffect(() => {
+    autoplayPlugin.current.options.delay = autoplayDelay;
+  }, [autoplayDelay]);
 
   const plugins = useMemo(
     () => (shouldAutoplay ? [autoplayPlugin.current] : []),
@@ -67,6 +77,11 @@ export function HorizontalScroller({
           loop: false,
           dragFree: false,
           containScroll: "trimSnaps",
+          watchDrag: (_emblaApi, event) => {
+            const target = event.target;
+            if (!(target instanceof Element)) return true;
+            return !target.closest("button, a, input, textarea, select, label");
+          },
         },
     plugins,
   );
@@ -114,13 +129,11 @@ export function HorizontalScroller({
   useEffect(() => {
     if (!emblaApi || !shouldAutoplay) return;
 
-    const startAutoplay = () => {
-      emblaApi.reInit();
-      autoplayPlugin.current.play();
-    };
+    autoplayPlugin.current.play();
 
-    const frame = requestAnimationFrame(startAutoplay);
-    return () => cancelAnimationFrame(frame);
+    return () => {
+      autoplayPlugin.current.stop();
+    };
   }, [emblaApi, shouldAutoplay]);
 
   const childArray = Array.isArray(children) ? children : [children];
@@ -161,7 +174,9 @@ export function HorizontalScroller({
 
   if (marquee) {
     const shouldAnimateMarquee =
-      marqueeOverflows && !prefersReducedMotion;
+      childArray.length > 1 &&
+      !prefersReducedMotion &&
+      (marqueeAlways || marqueeOverflows);
     const items = shouldAnimateMarquee
       ? [...childArray, ...childArray]
       : childArray;
@@ -169,11 +184,11 @@ export function HorizontalScroller({
     return (
       <div
         ref={marqueeContainerRef}
-        className={`overflow-hidden ${shouldAnimateMarquee ? "marquee-fade" : "flex justify-center"} ${className}`}
+        className={`${clipOverflow ? "overflow-hidden" : "overflow-visible py-8"} ${shouldAnimateMarquee ? "marquee-fade" : "flex justify-center"} ${className}`}
       >
         <div
           ref={marqueeTrackRef}
-          className={`flex w-max gap-6 sm:gap-8 ${
+          className={`flex w-max shrink-0 gap-6 sm:gap-8 ${
             shouldAnimateMarquee
               ? `${marqueeSpeedClass} ${marqueePauseOnHover ? "" : "marquee-continuous"}`
               : ""

@@ -12,16 +12,6 @@ export type IndustryColumn = {
 
 export const industryColumns: IndustryColumn[] = [
   {
-    industry: "SaaS",
-    tagline: "Pipeline to close — the engine of every software company.",
-    videoId: "rFZLsmtruzM",
-    roles: [
-      { title: "BDR / SDR", function: "Pipeline Generation" },
-      { title: "Account Executive", function: "Closing Deals" },
-      { title: "CSM", function: "Account Expansion" },
-    ],
-  },
-  {
     industry: "D2C",
     tagline: "Brand, growth, and marketplace — where revenue meets the consumer.",
     videoId: "0D0DH9qIIj0",
@@ -51,11 +41,29 @@ export const industryColumns: IndustryColumn[] = [
       { title: "Category Lead", function: "Shelf to Revenue" },
     ],
   },
+  {
+    industry: "SaaS",
+    tagline: "Pipeline to close — the engine of every software company.",
+    videoId: "rFZLsmtruzM",
+    roles: [
+      { title: "BDR / SDR", function: "Pipeline Generation" },
+      { title: "Account Executive", function: "Closing Deals" },
+      { title: "CSM", function: "Account Expansion" },
+    ],
+  },
 ];
 
 export const careerLadder = ["IC", "Manager", "Director", "CEO / CXO"] as const;
 
 export const supportPaths = [
+  {
+    title: "Entry-level Marketing Ops",
+    description: "Coordination and execution support — far from owning growth or revenue.",
+  },
+  {
+    title: "Backend Analyst Roles",
+    description: "Reporting and analysis behind the business — not on the revenue line.",
+  },
   {
     title: "HR & People Ops",
     description: "Hiring processes, policy, and internal people management.",
@@ -64,28 +72,20 @@ export const supportPaths = [
     title: "Finance & Accounting",
     description: "Reporting, audits, and back-office number-crunching.",
   },
-  {
-    title: "Legal & Compliance",
-    description: "Contracts, risk, and regulatory adherence.",
-  },
-  {
-    title: "Back-Office Operations",
-    description: "Coordination and process — far from the revenue line.",
-  },
 ] as const;
 
 export const revenuePaths = [
   {
-    title: "Sales & Closing",
-    description: "Own pipeline, quotas, and the deals that hit the P&L.",
+    title: "Growth Marketer",
+    description: "Own acquisition, funnels, and the metrics that drive revenue.",
   },
   {
-    title: "Growth & GTM",
-    description: "Acquisition, launches, and scaling what customers pay for.",
+    title: "Performance Marketing",
+    description: "Paid media, CAC, ROAS, and demand tied directly to outcomes.",
   },
   {
-    title: "Brand & Performance",
-    description: "Demand generation tied directly to revenue outcomes.",
+    title: "Sales & GTM",
+    description: "Pipeline, closing, and scaling what customers pay for.",
   },
   {
     title: "Revenue Leadership",
@@ -95,13 +95,8 @@ export const revenuePaths = [
 
 export const careerEntryPoints = [
   {
-    industry: "SaaS",
-    roles: "BDR · AE · CSM",
-    href: "#why-industries",
-  },
-  {
     industry: "D2C",
-    roles: "Brand · Marketplace",
+    roles: "Brand · Performance",
     href: "#why-industries",
   },
   {
@@ -112,6 +107,11 @@ export const careerEntryPoints = [
   {
     industry: "FMCG",
     roles: "Trade · Retail",
+    href: "#why-industries",
+  },
+  {
+    industry: "SaaS",
+    roles: "BDR · AE · CSM",
     href: "#why-industries",
   },
 ] as const;

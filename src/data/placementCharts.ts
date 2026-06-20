@@ -36,3 +36,21 @@ export const industryMix = [
 
 export const industryPieGradient =
   "conic-gradient(#efc44a 0 50%, #6f89ff 50% 75%, #3f5be0 75% 91.7%, #1c2f93 91.7% 100%)";
+
+export const roleMix = [
+  { label: "B2B Sales", share: 41.7, color: "#efc44a" },
+  { label: "Founder's Office", share: 25, color: "#6f89ff" },
+  { label: "GTM", share: 16.7, color: "#3f5be0" },
+  { label: "Account Management", share: 16.7, color: "#1c2f93" },
+] as const;
+
+export const rolePieGradient =
+  "conic-gradient(#efc44a 0 41.7%, #6f89ff 41.7% 66.7%, #3f5be0 66.7% 83.4%, #1c2f93 83.4% 100%)";
+
+export const cityMix = [
+  { label: "Bangalore", share: 50, color: "#efc44a" },
+  { label: "Delhi NCR", share: 50, color: "#6f89ff" },
+] as const;
+
+export const cityPieGradient =
+  "conic-gradient(#efc44a 0 50%, #6f89ff 50% 100%)";

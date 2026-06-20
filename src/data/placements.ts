@@ -6,50 +6,18 @@ export type AlumniPlacement = {
   company: string;
   image?: string;
   previous?: string;
+  videoId?: string;
 };
 
-export const alumniPlacements: AlumniPlacement[] = [
-  {
-    name: "Jigisha Bhatnagar",
-    role: "Sales & Account Management Associate",
-    company: "Amazon",
-    image: asset("images/students/Jigisha.png"),
-    previous: "Fresher",
-  },
+/** PGP Cohort 1 — residential placement outcomes */
+export const pgpCohortAlumni: AlumniPlacement[] = [
   {
     name: "Ansh Agrawal",
     role: "GTM Manager — US, APAC",
     company: "Payoneer",
     image: asset("images/students/Ansh.webp"),
     previous: "Startup",
-  },
-  {
-    name: "Sanyu",
-    role: "Business Development Representative",
-    company: "Adobe",
-    image: asset("images/students/Sanyu.webp"),
-    previous: "Engineering",
-  },
-  {
-    name: "Om Mishra",
-    role: "Business Development Representative",
-    company: "Payoneer",
-    image: asset("images/students/Om.webp"),
-    previous: "Consulting",
-  },
-  {
-    name: "Tanishq",
-    role: "Account Manager",
-    company: "Kaseya",
-    image: asset("images/students/Tanishq.webp"),
-    previous: "Sales",
-  },
-  {
-    name: "Soham Chatterjee",
-    role: "Growth Associate",
-    company: "Dohful",
-    image: asset("images/students/Soham.webp"),
-    previous: "Brand Challenge Winner",
+    videoId: "ElAM04gXehQ",
   },
   {
     name: "Abhinav Srivastava",
@@ -57,26 +25,80 @@ export const alumniPlacements: AlumniPlacement[] = [
     company: "Culture Circle",
     image: asset("images/students/Abhinav.webp"),
     previous: "Fresher",
+    videoId: "_Am4lWnV2kc",
   },
   {
-    name: "Shreyancy Goyal",
-    role: "FinOps Consultant",
-    company: "Zenskar",
-    image: asset("images/students/Shreyancy.png"),
-    previous: "Finance",
+    name: "Soham Chatterjee",
+    role: "Founder's Office — Growth",
+    company: "Dohful",
+    image: asset("images/students/Soham.webp"),
+    previous: "Brand Challenge Winner",
+    videoId: "1p3gZEkfg74",
   },
   {
-    name: "Preeti Karn",
+    name: "Aryan Suri",
+    role: "Business Development Representative",
+    company: "Payoneer",
+    image: asset("images/students/Aryan.webp"),
+    previous: "Consulting",
+    videoId: "rFZLsmtruzM",
+  },
+  {
+    name: "Om Mishra",
+    role: "Business Development Representative",
+    company: "Payoneer",
+    image: asset("images/students/Om.webp"),
+    previous: "Consulting",
+    videoId: "wh8cxiSDXeU",
+  },
+  {
+    name: "Hritik",
     role: "Founder's Office — Growth & Strategy",
-    company: "Zeko AI",
-    image: asset("images/students/Preeti.png"),
-    previous: "Marketing",
+    company: "Space Basic",
+    image: asset("images/students/Hrithik.webp"),
+    previous: "Fresher",
+    videoId: "FtiZotYe_lg",
   },
   {
-    name: "Vedant Singh",
-    role: "Founding BDR",
-    company: "Alphabake",
-    image: asset("images/students/Vedant.png"),
+    name: "Soumya",
+    role: "Customer Success Manager",
+    company: "Yatra",
+    image: asset("images/students/Saumya.webp"),
+    previous: "Operations",
+    videoId: "FtiZotYe_lg",
+  },
+  {
+    name: "Sanyu",
+    role: "Business Development Representative",
+    company: "Adobe",
+    image: asset("images/students/Sanyu.webp"),
+    previous: "Engineering",
+    videoId: "Z5ydfksTXNg",
+  },
+  {
+    name: "Harsh",
+    role: "Founder's Office — Program Manager",
+    company: "Vetic",
+    image: asset("images/students/Harsh.webp"),
     previous: "Fresher",
+    videoId: "GF82mn2Hzw0",
+  },
+  {
+    name: "Tanishq",
+    role: "Account Manager",
+    company: "Kaseya",
+    image: asset("images/students/Tanishq.webp"),
+    previous: "Sales",
+    videoId: "ECGkJ5jfKeM",
+  },
+  {
+    name: "Deepanshu",
+    role: "Enterprise Sales Manager",
+    company: "MyGate",
+    image: asset("images/students/Deepanshu.webp"),
+    previous: "B2B Sales",
+    videoId: "0RGQ76E6JW4",
   },
 ];
+
+export const alumniPlacements: AlumniPlacement[] = pgpCohortAlumni;

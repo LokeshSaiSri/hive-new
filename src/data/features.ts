@@ -3,7 +3,8 @@ export type FeaturePanel = {
   eyebrow: string;
   title: string;
   description: string;
-  videoId: string;
+  videoId?: string;
+  reelIds?: string[];
   ctaLabel?: string;
   ctaHref?: string;
   bullets?: { number: string; text: string }[];
@@ -44,9 +45,8 @@ export const handsOnPanels: FeaturePanel[] = [
     title: "Land Revenue Roles at Top Companies",
     description:
       "Dedicated placement support for BDR, AE, GTM, and growth roles — with hiring partners across India's fastest-growing companies.",
-    videoId: "pNVzaRpfG14",
-    ctaLabel: "Download Placement Report",
-    ctaHref: "#placement-report",
+    videoId: "ElAM04gXehQ",
+    ctaLabel: "Watch Ansh's Story",
     bullets: [
       { number: "1", text: "100+ active hiring partners" },
       { number: "2", text: "+184% average salary jump" },
@@ -62,7 +62,7 @@ export const pedagogyPanels: FeaturePanel[] = [
     title: "Structured sprints from operators who've scaled the playbook",
     description:
       "Structured sprints taught by operators who've scaled the companies you want to join. Not textbooks — real playbooks from the frontlines of business.",
-    videoId: "yKQ2OAuBG50",
+    reelIds: ["dzkdz", "duizk", "dx6w"],
     ctaLabel: "Watch a Sprint",
   },
   {
@@ -71,7 +71,7 @@ export const pedagogyPanels: FeaturePanel[] = [
     title: "B2B revenue, D2C brands, and AI-native workflows",
     description:
       "Three tracks woven across the programme — not siloed modules. Build pipeline, brand, and GTM muscle simultaneously.",
-    videoId: "rFZLsmtruzM",
+    reelIds: ["dzake", "dzcdv", "dxzk"],
     bullets: [
       {
         number: "1",
@@ -94,7 +94,7 @@ export const pedagogyPanels: FeaturePanel[] = [
     title: "Capstone presentations to founders and senior leaders",
     description:
       "Capstone presentations to founders and senior leaders — the same format that turned brand challenges into job offers.",
-    videoId: "rFZLsmtruzM",
+    reelIds: ["dssss", "drczh"],
     ctaLabel: "See a Pitch",
   },
 ];

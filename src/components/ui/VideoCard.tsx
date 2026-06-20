@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { useState } from "react";
 import { useVideo } from "@/components/providers/VideoProvider";
 import { youtubeThumbnail } from "@/lib/youtube";
 
@@ -13,6 +13,7 @@ type VideoCardProps = {
   flush?: boolean;
   /** Fill parent height — for side-by-side layouts */
   fill?: boolean;
+  thumbnailQuality?: "maxresdefault" | "hqdefault";
 };
 
 export function VideoCard({
@@ -23,9 +24,13 @@ export function VideoCard({
   large = false,
   flush = false,
   fill = false,
+  thumbnailQuality,
 }: VideoCardProps) {
   const { openVideo } = useVideo();
-  const imgSrc = youtubeThumbnail(videoId);
+  const [quality, setQuality] = useState<"maxresdefault" | "hqdefault">(
+    thumbnailQuality ?? "maxresdefault",
+  );
+  const imgSrc = youtubeThumbnail(videoId, quality);
 
   return (
     <div className={className}>
@@ -46,15 +51,16 @@ export function VideoCard({
                 : "aspect-video"
           }`}
         >
-          <Image
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            key={quality}
             src={imgSrc}
             alt={caption ?? "Video thumbnail"}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-            sizes={large ? "100vw" : "(max-width: 768px) 100vw, 50vw"}
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.src = youtubeThumbnail(videoId, "hqdefault");
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+            loading="lazy"
+            decoding="async"
+            onError={() => {
+              if (quality !== "hqdefault") setQuality("hqdefault");
             }}
           />
           <div className="absolute inset-0 bg-ink/25 transition-colors group-hover:bg-ink/15" />

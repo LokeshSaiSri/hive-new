@@ -5,8 +5,8 @@ import { pedagogyPanels } from "@/data/features";
 
 export function Pedagogy() {
   return (
-    <section className="section-band-dark">
-      <div className="section-container">
+    <section className="section-band-dark overflow-visible">
+      <div className="section-container overflow-visible">
         <ScrollReveal>
           <SectionIntro
             light={false}

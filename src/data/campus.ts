@@ -1,4 +1,5 @@
 import { asset } from "@/lib/assets";
+import { youtubeThumbnail } from "@/lib/youtube";
 
 export type CampusTab = {
   id: string;
@@ -40,4 +41,11 @@ export const campusTabs: CampusTab[] = [
 ];
 
 export const campusTourVideoId = "pNVzaRpfG14";
+export const campusTourPoster = youtubeThumbnail(campusTourVideoId);
 export const campusHeroImage = asset("images/misc/life-at-hive.webp");
+
+export const campusVideoCaption =
+  "Tour the pitch arena, brainstorm pods, and spaces where students present to founders and operators.";
+
+export const campusDescription =
+  "A purpose-built Gurugram campus designed for pitches, brainstorms, and operator-led sessions — the spaces where revenue skills are built in practice.";

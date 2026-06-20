@@ -13,6 +13,10 @@ type PortraitCardProps = {
   className?: string;
   size?: "default" | "large";
   metallic?: boolean;
+  layout?: "fixed" | "fluid";
+  active?: boolean;
+  onSelect?: () => void;
+  onHoverStart?: () => void;
 };
 
 export function PortraitCard({
@@ -25,15 +29,35 @@ export function PortraitCard({
   className = "",
   size = "default",
   metallic = false,
+  layout = "fixed",
+  active = false,
+  onSelect,
+  onHoverStart,
 }: PortraitCardProps) {
   const { openVideo } = useVideo();
-  const widthClass = size === "large" ? "w-[280px] sm:w-[300px]" : "w-[260px]";
+  const widthClass =
+    layout === "fluid" ? "w-full" : size === "large" ? "w-[280px] sm:w-[300px]" : "w-[260px]";
+
+  const handleClick = () => {
+    if (onSelect) {
+      onSelect();
+      return;
+    }
+    if (videoId) openVideo(videoId);
+  };
 
   const card = (
-    <div
-      className={`group relative aspect-[3/4] shrink-0 overflow-hidden ${
+    <button
+      type="button"
+      onMouseEnter={onHoverStart}
+      onClick={handleClick}
+      className={`group relative block aspect-[3/4] w-full shrink-0 overflow-hidden text-left ${
         metallic ? "rounded-[calc(1.5rem-1px)]" : "rounded-2xl"
-      } hover-lift-card ${metallic ? "w-full" : widthClass} ${className}`}
+      } ${onSelect ? "cursor-pointer" : ""} hover-lift-card ${className} ${
+        active ? "ring-2 ring-brand-yellow ring-offset-2 ring-offset-ink" : ""
+      }`}
+      aria-label={`Preview ${name}'s story`}
+      aria-pressed={active}
     >
       <Image
         src={image}
@@ -62,28 +86,16 @@ export function PortraitCard({
       )}
       <div className="absolute inset-x-0 bottom-0 p-4">
         <p className="text-base font-bold leading-tight text-white">{name}</p>
-        <p className="mt-1 line-clamp-2 text-sm leading-snug text-white/75">
-          {role}
-        </p>
+        <p className="mt-1 line-clamp-2 text-sm leading-snug text-white/75">{role}</p>
       </div>
       {videoId && (
-        <button
-          type="button"
-          onClick={() => openVideo(videoId)}
-          className="absolute bottom-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-white opacity-0 shadow-md transition-all duration-300 group-hover:opacity-100"
-          aria-label={`Play video for ${name}`}
-        >
-          <svg
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            className="ml-0.5 h-4 w-4 text-ink"
-            aria-hidden
-          >
+        <span className="absolute bottom-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/95 opacity-0 shadow-md transition-all duration-300 group-hover:opacity-100">
+          <svg viewBox="0 0 24 24" fill="currentColor" className="ml-0.5 h-4 w-4 text-ink" aria-hidden>
             <path d="M8 5v14l11-7z" />
           </svg>
-        </button>
+        </span>
       )}
-    </div>
+    </button>
   );
 
   if (metallic) {
@@ -94,5 +106,5 @@ export function PortraitCard({
     );
   }
 
-  return card;
+  return <div className={`shrink-0 ${widthClass}`}>{card}</div>;
 }

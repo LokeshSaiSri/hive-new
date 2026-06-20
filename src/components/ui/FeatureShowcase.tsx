@@ -1,9 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import { useVideo } from "@/components/providers/VideoProvider";
 import { PillButton } from "@/components/ui/PillButton";
+import { ReelPhoneShowcase } from "@/components/ui/ReelPhoneShowcase";
 import { youtubeThumbnail } from "@/lib/youtube";
+import Image from "next/image";
 import type { FeaturePanel } from "@/data/features";
 
 export function FeatureShowcase({
@@ -18,6 +19,7 @@ export function FeatureShowcase({
   dark?: boolean;
 }) {
   const { openVideo } = useVideo();
+  const useReels = Boolean(panel.reelIds?.length);
 
   return (
     <div
@@ -25,33 +27,43 @@ export function FeatureShowcase({
         reversed ? "lg:[&>*:first-child]:order-2" : ""
       }`}
     >
-      <button
-        type="button"
-        onClick={() => openVideo(panel.videoId)}
-        className={`group relative w-full overflow-hidden rounded-2xl border hover-lift-card ${
-          dark ? "border-white/10" : "border-transparent"
-        } ${compact ? "aspect-[16/10]" : "aspect-[4/3]"}`}
-      >
-        <Image
-          src={youtubeThumbnail(panel.videoId)}
-          alt={panel.title}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-          sizes="(max-width: 1024px) 100vw, 50vw"
-          onError={(e) => {
-            const target = e.target as HTMLImageElement;
-            target.src = youtubeThumbnail(panel.videoId, "hqdefault");
-          }}
-        />
-        <div className="absolute inset-0 bg-ink/30 transition-colors group-hover:bg-ink/20" />
-        <span className="absolute inset-0 flex items-center justify-center">
-          <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-xl transition-transform duration-300 group-hover:scale-105 sm:h-20 sm:w-20">
-            <svg viewBox="0 0 24 24" fill="currentColor" className="ml-1 h-7 w-7 text-ink sm:h-8 sm:w-8">
-              <path d="M8 5v14l11-7z" />
-            </svg>
+      {useReels ? (
+        <div className="relative flex min-w-0 justify-center overflow-visible lg:justify-end">
+          <ReelPhoneShowcase
+            reelIds={panel.reelIds}
+            variant="embedded"
+            instanceKey={panel.id}
+          />
+        </div>
+      ) : (
+        <button
+          type="button"
+          onClick={() => panel.videoId && openVideo(panel.videoId)}
+          className={`group relative w-full overflow-hidden rounded-2xl border hover-lift-card ${
+            dark ? "border-white/10" : "border-transparent"
+          } ${compact ? "aspect-[16/10]" : "aspect-[4/3]"}`}
+        >
+          <Image
+            src={youtubeThumbnail(panel.videoId!)}
+            alt={panel.title}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.src = youtubeThumbnail(panel.videoId!, "hqdefault");
+            }}
+          />
+          <div className="absolute inset-0 bg-ink/30 transition-colors group-hover:bg-ink/20" />
+          <span className="absolute inset-0 flex items-center justify-center">
+            <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-xl transition-transform duration-300 group-hover:scale-105 sm:h-20 sm:w-20">
+              <svg viewBox="0 0 24 24" fill="currentColor" className="ml-1 h-7 w-7 text-ink sm:h-8 sm:w-8">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </span>
           </span>
-        </span>
-      </button>
+        </button>
+      )}
 
       <div className="min-w-0">
         <p
@@ -110,7 +122,9 @@ export function FeatureShowcase({
               tone={dark ? "dark" : "light"}
               href={panel.ctaHref}
               onClick={
-                !panel.ctaHref ? () => openVideo(panel.videoId) : undefined
+                !panel.ctaHref && panel.videoId && !useReels
+                  ? () => openVideo(panel.videoId!)
+                  : undefined
               }
             >
               {panel.ctaLabel}

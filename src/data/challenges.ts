@@ -3,12 +3,27 @@ import { asset } from "@/lib/assets";
 export type Challenge = {
   caption: string;
   videoId: string;
+  /** Some uploads only expose hqdefault on YouTube's CDN */
+  thumbnailQuality?: "maxresdefault" | "hqdefault";
 };
 
 export const challenges: Challenge[] = [
   {
-    caption: "First Principles Breakdown at @bigboytoyz_india",
-    videoId: "rFZLsmtruzM",
+    caption: "Culture Circle — live brand challenge",
+    videoId: "TrqPns8vS_s",
+  },
+  {
+    caption: "SaaS & AI challenge — GTM in practice",
+    videoId: "JgD_DXaljeg",
+  },
+  {
+    caption: "MVP challenge — ship and pitch",
+    videoId: "F8nxI5GYC0Y",
+    thumbnailQuality: "hqdefault",
+  },
+  {
+    caption: "Orientation week — how learning starts",
+    videoId: "HWGDJukH2MY",
   },
   {
     caption: "On the Ground at Dohful",
@@ -17,18 +32,6 @@ export const challenges: Challenge[] = [
   {
     caption: "Fix My Curls ft. Anshita Mehrotra",
     videoId: "FYSxT9lGlBU",
-  },
-  {
-    caption: "How Zypp Electric became a $325M company",
-    videoId: "flA-hiv_JtY",
-  },
-  {
-    caption: "First Principles: Zypp Electric",
-    videoId: "ANqZT2f87nQ",
-  },
-  {
-    caption: "On the Ground at @PEESAFE",
-    videoId: "gifFZ0u0Gwo",
   },
 ];
 

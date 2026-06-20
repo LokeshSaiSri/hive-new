@@ -155,15 +155,20 @@ export function HeroStudentFeatured({
   company,
   companyLogo,
   videoId,
-}: Omit<HeroStudentCardProps, "isActive" | "onSelect">) {
+  previewMode = false,
+}: Omit<HeroStudentCardProps, "isActive" | "onSelect"> & { previewMode?: boolean }) {
   const { openVideo } = useVideo();
 
   return (
     <button
       type="button"
-      onClick={() => openVideo(videoId)}
-      className="group flex w-full max-w-[220px] flex-col items-center gap-4 text-left sm:max-w-[240px]"
-      aria-label={`Play testimonial from ${name}`}
+      onClick={() => {
+        if (!previewMode) openVideo(videoId);
+      }}
+      className={`group flex w-full max-w-[220px] flex-col items-center gap-4 text-left sm:max-w-[240px] ${
+        previewMode ? "cursor-default" : "cursor-pointer"
+      }`}
+      aria-label={previewMode ? `${name} selected` : `Play testimonial from ${name}`}
     >
       <div className="hero-polaroid w-[165px] p-2.5 pb-3.5 shadow-xl transition-transform duration-300 group-hover:-translate-y-1 sm:w-[185px]">
         <div className="relative aspect-[4/5] w-full overflow-hidden">
@@ -198,7 +203,7 @@ export function HeroStudentFeatured({
               <path d="M8 5v14l11-7z" />
             </svg>
           </span>
-          Play story
+          {previewMode ? "Preview on the right" : "Play story"}
         </p>
       </div>
     </button>

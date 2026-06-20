@@ -36,14 +36,14 @@ export function VideoProvider({ children }: { children: ReactNode }) {
       <AnimatePresence>
         {activeId && (
           <motion.div
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-ink/90 p-4 backdrop-blur-sm"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-ink/90 p-3 sm:p-6 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={close}
           >
             <motion.div
-              className="relative aspect-video w-full max-w-5xl overflow-hidden rounded-2xl bg-black shadow-2xl"
+              className="relative aspect-video w-[min(96vw,1400px)] overflow-hidden rounded-2xl bg-black shadow-2xl"
               initial={{ scale: 0.92, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.92, opacity: 0 }}

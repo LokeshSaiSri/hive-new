@@ -9,10 +9,6 @@ export const faqItems: FAQItem[] = [
     videoId: "U-l2PPDhfCM",
   },
   {
-    question: "What is the eligibility criteria to apply?",
-    videoId: "4WslTr1Qj4k",
-  },
-  {
     question: "Is HiveSchool the right fit for you?",
     videoId: "0RGQ76E6JW4",
   },
@@ -27,9 +23,5 @@ export const faqItems: FAQItem[] = [
   {
     question: "What career paths do HiveSchool students typically take?",
     videoId: "FtiZotYe_lg",
-  },
-  {
-    question: "HiveSchool Offline vs Online — what's the difference?",
-    videoId: "sj2fDI5FLng",
   },
 ];

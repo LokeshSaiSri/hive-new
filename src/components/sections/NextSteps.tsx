@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { SectionIntro } from "@/components/ui/SectionIntro";
 import { PillButton } from "@/components/ui/PillButton";
 import { ScrollReveal, StaggerReveal, StaggerItem } from "@/components/ui/ScrollReveal";
@@ -6,14 +5,15 @@ import { nextStepCards } from "@/data/programmes";
 
 export function NextSteps() {
   return (
-    <section className="section-band-dark">
+    <section id="apply" className="section-band-dark">
       <div className="section-container">
         <ScrollReveal>
           <SectionIntro
             light={false}
-            eyebrow="Next Steps"
-            statement="Explore a programme."
-            emphasis="Download the report."
+            eyebrow="Explore HiveSchool"
+            statement="Find your"
+            emphasis="programme."
+            description="PGP, AI Marketing Fellowship, or UG — each built for operators who learn by doing."
           />
         </ScrollReveal>
 
@@ -26,12 +26,12 @@ export function NextSteps() {
                   <p className="mt-2 flex-1 text-sm leading-relaxed text-mid-gray">
                     {card.description}
                   </p>
-                  <Link
+                  <a
                     href={card.href}
                     className="link-highlight mt-5 inline-block text-sm text-electric-blue"
                   >
                     Learn more →
-                  </Link>
+                  </a>
                 </div>
               </div>
             </StaggerItem>
@@ -42,7 +42,7 @@ export function NextSteps() {
           <PillButton variant="highlight" tone="dark" href="#apply">
             Apply to HiveSchool
           </PillButton>
-          <PillButton variant="secondary" tone="dark" href="#placement-report">
+          <PillButton variant="secondary" tone="dark" href="/HiveSchool Placement Report 2025-26.pdf">
             Download Placement Report
           </PillButton>
         </ScrollReveal>

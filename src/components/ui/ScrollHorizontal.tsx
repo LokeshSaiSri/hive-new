@@ -23,6 +23,8 @@ type ScrollHorizontalProps = {
   /** >1 lengthens the pin for a slower horizontal feel */
   durationScale?: number;
   label?: string;
+  /** Progress bar color on the pinned rail */
+  progressTone?: "light" | "dark";
 };
 
 export function ScrollHorizontal({
@@ -31,6 +33,7 @@ export function ScrollHorizontal({
   trackClassName = "",
   durationScale = 1,
   label,
+  progressTone = "light",
 }: ScrollHorizontalProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -117,9 +120,15 @@ export function ScrollHorizontal({
 
         {metrics.distance > 0 && (
           <div className="section-container shrink-0 pb-8">
-            <div className="h-0.5 overflow-hidden rounded-full bg-ink/10">
+            <div
+              className={`h-0.5 overflow-hidden rounded-full ${
+                progressTone === "dark" ? "bg-white/12" : "bg-ink/10"
+              }`}
+            >
               <motion.div
-                className="h-full rounded-full bg-white"
+                className={`h-full rounded-full ${
+                  progressTone === "dark" ? "bg-accent" : "bg-ink"
+                }`}
                 style={{ scaleX: scrollYProgress, transformOrigin: "left center" }}
               />
             </div>

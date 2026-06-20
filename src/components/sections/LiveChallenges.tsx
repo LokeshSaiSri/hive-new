@@ -27,6 +27,7 @@ export function LiveChallenges() {
               key={challenge.videoId + challenge.caption}
               videoId={challenge.videoId}
               caption={challenge.caption}
+              thumbnailQuality={challenge.thumbnailQuality}
             />
           ))}
         </HorizontalScroller>

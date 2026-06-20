@@ -36,7 +36,7 @@ function MentorCard({
 
 export function Mentors() {
   const [category, setCategory] =
-    useState<(typeof mentorCategories)[number]>("Sales");
+    useState<(typeof mentorCategories)[number]>("Marketing");
   const filtered = mentors.filter((m) => m.category === category);
 
   return (

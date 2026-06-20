@@ -14,20 +14,6 @@ export type Programme = {
 
 export const programmes: Programme[] = [
   {
-    id: "ug",
-    title: "Undergraduate Programme",
-    badge: "Undergraduate",
-    videoId: "gpXQDETej2k",
-    description:
-      "3-year UG for founders, growth operators, and AI-native problem solvers — industry-led, starting Aug 2027.",
-    eligibility: "Class XII Students & Pass-outs",
-    format: "On Campus (Opt-in Residential)",
-    duration: "3 Years",
-    status: "Round 1 Applications Open",
-    learnMoreHref: "/ug",
-    enrolHref: "/ug#apply",
-  },
-  {
     id: "pgp",
     title: "PGP in Revenue, AI & Entrepreneurship",
     badge: "Flagship",
@@ -43,11 +29,11 @@ export const programmes: Programme[] = [
   },
   {
     id: "ai-marketing",
-    title: "AI Marketing Fellowship",
-    badge: "Flagship",
+    title: "AI Marketing & Entrepreneurship Fellowship",
+    badge: "Fellowship",
     videoId: "vCfoRUGuszE",
     description:
-      "New-age marketing — brand building, performance, AI workflows, and a freelance pathway.",
+      "6-month on-campus fellowship — brand, performance, AI workflows, and a freelance pathway.",
     eligibility: "Any background",
     format: "On Campus (Opt-in Residential)",
     duration: "6 Months",
@@ -55,25 +41,39 @@ export const programmes: Programme[] = [
     learnMoreHref: "/ai-marketing",
     enrolHref: "/ai-marketing#apply",
   },
+  {
+    id: "ug",
+    title: "Undergraduate Programme",
+    badge: "Undergraduate",
+    videoId: "gpXQDETej2k",
+    description:
+      "3-year UG with 2+1 live project internships — industry-led, starting Aug 2027.",
+    eligibility: "Class XII Students & Pass-outs",
+    format: "On Campus (Opt-in Residential)",
+    duration: "3 Years",
+    status: "Round 1 Applications Open",
+    learnMoreHref: "/ug",
+    enrolHref: "/ug#apply",
+  },
 ];
 
 export const nextStepCards = [
   {
-    title: "AI Marketing Fellowship",
+    title: "PGP in Revenue, AI & Entrepreneurship",
+    description:
+      "India's revenue-first business school — 9-month residential PGP in Gurugram.",
+    href: "/pgp",
+  },
+  {
+    title: "AI Marketing & Entrepreneurship Fellowship",
     description:
       "Brand, performance, and AI-native marketing on campus in Gurugram.",
     href: "/ai-marketing",
   },
   {
-    title: "PGP in Revenue, AI & Entrepreneurship",
-    description:
-      "India's revenue-first business school — 9-month residential PGP.",
-    href: "/pgp",
-  },
-  {
     title: "UG Programme",
     description:
-      "Undergraduate pathway into revenue and marketing careers.",
+      "2+1 live project internships — undergraduate pathway into revenue and marketing.",
     href: "/ug",
   },
 ];

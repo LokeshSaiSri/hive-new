@@ -1,10 +1,10 @@
-import Image from "next/image";
 import { SectionIntro } from "@/components/ui/SectionIntro";
 import { MarqueeRows } from "@/components/ui/MarqueeRow";
 import { PlacementStatsCharts } from "@/components/ui/PlacementStatsCharts";
 import { PillButton } from "@/components/ui/PillButton";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { VideoCard } from "@/components/ui/VideoCard";
+import { HiringPartnerLogo } from "@/components/ui/HiringPartnerLogo";
 import { founderQuote, placementReportVideoId } from "@/data/stats";
 import { hiringPartnerLogos } from "@/data/partners";
 
@@ -82,34 +82,13 @@ export function PlacementStats() {
             Hiring Partners
           </p>
           <MarqueeRows
+            pauseOnHover={false}
             rows={[
               row1.map((partner) => (
-                <div
-                  key={partner.name}
-                  className="flex h-16 w-40 items-center justify-center px-5 opacity-50 brightness-0 invert transition hover:opacity-90"
-                >
-                  <Image
-                    src={partner.src}
-                    alt={partner.name}
-                    width={120}
-                    height={48}
-                    className="max-h-10 w-auto object-contain"
-                  />
-                </div>
+                <HiringPartnerLogo key={partner.name} {...partner} />
               )),
               row2.map((partner) => (
-                <div
-                  key={partner.name}
-                  className="flex h-16 w-40 items-center justify-center px-5 opacity-50 brightness-0 invert transition hover:opacity-90"
-                >
-                  <Image
-                    src={partner.src}
-                    alt={partner.name}
-                    width={120}
-                    height={48}
-                    className="max-h-10 w-auto object-contain"
-                  />
-                </div>
+                <HiringPartnerLogo key={partner.name} {...partner} />
               )),
             ]}
           />

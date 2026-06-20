@@ -1,0 +1,939 @@
+/* Fellowship — Premium editorial luxury (visual-first) */
+
+.fellowship-page {
+  --fl-ink: #0a0f1c;
+  --fl-ivory: #f7f5f0;
+  --fl-champagne: #c9a962;
+  --fl-gold: #dfc07a;
+  --fl-warm: #ebe6dc;
+  --fl-muted: rgba(10, 15, 28, 0.52);
+  background: var(--fl-ivory);
+  color: var(--fl-ink);
+}
+
+.fellowship-eyebrow {
+  margin: 0 0 1rem;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--fl-muted);
+}
+
+.fellowship-eyebrow--light {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.fellowship-headline {
+  margin: 0;
+  font-size: clamp(2.5rem, 6vw, 4.75rem);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  color: var(--fl-ink);
+}
+
+.fellowship-headline em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--fl-champagne);
+}
+
+.fellowship-headline--light {
+  color: #fff;
+}
+
+.fellowship-headline--light em {
+  color: var(--fl-gold);
+}
+
+.fellowship-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.fellowship-btn:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+.fellowship-btn--gold {
+  background: var(--fl-champagne);
+  color: var(--fl-ink);
+}
+
+.fellowship-btn--ink {
+  background: var(--fl-ink);
+  color: #fff;
+}
+
+/* Hero */
+.fellowship-hero {
+  position: relative;
+  isolation: isolate;
+  min-height: min(100svh, 900px);
+  overflow: hidden;
+  background: var(--fl-ink);
+  color: #fff;
+}
+
+.fellowship-hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.fellowship-hero__veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    rgba(10, 15, 28, 0.82) 0%,
+    rgba(10, 15, 28, 0.45) 45%,
+    rgba(10, 15, 28, 0.72) 100%
+  );
+}
+
+.fellowship-hero__grain {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.35;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+.fellowship-hero__body {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  min-height: min(100svh, 900px);
+  align-items: flex-end;
+  padding: 7rem 0 4rem;
+}
+
+.fellowship-hero__inner {
+  max-width: 52rem;
+}
+
+.fellowship-hero__title {
+  margin: 0.5rem 0 0;
+  font-size: clamp(3.25rem, 9vw, 7rem);
+  font-weight: 500;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+}
+
+.fellowship-hero__title span {
+  display: block;
+}
+
+.fellowship-hero__title em {
+  display: block;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--fl-gold);
+}
+
+.fellowship-hero__line {
+  margin: 1.25rem 0 0;
+  max-width: 26rem;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.fellowship-hero__cta {
+  margin-top: 2rem;
+}
+
+.fellowship-hero__stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin: 3rem 0 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+}
+
+@media (max-width: 640px) {
+  .fellowship-hero__stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.fellowship-hero__stats li {
+  padding: 1.25rem 1rem;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.fellowship-hero__stat-num {
+  display: block;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--fl-gold);
+}
+
+.fellowship-hero__stat-lbl {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.625rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.48);
+}
+
+/* Editorial spreads */
+.fellowship-spreads {
+  background: var(--fl-ivory);
+}
+
+.fellowship-spread {
+  display: grid;
+  min-height: min(72vh, 640px);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 1024px) {
+  .fellowship-spread {
+    grid-template-columns: 1.15fr 0.85fr;
+    min-height: min(80vh, 720px);
+  }
+
+  .fellowship-spread--reverse {
+    grid-template-columns: 0.85fr 1.15fr;
+  }
+
+  .fellowship-spread--reverse .fellowship-spread__visual {
+    order: 2;
+  }
+
+  .fellowship-spread--reverse .fellowship-spread__copy {
+    order: 1;
+  }
+}
+
+.fellowship-spread__visual {
+  position: relative;
+  min-height: 50vh;
+  overflow: hidden;
+}
+
+.fellowship-spread__veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(10, 15, 28, 0.35) 100%);
+}
+
+.fellowship-spread__index {
+  position: absolute;
+  left: 1.5rem;
+  bottom: 1.5rem;
+  font-size: clamp(4rem, 10vw, 7rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: rgba(255, 255, 255, 0.22);
+}
+
+.fellowship-spread__copy {
+  display: flex;
+  align-items: center;
+  padding: clamp(2rem, 6vw, 4rem);
+  background: var(--fl-ivory);
+}
+
+.fellowship-spread__title {
+  margin: 0;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  font-family: var(--font-serif);
+  font-style: italic;
+}
+
+/* Gallery strip */
+.fellowship-gallery-strip {
+  overflow: hidden;
+  border-block: 1px solid rgba(10, 15, 28, 0.08);
+  background: var(--fl-ink);
+  padding: 1.25rem 0;
+}
+
+.fellowship-gallery-strip__track {
+  display: flex;
+  width: max-content;
+  gap: 1rem;
+  animation: fellowship-gallery-scroll 50s linear infinite;
+}
+
+.fellowship-gallery-strip__frame {
+  position: relative;
+  flex: 0 0 auto;
+  width: min(72vw, 280px);
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+
+@keyframes fellowship-gallery-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Mega stats */
+.fellowship-mega-stats {
+  padding: clamp(3rem, 8vw, 5rem) 0;
+  background: var(--fl-ink);
+  color: #fff;
+}
+
+.fellowship-mega-stats__row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 768px) {
+  .fellowship-mega-stats__row {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.fellowship-mega-stats__row li {
+  padding: clamp(2rem, 5vw, 3.5rem) 1.5rem;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.fellowship-mega-stats__value {
+  display: block;
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--fl-gold);
+}
+
+.fellowship-mega-stats__label {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 0.625rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* Paths */
+.fellowship-paths {
+  padding: clamp(4rem, 10vw, 6rem) 0 2rem;
+  background: var(--fl-ivory);
+}
+
+.fellowship-paths__header {
+  margin-bottom: 2rem;
+}
+
+.fellowship-paths__stage {
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: min(70vh, 560px);
+}
+
+@media (min-width: 768px) {
+  .fellowship-paths__stage {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.fellowship-paths__panel {
+  position: relative;
+  min-height: 42vh;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  text-align: left;
+  opacity: 0.55;
+  transition: opacity 0.4s ease, flex 0.4s ease;
+}
+
+.fellowship-paths__panel.is-active {
+  opacity: 1;
+}
+
+.fellowship-paths__panel-veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 30%, rgba(10, 15, 28, 0.75) 100%);
+}
+
+.fellowship-paths__panel-copy {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  padding: 2rem;
+  color: #fff;
+}
+
+.fellowship-paths__panel-index {
+  font-size: 0.625rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--fl-gold);
+}
+
+.fellowship-paths__panel-copy h3 {
+  margin: 0.5rem 0 0;
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.fellowship-paths__panel-copy p {
+  margin: 0.5rem 0 0;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.fellowship-paths__outcome {
+  margin: 0;
+  padding: 1.25rem clamp(1.25rem, 4vw, 2rem);
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fl-muted);
+  border-top: 1px solid rgba(10, 15, 28, 0.08);
+}
+
+/* Tracks */
+.fellowship-tracks {
+  padding: clamp(4rem, 10vw, 6rem) 0;
+  background: var(--fl-ink);
+  color: #fff;
+}
+
+.fellowship-tracks__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.fellowship-tracks__nav {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.fellowship-tracks__nav button {
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+.fellowship-tracks__rail {
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 0 clamp(1.25rem, 4vw, 2rem) 0.5rem;
+  scrollbar-width: none;
+}
+
+.fellowship-tracks__rail::-webkit-scrollbar {
+  display: none;
+}
+
+.fellowship-tracks__card {
+  position: relative;
+  flex: 0 0 min(78vw, 340px);
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+
+.fellowship-tracks__card-veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 35%, rgba(10, 15, 28, 0.8) 100%);
+}
+
+.fellowship-tracks__card-copy {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1.5rem;
+}
+
+.fellowship-tracks__card-copy span {
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--fl-gold);
+}
+
+.fellowship-tracks__card-copy h3 {
+  margin: 0.5rem 0 0;
+  font-size: 1.35rem;
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+/* Capstones mosaic */
+.fellowship-capstones {
+  padding: clamp(4rem, 10vw, 6rem) 0;
+  background: var(--fl-warm);
+}
+
+.fellowship-capstones__head {
+  margin-bottom: 2rem;
+}
+
+.fellowship-capstones__mosaic {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
+  padding: 0 clamp(1.25rem, 4vw, 2rem);
+}
+
+@media (min-width: 900px) {
+  .fellowship-capstones__mosaic {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding: 0;
+    max-width: 90rem;
+    margin: 0 auto;
+  }
+}
+
+.fellowship-capstones__tile {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+
+.fellowship-capstones__tile.is-featured {
+  grid-column: span 2;
+  grid-row: span 2;
+  aspect-ratio: auto;
+  min-height: 100%;
+}
+
+.fellowship-capstones__tile-veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(10, 15, 28, 0.7) 100%);
+  opacity: 0.85;
+  transition: opacity 0.35s ease;
+}
+
+.fellowship-capstones__tile:hover .fellowship-capstones__tile-veil {
+  opacity: 1;
+}
+
+.fellowship-capstones__tile-copy {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1rem;
+  color: #fff;
+}
+
+.fellowship-capstones__tile-copy span {
+  font-size: 0.5625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--fl-gold);
+}
+
+.fellowship-capstones__tile-copy h3 {
+  margin: 0.35rem 0 0;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+/* Filmstrip timeline */
+.fellowship-filmstrip {
+  padding: clamp(4rem, 10vw, 6rem) 0;
+  background: var(--fl-ink);
+  color: #fff;
+}
+
+.fellowship-filmstrip__head {
+  margin-bottom: 2rem;
+}
+
+.fellowship-filmstrip__rail {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 0 clamp(1.25rem, 4vw, 2rem) 0.5rem;
+  scrollbar-width: none;
+}
+
+.fellowship-filmstrip__rail::-webkit-scrollbar {
+  display: none;
+}
+
+.fellowship-filmstrip__frame {
+  position: relative;
+  flex: 0 0 min(72vw, 300px);
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+
+.fellowship-filmstrip__veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(10, 15, 28, 0.8) 100%);
+}
+
+.fellowship-filmstrip__label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1.25rem;
+}
+
+.fellowship-filmstrip__label span {
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--fl-gold);
+}
+
+.fellowship-filmstrip__label h3 {
+  margin: 0.4rem 0 0;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+/* Mentors */
+.fellowship-mentors {
+  padding: clamp(4rem, 10vw, 6rem) 0;
+  background: var(--fl-ivory);
+}
+
+.fellowship-mentors__head {
+  margin-bottom: 2rem;
+}
+
+.fellowship-mentors__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: rgba(10, 15, 28, 0.08);
+  border: 1px solid rgba(10, 15, 28, 0.08);
+}
+
+@media (min-width: 900px) {
+  .fellowship-mentors__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.fellowship-mentors__card {
+  margin: 0;
+  background: var(--fl-ivory);
+}
+
+.fellowship-mentors__photo {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+
+.fellowship-mentors__photo img {
+  filter: grayscale(0.15);
+}
+
+.fellowship-mentors__card figcaption {
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+.fellowship-mentors__name {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.fellowship-mentors__role {
+  margin: 0.2rem 0 0;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fl-muted);
+}
+
+/* Apply */
+.fellowship-apply-dock {
+  padding: clamp(3.5rem, 8vw, 5rem) 0;
+  background: #fff;
+  border-top: 1px solid rgba(10, 15, 28, 0.08);
+}
+
+.fellowship-apply-form__intro {
+  max-width: 36rem;
+  margin-bottom: 2rem;
+}
+
+.fellowship-apply-form__intro-desc {
+  margin-top: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--fl-muted);
+}
+
+.fellowship-apply-form__grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .fellowship-apply-form__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+.fellowship-apply-form__spotlight {
+  display: flex;
+  min-height: 26rem;
+}
+
+.fellowship-apply-form__spotlight .premium-frame-dark,
+.fellowship-apply-form__spotlight .premium-surface-dark {
+  flex: 1;
+  border-radius: 0;
+  border: 1px solid rgba(10, 15, 28, 0.12);
+  background: var(--fl-ink);
+}
+
+.fellowship-apply-form__panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.fellowship-apply-form__frame {
+  flex: 1;
+  border: 1px solid rgba(10, 15, 28, 0.12);
+  box-shadow: 16px 16px 0 var(--fl-champagne);
+  transform: none;
+}
+
+.fellowship-apply-form__frame .course-application-form-hero {
+  background: var(--fl-ink);
+}
+
+.fellowship-display {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.fellowship-display__em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--fl-champagne);
+}
+
+.fellowship-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--fl-muted);
+}
+
+.fellowship-label__bar {
+  width: 2rem;
+  height: 1px;
+  background: var(--fl-champagne);
+}
+
+/* Fees */
+.fellowship-fees-lux {
+  padding: clamp(4rem, 10vw, 6rem) 0;
+  background: var(--fl-warm);
+}
+
+.fellowship-fees-lux__inner {
+  display: grid;
+  gap: 2rem;
+  align-items: end;
+}
+
+@media (min-width: 768px) {
+  .fellowship-fees-lux__inner {
+    grid-template-columns: 1fr auto;
+  }
+}
+
+.fellowship-fees-lux__card {
+  padding: 2rem 2.5rem;
+  background: #fff;
+  border: 1px solid rgba(10, 15, 28, 0.1);
+  text-align: center;
+}
+
+.fellowship-fees-lux__amount {
+  margin: 0;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--fl-ink);
+}
+
+.fellowship-fees-lux__note {
+  margin: 0.5rem 0 1.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fl-muted);
+}
+
+/* FAQ luxury */
+.fellowship-faq-lux {
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: min(80vh, 640px);
+  background: var(--fl-ink);
+  color: #fff;
+}
+
+@media (min-width: 900px) {
+  .fellowship-faq-lux {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.fellowship-faq-lux__visual {
+  position: relative;
+  min-height: 40vh;
+}
+
+.fellowship-faq-lux__visual-veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 40%, var(--fl-ink) 100%);
+}
+
+.fellowship-faq-lux__panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2rem, 6vw, 4rem);
+}
+
+.fellowship-faq-lux__list {
+  margin-top: 2rem;
+}
+
+.fellowship-faq-lux__item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.fellowship-faq-lux__item button {
+  width: 100%;
+  padding: 1.1rem 0;
+  text-align: left;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.fellowship-faq-lux__item button.is-open {
+  color: var(--fl-gold);
+}
+
+.fellowship-faq-lux__item p {
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.55);
+  overflow: hidden;
+}
+
+/* Closing */
+.fellowship-closing {
+  padding: clamp(4rem, 12vw, 7rem) 0;
+  background: var(--fl-ink);
+  text-align: center;
+}
+
+.fellowship-closing__title {
+  margin: 0 0 2rem;
+  font-size: clamp(2.25rem, 6vw, 4rem);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+
+.fellowship-closing__title em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--fl-gold);
+}
+
+.program-page:has(.fellowship-page) .program-subnav {
+  background: rgba(247, 245, 240, 0.96);
+  border-bottom: 1px solid rgba(10, 15, 28, 0.08);
+  box-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fellowship-gallery-strip__track {
+    animation: none;
+  }
+}

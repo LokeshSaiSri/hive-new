@@ -25,7 +25,24 @@ function ChapterLabel({ children }: { children: ReactNode }) {
   );
 }
 
-export function WhyRevenue() {
+type WhyRevenueSections = {
+  contrast?: boolean;
+  ladder?: boolean;
+  industries?: boolean;
+};
+
+type WhyRevenueProps = {
+  sections?: WhyRevenueSections;
+};
+
+const defaultSections: Required<WhyRevenueSections> = {
+  contrast: true,
+  ladder: true,
+  industries: true,
+};
+
+export function WhyRevenue({ sections: sectionsProp }: WhyRevenueProps = {}) {
+  const sections = { ...defaultSections, ...sectionsProp };
   const [activeIndustry, setActiveIndustry] = useState(
     industryColumns[0].industry,
   );
@@ -61,6 +78,7 @@ export function WhyRevenue() {
           />
         </ScrollReveal>
 
+        {sections.contrast && (
         <div id="why-compare" className="scroll-mt-28">
           <ScrollReveal className="mt-14 sm:mt-16">
             <div className="text-center">
@@ -134,7 +152,9 @@ export function WhyRevenue() {
             </div>
           </ScrollReveal>
         </div>
+        )}
 
+        {sections.ladder && (
         <div id="why-ladder" className="scroll-mt-28">
           <ScrollReveal className="mt-14 sm:mt-16">
             <div className="text-center">
@@ -165,7 +185,9 @@ export function WhyRevenue() {
             </div>
           </ScrollReveal>
         </div>
+        )}
 
+        {sections.industries && (
         <div id="why-industries" className="scroll-mt-28">
           <ScrollReveal className="mt-14 sm:mt-20">
             <div className="rounded-2xl border border-white/25 bg-white p-8 shadow-[0_16px_42px_rgba(6,15,50,0.12)] sm:p-12 lg:p-14">
@@ -305,6 +327,7 @@ export function WhyRevenue() {
             </div>
           </ScrollReveal>
         </div>
+        )}
       </div>
     </section>
   );

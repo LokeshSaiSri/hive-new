@@ -67,6 +67,8 @@ export function Nav() {
                   className={`flex items-center gap-1.5 ${desktopNavLink} ${
                     openDropdown === item.label ? desktopNavLinkActive : ""
                   }`}
+                  aria-expanded={openDropdown === item.label}
+                  aria-haspopup="true"
                 >
                   {item.label}
                   <svg
@@ -83,16 +85,18 @@ export function Nav() {
                   </svg>
                 </button>
                 {openDropdown === item.label && (
-                  <div className="absolute left-0 top-full z-50 mt-2 w-72 rounded-2xl border border-white/10 chart-panel-metallic p-2 shadow-2xl">
-                    {item.items.map((sub) => (
-                      <Link
-                        key={sub.href}
-                        href={sub.href}
-                        className={dropdownNavLink}
-                      >
-                        {sub.label}
-                      </Link>
-                    ))}
+                  <div className="absolute left-0 top-full z-50 w-72 pt-2">
+                    <div className="rounded-2xl border border-white/10 chart-panel-metallic p-2 shadow-2xl">
+                      {item.items.map((sub) => (
+                        <Link
+                          key={sub.href}
+                          href={sub.href}
+                          className={dropdownNavLink}
+                        >
+                          {sub.label}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>

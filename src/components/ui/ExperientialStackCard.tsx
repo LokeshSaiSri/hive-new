@@ -53,7 +53,7 @@ export function ExperientialStackCard({
     return 0;
   });
 
-  const scale = useTransform(active, (a) => 0.9 + a * 0.1);
+  const scale = useTransform(active, (a) => 0.94 + a * 0.06);
   const zIndex = useTransform(
     [active, dist],
     ([a, d]) => 30 + index + Math.round((a as number) * 20) - Math.round(Math.max(0, d as number) * 5),
@@ -71,19 +71,19 @@ export function ExperientialStackCard({
 
   return (
     <motion.article
-      className="premium-frame-dark absolute inset-0 overflow-hidden rounded-[1.5rem] will-change-transform"
+      className="premium-frame-dark absolute inset-0 overflow-hidden rounded-[2rem] will-change-transform"
       style={{ y, scale, zIndex, pointerEvents, opacity }}
     >
       <motion.div
-        className="premium-surface-dark premium-metallic-edge flex h-full min-h-0 flex-col justify-center rounded-[calc(1.5rem-1px)] p-5 sm:p-6 md:p-7 lg:p-9"
+        className="premium-surface-dark premium-metallic-edge flex h-full min-h-0 flex-col justify-center rounded-[calc(2rem-1px)] p-7 sm:p-8 md:p-10 lg:p-12"
         style={{ boxShadow: shadow }}
       >
-        <div className="grid h-full min-h-0 items-center gap-5 sm:gap-6 lg:grid-cols-[1fr_1fr] lg:gap-8">
-          <div className="relative flex min-h-0 flex-col justify-center overflow-y-auto px-2 py-2 sm:px-4 sm:py-4 lg:px-6 lg:py-6">
+        <div className="grid h-full min-h-0 items-center gap-7 sm:gap-8 lg:grid-cols-[minmax(0,0.84fr)_minmax(0,1.38fr)] lg:gap-16">
+          <div className="relative flex min-h-0 flex-col justify-center overflow-y-auto px-2 py-2 sm:px-6 sm:py-5 lg:px-8 lg:py-7">
             <motion.span
               className="pointer-events-none absolute right-2 top-0 select-none font-bold text-white/[0.06] sm:right-4"
               style={{
-                fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
+                fontSize: "clamp(3.5rem, 8vw, 6.5rem)",
                 lineHeight: 0.85,
               }}
               aria-hidden
@@ -91,30 +91,30 @@ export function ExperientialStackCard({
               {chapterNum}
             </motion.span>
 
-            <div className="relative mx-auto w-full max-w-md lg:mx-0">
-            <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-blue-glow">
+            <div className="relative w-full">
+            <p className="text-xs font-bold uppercase tracking-[0.28em] text-blue-glow sm:text-sm">
               {panel.eyebrow}
             </p>
 
-            <h3 className="mt-3 max-w-lg text-[clamp(1.25rem,2.8vw,1.875rem)] font-bold leading-[1.12] tracking-tight text-white">
+            <h3 className="mt-5 max-w-4xl text-[clamp(1.75rem,3.8vw,2.75rem)] font-bold leading-[1.08] tracking-tight text-white">
               {panel.title}
             </h3>
 
-            <p className="mt-3 max-w-md text-sm leading-relaxed text-white/65 sm:text-[15px]">
+            <p className="mt-5 max-w-3xl text-lg leading-relaxed text-white/70 sm:text-xl">
               {panel.description}
             </p>
 
             {panel.bullets && (
-              <ul className="mt-5 space-y-0 border-t border-white/10">
+              <ul className="mt-7 space-y-0 border-t border-white/10">
                 {panel.bullets.map((b) => (
                   <li
                     key={b.number}
-                    className="flex gap-3 border-b border-white/10 py-3 sm:gap-4 sm:py-3.5"
+                    className="flex gap-5 border-b border-white/10 py-4 sm:gap-6 sm:py-5"
                   >
-                    <span className="text-spark-gradient font-serif text-3xl font-bold leading-none sm:text-4xl">
+                    <span className="text-spark-gradient font-serif text-5xl font-bold leading-none sm:text-6xl">
                       {b.number}
                     </span>
-                    <span className="pt-0.5 text-xs leading-relaxed text-white/80 sm:text-[13px]">
+                    <span className="pt-1.5 text-base leading-relaxed text-white/85 sm:text-lg">
                       {b.text}
                     </span>
                   </li>
@@ -122,13 +122,13 @@ export function ExperientialStackCard({
               </ul>
             )}
 
-            <div className="mt-5 flex flex-wrap items-center gap-3 pb-1">
+            <div className="mt-7 flex flex-wrap items-center gap-4 pb-1 sm:gap-5">
               <button
                 type="button"
-                onClick={() => openVideo(panel.videoId)}
-                className="inline-flex items-center gap-1.5 rounded-full border border-blue-glow/45 bg-electric-blue/15 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.14em] text-blue-glow shadow-[0_0_24px_rgba(134,157,255,0.18)] transition hover:border-blue-glow hover:bg-electric-blue/25 hover:text-white"
+                onClick={() => panel.videoId && openVideo(panel.videoId)}
+                className="inline-flex items-center gap-2.5 rounded-full border border-blue-glow/45 bg-electric-blue/15 px-6 py-3 text-xs font-bold uppercase tracking-[0.14em] text-blue-glow shadow-[0_0_24px_rgba(134,157,255,0.18)] transition hover:border-blue-glow hover:bg-electric-blue/25 hover:text-white sm:text-sm"
               >
-                <svg viewBox="0 0 24 24" fill="currentColor" className="h-3 w-3">
+                <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 sm:h-5 sm:w-5">
                   <path d="M8 5v14l11-7z" />
                 </svg>
                 Watch
@@ -136,7 +136,7 @@ export function ExperientialStackCard({
               {panel.ctaLabel && panel.ctaHref && (
                 <Link
                   href={panel.ctaHref}
-                  className="text-spark text-[10px] font-semibold uppercase tracking-[0.14em] transition hover:text-white"
+                  className="text-spark text-xs font-semibold uppercase tracking-[0.14em] transition hover:text-white sm:text-sm"
                 >
                   {panel.ctaLabel} →
                 </Link>
@@ -144,8 +144,8 @@ export function ExperientialStackCard({
               {panel.ctaLabel && !panel.ctaHref && (
                 <button
                   type="button"
-                  onClick={() => openVideo(panel.videoId)}
-                  className="text-spark text-[10px] font-semibold uppercase tracking-[0.14em] transition hover:text-white"
+                  onClick={() => panel.videoId && openVideo(panel.videoId)}
+                  className="text-spark text-xs font-semibold uppercase tracking-[0.14em] transition hover:text-white sm:text-sm"
                 >
                   {panel.ctaLabel} →
                 </button>
@@ -154,28 +154,28 @@ export function ExperientialStackCard({
             </div>
           </div>
 
-          <div className="flex h-full min-h-0 items-center justify-center px-2 py-2 sm:px-4 sm:py-4 lg:px-3 lg:py-5">
+          <div className="flex w-full min-h-0 items-center justify-center px-2 py-2 sm:px-5 lg:px-4 lg:py-6">
             <button
               type="button"
-              onClick={() => openVideo(panel.videoId)}
-              className="group relative aspect-[4/3] h-full max-h-full w-full max-w-xs overflow-hidden rounded-xl lg:aspect-auto lg:min-h-[180px] lg:max-w-none"
+              onClick={() => panel.videoId && openVideo(panel.videoId)}
+              className="group relative aspect-video w-full overflow-hidden rounded-2xl border border-white/10 sm:rounded-3xl"
               aria-label={`Play ${panel.eyebrow} video`}
             >
             <Image
-              src={youtubeThumbnail(panel.videoId)}
+              src={youtubeThumbnail(panel.videoId!)}
               alt={panel.title}
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-              sizes="(max-width: 1024px) 100vw, 540px"
+              sizes="(max-width: 1024px) 100vw, 900px"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
-                target.src = youtubeThumbnail(panel.videoId, "hqdefault");
+                target.src = youtubeThumbnail(panel.videoId!, "hqdefault");
               }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-ink/50 via-ink/5 to-transparent lg:bg-gradient-to-l lg:from-ink/40 lg:via-transparent lg:to-transparent" />
             <span className="absolute inset-0 flex items-center justify-center">
-              <span className="flex h-12 w-12 items-center justify-center rounded-full border border-white/30 bg-white/95 text-ink shadow-2xl transition-transform duration-300 group-hover:scale-110 sm:h-14 sm:w-14">
-                <svg viewBox="0 0 24 24" fill="currentColor" className="ml-0.5 h-5 w-5 sm:h-6 sm:w-6">
+              <span className="flex h-16 w-16 items-center justify-center rounded-full border border-white/30 bg-white/95 text-ink shadow-2xl transition-transform duration-300 group-hover:scale-110 sm:h-20 sm:w-20">
+                <svg viewBox="0 0 24 24" fill="currentColor" className="ml-0.5 h-7 w-7 sm:h-8 sm:w-8">
                   <path d="M8 5v14l11-7z" />
                 </svg>
               </span>

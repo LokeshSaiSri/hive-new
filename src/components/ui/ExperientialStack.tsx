@@ -91,8 +91,8 @@ export function ExperientialStack() {
             Scroll to move through each pillar
           </motion.p>
 
-          <div className="section-container relative flex min-h-0 flex-1 items-center px-4 pb-10 pt-3 sm:px-6 sm:pb-12">
-            <div className="relative mx-auto h-[min(680px,78svh)] w-full max-w-[min(72rem,96vw)]">
+          <div className="relative flex min-h-0 flex-1 items-center px-2 pb-10 pt-3 sm:px-4 sm:pb-12 lg:px-5">
+            <div className="relative mx-auto h-[min(880px,90svh)] w-full max-w-[min(92rem,98vw)]">
               {handsOnPanels.map((panel, i) => (
                 <ExperientialStackCard
                   key={panel.id}
