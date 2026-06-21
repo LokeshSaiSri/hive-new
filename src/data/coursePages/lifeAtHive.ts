@@ -45,10 +45,11 @@ export const pgpLifeAtHive: LifeAtHiveContent = {
 };
 
 export const aiMarketingLifeAtHive: LifeAtHiveContent = {
-  eyebrow: "Life at Hive",
-  statement: "A week in the",
-  emphasis: "Fellowship.",
-  description: "Six days. Four tracks. Real campaigns every week.",
+  eyebrow: "A week in the life",
+  statement: "A glimpse into",
+  emphasis: "a week at Hive.",
+  description:
+    "Sessions Mon–Tue, challenge day Wednesday, depth sprints Thu–Fri, and First Principles Saturdays — off-campus inside real businesses.",
   days: lifeAtHiveDays([
     "Monday",
     "Tuesday",

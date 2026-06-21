@@ -9,6 +9,7 @@ type CoursePillarsProps = {
 
 export function CoursePillars({ pillars, variant = "default" }: CoursePillarsProps) {
   const isBento = variant === "bento";
+  const isQuadBento = isBento && pillars.items.length >= 4;
 
   return (
     <section className="section-band-light section-py">
@@ -27,8 +28,12 @@ export function CoursePillars({ pillars, variant = "default" }: CoursePillarsPro
         <div
           className={
             isBento
-              ? "course-pillars-bento mt-12"
-              : "mt-12 grid gap-5 md:grid-cols-3"
+              ? `course-pillars-bento mt-12${isQuadBento ? " course-pillars-bento--quad" : ""}`
+              : `mt-12 grid gap-5 ${
+                  pillars.items.length >= 4
+                    ? "sm:grid-cols-2 xl:grid-cols-4"
+                    : "md:grid-cols-3"
+                }`
           }
         >
           {pillars.items.map((pillar, index) => (
@@ -37,7 +42,7 @@ export function CoursePillars({ pillars, variant = "default" }: CoursePillarsPro
                 className={
                   isBento
                     ? `course-pillars-bento__card hover-lift-card ${
-                        index === 0 ? "course-pillars-bento__card--lead" : ""
+                        index === 0 && !isQuadBento ? "course-pillars-bento__card--lead" : ""
                       }`
                     : "course-pillar-card h-full"
                 }

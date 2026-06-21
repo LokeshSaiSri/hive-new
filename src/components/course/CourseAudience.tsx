@@ -22,7 +22,11 @@ export function CourseAudience({ audience }: CourseAudienceProps) {
           />
         </ScrollReveal>
 
-        <div className="mt-12 grid gap-4 sm:grid-cols-2">
+        <div
+          className={`mt-12 grid gap-4 ${
+            audience.items.length >= 3 ? "sm:grid-cols-2 lg:grid-cols-3" : "sm:grid-cols-2"
+          }`}
+        >
           {audience.items.map((item, index) => (
             <ScrollReveal key={item.index} delay={index * 0.05}>
               <article className="course-audience-card">

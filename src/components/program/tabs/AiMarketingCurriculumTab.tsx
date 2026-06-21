@@ -38,9 +38,9 @@ export function AiMarketingCurriculumTab({ config }: AiMarketingCurriculumTabPro
       {config.pillars && <CoursePillars pillars={config.pillars} variant="bento" />}
       {config.paths && <CoursePaths paths={config.paths} />}
       <ProgramMentors
-        eyebrow="Faculty & mentors"
-        statement="Taught by the people building"
-        emphasis="modern Indian business."
+        eyebrow="Practitioners, not professors"
+        statement="Eleven practitioners."
+        emphasis="Not professors."
         description={aiMarketingMentorsIntro}
       />
       {portfolioCta && (

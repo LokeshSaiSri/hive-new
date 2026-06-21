@@ -21,7 +21,11 @@ export function CoursePaths({ paths }: CoursePathsProps) {
           />
         </ScrollReveal>
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-2">
+        <div
+          className={`mt-12 grid gap-6 ${
+            paths.items.length >= 3 ? "lg:grid-cols-3" : "lg:grid-cols-2"
+          }`}
+        >
           {paths.items.map((path, index) => (
             <ScrollReveal key={path.index} delay={index * 0.08}>
               <article className="course-path-card h-full">

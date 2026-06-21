@@ -1,6 +1,6 @@
+import { Campus } from "@/components/sections/Campus";
 import {
   ProgramAdmissions,
-  ProgramCampus,
   ProgramChallenges,
   ProgramFaq,
   ProgramMentors,
@@ -19,6 +19,8 @@ import { CoursePaths } from "@/components/course/CoursePaths";
 import { CourseCapstones } from "@/components/course/CourseCapstones";
 import { CourseHighlights } from "@/components/course/CourseHighlights";
 import { CourseAudience } from "@/components/course/CourseAudience";
+import { CourseVisualStory } from "@/components/course/CourseVisualStory";
+import { ProgramCampus } from "@/components/program/ProgramCampus";
 import { PlacementsCohortGallery } from "@/components/program/ui/PlacementsCohortGallery";
 import type { CoursePageConfig } from "@/data/coursePages/types";
 import type { ProgramSlug } from "@/data/programPages/types";
@@ -48,19 +50,33 @@ export function CoursePage({ config, slug }: CoursePageProps) {
 
       {cta1 && <CourseInlineCtaBand cta={cta1} />}
 
-      {config.pillars && <CoursePillars pillars={config.pillars} />}
+      {config.sections.visualStory &&
+      config.pillars &&
+      config.audience &&
+      config.highlights &&
+      config.paths ? (
+        <CourseVisualStory
+          pillars={config.pillars}
+          audience={config.audience}
+          highlights={config.highlights}
+          paths={config.paths}
+        />
+      ) : (
+        <>
+          {config.pillars && <CoursePillars pillars={config.pillars} />}
+          {config.audience && <CourseAudience audience={config.audience} />}
+          {config.highlights && <CourseHighlights highlights={config.highlights} />}
+          {config.paths && <CoursePaths paths={config.paths} />}
+        </>
+      )}
+
+      {cta2 && <CourseInlineCtaBand cta={cta2} />}
 
       {config.sections.placement && <ProgramPlacements />}
 
       {slug === "pgp" && <PlacementsCohortGallery />}
 
-      {config.paths && <CoursePaths paths={config.paths} />}
-
-      {cta2 && <CourseInlineCtaBand cta={cta2} />}
-
       {config.sections.mentors && <ProgramMentors />}
-
-      {config.highlights && <CourseHighlights highlights={config.highlights} />}
 
       {config.sections.challenges && <ProgramChallenges />}
 
@@ -72,13 +88,16 @@ export function CoursePage({ config, slug }: CoursePageProps) {
 
       {config.fees && <CourseFees fees={config.fees} />}
 
-      {config.audience && <CourseAudience audience={config.audience} />}
-
       {config.sections.reels && <ProgramReels />}
 
       {config.sections.studentStories && <ProgramStudentStories />}
 
-      {config.sections.campus && <ProgramCampus />}
+      {config.sections.campus &&
+        (config.sections.campusStyle === "fullscreen" ? (
+          <Campus />
+        ) : (
+          <ProgramCampus />
+        ))}
 
       {cta4 && <CourseInlineCtaBand cta={cta4} />}
 

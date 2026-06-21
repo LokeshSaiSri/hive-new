@@ -1,4 +1,5 @@
 import type { CoursePageConfig } from "@/data/coursePages/types";
+import { asset } from "@/lib/assets";
 
 export const aiMarketingCoursePage: CoursePageConfig = {
   slug: "ai-marketing",
@@ -6,82 +7,173 @@ export const aiMarketingCoursePage: CoursePageConfig = {
   meta: {
     title: "AI Marketing & Entrepreneurship Fellowship | HiveSchool",
     description:
-      "India's first AI-native marketing fellowship. A 6-month on-campus programme in Gurugram for ambitious professionals building careers in marketing, brand, growth, and entrepreneurship.",
+      "You don't study marketing here. You build it. A 6-month on-campus fellowship in Gurugram — 4 months of curriculum, 2 months of placements, AI-native from day one.",
   },
   hero: {
-    badge: "Fellowship",
-    location: "Gurugram",
+    badge: "Fellowship Programme",
+    location: "On-campus · Gurugram",
     intake: "Oct 2026",
     title: "AI Marketing &",
     emphasis: "Entrepreneurship",
     description:
-      "India's first AI-native marketing fellowship. A 6-month on-campus programme in Gurugram for ambitious professionals building careers in marketing, brand, growth, and entrepreneurship.",
+      "You don't study marketing here. You build it. Six months on campus — real ventures, real budgets, real brands — backed by India's only revenue-focused business school.",
     videoId: "vCfoRUGuszE",
     backgroundVideo: "videos/ai-marketing-hero.mp4",
     primaryCta: { label: "Start application", href: "#apply" },
-    secondaryCta: { label: "Download placement report", href: "#placements" },
+    secondaryCta: { label: "Download brochure", href: "/AI-Marketing-Fellowship-Brochure.pdf" },
     stats: [
-      { value: "06", label: "Months on-campus" },
+      { value: "06", label: "Months" },
+      { value: "4+2", label: "Months curriculum + placements" },
       { value: "4", label: "Core tracks" },
-      { value: "25+", label: "Intensive sprints" },
-      { value: "10", label: "Live capstones" },
+      { value: "₹4.5L", label: "+ GST · programme fee" },
     ],
     meta: [
-      { label: "Portfolio", value: "10 live projects" },
-      { label: "Brand briefs", value: "4 real campaigns" },
-      { label: "Capstone", value: "1 venture built by you" },
-      { label: "Network", value: "100+ partner companies" },
+      { label: "Format", value: "Full-time on campus" },
+      { label: "Venture", value: "One real brand you build" },
+      { label: "Challenges", value: "Live briefs every Wednesday" },
+      { label: "Hive", value: "Shark Tank India · Season 4" },
     ],
   },
   pillars: {
-    eyebrow: "Why this programme",
-    statement: "Built for how marketing",
-    emphasis: "actually works",
+    eyebrow: "Why this is different",
+    statement: "Four things you won't find",
+    emphasis: "in a marketing course",
     description:
-      "The brands hiring today want someone who can run Meta campaigns, build content engines, optimise marketplace listings, set up AI workflows, and read a dashboard — on Day 1.",
+      "Most programs teach, then test. Here, you build — then learn what worked.",
     items: [
       {
         index: "01",
-        title: "AI-native from Week 1",
+        title: "Entrepreneurship-led",
+        tagline: "Your venture is the classroom",
+        image: asset("images/why/present-to-founders.webp"),
         description:
-          "Every marketing workflow runs on AI — integrated into every sprint from Day 1. Build agents. Deploy automation. Multiply output.",
+          "Every concept lands on a real venture you build. The brand is the classroom.",
       },
       {
         index: "02",
-        title: "Real campaigns, real budgets",
+        title: "AI-native from Day 1",
+        tagline: "AI in every sprint",
+        image: asset("images/why/ship-work.webp"),
         description:
-          "Run real campaigns with real budgets, build real Instagram pages, list real products — from the first month. No simulations.",
+          "AI isn't a module bolted on at the end. It runs through every sprint, taught by every practitioner.",
       },
       {
         index: "03",
-        title: "Two paths: hire or freelance",
+        title: "Challenge-based",
+        tagline: "Real briefs every Wednesday",
+        image: asset("images/life/life-3.avif"),
         description:
-          "Core track for marketing roles. Founder's track for freelance clients, agency building, or your own D2C brand.",
+          "Every Wednesday: a real brand, a real brief, a real deadline. You're judged on the work, not an exam.",
+      },
+      {
+        index: "04",
+        title: "Real work from Week 1",
+        tagline: "Campaigns live from month one",
+        image: asset("images/life/gym-hiveschool.jpg"),
+        description:
+          "You ship campaigns, build pages, run ads, and read dashboards from the first month. Your portfolio writes itself.",
+      },
+    ],
+  },
+  audience: {
+    eyebrow: "Who this is for",
+    statement: "Three career directions.",
+    emphasis: "One build-first approach.",
+    description:
+      "Open to college students and graduates from any academic background or discipline.",
+    items: [
+      {
+        index: "01",
+        title: "Pursue a marketing career",
+        tagline: "D2C · agencies · startups",
+        image: asset("images/life/life-2.avif"),
+        description:
+          "For early-career professionals seeking hands-on roles at D2C brands, consumer technology companies, agencies, or high-growth startups.",
+      },
+      {
+        index: "02",
+        title: "Build an independent practice",
+        tagline: "Clients · portfolio · revenue",
+        image: asset("images/life/depender.avif"),
+        description:
+          "For professionals who wish to offer specialised marketing services on their own, with a portfolio and client relationships developed during the programme.",
+      },
+      {
+        index: "03",
+        title: "Launch your own brand",
+        tagline: "Source · brand · sell",
+        image: asset("images/misc/life-at-hive.webp"),
+        description:
+          "For founders and creators with a product idea or audience, learning marketing by building a D2C brand end to end — from sourcing and branding to listing, promotion, and sales.",
+      },
+    ],
+    footnote:
+      "Representative outcomes include performance marketing, brand management, D2C founding, and independent consulting.",
+  },
+  highlights: {
+    eyebrow: "How you'll learn",
+    statement: "Learn it. Build it.",
+    emphasis: "Prove it.",
+    items: [
+      {
+        index: "Learn",
+        title: "Practitioner-led sprints",
+        subtitle: "Operators teach. You apply the same week.",
+        image: asset("images/life/life-1.avif"),
+        href: "/ai-marketing/curriculum",
+      },
+      {
+        index: "Build",
+        title: "On your venture",
+        subtitle: "Every lesson ships on the brand you are building.",
+        image: asset("images/why/ship-work.webp"),
+        href: "/ai-marketing/curriculum",
+      },
+      {
+        index: "Prove",
+        title: "Wednesday challenges",
+        subtitle: "Brief at 10 AM. Pitch to a panel by 8 PM.",
+        image: asset("images/life/life-5.avif"),
+        href: "/ai-marketing/curriculum",
       },
     ],
   },
   paths: {
     eyebrow: "Choose your path",
-    statement: "Two paths.",
-    emphasis: "One programme.",
+    statement: "Select the venture you will build",
+    emphasis: "and develop over six months",
     description:
-      "The skills are identical — brand strategy, performance marketing, AI workflows, analytics. The difference is where you apply them.",
+      "Entrepreneurship is integrated throughout the programme. In Month 1, you choose a venture direction. Every sprint thereafter applies directly to that choice.",
     items: [
       {
-        index: "Path 01",
-        title: "I want to get hired in marketing",
+        index: "01",
+        title: "Build a D2C brand",
+        tagline: "Product to shelf to revenue",
+        image: asset("images/life/admission-image.avif"),
         description:
-          "Marketing teams are hiring fast — but they want people who already work with AI. The Fellowship places you in roles paying ₹6–15 LPA in your first year.",
-        tags: ["D2C brands", "Consumer tech", "Ad agencies", "High-growth startups", "FMCG"],
-        outcome: "₹6 – 10 LPA · Top performers cross ₹12 – 15 LPA",
+          "Take a product from concept to shelf — covering sourcing, branding, marketplace listing, paid acquisition, and customer growth with measurable outcomes.",
+        tags: ["Amazon", "Flipkart", "Blinkit", "Shopify"],
+        outcome: "Live storefront, verified revenue, and marketplace operations experience",
       },
       {
-        index: "Path 02",
-        title: "I want to build a freelance practice",
+        index: "02",
+        title: "Start a content channel",
+        tagline: "Audience from zero",
+        image: asset("images/life/life-1.avif"),
         description:
-          "Turn AI marketing skills into a business. Start with paying D2C and SaaS clients, then scale into an agency, D2C brand, or creator IP.",
-        tags: ["Freelance clients", "Agency founder", "D2C brand builder", "Creator IP"],
-        outcome: "₹50K – ₹2L / month · Incubation Cell + Demo Day access",
+          "Build and grow an audience from the ground up through content strategy, platform mechanics, format development, and monetisation — executed hands-on throughout the programme.",
+        tags: ["Instagram", "YouTube", "LinkedIn", "Creator IP"],
+        outcome: "Engaged audience, repeatable content engine, and a defined personal brand",
+      },
+      {
+        index: "03",
+        title: "Build a freelance agency",
+        tagline: "Clients and commercial work",
+        image: asset("images/misc/life-at-hive.webp"),
+        description:
+          "Acquire clients, deliver professional marketing engagements, and graduate with a portfolio supported by live work and commercial outcomes.",
+        tags: ["D2C clients", "SaaS clients", "Retainers", "Case studies"],
+        outcome: "Paying clients, documented agency playbook, and placement-ready portfolio",
       },
     ],
   },
@@ -89,166 +181,192 @@ export const aiMarketingCoursePage: CoursePageConfig = {
     {
       id: "fit-check",
       variant: "light",
-      eyebrow: "Admissions support",
-      title: "Not sure if this programme is right for you?",
+      eyebrow: "Admissions",
+      title: "What it takes to get in",
       description:
-        "Speak with the admissions team for a personal profile review and an honest read on whether you'll fit the cohort.",
-      primary: { label: "Book a call", href: "#apply" },
-      secondary: { label: "Download placement report", href: "#placements" },
+        "Discovery call, business case discussion, and culture fit — three conversations to find the right cohort.",
+      primary: { label: "Book a discovery call", href: "#apply" },
+      secondary: { label: "See the curriculum", href: "/ai-marketing/curriculum" },
     },
     {
       id: "portfolio",
       variant: "dark",
-      eyebrow: "Career outcomes",
-      title: "Build skills that map directly to hiring roles",
+      eyebrow: "Outcomes",
+      title: "Proof of work, not a promise",
       description:
-        "Tracks designed for measurable business impact — from day one through placement.",
-      primary: { label: "Apply now", href: "#apply" },
-      secondary: { label: "Talk to admissions", href: "#apply" },
+        "Agencies, D2C brands, consumer tech — or your own freelance practice. Either way, you leave with work that got judged in the room.",
+      primary: { label: "See career outcomes", href: "/ai-marketing/placements" },
+      secondary: { label: "Apply now", href: "#apply" },
     },
     {
       id: "intake",
       variant: "accent",
-      eyebrow: "Next cohort",
-      title: "Applications are open for the upcoming intake",
+      eyebrow: "October 2026 · Gurugram",
+      title: "You can read about marketing for six months. Or spend six months doing it.",
       description:
-        "Join a 6-month AI-native marketing fellowship on campus in Gurugram. Limited seats per cohort.",
+        "Applications open for the AI Marketing & Entrepreneurship Fellowship. Limited seats per cohort.",
       primary: { label: "Start application", href: "#apply" },
-      secondary: { label: "Download brochure", href: "#apply" },
+      secondary: { label: "Download brochure", href: "/AI-Marketing-Fellowship-Brochure.pdf" },
+    },
+    {
+      id: "incubation",
+      variant: "dark",
+      eyebrow: "Hive Incubation Cell",
+      title: "If it's worth continuing, it doesn't have to stop",
+      description:
+        "Real desk space on a startup floor, 200+ founders in reach, and warm intros when your venture is ready for the next chapter.",
+      primary: { label: "Explore campus life", href: "#campus" },
+      secondary: { label: "Apply now", href: "#apply" },
     },
   ],
   timeline: {
-    eyebrow: "Course timeline",
-    statement: "Your 6-month",
-    emphasis: "transformation",
+    eyebrow: "The journey",
+    statement: "Six months,",
+    emphasis: "told in five chapters",
     phases: [
       {
-        phase: "Pre-programme",
-        title: "Onboarding + first challenge",
-        description: "First challenge brief, tools setup, cohort bonding, and founder meet.",
-        tags: ["48-hour orientation", "Cohort bonding", "Founder meet"],
-        image: "images/timeline/pre-programme.webp",
-      },
-      {
         phase: "Month 1",
-        title: "Marketing foundations + brand building",
-        description: "Brand positioning, consumer GTM, content strategy, and storytelling.",
-        tags: ["Brand strategy", "Content", "Consumer GTM"],
+        title: "Foundations & first move",
+        description:
+          "Choose your venture, define the niche, and ship your first challenge.",
+        tags: [
+          "Learn: Positioning, GTM, content, AI foundations",
+          "Build: Choose your venture",
+          "Prove: First brand visit + opening challenge",
+        ],
         image: "images/timeline/month1.webp",
       },
       {
         phase: "Month 2",
-        title: "Performance marketing + e-commerce",
-        description: "Meta Ads, Google Ads, YouTube Ads, Shopify. First real campaign with real budget.",
-        tags: ["Meta Ads", "Google Ads", "Shopify"],
+        title: "Performance & first revenue",
+        description:
+          "Run your first real campaign on real budget and chase first revenue.",
+        tags: [
+          "Learn: Meta, Google, YouTube, Shopify, e-comm, q-comm",
+          "Build: First live campaign",
+          "Prove: The ₹5,000 ad showdown",
+        ],
         image: "images/timeline/month2.webp",
       },
       {
         phase: "Month 3",
-        title: "Advanced marketing + AI workflows",
-        description: "Programmatic, SEO/AEO/GEO, B2B demand gen, ABM, MarTech, and AI agents.",
-        tags: ["SEO/AEO", "B2B demand gen", "AI agents"],
+        title: "Depth, B2B & AI",
+        description:
+          "Scale the venture, deploy your first AI agent, and go deeper on funnels.",
+        tags: [
+          "Learn: Programmatic, SEO/AEO, B2B, AI workflows",
+          "Build: Scale venture · deploy AI agent",
+          "Prove: Marketplace + dashboard challenges",
+        ],
         image: "images/timeline/month3.webp",
       },
       {
         phase: "Month 4",
-        title: "Capstone month + portfolio",
-        description: "Personal branding sprint. Founder's Pitch Day. Portfolio finalisation.",
-        tags: ["Capstone", "Pitch day", "Portfolio"],
+        title: "Capstone & pitch day",
+        description:
+          "Finalise your portfolio and pitch your venture to a practitioner panel.",
+        tags: [
+          "Learn: Personal branding, offline retail",
+          "Build: Finalise portfolio",
+          "Prove: Founder's Track Pitch Day",
+        ],
         image: "images/timeline/month4.webp",
       },
       {
         phase: "Months 5–6",
-        title: "Placements",
-        description: "Active placement season or continue building your freelance agency with incubation support.",
-        tags: ["Mock interviews", "Recruiter prep", "Freelance track"],
+        title: "Placements — or keep building",
+        description:
+          "Interview prep and recruiter processes — or continue your venture with Incubation support.",
+        tags: [
+          "Learn: Interview craft, recruiter prep",
+          "Build: Continue venture with Incubation",
+          "Prove: Mock interviews & hiring processes",
+        ],
         image: "images/timeline/month5.webp",
       },
     ],
   },
   capstones: {
-    eyebrow: "The capstones",
-    statement: "10 real projects.",
-    emphasis: "Your marketing portfolio.",
+    eyebrow: "Challenge-based learning",
+    statement: "Wednesday isn't a class.",
+    emphasis: "It's a deadline.",
     description:
-      "You don't learn marketing by studying it. Every week you're building real campaigns, running real ads, and solving real brand problems.",
+      "Every challenge is a live problem from a real brand. Brief drops at 10 AM. Teams pitch to a practitioner panel by 8 PM.",
     variant: "showcase",
     items: [
       {
         index: "01",
-        title: "Brand from scratch",
+        title: "Dohful on Zomato",
         description:
-          "Positioning, competitive landscape, content calendar, and campaign concept for a real startup.",
-        category: "Brand strategy",
+          "Listing + visibility for a cookie brand against Oreo and Parle.",
+        category: "Marketplace",
         badge: "Live brief",
       },
       {
         index: "02",
-        title: "Viral content engine",
+        title: "Goat × Blinkit strategy",
         description:
-          "Build an Instagram page for a real brand. Track engagement, growth, and virality across five live posts.",
-        category: "Content & social",
-        badge: "Real audience",
+          "Dark-store entry plan, pricing, 4.2 stars in 60 days.",
+        category: "Quick commerce",
+        badge: "Pitch deck",
       },
       {
         index: "03",
-        title: "Marketplace launch",
-        description:
-          "List across Amazon, Flipkart, Nykaa. Run campaigns. Build scaling strategy with real dashboards.",
-        category: "E-commerce",
-        badge: "Marketplace ops",
+        title: "Protein Party viral content",
+        description: "1M impressions in 30 days, zero ad spend.",
+        category: "Content",
+        badge: "Organic growth",
       },
       {
         index: "04",
-        title: "Live paid campaign",
-        description: "Meta campaigns end-to-end with real money and real data.",
+        title: "Mamaearth vs WOW",
+        description:
+          "The ₹5,000 ad showdown — real budget, real Shopify store. Lowest CAC wins.",
         category: "Performance",
         badge: "Real budget",
       },
       {
         index: "05",
-        title: "Programmatic media plan",
-        description: "Complete DV360 plan — audience, creative versioning, measurement.",
-        category: "Media planning",
-        badge: "DV360",
+        title: "Fix PeeSafe's Amazon listing",
+        description: "Conversion dropped 23%. Audit it. Present the fix.",
+        category: "E-commerce",
+        badge: "Conversion",
       },
       {
         index: "06",
-        title: "Search audit & AI visibility",
-        description: "SEO audit + AEO brand presence + 90-day search strategy.",
-        category: "Search & AEO",
-        badge: "AI visibility",
+        title: "Fixmycurls content calendar",
+        description: "Pivot from product-led to education-led content.",
+        category: "Brand",
+        badge: "30-day plan",
       },
       {
         index: "07",
-        title: "The broken dashboard",
-        description:
-          "Anonymised data. Find the problem. Present diagnosis + 30-day recovery.",
-        category: "Analytics",
-        badge: "Diagnosis",
-      },
-      {
-        index: "08",
-        title: "Offline retail launch",
-        description:
-          "D2C brand entering modern trade — margins, shelf strategy, activation.",
-        category: "Retail expansion",
+        title: "Sleepy Owl modern trade",
+        description: "Trade pricing, shelf strategy, online-offline loop.",
+        category: "Retail",
         badge: "Omnichannel",
       },
       {
-        index: "09",
-        title: "WhatsApp funnel",
-        description:
-          "Automation funnel for lost leads — sequencing, messaging, conversion.",
+        index: "08",
+        title: "WhatsApp re-nurture funnel",
+        description: "5-message sequence to win back cart abandoners.",
         category: "Lifecycle",
         badge: "Automation",
       },
       {
-        index: "10",
-        title: "Personal AI marketing agent",
-        description: "AI-powered workflow that handles a real task end-to-end.",
+        index: "09",
+        title: "AI competitor price tracker",
+        description: "No-code system that monitors 5 rivals daily.",
         category: "AI ops",
-        badge: "Finale capstone",
+        badge: "No-code",
+      },
+      {
+        index: "10",
+        title: "The broken dashboard",
+        description:
+          "ROAS fell 4× → 1.8×. 48 hours. Find the leak.",
+        category: "Analytics",
+        badge: "Diagnosis",
         featured: true,
       },
     ],
@@ -258,63 +376,65 @@ export const aiMarketingCoursePage: CoursePageConfig = {
     statement: "Questions you're",
     emphasis: "probably asking",
     description:
-      "Everything you need to know about the AI Marketing Fellowship — from specializations to portfolios and placements.",
+      "Everything you need to know about the AI Marketing & Entrepreneurship Fellowship.",
     items: [
       {
-        question: "What if I have no prior marketing background?",
+        question: "Who is this fellowship for?",
         answer:
-          "Designed for graduates from any stream. Curriculum starts at first principles. By Week 4, fellows with zero background are running real Meta campaigns.",
+          "College students or graduates from any stream. Whether you want a marketing job, a freelance practice, or your own D2C brand — the programme is built around building, not sitting in lectures.",
       },
       {
-        question: "How do specializations work?",
+        question: "How does the Learn · Build · Prove loop work?",
         answer:
-          "You declare your specialization at the end of Month 3, after experiencing all four core tracks (Brand, Performance, AI Ops, Founder's). Months 4 onwards go deeper with tailored capstone work and placement prep aligned to roles in that track.",
+          "Practitioners teach a focused sprint, you apply it the same week on your venture, and every Wednesday you take a real brief into a room and pitch to a panel. AI runs through all three — it's how you work, not a separate class.",
       },
       {
-        question: "Will I graduate with a real portfolio?",
+        question: "What venture will I build?",
         answer:
-          "Yes. By Month 4 you'll have shipped 10 capstone projects plus 4 flagship outputs — campaigns with real budgets, brands built, and AI agents deployed.",
+          "In Month 1 you choose: a D2C brand, a content channel, or a freelance agency. Every sprint after that lands on your venture — positioning, ads, content, marketplaces, and AI workflows included.",
       },
       {
-        question: "Are ad budgets and tools included?",
+        question: "What happens after the programme?",
         answer:
-          "Yes. Programme fee covers ad budgets for live campaigns, tool access, and AI subscriptions during the AI track.",
+          "Months 5–6 focus on placements — interview prep, mock rounds, and recruiter processes. If your venture is worth continuing, the Hive Incubation Cell offers desk space, mentor support, and founder network access in the same building.",
       },
       {
-        question: "What roles do graduates typically land?",
+        question: "What is the programme fee?",
         answer:
-          "Entry-to-mid marketing roles at D2C brands, consumer tech, ad agencies, and high-growth startups — typically ₹6–10 LPA in the first year, with top performers crossing ₹12–15 LPA. The Founder's track supports freelance clients, agency building, or your own D2C brand.",
+          "₹4,50,000 + GST. The fee covers on-campus learning, live campaign budgets, tool access, and AI subscriptions during the fellowship.",
       },
       {
-        question: "Is this full-time and on-campus?",
+        question: "How does admissions work?",
         answer:
-          "Yes. A 6-month, full-time, on-campus fellowship in Gurugram. You learn by doing — real briefs, real budgets, and real brands from week one.",
+          "Three steps: a discovery call with Head of Admissions, a business case discussion with our panel, and a culture fit conversation. We're looking for marketing instinct, creative clarity, and hunger to build with AI.",
       },
     ],
   },
   fees: {
-    eyebrow: "Fee structure",
-    statement: "Invest in a",
-    emphasis: "6-month transformation",
+    eyebrow: "Fees & admission",
+    statement: "What it takes",
+    emphasis: "to get in",
     badge: "Fellowship",
     intake: "October 2026",
     description:
       "Programme fee includes ad budgets for live campaigns, tool access, and AI subscriptions during the fellowship.",
-    lines: [
-      { label: "Admission Fee", amount: "₹50,000" },
-      { label: "Tuition Fee", amount: "₹4,00,000", highlight: true },
-    ],
+    lines: [{ label: "Programme fee", amount: "₹4,50,000 + GST", highlight: true }],
     scholarships: [
       {
         title: "Merit Scholarship",
-        description: "For candidates who perform exceptionally across all selection rounds.",
+        description: "For candidates who perform exceptionally across all admission conversations.",
       },
       {
         title: "Need-Based Scholarship",
         description: "Confidential financial review for candidates who need support to attend.",
       },
+      {
+        title: "Creator Scholarship",
+        description:
+          "For candidates already building a brand, audience, or creative practice with traction or clear intent.",
+      },
     ],
-    note: "Total program fee ₹4,50,000",
+    note: "College students or graduates. Any background, any stream.",
   },
   applicationForm: {
     title: "AI Marketing Application Form",
@@ -326,8 +446,10 @@ export const aiMarketingCoursePage: CoursePageConfig = {
     challenges: true,
     studentStories: true,
     campus: true,
+    campusStyle: "fullscreen",
     reels: false,
     admissions: true,
     applicationForm: true,
+    visualStory: true,
   },
 };

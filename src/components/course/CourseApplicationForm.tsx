@@ -274,15 +274,17 @@ function MetricSpotlight({
           <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-white/38">
             Trusted hiring partners
           </p>
-          <div className="mt-4 space-y-3">
+          <div className="mt-4">
             <MarqueeRows
               pauseOnHover={false}
+              gap="tight"
+              rowGap="tight"
               rows={[
                 row1.map((partner) => (
-                  <HiringPartnerLogo key={partner.name} {...partner} surface="dark" size="compact" />
+                  <HiringPartnerLogo key={partner.name} {...partner} surface="dark" size="panel" />
                 )),
                 row2.map((partner) => (
-                  <HiringPartnerLogo key={partner.name} {...partner} surface="dark" size="compact" />
+                  <HiringPartnerLogo key={partner.name} {...partner} surface="dark" size="panel" />
                 )),
               ]}
             />

@@ -28,116 +28,116 @@ export const aiMarketingTabHero: Record<
 > = {
   curriculum: {
     eyebrow: "AI Marketing Fellowship · Curriculum",
-    statement: "The curriculum — 4 tracks, 25+ sprints,",
-    emphasis: "AI-native from Day 1.",
+    statement: "Four tracks.",
+    emphasis: "One complete marketer.",
     description:
-      "Brand, growth, content, and entrepreneurship — taught through live capstones and operator-led sprints. Built for marketers who want to lead with AI, not chase it.",
+      "Brand, performance, AI ops, and entrepreneurship — 25+ sprints taught through live challenges and operator-led sessions. AI-native from day one.",
     stats: [
-      { value: "06", label: "Months on-campus" },
-      { value: "4", label: "Core tracks" },
+      { value: "06", label: "Months" },
+      { value: "4+2", label: "Curriculum + placements" },
       { value: "25+", label: "Intensive sprints" },
-      { value: "10", label: "Live capstones" },
+      { value: "10", label: "Live challenges" },
     ],
-    secondaryCta: { label: "Download brochure", href: "#apply" },
+    secondaryCta: { label: "Download brochure", href: "/AI-Marketing-Fellowship-Brochure.pdf" },
   },
   placements: {
-    eyebrow: "AI Marketing Fellowship · Placements",
-    statement: "Career outcomes — marketing, brand & growth roles,",
-    emphasis: "that's the goal.",
+    eyebrow: "AI Marketing Fellowship · Outcomes",
+    statement: "Three paths out.",
+    emphasis: "All of them real.",
     description:
-      "100+ hiring partners across brand, growth, and D2C. The Fellowship targets entry-to-mid marketing roles at D2C brands, consumer tech, agencies, and high-growth startups — or a functioning freelance marketing practice.",
+      "Agencies, D2C brands, consumer tech — or build your own freelance agency or D2C brand. Either way, you leave with proof of work, not a promise.",
     stats: [
-      { value: "₹6–10L", label: "Typical first-year CTC" },
-      { value: "₹12–15L", label: "Top performer band" },
+      { value: "3", label: "Outcome paths" },
       { value: "100+", label: "Hiring partners" },
-      { value: "1:1", label: "Man-to-man tracking" },
+      { value: "10", label: "Portfolio challenges" },
+      { value: "1:1", label: "Placement tracking" },
     ],
-    secondaryCta: { label: "Download placements report", href: "#placements" },
+    secondaryCta: { label: "See hiring network", href: "#placements" },
   },
   admissions: {
     eyebrow: "AI Marketing Fellowship · Admissions",
-    statement: "AI Marketing Fellowship ·",
-    emphasis: "October 2026 · Gurugram",
+    statement: "What it takes",
+    emphasis: "to get in.",
     description:
-      "We evaluate candidates through conversations and case discussions. We're looking for people with marketing instinct, creative clarity, and the drive to build with AI from day one.",
+      "Discovery call, business case discussion, and culture fit — three conversations to understand your background, thinking, and alignment with the cohort.",
     stats: [
-      { value: "3–5 wks", label: "Process duration" },
-      { value: "<7%", label: "Acceptance rate" },
-      { value: "0–4 yrs", label: "Experience welcome" },
-      { value: "No fee", label: "Application fee" },
+      { value: "3", label: "Admission steps" },
+      { value: "0", label: "Application fee" },
+      { value: "6 mo", label: "Full-time programme" },
+      { value: "Oct '26", label: "Next intake" },
     ],
     primaryCta: { label: "Start your application", href: "#apply" },
-    secondaryCta: { label: "How we evaluate", href: "#selection" },
+    secondaryCta: { label: "See the process", href: "#selection" },
   },
 };
 
 export const aiMarketingTracksIntro =
-  "Four tracks. One complete marketer. Every fellow experiences all four core tracks in the first three months — then goes deep into the specialization that fits their ambition.";
+  "Four tracks. One complete marketer. Brand (8 sprints), performance (10), AI ops (7), and entrepreneurship running parallel throughout.";
 
 export const aiMarketingMentorsIntro =
-  "Every module is led by a founder, CMO, growth lead, or senior practitioner from India's fastest-growing brands — selected for depth in the discipline being taught.";
+  "Eleven practitioners — not professors. People building India's fastest-growing brands. They teach the way they work, by example.";
 
 export const aiMarketingCurriculumTracks: CurriculumTrack[] = [
   {
     id: "brand",
     index: "01",
     title: "Brand, Content & Storytelling",
-    subtitle: "For D2C, FMCG & creator-led brands",
+    subtitle: "8 sprints · The creative engine",
     pathLabel: "Build the brand",
     roles: "Brand Manager · Content Strategist · Social Media Manager · Creator IP",
-    tags: ["Brand Strategy", "Content", "Storytelling", "Social"],
+    tags: ["Positioning", "Content", "Video", "Retail"],
     accent: "gold",
   },
   {
     id: "performance",
     index: "02",
-    title: "Performance & Growth",
-    subtitle: "For paid media, e-commerce & marketplaces",
+    title: "Performance & Growth Marketing",
+    subtitle: "10 sprints · The growth engine",
     pathLabel: "Drive measurable growth",
     roles: "Performance Marketer · Growth Associate · E-commerce Manager · SEO / AEO",
-    tags: ["Meta Ads", "Google Ads", "Marketplaces", "Analytics"],
+    tags: ["Meta Ads", "Google Ads", "Marketplaces", "B2B demand gen"],
     accent: "blue",
   },
   {
     id: "ai-ops",
     index: "03",
-    title: "AI Marketing Ops",
-    subtitle: "For automation, MarTech & AI workflows",
+    title: "AI-Powered Marketing Operations",
+    subtitle: "7 sprints · The multiplier",
     pathLabel: "Multiply with AI",
     roles: "AI Marketing Ops · MarTech Specialist · Lifecycle Marketer · Workflow Builder",
-    tags: ["AI Agents", "Automation", "MarTech", "CRM"],
+    tags: ["AI Agents", "Automation", "CRM", "No-code ops"],
     accent: "violet",
   },
   {
     id: "founder",
     index: "04",
-    title: "Founder's Track",
-    subtitle: "For freelancers, agencies & D2C founders",
+    title: "Entrepreneurship",
+    subtitle: "Build while you learn",
     pathLabel: "Build something new",
-    roles: "Freelance Consultant · Agency Founder · D2C Founder · Founder's Office",
-    tags: ["Venture Building", "Freelance", "Demo Day", "Incubation"],
+    roles: "D2C Founder · Freelance Consultant · Agency Founder · Creator IP",
+    tags: ["D2C brand", "Content channel", "Freelance agency", "Incubation"],
     accent: "blue",
   },
 ];
 
 export const aiMarketingToolStackIntro =
-  "Every sprint ships into your portfolio. Foundation marketing tools, performance stacks, and the AI-native layer you'll use on Day 1 in a modern marketing team.";
+  "Foundation stacks for performance, brand, and AI — the tools you'll use from week one in a modern marketing team.";
 
 export const aiMarketingToolStack: ToolCategory[] = [
   {
-    title: "Foundation 1 · Performance & Growth",
+    title: "Performance & growth",
     image: "images/tech/tech-stack-2.png",
     items: ["Meta Ads", "Google Ads", "YouTube Ads", "Shopify", "GA4", "Google Tag Manager"],
   },
   {
-    title: "Foundation 2 · Brand & Content",
+    title: "Brand & content",
     image: "images/tech/tech-stack-1.png",
     items: ["Figma", "Canva", "CapCut", "Notion", "Buffer", "Instagram / YouTube"],
   },
   {
-    title: "Foundation 3 · AI & Automation",
+    title: "AI & automation",
     image: "images/tech/tech-stack-3.png",
-    items: ["ChatGPT", "Claude", "Zapier", "Make", "Perplexity", "Midjourney"],
+    items: ["ChatGPT", "Claude", "Zapier", "Make", "Clay", "Perplexity"],
   },
 ];
 
@@ -170,79 +170,71 @@ export const aiMarketingPlacementSystem: PlacementSystemPillar[] = [
 export const aiMarketingPortfolioDeliverables: PortfolioDeliverable[] = [
   {
     index: "01",
-    title: "Brand from Scratch",
-    description:
-      "Positioning, competitive landscape, content calendar, and campaign concept for a real startup — presented to the founder.",
+    title: "Dohful on Zomato",
+    description: "Listing + visibility for a cookie brand against Oreo and Parle.",
   },
   {
     index: "02",
-    title: "Viral Content Engine",
-    description:
-      "Build an Instagram page for a real brand. Track engagement, growth, and virality across five live posts.",
+    title: "Mamaearth vs WOW",
+    description: "The ₹5,000 ad showdown — real budget, real Shopify store. Lowest CAC wins.",
   },
   {
     index: "03",
-    title: "Marketplace Launch",
-    description:
-      "List across Amazon, Flipkart, and Nykaa. Run campaigns. Build a scaling strategy with real dashboards.",
+    title: "Protein Party viral content",
+    description: "1M impressions in 30 days, zero ad spend.",
   },
   {
     index: "04",
-    title: "Live Paid Campaign",
-    description:
-      "Meta campaigns end-to-end with real money — account setup, pixel, strategy, ad sets, targeting, and ROAS.",
+    title: "AI competitor price tracker",
+    description: "No-code system that monitors 5 rivals daily.",
   },
   {
     index: "05",
-    title: "Personal AI Marketing Agent",
+    title: "Personal AI marketing agent",
     description:
-      "An AI-powered workflow that handles a real marketing task end-to-end — the deliverable that ties every track together.",
+      "An AI-powered workflow that handles a real marketing task end-to-end.",
   },
 ];
 
 export const aiMarketingCareerPathways: CareerPathwayGroup[] = [
   {
-    title: "Brand & Content",
-    roles: [
-      "Brand Manager (D2C/FMCG)",
-      "Content Strategist",
-      "Content Marketing Manager",
-      "Social Media Manager",
-      "Influencer / Creator Manager",
-      "Personal Brand & IP Builder",
-    ],
-  },
-  {
-    title: "Performance & Growth",
+    title: "Agencies",
     roles: [
       "Performance Marketing Executive",
-      "Growth Associate / Marketer",
-      "E-Commerce / Marketplace Manager",
-      "Paid Acquisition Specialist",
-      "SEO / AEO Specialist",
-      "Marketing Analyst",
+      "Programmatic Specialist",
+      "Digital Marketing Executive",
+      "Media Planner",
+      "SEO Specialist",
     ],
   },
   {
-    title: "AI Marketing Ops",
+    title: "D2C brands",
     roles: [
-      "AI Marketing Ops Specialist",
-      "Marketing Automation Manager",
-      "MarTech Specialist",
-      "Growth Engineer",
-      "AI Workflow Builder",
-      "Lifecycle / CRM Marketer",
+      "Online Marketplace Manager",
+      "E-Commerce Executive",
+      "Quick Commerce Manager",
+      "Key Account Manager",
+      "Growth Associate",
     ],
   },
   {
-    title: "Founder's Track",
+    title: "Consumer tech & services",
     roles: [
-      "D2C Brand Founder",
+      "Content Marketing Associate",
+      "Brand Marketing Associate",
+      "Growth Associate",
+      "Social Media Manager",
+      "Community Manager",
+    ],
+  },
+  {
+    title: "Build your own",
+    roles: [
       "Freelance Marketing Consultant",
       "Marketing Agency Founder",
+      "D2C Brand Founder",
       "Independent Creator / IP Builder",
       "Founder's Office (Marketing)",
-      "Chief of Staff (Growth)",
     ],
   },
 ];
@@ -284,40 +276,40 @@ export const aiMarketingPlacementNews: NewsArticle[] = [
 
 export const aiMarketingAdmissionsIntro: AiMarketingAdmissionsIntro = {
   eyebrow: "Admissions · October 2026",
-  statement: "How we decide",
-  emphasis: "who gets in.",
+  statement: "What it takes",
+  emphasis: "to get in.",
   description:
-    "Speak with the admissions team for a personal profile review and an honest read on whether you'll fit the cohort.",
+    "Three conversations — discovery, business case, and culture fit. College students or graduates from any background.",
   videoId: "vCfoRUGuszE",
   stats: [
-    { value: "<7%", label: "Acceptance" },
-    { value: "40", label: "Handpicked cohort", highlight: true },
-    { value: "6 mo", label: "Duration" },
-    { value: "May 15, '26", label: "Round 1 closes" },
+    { value: "3", label: "Admission steps" },
+    { value: "₹4.5L", label: "+ GST programme fee", highlight: true },
+    { value: "6 mo", label: "On-campus" },
+    { value: "Oct '26", label: "Next intake" },
   ],
 };
 
 export const aiMarketingAdmissionDecisionIntro =
-  "Every admission is reviewed across four evaluation pillars — marketing instinct, creative clarity, coachability, and long-term fit. Candidates who cross the combined cut-off receive an offer. Across our application history, fewer than 7% of applicants make it through.";
+  "Every admission is reviewed across marketing instinct, strategic thinking, coachability, and long-term fit with a high-intensity, build-first cohort.";
 
 export const aiMarketingAdmissionRounds: AdmissionRound[] = [
   {
-    round: "Round 01",
-    title: "Application & profile review",
+    round: "Step 01",
+    title: "Discovery call with Head of Admissions",
     description:
-      "Your background, intent, and fit for marketing roles. We look for creative clarity, ambition, and evidence of doing — not just grades.",
+      "A one-on-one conversation to understand your background, goals, and aspirations. This stage helps us assess intent and gives you space to share your story.",
   },
   {
-    round: "Round 02",
-    title: "Case & marketing discussion",
+    round: "Step 02",
+    title: "Business case discussion with panel",
     description:
-      "How you think about brands, campaigns, and growth — assessed by senior faculty and practitioner mentors from the fellowship network.",
+      "Work through a detailed case with our admissions team to showcase your problem-solving and strategic thinking, and how the programme aligns with your trajectory.",
   },
   {
-    round: "Round 03",
-    title: "Leadership conversation",
+    round: "Step 03",
+    title: "Culture fit call",
     description:
-      "Intent, character, and long-term fit — with co-founders and senior leadership. Coachability and hunger to build with AI matter here.",
+      "We assess professional mindset, collaboration style, and long-term goals to ensure alignment with HiveSchool's culture — a cohort that challenges one another.",
   },
 ];
 

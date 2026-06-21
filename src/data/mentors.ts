@@ -20,11 +20,11 @@ export const mentorCategories = [
 export const mentors: Mentor[] = [
   {
     name: "Saurabh Sen Gupta",
-    role: "Former VP",
+    role: "Former Sr VP",
     companyLabel: "Zomato",
     image: asset("images/mentors/saurabh-sen-gupta.jpg"),
     companyLogo: asset("images/logos/zomato.png"),
-    category: "Sales",
+    category: "Marketing",
   },
   {
     name: "Ashish Cherian",
@@ -44,7 +44,7 @@ export const mentors: Mentor[] = [
   },
   {
     name: "Neha Gulati",
-    role: "Brand Lead",
+    role: "Former Head of Brand",
     companyLabel: "Nestlé",
     image: asset("images/mentors/neha-gulati.jpg"),
     category: "Marketing",
@@ -90,17 +90,17 @@ export const mentors: Mentor[] = [
   },
   {
     name: "Prabhu Guliani",
-    role: "Strategy and Growth",
+    role: "Former Head of Growth",
     companyLabel: "Libas",
     image: asset("images/mentors/prabhu-guliani.png"),
-    category: "GTM",
+    category: "Marketing",
   },
   {
     name: "Vipul Maini",
-    role: "Demand Generation Leader (Ex-Cvent)",
-    companyLabel: "GTM Operator",
+    role: "Director Marketing",
+    companyLabel: "Cvent",
     image: asset("images/mentors/vipul-maini.jpg"),
-    category: "GTM",
+    category: "Marketing",
   },
   {
     name: "Sidharth Bhakoo",
@@ -116,7 +116,7 @@ export const mentors: Mentor[] = [
     companyLabel: "Snitch",
     image: asset("images/mentors/aniket-singh.jpg"),
     companyLogo: asset("images/logos/panel-mentors/snitch.webp"),
-    category: "GTM",
+    category: "Marketing",
   },
   {
     name: "Havish Madhypaty",

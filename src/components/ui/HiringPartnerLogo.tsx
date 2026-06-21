@@ -4,7 +4,7 @@ import type { PartnerLogo } from "@/data/partners";
 type HiringPartnerLogoProps = PartnerLogo & {
   /** Parent section background — mono logos invert on dark, stay dark on light */
   surface?: "dark" | "light";
-  size?: "default" | "compact";
+  size?: "default" | "compact" | "panel";
 };
 
 function logoImageClass(
@@ -27,24 +27,25 @@ export function HiringPartnerLogo({
 }: HiringPartnerLogoProps) {
   const isSvg = src.endsWith(".svg");
   const compact = size === "compact";
+  const panel = size === "panel";
+
+  const containerClass = compact
+    ? "flex h-8 min-w-[5.5rem] max-w-[7rem] shrink-0 items-center justify-center px-2"
+    : panel
+      ? "flex h-12 min-w-[6rem] max-w-[8.5rem] shrink-0 items-center justify-center px-2"
+      : "flex h-14 min-w-[8.5rem] max-w-[10.5rem] shrink-0 items-center justify-center px-4";
+
+  const imageHeightClass = compact ? "h-[1.1rem]" : panel ? "h-7" : "h-8";
 
   return (
-    <div
-      className={
-        compact
-          ? "flex h-8 min-w-[5.5rem] max-w-[7rem] shrink-0 items-center justify-center px-2"
-          : "flex h-14 min-w-[8.5rem] max-w-[10.5rem] shrink-0 items-center justify-center px-4"
-      }
-    >
+    <div className={containerClass}>
       <Image
         src={src}
         alt={name}
         width={140}
         height={48}
         unoptimized={isSvg}
-        className={`w-auto max-w-full object-contain transition hover:opacity-100 ${
-          compact ? "h-[1.1rem]" : "h-8"
-        } ${logoImageClass(treatment, surface)}`}
+        className={`w-auto max-w-full object-contain transition hover:opacity-100 ${imageHeightClass} ${logoImageClass(treatment, surface)}`}
       />
     </div>
   );

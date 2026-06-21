@@ -27,6 +27,8 @@ export type CoursePillar = {
   index: string;
   title: string;
   description: string;
+  image?: string;
+  tagline?: string;
 };
 
 export type CourseTimelinePhase = {
@@ -54,6 +56,8 @@ export type CoursePath = {
   description: string;
   tags: string[];
   outcome: string;
+  image?: string;
+  tagline?: string;
 };
 
 export type CourseCapstone = {
@@ -75,12 +79,15 @@ export type CourseHighlight = {
   title: string;
   subtitle: string;
   href: string;
+  image?: string;
 };
 
 export type CourseAudienceCard = {
   index: string;
   title: string;
   description: string;
+  image?: string;
+  tagline?: string;
 };
 
 export type CoursePageConfig = {
@@ -176,8 +183,11 @@ export type CoursePageConfig = {
     challenges: boolean;
     studentStories: boolean;
     campus: boolean;
+    /** fullscreen = homepage-style edge-to-edge campus hero; tabs = program tabbed gallery */
+    campusStyle?: "fullscreen" | "tabs";
     reels: boolean;
     admissions: boolean;
     applicationForm?: boolean;
+    visualStory?: boolean;
   };
 };

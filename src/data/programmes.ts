@@ -33,7 +33,7 @@ export const programmes: Programme[] = [
     badge: "Fellowship",
     videoId: "vCfoRUGuszE",
     description:
-      "6-month on-campus fellowship — brand, performance, AI workflows, and a freelance pathway.",
+      "You don't study marketing here. You build it. 6 months on campus — 4 months curriculum, 2 months placements.",
     eligibility: "Any background",
     format: "On Campus (Opt-in Residential)",
     duration: "6 Months",

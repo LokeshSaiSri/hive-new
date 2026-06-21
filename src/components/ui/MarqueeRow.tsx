@@ -7,6 +7,7 @@ type MarqueeRowProps = {
   /** When false, scrolling continues while hovering logos or other children. */
   pauseOnHover?: boolean;
   className?: string;
+  gap?: "default" | "tight";
 };
 
 const speedClass = {
@@ -15,12 +16,18 @@ const speedClass = {
   fast: "animate-marquee-fast",
 };
 
+const gapClass = {
+  default: "gap-12",
+  tight: "gap-7",
+};
+
 export function MarqueeRow({
   children,
   reverse = false,
   speed = "normal",
   pauseOnHover = true,
   className = "",
+  gap = "default",
 }: MarqueeRowProps) {
   const childArray = Array.isArray(children) ? children : [children];
   const anim = reverse ? "animate-marquee-reverse" : speedClass[speed];
@@ -28,7 +35,7 @@ export function MarqueeRow({
 
   return (
     <div className={`marquee-fade overflow-hidden ${className}`}>
-      <div className={`flex w-max gap-12 ${anim} ${hoverClass}`}>
+      <div className={`flex w-max ${gapClass[gap]} ${anim} ${hoverClass}`}>
         {[...childArray, ...childArray].map((child, i) => (
           <div key={i} className="shrink-0">
             {child}
@@ -43,19 +50,26 @@ export function MarqueeRows({
   rows,
   pauseOnHover = true,
   className = "",
+  gap = "default",
+  rowGap = "default",
 }: {
   rows: ReactNode[];
   pauseOnHover?: boolean;
   className?: string;
+  gap?: "default" | "tight";
+  rowGap?: "default" | "tight";
 }) {
+  const rowGapClass = rowGap === "tight" ? "space-y-3" : "space-y-6";
+
   return (
-    <div className={`space-y-6 ${className}`}>
+    <div className={`${rowGapClass} ${className}`}>
       {rows.map((row, i) => (
         <MarqueeRow
           key={i}
           reverse={i % 2 === 1}
           speed={i % 2 === 0 ? "normal" : "slow"}
           pauseOnHover={pauseOnHover}
+          gap={gap}
         >
           {row}
         </MarqueeRow>
