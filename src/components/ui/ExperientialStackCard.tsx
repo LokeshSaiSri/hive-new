@@ -78,20 +78,19 @@ export function ExperientialStackCard({
         className="premium-surface-dark premium-metallic-edge flex h-full min-h-0 flex-col justify-center rounded-[calc(2rem-1px)] p-7 sm:p-8 md:p-10 lg:p-12"
         style={{ boxShadow: shadow }}
       >
-        <div className="grid h-full min-h-0 items-center gap-7 sm:gap-8 lg:grid-cols-[minmax(0,0.84fr)_minmax(0,1.38fr)] lg:gap-16">
-          <div className="relative flex min-h-0 flex-col justify-center overflow-y-auto px-2 py-2 sm:px-6 sm:py-5 lg:px-8 lg:py-7">
-            <motion.span
-              className="pointer-events-none absolute right-2 top-0 select-none font-bold text-white/[0.06] sm:right-4"
-              style={{
-                fontSize: "clamp(3.5rem, 8vw, 6.5rem)",
-                lineHeight: 0.85,
-              }}
-              aria-hidden
-            >
-              {chapterNum}
-            </motion.span>
-
-            <div className="relative w-full">
+        <div className="grid h-full min-h-0 grid-rows-[minmax(0,1fr)_auto] gap-7 sm:gap-8 lg:grid-rows-1 lg:grid-cols-[minmax(0,0.84fr)_minmax(0,1.38fr)] lg:gap-16">
+          <div className="relative flex h-full min-h-0 flex-col overflow-y-auto px-2 py-2 sm:px-6 sm:py-5 lg:px-8 lg:py-7">
+            <div className="relative w-full my-auto flex-shrink-0">
+              <motion.span
+                className="pointer-events-none absolute right-2 top-0 select-none font-bold text-white/[0.06] sm:right-4"
+                style={{
+                  fontSize: "clamp(3.5rem, 8vw, 6.5rem)",
+                  lineHeight: 0.85,
+                }}
+                aria-hidden
+              >
+                {chapterNum}
+              </motion.span>
             <p className="text-xs font-bold uppercase tracking-[0.28em] text-blue-glow sm:text-sm">
               {panel.eyebrow}
             </p>

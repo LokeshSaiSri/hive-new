@@ -108,11 +108,11 @@ export function ScrollHorizontal({
           </div>
         )}
 
-        <div className="flex min-h-0 flex-1 items-center overflow-hidden">
+        <div className="flex min-h-0 flex-1 overflow-y-auto overflow-x-hidden">
           <motion.div
             ref={trackRef}
             style={{ x }}
-            className={`flex w-max items-stretch gap-6 ${TRACK_PADDING} ${trackClassName}`}
+            className={`my-auto flex w-max items-stretch gap-6 ${TRACK_PADDING} ${trackClassName}`}
           >
             {children}
           </motion.div>
