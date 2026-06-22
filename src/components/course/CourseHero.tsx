@@ -18,7 +18,7 @@ export function CourseHero({ hero }: CourseHeroProps) {
 
   return (
     <section className="relative hive-dark-band overflow-hidden">
-      <div className="relative min-h-[min(100svh,920px)]">
+      <div className="relative min-h-[min(100dvh,920px)]">
         <HeroBackgroundVideo videoSrc={videoSrc} posterSrc={posterSrc} variant="full" />
 
         <div className="program-hero-scrim pointer-events-none absolute inset-0 z-[1]" aria-hidden />
@@ -26,7 +26,7 @@ export function CourseHero({ hero }: CourseHeroProps) {
         <div className="hero-slash pointer-events-none absolute inset-0 z-[1] opacity-20" />
         <div className="hero-grain pointer-events-none absolute inset-0 z-[1] opacity-[0.1] mix-blend-overlay" />
 
-        <div className="relative z-10 flex min-h-[min(100svh,920px)] flex-col justify-end px-4 pb-8 pt-28 sm:px-6 sm:pb-10 lg:px-8 lg:pt-32">
+        <div className="relative z-10 flex min-h-[min(100dvh,920px)] flex-col justify-end px-4 pb-8 pt-28 sm:px-6 sm:pb-10 lg:px-8 lg:pt-32">
           <div className="section-container w-full">
             <ScrollReveal>
               <div className="max-w-3xl">

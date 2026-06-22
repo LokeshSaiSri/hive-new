@@ -242,19 +242,17 @@ function MetricSpotlight({
                 key={metric.label}
                 type="button"
                 onClick={() => onSelect(index)}
-                className={`group relative overflow-hidden rounded-xl border px-3.5 py-3 text-left transition-all duration-300 ${
-                  isActive
+                className={`group relative overflow-hidden rounded-xl border px-3.5 py-3 text-left transition-all duration-300 ${isActive
                     ? "border-white/25 bg-white/10 shadow-[0_8px_28px_rgba(0,0,0,0.25)]"
                     : "border-white/8 bg-white/[0.03] hover:border-white/16 hover:bg-white/[0.06]"
-                }`}
+                  }`}
               >
                 <p className="text-[9px] font-bold uppercase tracking-[0.16em] text-white/42">
                   {metric.label}
                 </p>
                 <p
-                  className={`mt-1 text-sm font-semibold transition-colors ${
-                    isActive ? "text-white" : "text-white/72 group-hover:text-white/88"
-                  }`}
+                  className={`mt-1 text-sm font-semibold transition-colors ${isActive ? "text-white" : "text-white/72 group-hover:text-white/88"
+                    }`}
                 >
                   {metric.value}
                 </p>
@@ -369,11 +367,10 @@ function ApplicationDossier({ form }: { form: FormState }) {
           return (
             <span
               key={key}
-              className={`rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] transition-colors ${
-                done
+              className={`rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] transition-colors ${done
                   ? "bg-electric-blue/10 text-electric-blue"
                   : "bg-ink/[0.04] text-ink/35"
-              }`}
+                }`}
             >
               {FIELD_META[key].label}
             </span>
@@ -407,11 +404,10 @@ function FormField({
     <div className="relative">
       <label
         htmlFor={`apply-${fieldKey}`}
-        className={`pointer-events-none absolute left-4 transition-all duration-200 ${
-          lifted
+        className={`pointer-events-none absolute left-4 transition-all duration-200 ${lifted
             ? "top-2 text-[10px] font-bold uppercase tracking-[0.12em] text-electric-blue"
             : "top-1/2 -translate-y-1/2 text-[14px] text-ink/40"
-        }`}
+          }`}
       >
         {meta.label}
       </label>
@@ -425,13 +421,12 @@ function FormField({
         onFocus={onFocus}
         onBlur={onBlur}
         onChange={(e) => onChange(e.target.value)}
-        className={`w-full rounded-xl border bg-white px-4 pb-3 pt-7 text-[15px] text-ink outline-none transition-all duration-200 placeholder:text-ink/30 ${
-          focused
+        className={`w-full rounded-xl border bg-white px-4 pb-3 pt-7 text-base sm:text-[15px] text-ink outline-none transition-all duration-200 placeholder:text-ink/30 ${focused
             ? "border-electric-blue shadow-[0_0_0_4px_rgba(30,68,226,0.12),0_8px_20px_rgba(30,68,226,0.08)]"
             : hasValue
               ? "border-electric-blue/40 shadow-[0_4px_14px_rgba(30,68,226,0.06)]"
               : "border-border-soft shadow-[0_2px_8px_rgba(6,15,50,0.04)] hover:border-ink/20 hover:shadow-[0_6px_16px_rgba(6,15,50,0.06)]"
-        }`}
+          }`}
         required
       />
     </div>
@@ -572,19 +567,19 @@ export function CourseApplicationForm({
             : "grid items-start gap-8 lg:grid-cols-2 lg:gap-10 lg:items-stretch"
         }
       >
-          <motion.div
-            initial={prefersReducedMotion ? false : { opacity: 0, x: -24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.65, ease: easeHive }}
-            className={
-              isFellowship
-                ? "fellowship-apply-form__spotlight"
-                : `order-2 flex flex-col lg:order-1 lg:pt-3 ${showPlacementCharts ? "h-full" : "min-h-[32rem]"}`
-            }
-          >
-            <div className="premium-frame-dark flex h-full flex-col">
-              <div className="premium-surface-dark flex flex-1 flex-col overflow-hidden rounded-[calc(1.5rem-1px)]">
+        <motion.div
+          initial={prefersReducedMotion ? false : { opacity: 0, x: -24 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.65, ease: easeHive }}
+          className={
+            isFellowship
+              ? "fellowship-apply-form__spotlight"
+              : `order-2 flex flex-col lg:order-1 lg:pt-3 min-w-0 ${showPlacementCharts ? "h-full" : "min-h-[32rem]"}`
+          }
+        >
+          <div className="premium-frame-dark flex h-full flex-col">
+            <div className="premium-surface-dark flex flex-1 flex-col overflow-hidden rounded-[calc(1.5rem-1px)]">
               {showPlacementCharts ? (
                 <div className="flex flex-1 flex-col">
                   <PlacementStatsCharts variant="compact" />
@@ -599,131 +594,129 @@ export function CourseApplicationForm({
                   onResume={() => setMetricPaused(false)}
                 />
               )}
-              </div>
             </div>
-          </motion.div>
+          </div>
+        </motion.div>
 
-          <motion.div
-            initial={prefersReducedMotion ? false : { opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.7, delay: 0.06, ease: easeHive }}
+        <motion.div
+          initial={prefersReducedMotion ? false : { opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.7, delay: 0.06, ease: easeHive }}
+          className={
+            isFellowship
+              ? "fellowship-apply-form__panel"
+              : "course-application-form-panel relative order-1 flex flex-col min-w-0 lg:order-2 lg:z-10"
+          }
+        >
+          {!isFellowship && <div className="course-application-form-spotlight" aria-hidden />}
+          <div
             className={
               isFellowship
-                ? "fellowship-apply-form__panel"
-                : "course-application-form-panel relative order-1 flex flex-col lg:order-2 lg:z-10"
+                ? "fellowship-apply-form__frame"
+                : "course-application-form-frame hover-lift-card relative flex flex-1 flex-col"
             }
           >
-            {!isFellowship && <div className="course-application-form-spotlight" aria-hidden />}
-            <div
-              className={
-                isFellowship
-                  ? "fellowship-apply-form__frame"
-                  : "course-application-form-frame hover-lift-card relative flex flex-1 flex-col"
-              }
-            >
-              <div className="course-application-form-surface flex flex-1 flex-col">
-                <div className="course-application-form-hero">
-                  <div className="flex flex-wrap items-start justify-between gap-4">
-                    <div>
-                      <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-white/50">
-                        Apply in 60 seconds
-                      </p>
-                      <h3 className="mt-2 text-[clamp(1.35rem,2.4vw,1.75rem)] font-bold leading-tight text-white">
-                        {title}
-                      </h3>
-                    </div>
-                    <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-white/85">
-                      Step {Math.min(filledCount + 1, 4)} of 4
-                    </span>
+            <div className="course-application-form-surface flex flex-1 flex-col">
+              <div className="course-application-form-hero">
+                <div className="flex flex-wrap items-start justify-between gap-4">
+                  <div>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-white/50">
+                      Apply in 60 seconds
+                    </p>
+                    <h3 className="mt-2 text-[clamp(1.35rem,2.4vw,1.75rem)] font-bold leading-tight text-white">
+                      {title}
+                    </h3>
                   </div>
-                  <div className="mt-4 flex gap-1.5">
-                    {FIELD_ORDER.map((key, i) => (
-                      <span
-                        key={key}
-                        className={`h-1.5 rounded-full transition-all duration-300 ${
-                          i < filledCount
-                            ? "w-5 bg-blue-glow shadow-[0_0_10px_rgba(134,157,255,0.55)]"
-                            : focusedField === key
-                              ? "w-3 bg-white/55"
-                              : "w-1.5 bg-white/20"
-                        }`}
-                        aria-hidden
-                      />
-                    ))}
-                  </div>
+                  <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-white/85">
+                    Step {Math.min(filledCount + 1, 4)} of 4
+                  </span>
                 </div>
-
-                <div className="course-application-form-body flex flex-1 flex-col p-6 sm:p-8 lg:p-9">
-                  <ApplicationDossier form={form} />
-
-                  {submitted ? (
-                    <SuccessState />
-                  ) : (
-                    <form onSubmit={handleSubmit} noValidate className="mt-8">
-                      <div className="grid gap-5 sm:grid-cols-2">
-                        {FIELD_ORDER.slice(0, 2).map((key) => (
-                          <FormField
-                            key={key}
-                            fieldKey={key}
-                            value={form[key]}
-                            focused={focusedField === key}
-                            onFocus={() => setFocusedField(key)}
-                            onBlur={() => setFocusedField(null)}
-                            onChange={(v) => setField(key, v)}
-                          />
-                        ))}
-                      </div>
-                      <div className="mt-5 grid gap-5 sm:grid-cols-2">
-                        {FIELD_ORDER.slice(2).map((key) => (
-                          <FormField
-                            key={key}
-                            fieldKey={key}
-                            value={form[key]}
-                            focused={focusedField === key}
-                            onFocus={() => setFocusedField(key)}
-                            onBlur={() => setFocusedField(null)}
-                            onChange={(v) => setField(key, v)}
-                          />
-                        ))}
-                      </div>
-
-                      {error && (
-                        <motion.p
-                          initial={{ opacity: 0, y: 4 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          className="mt-4 text-sm text-red-700"
-                          role="alert"
-                        >
-                          {error}
-                        </motion.p>
-                      )}
-
-                      <motion.button
-                        type="submit"
-                        disabled={!isComplete}
-                        whileHover={isComplete && !prefersReducedMotion ? { scale: 1.01 } : undefined}
-                        whileTap={isComplete && !prefersReducedMotion ? { scale: 0.99 } : undefined}
-                        className={`mt-8 flex w-full items-center justify-center gap-3 rounded-full px-8 py-4 text-[15px] font-semibold transition-all duration-300 ${
-                          isComplete
-                            ? "border border-electric-blue bg-electric-blue text-white shadow-[0_12px_36px_rgba(30,68,226,0.32)] hover:border-light-blue hover:bg-light-blue hover:shadow-[0_16px_44px_rgba(21,56,176,0.38)]"
-                            : "cursor-not-allowed border border-border-soft bg-ink/[0.04] text-ink/35"
+                <div className="mt-4 flex gap-1.5">
+                  {FIELD_ORDER.map((key, i) => (
+                    <span
+                      key={key}
+                      className={`h-1.5 rounded-full transition-all duration-300 ${i < filledCount
+                          ? "w-5 bg-blue-glow shadow-[0_0_10px_rgba(134,157,255,0.55)]"
+                          : focusedField === key
+                            ? "w-3 bg-white/55"
+                            : "w-1.5 bg-white/20"
                         }`}
-                      >
-                        <span>{isComplete ? "Submit application" : `Complete ${4 - filledCount} more field${4 - filledCount === 1 ? "" : "s"}`}</span>
-                        {isComplete && <SubmitArrow />}
-                      </motion.button>
-
-                      <p className="mt-4 text-center text-xs text-ink/42">
-                        No spam. A real admissions call from Gurugram within 2 business days.
-                      </p>
-                    </form>
-                  )}
+                      aria-hidden
+                    />
+                  ))}
                 </div>
               </div>
+
+              <div className="course-application-form-body flex flex-1 flex-col p-6 sm:p-8 lg:p-9">
+                <ApplicationDossier form={form} />
+
+                {submitted ? (
+                  <SuccessState />
+                ) : (
+                  <form onSubmit={handleSubmit} noValidate className="mt-8">
+                    <div className="grid gap-5 sm:grid-cols-2">
+                      {FIELD_ORDER.slice(0, 2).map((key) => (
+                        <FormField
+                          key={key}
+                          fieldKey={key}
+                          value={form[key]}
+                          focused={focusedField === key}
+                          onFocus={() => setFocusedField(key)}
+                          onBlur={() => setFocusedField(null)}
+                          onChange={(v) => setField(key, v)}
+                        />
+                      ))}
+                    </div>
+                    <div className="mt-5 grid gap-5 sm:grid-cols-2">
+                      {FIELD_ORDER.slice(2).map((key) => (
+                        <FormField
+                          key={key}
+                          fieldKey={key}
+                          value={form[key]}
+                          focused={focusedField === key}
+                          onFocus={() => setFocusedField(key)}
+                          onBlur={() => setFocusedField(null)}
+                          onChange={(v) => setField(key, v)}
+                        />
+                      ))}
+                    </div>
+
+                    {error && (
+                      <motion.p
+                        initial={{ opacity: 0, y: 4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="mt-4 text-sm text-red-700"
+                        role="alert"
+                      >
+                        {error}
+                      </motion.p>
+                    )}
+
+                    <motion.button
+                      type="submit"
+                      disabled={!isComplete}
+                      whileHover={isComplete && !prefersReducedMotion ? { scale: 1.01 } : undefined}
+                      whileTap={isComplete && !prefersReducedMotion ? { scale: 0.99 } : undefined}
+                      className={`mt-8 flex w-full items-center justify-center gap-3 rounded-full px-8 py-4 text-[15px] font-semibold transition-all duration-300 ${isComplete
+                          ? "border border-electric-blue bg-electric-blue text-white shadow-[0_12px_36px_rgba(30,68,226,0.32)] hover:border-light-blue hover:bg-light-blue hover:shadow-[0_16px_44px_rgba(21,56,176,0.38)]"
+                          : "cursor-not-allowed border border-border-soft bg-ink/[0.04] text-ink/35"
+                        }`}
+                    >
+                      <span>{isComplete ? "Submit application" : `Complete ${4 - filledCount} more field${4 - filledCount === 1 ? "" : "s"}`}</span>
+                      {isComplete && <SubmitArrow />}
+                    </motion.button>
+
+                    <p className="mt-4 text-center text-xs text-ink/42">
+                      No spam. A real admissions call from Gurugram within 2 business days.
+                    </p>
+                  </form>
+                )}
+              </div>
             </div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
+      </div>
     </>
   );
 

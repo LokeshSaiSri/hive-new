@@ -98,12 +98,10 @@
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background: linear-gradient(
-    105deg,
-    rgba(10, 15, 28, 0.82) 0%,
-    rgba(10, 15, 28, 0.45) 45%,
-    rgba(10, 15, 28, 0.72) 100%
-  );
+  background: linear-gradient(105deg,
+      rgba(10, 15, 28, 0.82) 0%,
+      rgba(10, 15, 28, 0.45) 45%,
+      rgba(10, 15, 28, 0.72) 100%);
 }
 
 .fellowship-hero__grain {
@@ -299,6 +297,7 @@
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(-50%);
   }
@@ -742,6 +741,7 @@
 .fellowship-apply-form__spotlight {
   display: flex;
   min-height: 26rem;
+  min-width: 0;
 }
 
 .fellowship-apply-form__spotlight .premium-frame-dark,
@@ -755,6 +755,7 @@
 .fellowship-apply-form__panel {
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 
 .fellowship-apply-form__frame {

@@ -53,7 +53,7 @@ function SocialIcon({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white/70 transition hover:border-white/40 hover:text-white"
+      className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 text-white/70 transition hover:border-white/40 hover:text-white"
     >
       {children}
     </a>
@@ -75,7 +75,7 @@ export function Footer() {
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#060f32]/90 via-[#060f32]/95 to-[#04070d]" />
 
       <div className="section-container relative z-10 py-14 sm:py-16 lg:py-20">
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,2fr)] lg:gap-16">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,2fr)] lg:gap-16">
           <div>
             <Link href="/" className="inline-block">
               <Image
@@ -110,7 +110,7 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-x-4 gap-y-8 lg:grid-cols-4">
             <div>
               <p className="text-sm font-semibold text-white">PGP in Revenue & Marketing</p>
               <ul className="mt-4 space-y-2.5">
