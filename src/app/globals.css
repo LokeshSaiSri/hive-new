@@ -30,6 +30,8 @@
 
   body {
     @apply overflow-x-clip bg-white font-sans text-ink antialiased;
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -41,9 +43,36 @@
 
 @layer utilities {
   .section-container {
-    @apply mx-auto w-full px-4 sm:px-6 lg:px-10;
+    @apply mx-auto w-full px-[1.125rem] sm:px-6 lg:px-10;
     max-width: min(92rem, 100vw);
     overflow-x: clip;
+  }
+
+  /* Inset dark panels on mobile — full bleed from sm+ (Masters' Union style) */
+  .hive-mobile-panel {
+    overflow: hidden;
+    border-radius: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: linear-gradient(180deg, rgba(8, 18, 52, 0.72) 0%, rgba(6, 15, 50, 0.92) 100%);
+    box-shadow:
+      0 22px 56px rgba(0, 0, 0, 0.28),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  @media (min-width: 640px) {
+    .hive-mobile-panel {
+      border-radius: 0;
+      border-left: none;
+      border-right: none;
+      background: transparent;
+      box-shadow: none;
+      width: 100vw;
+      max-width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
   }
 
   .section-py {
@@ -5956,7 +5985,7 @@
 
   .program-subnav {
     position: sticky;
-    top: 4.5rem;
+    top: 3.65rem;
     z-index: 40;
     border-bottom: 1px solid rgba(6, 15, 50, 0.08);
     background: rgba(255, 255, 255, 0.94);
@@ -5964,19 +5993,19 @@
     box-shadow: 0 8px 24px rgba(6, 15, 50, 0.05);
   }
 
-  .program-subnav__inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 0.65rem 0;
+  @media (min-width: 640px) {
+    .program-subnav {
+      top: 4.5rem;
+    }
   }
 
   .program-subnav__tabs {
     display: flex;
-    gap: 0.25rem;
+    gap: 0.35rem;
     overflow-x: auto;
     scrollbar-width: none;
+    padding: 0.55rem 0;
+    -webkit-overflow-scrolling: touch;
   }
 
   .program-subnav__tabs::-webkit-scrollbar {
@@ -5986,7 +6015,7 @@
   .program-subnav__tab {
     flex: 0 0 auto;
     border-radius: 9999px;
-    padding: 0.45rem 0.85rem;
+    padding: 0.5rem 0.9rem;
     font-size: 0.8125rem;
     font-weight: 600;
     color: #5f6b86;
@@ -7902,5 +7931,377 @@
   .challenges-video-hero__slide,
   .challenges-video-thumb {
     width: 15rem;
+  }
+}
+
+/* Site hub pages */
+.campus-bento {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .campus-bento {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    align-items: stretch;
+  }
+
+  .campus-bento__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 1023px) {
+  .campus-bento__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+}
+
+.campus-life-strip {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-inline: max(1rem, calc((100vw - 80rem) / 2 + 1rem));
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.campus-life-strip::-webkit-scrollbar {
+  display: none;
+}
+
+.campus-life-strip__item {
+  position: relative;
+  height: 18rem;
+  width: 17.5rem;
+  flex: 0 0 auto;
+  overflow: hidden;
+  border-radius: 1rem;
+  border: 1px solid rgba(6, 15, 50, 0.08);
+  scroll-snap-align: start;
+}
+
+@media (min-width: 768px) {
+  .campus-life-strip__item {
+    height: 22rem;
+    width: 20rem;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Site-wide mobile optimization                                      */
+/* ------------------------------------------------------------------ */
+
+@media (max-width: 639px) {
+  .section-py {
+    padding-top: 2.75rem;
+    padding-bottom: 2.75rem;
+  }
+
+  .text-display {
+    font-size: clamp(2.35rem, 11vw, 3.5rem);
+    line-height: 0.96;
+  }
+
+  .text-section {
+    font-size: clamp(1.65rem, 7.5vw, 2.35rem);
+  }
+
+  .program-tab-hero .section-container {
+    padding-top: 5.75rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .program-tab-hero__title {
+    font-size: clamp(1.9rem, 8.5vw, 2.6rem);
+  }
+
+  .program-tab-hero__lead {
+    font-size: 0.9375rem;
+  }
+
+  .program-tab-hero__stat {
+    padding: 0.85rem 0.9rem;
+  }
+
+  .program-subnav__tabs {
+    gap: 0.3rem;
+    padding: 0.45rem 0;
+  }
+
+  .program-subnav__tab {
+    padding: 0.48rem 0.78rem;
+    font-size: 0.76rem;
+  }
+
+  .course-application-form-frame {
+    transform: none;
+    border-radius: 1.25rem;
+  }
+
+  .course-application-form-hero {
+    padding: 1.1rem 1.15rem 1.15rem;
+  }
+
+  .course-application-form-body {
+    padding: 1.15rem !important;
+  }
+
+  .placement-mix-card {
+    padding: 1rem;
+  }
+
+  .placement-mix-card__title {
+    font-size: 1.15rem;
+  }
+
+  .placement-mix-card__body {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .placement-mix-card__legend-row {
+    font-size: 0.95rem;
+  }
+
+  .placement-mix-card__legend-row strong {
+    font-size: 1.1rem;
+  }
+
+  .placement-flipbook-stage {
+    padding: 1.5rem 0 2rem;
+  }
+
+  .placement-flipbook-viewer {
+    gap: 0.2rem;
+  }
+
+  .placement-flipbook-nav {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .placement-flipbook-book {
+    min-height: 18rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .placement-flipbook-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .placement-flipbook-toolbar__download {
+    width: 100%;
+    text-align: center;
+  }
+
+  .placement-edition-card__actions {
+    flex-direction: column;
+  }
+
+  .placement-edition-card__actions > * {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .tracks-compass__track-title {
+    font-size: 1.45rem;
+  }
+
+  .tracks-compass__stage-layout {
+    gap: 1rem;
+  }
+
+  .placement-os__console-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .admissions-decision-board__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admissions-process-deck__round-btn {
+    min-width: 0;
+    flex: 1 1 calc(50% - 0.35rem);
+  }
+
+  .program-mentor-gallery__mobile-card {
+    flex-basis: 88%;
+  }
+
+  .campus-bento__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .campus-bento__featured article,
+  .campus-bento__grid article {
+    min-height: 220px;
+  }
+
+  .challenges-video-hero__copy {
+    padding-top: max(5.75rem, 12vh);
+    padding-bottom: 8.5rem;
+  }
+
+  .challenges-video-hero__copy h2 {
+    font-size: clamp(1.85rem, 8.5vw, 2.6rem) !important;
+  }
+
+  .legal-section h2 {
+    font-size: 1.05rem;
+  }
+
+  /* Premium card rhythm — inset surfaces with rounded corners */
+  .premium-frame-light,
+  .premium-frame-dark {
+    border-radius: 1.125rem;
+  }
+
+  .card-premium-elevated,
+  .card-premium-dark,
+  .card-metallic-blue,
+  .card-metallic-dark {
+    border-radius: calc(1.125rem - 1px);
+  }
+
+  .placement-mix-card,
+  .mentor-session-card,
+  .placement-edition-card,
+  .placement-programme-card,
+  .mentor-directory-card,
+  .visual-pillar-card,
+  .course-pillars-bento__card,
+  .program-stat-row,
+  .program-mentor-card {
+    border-radius: 1.125rem;
+  }
+
+  .placement-stats-panel .chart-panel-metallic,
+  .placement-stats-panel .rounded-xl {
+    border-radius: 0.875rem;
+  }
+
+  .section-container .grid {
+    gap: 0.85rem;
+  }
+
+  .hive-dark-band .section-container > .grid,
+  .section-band-light .section-container > .grid,
+  .section-band-dark .section-container > .grid {
+    gap: 1rem;
+  }
+
+  .program-tab-section .section-container {
+    padding-top: 0.25rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .panel-bleed {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .placement-os__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .placement-os__rail {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+    scrollbar-width: none;
+  }
+
+  .placement-os__rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  .placement-os__rail-btn {
+    flex: 0 0 auto;
+    min-width: 10.5rem;
+  }
+
+  .capstone-deck-card {
+    width: min(88vw, 20rem);
+  }
+
+  .visual-pillar-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .course-pillars-bento,
+  .course-pillars-bento--quad {
+    grid-template-columns: 1fr;
+  }
+
+  .course-pillars-bento__card--lead {
+    grid-row: auto;
+  }
+
+  .program-tab-hero__stats {
+    gap: 0.55rem;
+  }
+
+  .hero-stats-rail .grid-cols-3 > div {
+    padding-inline: 0.35rem;
+  }
+
+  .hero-stats-rail .grid-cols-3 > div p:first-child {
+    font-size: 1rem;
+  }
+
+  .hero-stats-rail .grid-cols-3 > div p:last-child {
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
+  }
+}
+
+@media (max-width: 1023px) {
+  .program-mentor-gallery__wall {
+    display: none;
+  }
+
+  .program-mentor-gallery__mobile {
+    display: flex;
+  }
+
+  .tracks-compass__stage-visual {
+    min-height: 14rem;
+  }
+
+  .tracks-compass__art {
+    min-height: 14rem;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .hover-lift-card:hover {
+    transform: none;
+  }
+
+  .challenges-video-hero__play {
+    opacity: 0.85;
+  }
+
+  .program-subnav__tab,
+  .placement-flipbook-thumb,
+  .placement-flipbook-nav {
+    min-height: 44px;
+  }
+
+  .program-subnav__tab {
+    min-height: auto;
   }
 }

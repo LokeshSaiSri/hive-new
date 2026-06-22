@@ -13,7 +13,7 @@ const desktopNavLink =
 const desktopNavLinkActive = "text-white after:scale-x-100";
 
 const mobileNavLink =
-  "block border-l-2 border-transparent py-2.5 pl-3 text-sm text-white/80 transition-all duration-300 hover:border-white hover:text-white";
+  "block rounded-lg border-l-2 border-transparent py-3 pl-3 pr-2 text-sm text-white/80 transition-all duration-300 hover:border-white hover:bg-white/5 hover:text-white";
 
 const dropdownNavLink =
   "group relative block px-4 py-3 text-sm text-white/80 transition-colors duration-300 hover:text-white after:pointer-events-none after:absolute after:bottom-2 after:left-4 after:h-px after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-[calc(100%-2rem)]";
@@ -30,18 +30,26 @@ export function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
+        scrolled || mobileOpen
           ? "border-b border-white/10 bg-[#060f32]/80 shadow-lg backdrop-blur-xl"
           : "bg-gradient-to-b from-ink/85 to-transparent"
       }`}
     >
-      <div className="section-container flex items-center justify-between py-4">
+      <div className="section-container flex items-center justify-between py-3 sm:py-4">
         <Link
           href="/"
           className="relative z-10 flex shrink-0 items-center rounded-lg p-1 transition-opacity duration-200 hover:opacity-80"
+          onClick={() => setMobileOpen(false)}
         >
           <Image
             src={hiveLogo}
@@ -116,7 +124,7 @@ export function Nav() {
 
         <button
           type="button"
-          className="flex h-10 w-10 items-center justify-center rounded-full text-white transition-all duration-300 hover:bg-white/10 hover:text-white lg:hidden"
+          className="flex h-11 w-11 items-center justify-center rounded-full text-white transition-all duration-300 hover:bg-white/10 hover:text-white lg:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
           aria-expanded={mobileOpen}
@@ -132,41 +140,55 @@ export function Nav() {
       </div>
 
       {mobileOpen && (
-        <div className="chart-panel-metallic border-t border-white/10 px-4 py-4 lg:hidden">
-          {navItems.map((item) =>
-            item.type === "dropdown" ? (
-              <div key={item.label} className="mb-4">
-                <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-white/55">
+        <>
+          <button
+            type="button"
+            className="fixed inset-0 top-14 z-40 bg-ink/55 backdrop-blur-[2px] lg:hidden"
+            aria-label="Close menu"
+            onClick={() => setMobileOpen(false)}
+          />
+          <div className="relative z-50 max-h-[calc(100svh-3.5rem)] overflow-y-auto overscroll-contain border-t border-white/10 chart-panel-metallic px-4 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] lg:hidden">
+            {navItems.map((item) =>
+              item.type === "dropdown" ? (
+                <div key={item.label} className="mb-4">
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-white/55">
+                    {item.label}
+                  </p>
+                  {item.items.map((sub) => (
+                    <Link
+                      key={sub.href}
+                      href={sub.href}
+                      className={mobileNavLink}
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      {sub.label}
+                    </Link>
+                  ))}
+                </div>
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={mobileNavLink}
+                  onClick={() => setMobileOpen(false)}
+                >
                   {item.label}
-                </p>
-                {item.items.map((sub) => (
-                  <Link
-                    key={sub.href}
-                    href={sub.href}
-                    className={mobileNavLink}
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    {sub.label}
-                  </Link>
-                ))}
-              </div>
-            ) : (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={mobileNavLink}
+                </Link>
+              ),
+            )}
+            <div className="mt-4 border-t border-white/10 pt-4">
+              <PillButton
+                variant="highlight"
+                tone="dark"
+                href="#apply"
+                className="w-full"
                 onClick={() => setMobileOpen(false)}
               >
-                {item.label}
-              </Link>
-            ),
-          )}
-          <div className="mt-4">
-            <PillButton variant="highlight" tone="dark" href="#apply" className="w-full">
-              Join Hiveschool
-            </PillButton>
+                Join Hiveschool
+              </PillButton>
+            </div>
           </div>
-        </div>
+        </>
       )}
     </header>
   );

@@ -8,6 +8,7 @@ type PillButtonProps = {
   href?: string;
   children: ReactNode;
   className?: string;
+  onClick?: () => void;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const toneStyles = {
@@ -35,6 +36,7 @@ export function PillButton({
   href,
   children,
   className = "",
+  onClick,
   ...props
 }: PillButtonProps) {
   const base =
@@ -44,7 +46,7 @@ export function PillButton({
 
   if (href) {
     return (
-      <Link href={href} className={classes}>
+      <Link href={href} className={classes} onClick={onClick}>
         {children}
       </Link>
     );

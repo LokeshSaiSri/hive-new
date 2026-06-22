@@ -54,7 +54,7 @@ export function Hero() {
 
         <div className="hero-panel-slab absolute inset-0 z-10" />
 
-        <div className="relative z-20 flex min-h-[100svh] flex-col justify-center px-4 pb-24 pt-24 sm:px-6 lg:px-8 lg:pb-28 lg:pt-28">
+        <div className="relative z-20 flex min-h-[100svh] flex-col justify-center px-4 pb-20 pt-20 sm:px-6 sm:pb-24 sm:pt-24 lg:px-8 lg:pb-28 lg:pt-28">
           <div className="section-container relative">
             <p
               className="hero-side-label pointer-events-none absolute -left-2 top-1/2 hidden -translate-y-1/2 text-[10px] font-bold uppercase tracking-[0.45em] text-white/20 lg:block"

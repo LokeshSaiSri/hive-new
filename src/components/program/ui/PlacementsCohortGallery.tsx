@@ -197,6 +197,20 @@ function FlipbookViewer({
     api.flip(scrubPage);
   }, [scrubPage, ready]);
 
+  const [bookWidth, setBookWidth] = useState(300);
+
+  useEffect(() => {
+    const update = () => {
+      const viewport = window.innerWidth;
+      setBookWidth(Math.min(340, Math.max(220, viewport - 88)));
+    };
+    update();
+    window.addEventListener("resize", update, { passive: true });
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  const bookHeight = Math.round(bookWidth * 1.415);
+
   const pages = useMemo(
     () =>
       edition.pages.map((page, index) => {
@@ -241,12 +255,12 @@ function FlipbookViewer({
           ref={bookRef}
           className="placement-flipbook-instance"
           style={{}}
-          width={340}
-          height={481}
+          width={bookWidth}
+          height={bookHeight}
           size="stretch"
-          minWidth={260}
+          minWidth={220}
           maxWidth={460}
-          minHeight={360}
+          minHeight={320}
           maxHeight={680}
           drawShadow
           flippingTime={720}

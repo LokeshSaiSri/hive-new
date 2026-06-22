@@ -27,9 +27,9 @@ const ugLinks = [
 ];
 
 const exploreLinks = [
-  { label: "Life at Hive", href: "/#campus" },
+  { label: "Life at Hive", href: "/campus" },
   { label: "Placement Report", href: "/HiveSchool Placement Report 2025-26.pdf" },
-  { label: "Career Outcomes", href: "/#placement-report" },
+  { label: "Career Outcomes", href: "/placements" },
   { label: "FAQs", href: "/#faq" },
 ];
 
@@ -74,8 +74,8 @@ export function Footer() {
       />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#060f32]/90 via-[#060f32]/95 to-[#04070d]" />
 
-      <div className="section-container relative z-10 py-14 sm:py-16 lg:py-20">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,2fr)] lg:gap-16">
+      <div className="section-container relative z-10 py-10 sm:py-14 lg:py-20">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,2fr)] lg:gap-16">
           <div>
             <Link href="/" className="inline-block">
               <Image

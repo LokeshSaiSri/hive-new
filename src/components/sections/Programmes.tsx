@@ -94,13 +94,13 @@ function ProgrammeCard({
   programme: (typeof programmes)[number];
 }) {
   return (
-    <article className="group premium-frame-light w-[min(480px,calc(100vw-3rem))] shrink-0 transition-transform duration-300 hover:-translate-y-1">
+    <article className="group premium-frame-light w-[min(420px,calc(100vw-2.5rem))] shrink-0 transition-transform duration-300 hover:-translate-y-1 sm:w-[min(480px,calc(100vw-3rem))]">
       <div className="card-premium-elevated flex h-full flex-col overflow-hidden">
         <VideoCard
           videoId={programme.videoId}
           badge={programme.badge}
           flush
-          className="[&_button]:rounded-none"
+          className="sm:[&_button]:rounded-none"
         />
 
         <div className="flex flex-1 flex-col p-6 sm:p-7">

@@ -2,15 +2,14 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { PillButton } from "@/components/ui/PillButton";
-import type { ProgramTabHeroContent } from "@/data/coursePages/pgp-tabs";
+import type { SiteHubHeroContent } from "@/data/sitePages";
 import { easeHive } from "@/lib/motion";
 
-type ProgramTabHeroProps = {
-  content: ProgramTabHeroContent;
-  tabLabel: string;
+type SiteHubHeroProps = {
+  content: SiteHubHeroContent;
 };
 
-export function ProgramTabHero({ content, tabLabel }: ProgramTabHeroProps) {
+export function SiteHubHero({ content }: SiteHubHeroProps) {
   const prefersReducedMotion = useReducedMotion();
 
   return (
@@ -28,7 +27,7 @@ export function ProgramTabHero({ content, tabLabel }: ProgramTabHeroProps) {
             className="program-tab-hero__copy"
           >
             <div className="flex flex-wrap items-center gap-2.5">
-              <span className="program-tab-hero__tab-pill">{tabLabel}</span>
+              <span className="program-tab-hero__tab-pill">{content.pageLabel}</span>
               <span className="course-hero-chip">{content.eyebrow}</span>
             </div>
 
@@ -40,9 +39,11 @@ export function ProgramTabHero({ content, tabLabel }: ProgramTabHeroProps) {
             <p className="program-tab-hero__lead">{content.description}</p>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <PillButton variant="highlight" tone="dark" href={content.primaryCta?.href ?? "#apply"}>
-                {content.primaryCta?.label ?? "Apply now"}
-              </PillButton>
+              {content.primaryCta && (
+                <PillButton variant="highlight" tone="dark" href={content.primaryCta.href}>
+                  {content.primaryCta.label}
+                </PillButton>
+              )}
               {content.secondaryCta && (
                 <PillButton variant="secondary" tone="dark" href={content.secondaryCta.href}>
                   {content.secondaryCta.label}
@@ -57,7 +58,7 @@ export function ProgramTabHero({ content, tabLabel }: ProgramTabHeroProps) {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.65, delay: 0.08, ease: easeHive }}
               className="program-tab-hero__stats"
-              aria-label="Programme highlights"
+              aria-label="Page highlights"
             >
               {content.stats.map((stat) => (
                 <li key={stat.label} className="program-tab-hero__stat">

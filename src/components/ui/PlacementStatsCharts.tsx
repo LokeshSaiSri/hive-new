@@ -632,7 +632,7 @@ export function PlacementStatsCharts({ variant = "default" }: { variant?: "defau
 
   return (
     <div ref={ref} className="border-t border-white/10">
-      <div className="p-4 sm:p-6 lg:p-8">
+      <div className="p-3 sm:p-6 lg:p-8">
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.92fr)] lg:items-stretch lg:gap-8 xl:gap-10">
           <div className="flex flex-col">
             <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-white/45">

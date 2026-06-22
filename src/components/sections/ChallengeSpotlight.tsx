@@ -30,7 +30,7 @@ export function ChallengeSpotlight() {
           videoId={spotlight.videoId}
           badge="Watch pitch"
           flush
-          className="[&_button]:rounded-none"
+          className="sm:[&_button]:rounded-none"
         />
 
         <div className="px-6 py-6 sm:px-7 sm:py-7">

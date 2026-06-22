@@ -67,7 +67,7 @@ function HeroStatItem({
   return (
     <div
       ref={ref}
-      className="relative px-3 py-4 text-center sm:px-5 sm:py-5"
+      className="relative px-2.5 py-3.5 text-center sm:px-5 sm:py-5"
     >
       {index > 0 && (
         <span
@@ -75,7 +75,7 @@ function HeroStatItem({
           aria-hidden
         />
       )}
-      <p className="text-xl font-bold leading-none tracking-tight text-white sm:text-2xl lg:text-[1.75rem]">
+      <p className="text-lg font-bold leading-none tracking-tight text-white sm:text-2xl lg:text-[1.75rem]">
         {display}
       </p>
       <p className="mt-2 text-[9px] font-semibold uppercase tracking-[0.22em] text-white/60 sm:text-[10px]">

@@ -86,7 +86,7 @@ export function PlacementsDistributionCharts() {
           />
         </ScrollReveal>
 
-        <div className="mt-10 grid gap-5 lg:grid-cols-2 lg:mt-14">
+        <div className="mt-8 grid gap-4 sm:mt-10 sm:gap-5 lg:grid-cols-2 lg:mt-14">
           <MixPie
             title="Role Distribution"
             subtitle="B2B sales and founder's office roles lead Year 2 PGP Cohort 1 outcomes."
