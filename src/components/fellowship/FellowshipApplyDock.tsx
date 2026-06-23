@@ -13,6 +13,7 @@ export function FellowshipApplyDock({ applicationForm, metrics }: FellowshipAppl
     <section id="apply" className="fellowship-apply-dock" aria-label="Fellowship application">
       <div className="section-container fellowship-apply-dock__inner">
         <CourseApplicationForm
+          courseSlug="ai-marketing"
           title={applicationForm.title}
           headline={applicationForm.headline}
           metrics={metrics}

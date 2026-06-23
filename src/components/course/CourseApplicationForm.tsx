@@ -7,10 +7,14 @@ import { HiringPartnerLogo } from "@/components/ui/HiringPartnerLogo";
 import { hiringPartnerLogos } from "@/data/partners";
 import { PlacementStatsCharts } from "@/components/ui/PlacementStatsCharts";
 import type { CourseMetaItem } from "@/data/coursePages/types";
+import type { ProgramSlug } from "@/data/programPages/types";
+import { submitHubSpotForm } from "@/lib/hubspot/client";
+import { mapCourseApplicationFields } from "@/lib/hubspot/fields";
 import { useAutoAdvance } from "@/lib/useAutoAdvance";
 import { easeHive } from "@/lib/motion";
 
 type CourseApplicationFormProps = {
+  courseSlug: ProgramSlug;
   title: string;
   headline?: string;
   metrics: CourseMetaItem[];
@@ -474,6 +478,7 @@ function SuccessState() {
 }
 
 export function CourseApplicationForm({
+  courseSlug,
   title,
   headline = "application",
   metrics,
@@ -491,6 +496,7 @@ export function CourseApplicationForm({
   });
   const [error, setError] = useState<string>();
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [activeMetric, setActiveMetric] = useState(0);
   const [metricPaused, setMetricPaused] = useState(false);
   const [focusedField, setFocusedField] = useState<FieldKey | null>(null);
@@ -511,15 +517,29 @@ export function CourseApplicationForm({
   );
   const isComplete = filledCount === FIELD_ORDER.length;
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const err = validateForm(form);
     if (err) {
       setError(err);
       return;
     }
+
     setError(undefined);
-    setSubmitted(true);
+    setSubmitting(true);
+
+    try {
+      await submitHubSpotForm(courseSlug, mapCourseApplicationFields(form));
+      setSubmitted(true);
+    } catch (submitError) {
+      setError(
+        submitError instanceof Error
+          ? submitError.message
+          : "Could not submit application. Please try again.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const setField = (key: FieldKey, value: string) => {
@@ -697,16 +717,22 @@ export function CourseApplicationForm({
 
                     <motion.button
                       type="submit"
-                      disabled={!isComplete}
-                      whileHover={isComplete && !prefersReducedMotion ? { scale: 1.01 } : undefined}
-                      whileTap={isComplete && !prefersReducedMotion ? { scale: 0.99 } : undefined}
-                      className={`mt-8 flex w-full items-center justify-center gap-3 rounded-full px-8 py-4 text-[15px] font-semibold transition-all duration-300 ${isComplete
+                      disabled={!isComplete || submitting}
+                      whileHover={isComplete && !submitting && !prefersReducedMotion ? { scale: 1.01 } : undefined}
+                      whileTap={isComplete && !submitting && !prefersReducedMotion ? { scale: 0.99 } : undefined}
+                      className={`mt-8 flex w-full items-center justify-center gap-3 rounded-full px-8 py-4 text-[15px] font-semibold transition-all duration-300 ${isComplete && !submitting
                           ? "border border-electric-blue bg-electric-blue text-white shadow-[0_12px_36px_rgba(30,68,226,0.32)] hover:border-light-blue hover:bg-light-blue hover:shadow-[0_16px_44px_rgba(21,56,176,0.38)]"
                           : "cursor-not-allowed border border-border-soft bg-ink/[0.04] text-ink/35"
                         }`}
                     >
-                      <span>{isComplete ? "Submit application" : `Complete ${4 - filledCount} more field${4 - filledCount === 1 ? "" : "s"}`}</span>
-                      {isComplete && <SubmitArrow />}
+                      <span>
+                        {submitting
+                          ? "Submitting..."
+                          : isComplete
+                            ? "Submit application"
+                            : `Complete ${4 - filledCount} more field${4 - filledCount === 1 ? "" : "s"}`}
+                      </span>
+                      {isComplete && !submitting && <SubmitArrow />}
                     </motion.button>
 
                     <p className="mt-4 text-center text-xs text-ink/42">

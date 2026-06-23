@@ -13,6 +13,7 @@ export function ProgramAdmissions({ slug, className }: ProgramAdmissionsProps) {
       <ApplyForm
         variant="program"
         defaultProgramme={getDefaultProgrammeLabel(slug)}
+        courseSlug={slug}
       />
     </section>
   );

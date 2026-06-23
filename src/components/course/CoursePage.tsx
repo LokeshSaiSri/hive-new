@@ -78,6 +78,7 @@ export function CoursePage({ config, slug }: CoursePageProps) {
     >
       {config.sections.applicationForm && config.applicationForm && (
         <CourseApplicationForm
+          courseSlug={slug}
           title={config.applicationForm.title}
           headline={config.applicationForm.headline}
           metrics={config.hero.meta}

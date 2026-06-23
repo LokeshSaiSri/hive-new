@@ -7,12 +7,17 @@ import { PillButton } from "@/components/ui/PillButton";
 import { HeroStudentCollage } from "@/components/ui/HeroStudentCollage";
 import { cities } from "@/data/nav";
 import { programmes } from "@/data/programmes";
+import type { ProgramSlug } from "@/data/programPages/types";
+import { submitHubSpotForm } from "@/lib/hubspot/client";
+import { mapApplyFormFields } from "@/lib/hubspot/fields";
+import { resolveProgramSlugFromTitle } from "@/lib/hubspot/resolve-course";
 import { admissionHero } from "@/data/partners";
 import { easeHive } from "@/lib/motion";
 
 export type ApplyFormProps = {
   variant?: "home" | "program";
   defaultProgramme?: string;
+  courseSlug?: ProgramSlug;
 };
 
 type FormState = {
@@ -219,6 +224,7 @@ function AnswerRail({
 export function ApplyForm({
   variant = "home",
   defaultProgramme = "",
+  courseSlug,
 }: ApplyFormProps) {
   const isHome = variant === "home";
   const prefersReducedMotion = useReducedMotion();
@@ -236,6 +242,7 @@ export function ApplyForm({
   });
   const [error, setError] = useState<string | undefined>();
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [inputFocused, setInputFocused] = useState(false);
 
   const current = STEPS[step];
@@ -300,31 +307,56 @@ export function ApplyForm({
     setStep((s) => s - 1);
   };
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
+  const submitApplication = useCallback(async () => {
     const err = validateField("city", form.city);
     if (err) {
       setError(err);
-      return;
+      return false;
     }
-    setSubmitted(true);
+
+    const targetCourse = courseSlug ?? resolveProgramSlugFromTitle(form.programme);
+    if (!targetCourse) {
+      setError("Please select a programme to continue.");
+      return false;
+    }
+
+    setError(undefined);
+    setSubmitting(true);
+
+    try {
+      await submitHubSpotForm(targetCourse, mapApplyFormFields(form));
+      setSubmitted(true);
+      return true;
+    } catch (submitError) {
+      setError(
+        submitError instanceof Error
+          ? submitError.message
+          : "Could not submit application. Please try again.",
+      );
+      return false;
+    } finally {
+      setSubmitting(false);
+    }
+  }, [courseSlug, form]);
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    void submitApplication();
   };
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (submitted || e.key !== "Enter") return;
+      if (submitted || submitting || e.key !== "Enter") return;
       if (current.type === "programme") return;
       e.preventDefault();
       if (step < STEPS.length - 1) goNext();
       else {
-        const err = validateField("city", form.city);
-        if (err) setError(err);
-        else setSubmitted(true);
+        void submitApplication();
       }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [current.type, form.city, goNext, step, submitted]);
+  }, [current.type, goNext, step, submitApplication, submitted, submitting]);
 
   const setField = (key: FieldKey, value: string) => {
     setForm((prev) => ({ ...prev, [key]: value }));
@@ -674,8 +706,13 @@ export function ApplyForm({
                       }
                       transition={{ duration: 1.6, repeat: Infinity }}
                     >
-                      <PillButton type="submit" variant="highlight" tone="dark">
-                        Request a callback
+                      <PillButton
+                        type="submit"
+                        variant="highlight"
+                        tone="dark"
+                        disabled={submitting}
+                      >
+                        {submitting ? "Submitting..." : "Request a callback"}
                       </PillButton>
                     </motion.div>
                   )}

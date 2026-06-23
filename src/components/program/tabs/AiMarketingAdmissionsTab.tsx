@@ -48,6 +48,7 @@ export function AiMarketingAdmissionsTab({ config }: AiMarketingAdmissionsTabPro
 
       {config.sections.applicationForm && config.applicationForm && (
         <CourseApplicationForm
+          courseSlug="ai-marketing"
           title={config.applicationForm.title}
           headline={config.applicationForm.headline}
           metrics={config.hero.meta}
