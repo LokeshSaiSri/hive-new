@@ -5,15 +5,16 @@ import type { CoursePageConfig } from "@/data/coursePages/types";
 
 type CourseCapstonesProps = {
   capstones: NonNullable<CoursePageConfig["capstones"]>;
+  className?: string;
 };
 
-export function CourseCapstones({ capstones }: CourseCapstonesProps) {
+export function CourseCapstones({ capstones, className }: CourseCapstonesProps) {
   if (capstones.variant === "showcase") {
-    return <CourseCapstonesShowcase capstones={capstones} />;
+    return <CourseCapstonesShowcase capstones={capstones} className={className} />;
   }
 
   return (
-    <section className="section-band-light">
+    <section className={`section-band-light ${className ?? ""}`}>
       <div className="section-container">
         <ScrollReveal>
           <SectionIntro

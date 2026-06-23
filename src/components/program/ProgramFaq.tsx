@@ -11,9 +11,10 @@ import { easeHive } from "@/lib/motion";
 type ProgramFaqProps = {
   faqs: CoursePageConfig["faqs"];
   variant?: "default" | "theatre";
+  className?: string;
 };
 
-export function ProgramFaq({ faqs, variant = "default" }: ProgramFaqProps) {
+export function ProgramFaq({ faqs, variant = "default", className }: ProgramFaqProps) {
   const [openIndex, setOpenIndex] = useState(0);
   const prefersReducedMotion = useReducedMotion();
 
@@ -21,8 +22,8 @@ export function ProgramFaq({ faqs, variant = "default" }: ProgramFaqProps) {
     const current = faqs.items[openIndex] ?? faqs.items[0];
 
     return (
-      <section className="program-tab-section hive-dark-band overflow-hidden">
-        <div className="section-container section-py">
+      <section className={`program-tab-section hive-dark-band overflow-hidden section-py ${className ?? ""}`}>
+        <div className="section-container">
           <div className="program-faq-theatre">
             <ScrollReveal className="program-faq-theatre__intro">
               <SectionIntro
@@ -85,7 +86,7 @@ export function ProgramFaq({ faqs, variant = "default" }: ProgramFaqProps) {
   }
 
   return (
-    <section className="program-section section-band-light">
+    <section className={`program-section section-band-light ${className ?? ""}`}>
       <div className="section-container">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-14">
           <ScrollReveal>

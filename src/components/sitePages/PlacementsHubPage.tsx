@@ -20,15 +20,15 @@ export function PlacementsHubPage() {
   return (
     <SitePageLayout>
       <SiteHubHero content={placementsHubHero} />
-      <PlacementReportEditions />
+      <PlacementReportEditions className="pt-0 border-t-0" />
       <div id="placement-archive">
-        <PlacementsCohortGallery />
+        <PlacementsCohortGallery className="pt-0 border-t-0" />
       </div>
       <PlacementsSystemDeck pillars={pgpPlacementSystem} intro={pgpPlacementSystemIntro} />
       <PlacementsDistributionCharts />
-      <PlacementsHiringBand />
-      <PlacementsNewsGrid articles={pgpPlacementNews} />
-      <ProgrammePlacementSummaries />
+      <PlacementsHiringBand className="pt-0" />
+      <PlacementsNewsGrid articles={pgpPlacementNews} className="pt-0" />
+      <ProgrammePlacementSummaries className="pt-0" />
     </SitePageLayout>
   );
 }

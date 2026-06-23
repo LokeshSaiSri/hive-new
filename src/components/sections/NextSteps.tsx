@@ -3,9 +3,9 @@ import { PillButton } from "@/components/ui/PillButton";
 import { ScrollReveal, StaggerReveal, StaggerItem } from "@/components/ui/ScrollReveal";
 import { nextStepCards } from "@/data/programmes";
 
-export function NextSteps() {
+export function NextSteps({ className }: { className?: string }) {
   return (
-    <section id="apply" className="section-band-dark">
+    <section id="apply" className={`section-band-dark ${className ?? ""}`}>
       <div className="section-container">
         <ScrollReveal>
           <SectionIntro

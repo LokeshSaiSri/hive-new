@@ -17,6 +17,7 @@ import { asset } from "@/lib/assets";
 
 type CourseTimelineProps = {
   timeline: NonNullable<CoursePageConfig["timeline"]>;
+  className?: string;
 };
 
 function ReducedPhaseCard({
@@ -71,7 +72,7 @@ function ReducedPhaseCard({
   );
 }
 
-export function CourseTimeline({ timeline }: CourseTimelineProps) {
+export function CourseTimeline({ timeline, className }: CourseTimelineProps) {
   const prefersReducedMotion = useReducedMotion();
   const phases = timeline.phases;
   const total = phases.length;
@@ -172,7 +173,7 @@ export function CourseTimeline({ timeline }: CourseTimelineProps) {
 
   if (prefersReducedMotion) {
     return (
-      <section id="timeline" className="section-band-light section-py">
+      <section id="timeline" className={`section-band-light section-py ${className ?? ""}`}>
         <div className="section-container">
           <ScrollReveal>
             <SectionIntro
@@ -196,8 +197,8 @@ export function CourseTimeline({ timeline }: CourseTimelineProps) {
   }
 
   return (
-    <section id="timeline" className="curriculum-theatre section-band-light">
-      <div className="section-container pb-10 pt-16 sm:pb-12 sm:pt-20 lg:pt-24">
+    <section id="timeline" className={`curriculum-theatre section-band-light section-py ${className ?? ""}`}>
+      <div className="section-container">
         <ScrollReveal>
           <SectionIntro
             eyebrow={timeline.eyebrow}

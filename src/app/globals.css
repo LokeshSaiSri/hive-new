@@ -75,12 +75,14 @@
     }
   }
 
-  .section-py {
-    @apply py-12 sm:py-16 lg:py-20;
-  }
+  @layer components {
+    .section-py {
+      @apply py-12 lg:py-16;
+    }
 
-  .section-py-tight {
-    @apply py-10 sm:py-14;
+    .section-py-tight {
+      @apply py-10 lg:py-12;
+    }
   }
 
   /* Full-bleed panel — breaks out of container for in-flow dark slabs */
@@ -517,7 +519,7 @@
     background-size: 160px 160px, auto, auto, auto, auto;
     background-blend-mode: overlay, normal, normal, normal, normal;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
-    @apply py-12 sm:py-16 lg:py-20;
+    @apply py-12 lg:py-16;
   }
 
   .section-band-light {
@@ -7383,14 +7385,26 @@
 }
 
 .animate-marquee-reverse {
-  animation: marquee-reverse 55s linear infinite;
+  animation: marquee-reverse 50s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-slow-reverse {
+  animation: marquee-reverse 65s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-fast-reverse {
+  animation: marquee-reverse 35s linear infinite;
   will-change: transform;
 }
 
 .animate-marquee:hover,
 .animate-marquee-slow:hover,
 .animate-marquee-fast:hover,
-.animate-marquee-reverse:hover {
+.animate-marquee-reverse:hover,
+.animate-marquee-slow-reverse:hover,
+.animate-marquee-fast-reverse:hover {
   animation-play-state: paused;
 }
 
@@ -7403,7 +7417,9 @@
   .animate-marquee,
   .animate-marquee-slow,
   .animate-marquee-fast,
-  .animate-marquee-reverse {
+  .animate-marquee-reverse,
+  .animate-marquee-slow-reverse,
+  .animate-marquee-fast-reverse {
     animation: none;
     will-change: auto;
   }
@@ -8106,7 +8122,7 @@
     flex-direction: column;
   }
 
-  .placement-edition-card__actions > * {
+  .placement-edition-card__actions>* {
     width: 100%;
     justify-content: center;
   }
@@ -8194,15 +8210,12 @@
     gap: 0.85rem;
   }
 
-  .hive-dark-band .section-container > .grid,
-  .section-band-light .section-container > .grid,
-  .section-band-dark .section-container > .grid {
+  .hive-dark-band .section-container>.grid,
+  .section-band-light .section-container>.grid,
+  .section-band-dark .section-container>.grid {
     gap: 1rem;
   }
 
-  .program-tab-section .section-container {
-    padding-top: 0.25rem;
-  }
 }
 
 @media (max-width: 767px) {
@@ -8255,15 +8268,15 @@
     gap: 0.55rem;
   }
 
-  .hero-stats-rail .grid-cols-3 > div {
+  .hero-stats-rail .grid-cols-3>div {
     padding-inline: 0.35rem;
   }
 
-  .hero-stats-rail .grid-cols-3 > div p:first-child {
+  .hero-stats-rail .grid-cols-3>div p:first-child {
     font-size: 1rem;
   }
 
-  .hero-stats-rail .grid-cols-3 > div p:last-child {
+  .hero-stats-rail .grid-cols-3>div p:last-child {
     font-size: 0.58rem;
     letter-spacing: 0.14em;
   }

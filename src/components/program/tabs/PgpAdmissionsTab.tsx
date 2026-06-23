@@ -31,20 +31,20 @@ export function PgpAdmissionsTab({ config }: PgpAdmissionsTabProps) {
   return (
     <>
       <AdmissionsIntroPanel content={pgpAdmissionsIntro} />
-      <ProgramCohortVoices stories={buildCohortStories(pgpAlumniQuotes, testimonials)} />
+      <ProgramCohortVoices stories={buildCohortStories(pgpAlumniQuotes, testimonials)} className="pt-0" />
       <AdmissionsDecisionBoard
         evaluators={pgpAdmissionEvaluators}
         intro={pgpAdmissionDecisionIntro}
       />
-      <AdmissionsProcessDeck rounds={pgpAdmissionRounds} />
-      {fitCheckCta && <ProgramVisualCtaBand cta={fitCheckCta} chip="Admissions support" />}
+      <AdmissionsProcessDeck rounds={pgpAdmissionRounds} className="pt-0" />
+      {fitCheckCta && <ProgramVisualCtaBand cta={fitCheckCta} chip="Admissions support" className="pt-0" />}
       {config.fees && (
-        <AdmissionsFeesDeadlines fees={config.fees} deadlines={pgpAdmissionDeadlines} />
+        <AdmissionsFeesDeadlines fees={config.fees} deadlines={pgpAdmissionDeadlines} className="pt-0 border-t-0" />
       )}
-      <AdmissionsScholarships scholarships={pgpScholarships} />
+      <AdmissionsScholarships scholarships={pgpScholarships} className="pt-0 border-t-0" />
       <PlacementsHiringBand description="See the hiring network you'll join after admission — from global technology leaders to India's fastest-growing startups." />
-      {placementsCta && <ProgramVisualCtaBand cta={placementsCta} chip="Proof-of-work" />}
-      {curriculumCta && <ProgramVisualCtaBand cta={curriculumCta} chip="Curriculum" />}
+      {placementsCta && <ProgramVisualCtaBand cta={placementsCta} chip="Proof-of-work" className="pt-0" />}
+      {curriculumCta && <ProgramVisualCtaBand cta={curriculumCta} chip="Curriculum" className="pt-0" />}
       <ProgramAdmissions slug="pgp" />
       <ProgramFaq faqs={config.faqs} variant="theatre" />
     </>

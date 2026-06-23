@@ -4,8 +4,35 @@ import { useState } from "react";
 import { SectionIntro } from "@/components/ui/SectionIntro";
 import { TabGroup } from "@/components/ui/TabGroup";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { ProgramMentorGallery } from "@/components/program/ui/ProgramMentorGallery";
+import { HorizontalScroller } from "@/components/ui/HorizontalScroller";
+import { PortraitCard } from "@/components/ui/PortraitCard";
 import { mentors, mentorCategories } from "@/data/mentors";
+
+function MentorCard({
+  mentor,
+}: {
+  mentor: (typeof mentors)[number];
+}) {
+  return (
+    <div className="relative">
+      <PortraitCard
+        image={mentor.image}
+        name={mentor.name}
+        role={mentor.role}
+        companyLabel={mentor.companyLabel}
+        companyLogo={mentor.companyLogo}
+        size="large"
+        metallic
+      />
+      {mentor.sessions && (
+        <p className="mt-3 text-center text-xs font-semibold text-mid-gray">
+          Successful Sessions:{" "}
+          <span className="text-light-blue">{mentor.sessions}</span>
+        </p>
+      )}
+    </div>
+  );
+}
 
 export function ProgramMentors({
   eyebrow = "Mentors",
@@ -21,6 +48,10 @@ export function ProgramMentors({
   const [category, setCategory] =
     useState<(typeof mentorCategories)[number]>("Marketing");
   const filtered = mentors.filter((m) => m.category === category);
+
+  const midpoint = Math.ceil(filtered.length / 2);
+  const topRowMentors = filtered.slice(0, midpoint);
+  const bottomRowMentors = filtered.slice(midpoint);
 
   return (
     <section className="program-section section-band-light overflow-hidden section-py">
@@ -42,13 +73,34 @@ export function ProgramMentors({
         </ScrollReveal>
       </div>
 
-      <div className="mt-10 sm:mt-12">
-        <ProgramMentorGallery
-          key={category}
-          resetKey={category}
-          label={`${category} · pick a mentor`}
-          mentors={filtered}
-        />
+      <div className="mt-10 sm:mt-12 flex flex-col gap-6 sm:gap-8">
+        {topRowMentors.length > 0 && (
+          <HorizontalScroller
+            marquee
+            marqueePauseOnHover={false}
+            marqueeSpeed="slow"
+            marqueeDirection="left"
+            slideClassName="basis-auto"
+          >
+            {topRowMentors.map((mentor) => (
+              <MentorCard key={mentor.name} mentor={mentor} />
+            ))}
+          </HorizontalScroller>
+        )}
+        {bottomRowMentors.length > 0 && (
+          <HorizontalScroller
+            marquee
+            marqueePauseOnHover={false}
+            marqueeSpeed="slow"
+            marqueeDirection="right"
+            slideClassName="basis-auto"
+            className="pl-12 sm:pl-24"
+          >
+            {bottomRowMentors.map((mentor) => (
+              <MentorCard key={mentor.name} mentor={mentor} />
+            ))}
+          </HorizontalScroller>
+        )}
       </div>
     </section>
   );

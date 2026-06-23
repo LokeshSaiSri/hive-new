@@ -23,7 +23,7 @@ export function FeatureShowcase({
 
   return (
     <div
-      className={`grid items-center gap-6 sm:gap-8 lg:grid-cols-2 lg:gap-10 ${
+      className={`grid items-center gap-20 sm:gap-24 lg:grid-cols-2 lg:gap-28 ${
         reversed ? "lg:[&>*:first-child]:order-2" : ""
       }`}
     >

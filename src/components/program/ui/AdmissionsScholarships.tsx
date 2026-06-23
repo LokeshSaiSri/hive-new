@@ -8,15 +8,17 @@ import { asset } from "@/lib/assets";
 type AdmissionsScholarshipsProps = {
   scholarships: ScholarshipCard[];
   note?: string;
+  className?: string;
 };
 
 export function AdmissionsScholarships({
   scholarships,
   note = "Every applicant is automatically considered for scholarships based on their application and interview performance. No separate forms needed.",
+  className,
 }: AdmissionsScholarshipsProps) {
   return (
-    <section className="program-tab-section section-band-light overflow-hidden">
-      <div className="section-container section-py">
+    <section className={`program-tab-section section-band-light overflow-hidden section-py ${className ?? ""}`}>
+      <div className="section-container">
         <ScrollReveal>
           <SectionIntro
             eyebrow="Scholarships"

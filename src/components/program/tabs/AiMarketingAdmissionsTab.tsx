@@ -54,20 +54,21 @@ export function AiMarketingAdmissionsTab({ config }: AiMarketingAdmissionsTabPro
         />
       )}
 
-      <AdmissionsProcessDeck rounds={aiMarketingAdmissionRounds} />
+      <AdmissionsProcessDeck rounds={aiMarketingAdmissionRounds} className="pt-0 border-t-0" />
 
       <AdmissionsDecisionBoard
         evaluators={aiMarketingAdmissionEvaluators}
         intro={aiMarketingAdmissionDecisionIntro}
+        className="pt-0 border-t-0"
       />
 
       {config.audience && <CourseAudience audience={config.audience} />}
 
       {config.fees && (
-        <AdmissionsFeesDeadlines fees={config.fees} deadlines={aiMarketingAdmissionDeadlines} />
+        <AdmissionsFeesDeadlines fees={config.fees} deadlines={aiMarketingAdmissionDeadlines} className="pt-0 border-t-0" />
       )}
 
-      <AdmissionsScholarships scholarships={aiMarketingScholarships} />
+      <AdmissionsScholarships scholarships={aiMarketingScholarships} className="pt-0 border-t-0" />
 
       <PlacementsSystemDeck
         pillars={aiMarketingPlacementSystem}
@@ -76,13 +77,13 @@ export function AiMarketingAdmissionsTab({ config }: AiMarketingAdmissionsTabPro
 
       <PlacementsCareerPathways groups={aiMarketingCareerPathways} />
 
-      <ProofOfWorkStrip items={aiMarketingPortfolioDeliverables} />
+      <ProofOfWorkStrip items={aiMarketingPortfolioDeliverables} className="pt-0 border-t-0" />
 
-      <PlacementsHiringBand description="From D2C disruptors to global technology leaders — fellows join teams shaping brand, growth, and marketing in India." />
+      <PlacementsHiringBand description="From D2C disruptors to global technology leaders — fellows join teams shaping brand, growth, and marketing in India." className="pt-0 border-t-0" />
 
       <ProgramCohortVoices stories={buildCohortStories(aiMarketingAlumniQuotes, testimonials)} />
 
-      <ProgramFaq faqs={admissionsFaqs} variant="theatre" />
+      <ProgramFaq faqs={admissionsFaqs} variant="theatre" className="pt-0 border-t-0" />
     </>
   );
 }

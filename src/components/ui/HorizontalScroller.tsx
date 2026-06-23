@@ -23,6 +23,7 @@ type HorizontalScrollerProps = {
   /** When false, marquee keeps moving on hover (e.g. mentor cards). */
   marqueePauseOnHover?: boolean;
   marqueeSpeed?: "slow" | "normal" | "fast";
+  marqueeDirection?: "left" | "right";
   /** When false, marquee track can overflow (e.g. hover-expanded cards). */
   clipOverflow?: boolean;
   autoplay?: boolean;
@@ -39,6 +40,7 @@ export function HorizontalScroller({
   marqueeAlways = false,
   marqueePauseOnHover = true,
   marqueeSpeed = "normal",
+  marqueeDirection = "left",
   clipOverflow = true,
   autoplay = false,
   autoplayDelay = 4000,
@@ -138,10 +140,11 @@ export function HorizontalScroller({
 
   const childArray = Array.isArray(children) ? children : [children];
 
+  const directionSuffix = marqueeDirection === "right" ? "-reverse" : "";
   const marqueeSpeedClass = {
-    slow: "animate-marquee-slow",
-    normal: "animate-marquee",
-    fast: "animate-marquee-fast",
+    slow: `animate-marquee-slow${directionSuffix}`,
+    normal: `animate-marquee${directionSuffix}`,
+    fast: `animate-marquee-fast${directionSuffix}`,
   }[marqueeSpeed];
 
   const marqueeContainerRef = useRef<HTMLDivElement>(null);

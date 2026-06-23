@@ -11,6 +11,7 @@ import { useAutoAdvance } from "@/lib/useAutoAdvance";
 type ProofOfWorkStripProps = {
   items: PortfolioDeliverable[];
   intro?: string;
+  className?: string;
 };
 
 const accentClass = ["is-a", "is-b", "is-c", "is-d", "is-e"] as const;
@@ -96,6 +97,7 @@ function PortfolioArtifactSvg({ variant }: { variant: number }) {
 export function ProofOfWorkStrip({
   items,
   intro = "By Month 5, you walk into interviews with real work — not theory, not case competitions, not group projects on slides.",
+  className,
 }: ProofOfWorkStripProps) {
   const prefersReducedMotion = useReducedMotion();
   const [active, setActive] = useState(0);
@@ -145,7 +147,7 @@ export function ProofOfWorkStrip({
   const accent = accentClass[active % accentClass.length];
 
   return (
-    <section className="program-tab-section portfolio-vault overflow-hidden">
+    <section className={`program-tab-section portfolio-vault overflow-hidden ${className ?? ""}`}>
       <div className="portfolio-vault__backdrop" aria-hidden>
         <div className="portfolio-vault__mesh" />
         <div className="portfolio-vault__grain" />
@@ -156,6 +158,7 @@ export function ProofOfWorkStrip({
           <ScrollReveal>
             <SectionIntro
               eyebrow="The portfolio that gets you hired"
+              eyebrowClassName="hidden md:block"
               statement="Your proof of work"
               emphasis="is your credential."
               description={intro}
@@ -196,9 +199,8 @@ export function ProofOfWorkStrip({
                     role="tab"
                     aria-selected={isActive}
                     onClick={() => selectItem(index)}
-                    className={`portfolio-vault__rail-btn ${accentClass[index % accentClass.length]} ${
-                      isActive ? "is-active" : ""
-                    }`}
+                    className={`portfolio-vault__rail-btn ${accentClass[index % accentClass.length]} ${isActive ? "is-active" : ""
+                      }`}
                   >
                     <span className="portfolio-vault__rail-index">{item.index}</span>
                     <span className="portfolio-vault__rail-label">

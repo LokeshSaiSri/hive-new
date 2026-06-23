@@ -11,12 +11,13 @@ type AdmissionsIntroPanelProps = {
     videoId?: string;
     stats: { value: string; label: string; highlight?: boolean }[];
   };
+  className?: string;
 };
 
-export function AdmissionsIntroPanel({ content }: AdmissionsIntroPanelProps) {
+export function AdmissionsIntroPanel({ content, className }: AdmissionsIntroPanelProps) {
   return (
-    <section id="selection" className="program-tab-section section-band-light overflow-hidden">
-      <div className="section-container section-py">
+    <section id="selection" className={`program-tab-section section-band-light overflow-hidden section-py ${className ?? ""}`}>
+      <div className="section-container">
         <div className="admissions-intro-panel">
           <div className="admissions-intro-panel__copy">
             <ScrollReveal>

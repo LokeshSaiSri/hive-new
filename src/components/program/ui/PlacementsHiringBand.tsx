@@ -6,10 +6,12 @@ import { hiringPartnerLogos } from "@/data/partners";
 
 type PlacementsHiringBandProps = {
   description?: string;
+  className?: string;
 };
 
 export function PlacementsHiringBand({
   description = "From global technology leaders to India's fastest-growing startups our graduates join teams shaping the future of revenue, marketing, and growth.",
+  className = "",
 }: PlacementsHiringBandProps) {
   const half = Math.ceil(hiringPartnerLogos.length / 2);
   const row1 = hiringPartnerLogos.slice(0, half);
@@ -17,7 +19,7 @@ export function PlacementsHiringBand({
 
   return (
     <section className="program-tab-section hive-dark-band border-y border-white/10">
-      <div className="section-container py-12 sm:py-14">
+      <div className={`section-container section-py ${className}`}>
         <ScrollReveal>
           <SectionIntro
             eyebrow="Hiring network"

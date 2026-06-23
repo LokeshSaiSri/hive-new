@@ -7,7 +7,7 @@ export function MentorsHubPage() {
   return (
     <SitePageLayout>
       <SiteHubHero content={mentorsHubHero} />
-      <MentorSessionModel />
+      <MentorSessionModel className="pt-0 border-t-0" />
       <MentorDirectory />
     </SitePageLayout>
   );

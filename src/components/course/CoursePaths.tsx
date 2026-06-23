@@ -4,11 +4,12 @@ import type { CoursePageConfig } from "@/data/coursePages/types";
 
 type CoursePathsProps = {
   paths: NonNullable<CoursePageConfig["paths"]>;
+  className?: string;
 };
 
-export function CoursePaths({ paths }: CoursePathsProps) {
+export function CoursePaths({ paths, className }: CoursePathsProps) {
   return (
-    <section className="hive-dark-band section-py">
+    <section className={`hive-dark-band section-py ${className ?? ""}`}>
       <div className="section-container">
         <ScrollReveal>
           <SectionIntro

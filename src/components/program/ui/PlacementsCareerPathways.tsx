@@ -10,6 +10,7 @@ import { useAutoAdvance } from "@/lib/useAutoAdvance";
 
 type PlacementsCareerPathwaysProps = {
   groups: CareerPathwayGroup[];
+  className?: string;
 };
 
 const accentClass = ["is-saas", "is-consumer", "is-founder"] as const;
@@ -25,7 +26,7 @@ const pathwayMeta: Record<string, { track: string; tagline: string }> = {
   },
 };
 
-export function PlacementsCareerPathways({ groups }: PlacementsCareerPathwaysProps) {
+export function PlacementsCareerPathways({ groups, className }: PlacementsCareerPathwaysProps) {
   const prefersReducedMotion = useReducedMotion();
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -53,8 +54,8 @@ export function PlacementsCareerPathways({ groups }: PlacementsCareerPathwaysPro
   const accent = accentClass[active % accentClass.length];
 
   return (
-    <section className="program-tab-section career-runway section-band-light overflow-hidden">
-      <div className="section-container section-py">
+    <section className={`program-tab-section career-runway section-band-light overflow-hidden section-py ${className ?? ""}`}>
+      <div className="section-container">
         <ScrollReveal>
           <SectionIntro
             eyebrow="Career pathways"

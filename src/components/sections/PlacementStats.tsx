@@ -15,7 +15,7 @@ export function PlacementStats() {
 
   return (
     <section id="placement-report" className="hive-dark-band">
-      <div className="section-container section-py-tight sm:pt-16 sm:pb-8">
+      <div className="section-container section-py">
         <ScrollReveal>
           <SectionIntro
             light={false}

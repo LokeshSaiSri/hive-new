@@ -4,9 +4,9 @@ import { SectionIntro } from "@/components/ui/SectionIntro";
 import { ScrollReveal, StaggerReveal, StaggerItem } from "@/components/ui/ScrollReveal";
 import { exploreCards } from "@/data/explore";
 
-export function ExploreSection() {
+export function ExploreSection({ className }: { className?: string }) {
   return (
-    <section className="section-band-dark">
+    <section className={`section-band-dark ${className ?? ""}`}>
       <div className="section-container">
         <ScrollReveal>
           <SectionIntro

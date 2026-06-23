@@ -35,9 +35,9 @@ export function AiMarketingPlacementsTab() {
         intro={aiMarketingPlacementSystemIntro}
       />
       <ProofOfWorkStrip items={aiMarketingPortfolioDeliverables} />
-      <PlacementsCareerPathways groups={aiMarketingCareerPathways} />
-      <PlacementsNewsGrid articles={aiMarketingPlacementNews} />
-      {intakeCta && <ProgramVisualCtaBand cta={intakeCta} chip="Next cohort" />}
+      <PlacementsCareerPathways groups={aiMarketingCareerPathways} className="pt-0 border-t-0" />
+      <PlacementsNewsGrid articles={aiMarketingPlacementNews} className="pt-0 border-t-0" />
+      {intakeCta && <ProgramVisualCtaBand cta={intakeCta} chip="Next cohort" className="pt-0 border-t-0" />}
       <ProgramFaq faqs={config.faqs} variant="theatre" />
     </>
   );

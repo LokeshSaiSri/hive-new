@@ -3,9 +3,9 @@ import { FeatureShowcase } from "@/components/ui/FeatureShowcase";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { pedagogyPanels } from "@/data/features";
 
-export function Pedagogy() {
+export function Pedagogy({ className }: { className?: string }) {
   return (
-    <section className="section-band-dark overflow-visible">
+    <section className={`section-band-dark overflow-visible ${className ?? ""}`}>
       <div className="section-container overflow-visible">
         <ScrollReveal>
           <SectionIntro

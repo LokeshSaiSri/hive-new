@@ -35,8 +35,8 @@ export function AiMarketingCurriculumTab({ config }: AiMarketingCurriculumTabPro
   return (
     <>
       <CurriculumTracksArena tracks={aiMarketingCurriculumTracks} intro={aiMarketingTracksIntro} />
-      {config.pillars && <CoursePillars pillars={config.pillars} variant="bento" />}
-      {config.paths && <CoursePaths paths={config.paths} />}
+      {config.pillars && <CoursePillars pillars={config.pillars} variant="bento" className="pt-0 border-t-0" />}
+      {config.paths && <CoursePaths paths={config.paths} className="pt-0 border-t-0" />}
       <ProgramMentors
         eyebrow="Practitioners, not professors"
         statement="Eleven practitioners."
@@ -44,21 +44,22 @@ export function AiMarketingCurriculumTab({ config }: AiMarketingCurriculumTabPro
         description={aiMarketingMentorsIntro}
       />
       {portfolioCta && (
-        <ProgramVisualCtaBand cta={portfolioCta} chip="Portfolio-first learning" />
+        <ProgramVisualCtaBand cta={portfolioCta} chip="Portfolio-first learning" className="pt-0 border-t-0" />
       )}
       <ProgramChallenges variant="scroll" />
-      {config.timeline && <CourseTimeline timeline={config.timeline} />}
-      {config.capstones && <CourseCapstones capstones={config.capstones} />}
+      {config.timeline && <CourseTimeline timeline={config.timeline} className="pt-0 border-t-0" />}
+      {config.capstones && <CourseCapstones capstones={config.capstones} className="pt-0 border-t-0" />}
       <CurriculumToolWall
         categories={aiMarketingToolStack}
         intro={aiMarketingToolStackIntro}
         variant="showcase"
+        className="pt-0 border-t-0"
       />
-      <ProofOfWorkStrip items={aiMarketingPortfolioDeliverables} />
-      <LifeAtHiveSection content={aiMarketingLifeAtHive} />
-      {intakeCta && <ProgramVisualCtaBand cta={intakeCta} chip="October 2026 intake" />}
+      <ProofOfWorkStrip items={aiMarketingPortfolioDeliverables} className="pt-0 border-t-0" />
+      <LifeAtHiveSection content={aiMarketingLifeAtHive} className="pt-0 border-t-0" />
+      {intakeCta && <ProgramVisualCtaBand cta={intakeCta} chip="October 2026 intake" className="pt-0 border-t-0" />}
       <ProgramCohortVoices stories={buildCohortStories(aiMarketingAlumniQuotes, testimonials)} />
-      <ProgramFaq faqs={config.faqs} variant="theatre" />
+      <ProgramFaq faqs={config.faqs} variant="theatre" className="pt-0 border-t-0" />
     </>
   );
 }

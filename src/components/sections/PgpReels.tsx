@@ -5,12 +5,12 @@ import { ReelPhoneShowcase } from "@/components/ui/ReelPhoneShowcase";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { hiveInstagramUrl, pgpReels } from "@/data/reels";
 
-export function PgpReels() {
+export function PgpReels({ className }: { className?: string }) {
   return (
     <section id="reels" className="hive-dark-band reels-stage relative overflow-hidden">
       <div className="reels-stage-glow pointer-events-none absolute inset-0" aria-hidden />
 
-      <div className="section-container relative section-py">
+      <div className={`section-container relative section-py ${className ?? ""}`}>
         <ScrollReveal className="mx-auto max-w-2xl text-center">
           <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.24em] text-white/70">
             <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden />

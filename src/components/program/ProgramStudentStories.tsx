@@ -3,9 +3,9 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { ProgramStoryTheatre } from "@/components/program/ui/ProgramStoryTheatre";
 import { testimonials } from "@/data/testimonials";
 
-export function ProgramStudentStories() {
+export function ProgramStudentStories({ className }: { className?: string } = {}) {
   return (
-    <section className="program-section hive-dark-band section-py overflow-hidden">
+    <section className={`program-section hive-dark-band section-py overflow-hidden ${className ?? ""}`}>
       <div className="section-container">
         <ScrollReveal>
           <SectionIntro

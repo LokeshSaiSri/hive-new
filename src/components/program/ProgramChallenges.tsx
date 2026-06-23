@@ -7,15 +7,16 @@ import { challenges } from "@/data/challenges";
 
 type ProgramChallengesProps = {
   variant?: "grid" | "scroll";
+  className?: string;
 };
 
-export function ProgramChallenges({ variant = "grid" }: ProgramChallengesProps) {
+export function ProgramChallenges({ variant = "grid", className }: ProgramChallengesProps) {
   if (variant === "grid") {
-    return <ChallengesVideoHero />;
+    return <ChallengesVideoHero className={className} />;
   }
 
   return (
-    <section id="challenges" className="program-section hive-dark-band section-py overflow-hidden">
+    <section id="challenges" className={`program-section hive-dark-band section-py overflow-hidden ${className ?? ""}`}>
       <div className="section-container">
         <ScrollReveal>
           <SectionIntro

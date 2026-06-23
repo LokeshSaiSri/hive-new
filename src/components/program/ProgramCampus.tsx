@@ -14,13 +14,13 @@ import {
   campusVideoCaption,
 } from "@/data/campus";
 
-export function ProgramCampus() {
+export function ProgramCampus({ className }: { className?: string } = {}) {
   const [activeTab, setActiveTab] = useState(campusTabs[0].id);
   const activeTabData = campusTabs.find((t) => t.id === activeTab) ?? campusTabs[0];
   const isTour = activeTabData.id === "campus-tour";
 
   return (
-    <section id="campus" className="program-section hive-dark-band section-py">
+    <section id="campus" className={`program-section hive-dark-band section-py ${className ?? ""}`}>
       <div className="section-container">
         <ScrollReveal>
           <SectionIntro

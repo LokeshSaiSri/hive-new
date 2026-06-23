@@ -12,7 +12,7 @@ export function CampusHubPage() {
   return (
     <SitePageLayout>
       <SiteHubHero content={campusHubHero} />
-      <CampusSpacesBento />
+      <CampusSpacesBento className="pt-0 border-t-0" />
       <CampusTourPanel />
       <CampusLifeGallery />
       <CampusVisitPanel />

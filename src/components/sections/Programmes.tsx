@@ -182,13 +182,13 @@ function ProgrammeThumb({
   );
 }
 
-export function Programmes() {
+export function Programmes({ className }: { className?: string }) {
   const [activeTab, setActiveTab] = useState<ProgrammeTab>("PGP");
   const activeProgramme =
     programmes.find((p) => p.id === tabToId[activeTab]) ?? programmes[1];
 
   return (
-    <section id="programmes" className="section-band-dark">
+    <section id="programmes" className={`section-band-dark ${className ?? ""}`}>
       <div className="section-container">
         <ScrollReveal>
           <SectionIntro

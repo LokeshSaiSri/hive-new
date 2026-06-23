@@ -33,6 +33,43 @@ type CoursePageProps = {
 export function CoursePage({ config, slug }: CoursePageProps) {
   const [cta1, cta2, cta3, cta4] = config.inlineCtas;
 
+  let currentDark = false;
+  const seqClasses = {
+    fees: "",
+    reels: "",
+    studentStories: "",
+    campus: "",
+    admissions: "",
+  };
+
+  if (config.fees) {
+    seqClasses.fees = currentDark ? "pt-0" : "";
+    currentDark = true;
+  }
+  if (config.sections.reels) {
+    seqClasses.reels = currentDark ? "pt-0" : "";
+    currentDark = true;
+  }
+  if (config.sections.studentStories) {
+    seqClasses.studentStories = currentDark ? "pt-0" : "";
+    currentDark = true;
+  }
+  if (config.sections.campus) {
+    if (config.sections.campusStyle === "fullscreen") {
+      currentDark = false;
+    } else {
+      seqClasses.campus = currentDark ? "pt-0" : "";
+      currentDark = true;
+    }
+  }
+  if (cta4) {
+    currentDark = cta4.variant === "dark";
+  }
+  if (config.sections.admissions) {
+    seqClasses.admissions = currentDark ? "pt-0" : "";
+    currentDark = true;
+  }
+
   return (
     <ProgramPageLayout
       slug={slug}
@@ -74,7 +111,7 @@ export function CoursePage({ config, slug }: CoursePageProps) {
 
       {config.sections.placement && <ProgramPlacements />}
 
-      {slug === "pgp" && <PlacementsCohortGallery />}
+      {slug === "pgp" && <PlacementsCohortGallery className="pt-0 border-t-0" />}
 
       {config.sections.mentors && <ProgramMentors />}
 
@@ -84,24 +121,24 @@ export function CoursePage({ config, slug }: CoursePageProps) {
 
       {cta3 && <CourseInlineCtaBand cta={cta3} />}
 
-      {config.timeline && <CourseTimeline timeline={config.timeline} />}
+      {config.timeline && <CourseTimeline timeline={config.timeline} className="pt-0 border-t-0" />}
 
-      {config.fees && <CourseFees fees={config.fees} />}
+      {config.fees && <CourseFees fees={config.fees} className={seqClasses.fees} />}
 
-      {config.sections.reels && <ProgramReels />}
+      {config.sections.reels && <ProgramReels className={seqClasses.reels} />}
 
-      {config.sections.studentStories && <ProgramStudentStories />}
+      {config.sections.studentStories && <ProgramStudentStories className={seqClasses.studentStories} />}
 
       {config.sections.campus &&
         (config.sections.campusStyle === "fullscreen" ? (
           <Campus />
         ) : (
-          <ProgramCampus />
+          <ProgramCampus className={seqClasses.campus} />
         ))}
 
       {cta4 && <CourseInlineCtaBand cta={cta4} />}
 
-      {config.sections.admissions && <ProgramAdmissions slug={slug} />}
+      {config.sections.admissions && <ProgramAdmissions slug={slug} className={seqClasses.admissions} />}
 
       <ProgramFaq faqs={config.faqs} />
     </ProgramPageLayout>

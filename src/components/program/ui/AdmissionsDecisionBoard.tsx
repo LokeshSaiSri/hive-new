@@ -7,12 +7,13 @@ import { asset } from "@/lib/assets";
 type AdmissionsDecisionBoardProps = {
   evaluators: AdmissionEvaluator[];
   intro: string;
+  className?: string;
 };
 
-export function AdmissionsDecisionBoard({ evaluators, intro }: AdmissionsDecisionBoardProps) {
+export function AdmissionsDecisionBoard({ evaluators, intro, className }: AdmissionsDecisionBoardProps) {
   return (
-    <section className="program-tab-section hive-dark-band overflow-hidden">
-      <div className="section-container section-py">
+    <section className={`program-tab-section hive-dark-band overflow-hidden section-py ${className ?? ""}`}>
+      <div className="section-container">
         <div className="admissions-decision-board">
           <ScrollReveal className="admissions-decision-board__visual">
             <div className="admissions-decision-board__image-wrap">

@@ -53,7 +53,7 @@ function ChallengeThumb({
   );
 }
 
-export function ChallengesVideoHero() {
+export function ChallengesVideoHero({ className }: { className?: string } = {}) {
   const { openVideo } = useVideo();
   const prefersReducedMotion = useReducedMotion();
   const [activeIndex, setActiveIndex] = useState(0);
@@ -75,7 +75,7 @@ export function ChallengesVideoHero() {
   }, [active.videoId, active.thumbnailQuality]);
 
   return (
-    <section id="challenges" className="challenges-video-hero panel-bleed">
+    <section id="challenges" className={`challenges-video-hero panel-bleed ${className ?? ""}`}>
       <button
         type="button"
         onClick={() => openVideo(active.videoId)}

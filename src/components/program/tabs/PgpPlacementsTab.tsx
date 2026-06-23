@@ -32,8 +32,8 @@ export function PgpPlacementsTab() {
       <PlacementsSystemDeck pillars={pgpPlacementSystem} intro={pgpPlacementSystemIntro} />
       <PlacementsDistributionCharts />
       <ProofOfWorkStrip items={pgpPortfolioDeliverables} />
-      <PlacementsCareerPathways groups={pgpCareerPathways} />
-      <PlacementsNewsGrid articles={pgpPlacementNews} />
+      <PlacementsCareerPathways groups={pgpCareerPathways} className="pt-0 border-t-0" />
+      <PlacementsNewsGrid articles={pgpPlacementNews} className="pt-0 border-t-0" />
       <ProgramFaq faqs={config.faqs} variant="theatre" />
     </>
   );

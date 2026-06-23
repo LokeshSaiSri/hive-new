@@ -14,9 +14,10 @@ const processIntro =
 
 type AdmissionsProcessDeckProps = {
   rounds: AdmissionRound[];
+  className?: string;
 };
 
-export function AdmissionsProcessDeck({ rounds }: AdmissionsProcessDeckProps) {
+export function AdmissionsProcessDeck({ rounds, className }: AdmissionsProcessDeckProps) {
   const prefersReducedMotion = useReducedMotion();
   const [activeRound, setActiveRound] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -33,8 +34,8 @@ export function AdmissionsProcessDeck({ rounds }: AdmissionsProcessDeckProps) {
   });
 
   return (
-    <section className="program-tab-section section-band-light overflow-hidden">
-      <div className="section-container section-py">
+    <section className={`program-tab-section section-band-light overflow-hidden section-py ${className ?? ""}`}>
+      <div className="section-container">
         <ScrollReveal>
           <SectionIntro
             eyebrow="Selection process"

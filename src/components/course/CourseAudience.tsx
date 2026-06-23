@@ -5,11 +5,12 @@ import type { CoursePageConfig } from "@/data/coursePages/types";
 
 type CourseAudienceProps = {
   audience: NonNullable<CoursePageConfig["audience"]>;
+  className?: string;
 };
 
-export function CourseAudience({ audience }: CourseAudienceProps) {
+export function CourseAudience({ audience, className }: CourseAudienceProps) {
   return (
-    <section className="hive-dark-band section-py">
+    <section className={`hive-dark-band section-py ${className ?? ""}`}>
       <div className="section-container">
         <ScrollReveal>
           <SectionIntro
@@ -23,9 +24,8 @@ export function CourseAudience({ audience }: CourseAudienceProps) {
         </ScrollReveal>
 
         <div
-          className={`mt-12 grid gap-4 ${
-            audience.items.length >= 3 ? "sm:grid-cols-2 lg:grid-cols-3" : "sm:grid-cols-2"
-          }`}
+          className={`mt-12 grid gap-4 ${audience.items.length >= 3 ? "sm:grid-cols-2 lg:grid-cols-3" : "sm:grid-cols-2"
+            }`}
         >
           {audience.items.map((item, index) => (
             <ScrollReveal key={item.index} delay={index * 0.05}>

@@ -3,7 +3,8 @@ import { SectionEyebrow } from "@/components/ui/SectionEyebrow";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
 type SectionIntroProps = {
-  eyebrow: string;
+  eyebrow?: ReactNode;
+  eyebrowClassName?: string;
   statement: string;
   emphasis: string;
   description?: ReactNode;
@@ -15,6 +16,7 @@ type SectionIntroProps = {
 
 export function SectionIntro({
   eyebrow,
+  eyebrowClassName = "",
   statement,
   emphasis,
   description,
@@ -27,7 +29,7 @@ export function SectionIntro({
 
   return (
     <div className={`${wrap} ${className}`}>
-      <SectionEyebrow light={light}>{eyebrow}</SectionEyebrow>
+      {eyebrow && <SectionEyebrow light={light} className={eyebrowClassName}>{eyebrow}</SectionEyebrow>}
       <SectionHeading
         light={light}
         statement={statement}

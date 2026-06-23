@@ -7,10 +7,10 @@ import { SectionIntro } from "@/components/ui/SectionIntro";
 import { mentorSessionSteps } from "@/data/sitePages";
 import { mentors, mentorCategories } from "@/data/mentors";
 
-export function MentorSessionModel() {
+export function MentorSessionModel({ className }: { className?: string }) {
   return (
-    <section className="section-band-light border-b border-ink/5">
-      <div className="section-container section-py">
+    <section className={`section-band-light border-b border-ink/5 section-py ${className ?? ""}`}>
+      <div className="section-container">
         <ScrollReveal>
           <SectionIntro
             eyebrow="How it works"

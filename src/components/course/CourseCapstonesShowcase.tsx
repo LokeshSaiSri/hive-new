@@ -8,14 +8,14 @@ import type { CourseCapstone, CoursePageConfig } from "@/data/coursePages/types"
 
 type CourseCapstonesShowcaseProps = {
   capstones: NonNullable<CoursePageConfig["capstones"]>;
+  className?: string;
 };
 
 function CapstoneDeckCard({ capstone }: { capstone: CourseCapstone }) {
   return (
     <article
-      className={`capstone-deck-card shrink-0 ${
-        capstone.featured ? "capstone-deck-card--finale" : ""
-      }`}
+      className={`capstone-deck-card shrink-0 ${capstone.featured ? "capstone-deck-card--finale" : ""
+        }`}
     >
       <div className="capstone-deck-card__glow" aria-hidden />
       <div className="capstone-deck-card__grain" aria-hidden />
@@ -53,11 +53,11 @@ function CapstoneDeckCard({ capstone }: { capstone: CourseCapstone }) {
   );
 }
 
-export function CourseCapstonesShowcase({ capstones }: CourseCapstonesShowcaseProps) {
+export function CourseCapstonesShowcase({ capstones, className }: CourseCapstonesShowcaseProps) {
   const items = capstones.items;
 
   return (
-    <section className="capstone-deck-section overflow-x-clip">
+    <section className={`capstone-deck-section overflow-x-clip ${className ?? ""}`}>
       <div className="section-container section-py pb-6 sm:pb-8">
         <ScrollReveal>
           <SectionIntro

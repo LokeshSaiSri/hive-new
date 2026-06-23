@@ -16,6 +16,7 @@ type CourseApplicationFormProps = {
   metrics: CourseMetaItem[];
   showPlacementCharts?: boolean;
   variant?: "default" | "fellowship";
+  className?: string;
 };
 
 type FormState = {
@@ -478,6 +479,7 @@ export function CourseApplicationForm({
   metrics,
   showPlacementCharts = false,
   variant = "default",
+  className,
 }: CourseApplicationFormProps) {
   const isFellowship = variant === "fellowship";
   const prefersReducedMotion = useReducedMotion();
@@ -721,13 +723,13 @@ export function CourseApplicationForm({
   );
 
   if (isFellowship) {
-    return <div className="fellowship-apply-form">{content}</div>;
+    return <div className={`fellowship-apply-form ${className ?? ""}`}>{content}</div>;
   }
 
   return (
     <section
       id="apply"
-      className="relative overflow-hidden border-b border-border-soft/60 bg-[linear-gradient(180deg,#f2f4fb_0%,#ffffff_42%,#f8f9fd_100%)] py-14 sm:py-16 lg:py-20"
+      className={`relative overflow-hidden border-b border-border-soft/60 bg-[linear-gradient(180deg,#f2f4fb_0%,#ffffff_42%,#f8f9fd_100%)] py-14 sm:py-16 lg:py-20 ${className ?? ""}`}
     >
       <div
         className="pointer-events-none absolute left-1/2 top-0 h-px w-[min(92rem,88vw)] -translate-x-1/2 bg-gradient-to-r from-transparent via-electric-blue/25 to-transparent"

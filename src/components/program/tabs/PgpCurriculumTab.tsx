@@ -34,22 +34,22 @@ export function PgpCurriculumTab({ config }: PgpCurriculumTabProps) {
   return (
     <>
       <CurriculumTracksArena tracks={pgpCurriculumTracks} intro={pgpTracksIntro} />
-      {config.pillars && <CoursePillars pillars={config.pillars} variant="bento" />}
+      {config.pillars && <CoursePillars pillars={config.pillars} variant="bento" className="pt-0 border-t-0" />}
       <ProgramMentors
         eyebrow="Faculty & mentors"
         statement="Taught by the people building"
         emphasis="modern Indian business."
         description={pgpMentorsIntro}
       />
-      {challengesCta && <ProgramVisualCtaBand cta={challengesCta} chip="Challenge-first learning" />}
+      {challengesCta && <ProgramVisualCtaBand cta={challengesCta} chip="Challenge-first learning" className="pt-0 border-t-0" />}
       <ProgramChallenges variant="scroll" />
-      {config.timeline && <CourseTimeline timeline={config.timeline} />}
-      <CurriculumToolWall categories={pgpToolStack} intro={pgpToolStackIntro} variant="showcase" />
-      <ProofOfWorkStrip items={pgpPortfolioDeliverables} />
-      <LifeAtHiveSection content={pgpLifeAtHive} />
-      {placementsCta && <ProgramVisualCtaBand cta={placementsCta} chip="100+ hiring partners" />}
+      {config.timeline && <CourseTimeline timeline={config.timeline} className="pb-0 border-b-0 -mb-24 lg:-mb-40 relative z-0" />}
+      <CurriculumToolWall categories={pgpToolStack} intro={pgpToolStackIntro} variant="showcase" className="pt-0 border-t-0 relative z-10" />
+      <ProofOfWorkStrip items={pgpPortfolioDeliverables} className="pt-0 border-t-0" />
+      <LifeAtHiveSection content={pgpLifeAtHive} className="pt-0 border-t-0" />
+      {placementsCta && <ProgramVisualCtaBand cta={placementsCta} chip="100+ hiring partners" className="pt-0 border-t-0" />}
       <ProgramCohortVoices stories={buildCohortStories(pgpAlumniQuotes, testimonials)} />
-      <ProgramReels eyebrow="Reels" statement="Student" emphasis="shorts." />
+      <ProgramReels eyebrow="Reels" statement="Student" emphasis="shorts." className="pt-0 border-t-0" />
       <ProgramFaq faqs={config.faqs} variant="theatre" />
     </>
   );

@@ -4,15 +4,16 @@ import { CampusVideoHero } from "@/components/ui/CampusVideoHero";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionIntro } from "@/components/ui/SectionIntro";
 import { PillButton } from "@/components/ui/PillButton";
+import { HorizontalScroller } from "@/components/ui/HorizontalScroller";
 import { campusTabs, campusTourPoster, campusTourVideoId, campusVideoCaption } from "@/data/campus";
 import { campusAmenities, campusLifeGallery } from "@/data/sitePages";
 
-export function CampusSpacesBento() {
+export function CampusSpacesBento({ className }: { className?: string }) {
   const [featured, ...rest] = campusTabs;
 
   return (
-    <section className="section-band-light">
-      <div className="section-container section-py">
+    <section className={`section-band-light section-py ${className ?? ""}`}>
+      <div className="section-container">
         <ScrollReveal>
           <SectionIntro
             eyebrow="Learning zones"
@@ -131,18 +132,40 @@ export function CampusLifeGallery() {
         </ScrollReveal>
       </div>
 
-      <div className="campus-life-strip mt-2 pb-14 sm:pb-16">
-        {campusLifeGallery.map((image) => (
-          <div key={image.src} className="campus-life-strip__item">
-            <Image
-              src={image.src}
-              alt={image.alt}
-              fill
-              className="object-cover"
-              sizes="280px"
-            />
-          </div>
-        ))}
+      <div className="md:hidden mt-2 pb-14">
+        <HorizontalScroller
+          autoplay
+          autoplayDelay={3000}
+          slideClassName="w-[17.5rem] flex-shrink-0"
+        >
+          {campusLifeGallery.map((image) => (
+            <div key={image.src} className="relative h-[18rem] w-full overflow-hidden rounded-2xl border border-ink/8">
+              <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                className="object-cover"
+                sizes="280px"
+              />
+            </div>
+          ))}
+        </HorizontalScroller>
+      </div>
+
+      <div className="hidden md:block">
+        <div className="campus-life-strip mt-2 pb-14 sm:pb-16">
+          {campusLifeGallery.map((image) => (
+            <div key={image.src} className="campus-life-strip__item">
+              <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                className="object-cover"
+                sizes="280px"
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -6,10 +6,10 @@ import { PillButton } from "@/components/ui/PillButton";
 import { placementReportEditions } from "@/data/placementReports";
 import { programmePlacementSummaries } from "@/data/sitePages";
 
-export function PlacementReportEditions() {
+export function PlacementReportEditions({ className }: { className?: string }) {
   return (
-    <section className="section-band-light border-b border-ink/5">
-      <div className="section-container section-py">
+    <section className={`section-band-light border-b border-ink/5 section-py ${className ?? ""}`}>
+      <div className="section-container">
         <ScrollReveal>
           <SectionIntro
             eyebrow="Placement archive"
@@ -96,10 +96,10 @@ export function PlacementReportEditions() {
   );
 }
 
-export function ProgrammePlacementSummaries() {
+export function ProgrammePlacementSummaries({ className }: { className?: string }) {
   return (
     <section className="hive-dark-band border-t border-white/10">
-      <div className="section-container section-py">
+      <div className={`section-container section-py ${className ?? ""}`}>
         <ScrollReveal>
           <SectionIntro
             light={false}

@@ -10,14 +10,16 @@ export function ProgramReels({
   statement = "Cohort",
   emphasis = "shorts.",
   description,
+  className,
 }: {
   eyebrow?: string;
   statement?: string;
   emphasis?: string;
   description?: string;
+  className?: string;
 } = {}) {
   return (
-    <section id="reels" className="program-section hive-dark-band section-py">
+    <section id="reels" className={`program-section hive-dark-band section-py ${className ?? ""}`}>
       <div className="section-container">
         <ScrollReveal>
           <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">

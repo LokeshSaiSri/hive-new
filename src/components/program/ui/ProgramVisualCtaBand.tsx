@@ -5,9 +5,10 @@ import type { CourseInlineCta } from "@/data/coursePages/types";
 type ProgramVisualCtaBandProps = {
   cta: CourseInlineCta;
   chip?: string;
+  className?: string;
 };
 
-export function ProgramVisualCtaBand({ cta, chip }: ProgramVisualCtaBandProps) {
+export function ProgramVisualCtaBand({ cta, chip, className }: ProgramVisualCtaBandProps) {
   const isDark = cta.variant === "dark";
   const isAccent = cta.variant === "accent";
   const tone = isDark || isAccent ? "dark" : "light";
@@ -19,7 +20,7 @@ export function ProgramVisualCtaBand({ cta, chip }: ProgramVisualCtaBandProps) {
       : "program-visual-cta program-visual-cta--light";
 
   return (
-    <section className={sectionClass} aria-label={cta.title}>
+    <section className={`${sectionClass} ${className ?? ""}`} aria-label={cta.title}>
       <div className="program-visual-cta__bg" aria-hidden>
         <div className="program-visual-cta__mesh" />
         <div className="program-visual-cta__glow program-visual-cta__glow--a" />

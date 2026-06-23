@@ -71,9 +71,9 @@ function MixPie({
   );
 }
 
-export function PlacementsDistributionCharts() {
+export function PlacementsDistributionCharts({ className }: { className?: string } = {}) {
   return (
-    <section className="program-tab-section hive-dark-band border-y border-white/10">
+    <section className={`program-tab-section hive-dark-band border-white/10 ${className ?? "border-y"}`}>
       <div className="section-container py-12 sm:py-14">
         <ScrollReveal>
           <SectionIntro

@@ -11,6 +11,7 @@ import { useAutoAdvance } from "@/lib/useAutoAdvance";
 type CurriculumTracksArenaProps = {
   tracks: CurriculumTrack[];
   intro?: string;
+  className?: string;
 };
 
 const accentClass: Record<CurriculumTrack["accent"], string> = {
@@ -271,7 +272,7 @@ function TrackStageContent({ track }: { track: CurriculumTrack }) {
   );
 }
 
-export function CurriculumTracksArena({ tracks, intro }: CurriculumTracksArenaProps) {
+export function CurriculumTracksArena({ tracks, intro, className }: CurriculumTracksArenaProps) {
   const prefersReducedMotion = useReducedMotion();
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -289,7 +290,7 @@ export function CurriculumTracksArena({ tracks, intro }: CurriculumTracksArenaPr
   const current = tracks[active];
 
   return (
-    <section className="program-tab-section tracks-compass overflow-hidden">
+    <section className={`program-tab-section tracks-compass overflow-hidden ${className ?? ""}`}>
       <div className="tracks-compass__backdrop" aria-hidden>
         <div className="tracks-compass__mesh" />
         <div className="tracks-compass__grain" />
@@ -332,9 +333,8 @@ export function CurriculumTracksArena({ tracks, intro }: CurriculumTracksArenaPr
                     role="tab"
                     aria-selected={isActive}
                     onClick={() => selectTrack(index)}
-                    className={`tracks-compass__rail-btn ${accentClass[track.accent]} ${
-                      isActive ? "is-active" : ""
-                    }`}
+                    className={`tracks-compass__rail-btn ${accentClass[track.accent]} ${isActive ? "is-active" : ""
+                      }`}
                   >
                     <span className="tracks-compass__rail-index">{track.index}</span>
                     <span className="tracks-compass__rail-copy">

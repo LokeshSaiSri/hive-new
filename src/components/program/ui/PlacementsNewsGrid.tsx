@@ -9,6 +9,7 @@ import type { NewsArticle } from "@/data/coursePages/pgp-tabs";
 type PlacementsNewsGridProps = {
   articles: NewsArticle[];
   compact?: boolean;
+  className?: string;
 };
 
 function isExternalHref(href: string) {
@@ -111,13 +112,9 @@ function PressNewsCard({ article }: { article: NewsArticle }) {
   );
 }
 
-export function PlacementsNewsGrid({ articles, compact = false }: PlacementsNewsGridProps) {
+export function PlacementsNewsGrid({ articles, compact = false, className }: PlacementsNewsGridProps) {
   return (
-    <section
-      className={`program-tab-section hive-dark-band overflow-hidden ${
-        compact ? "py-12 sm:py-14" : "section-py"
-      }`}
-    >
+    <section className={`program-tab-section hive-dark-band overflow-hidden section-py ${className ?? ""}`}>
       <div className="section-container">
         <SectionIntro
           eyebrow="In the news"
@@ -129,7 +126,7 @@ export function PlacementsNewsGrid({ articles, compact = false }: PlacementsNews
         />
       </div>
 
-      <div className={`placement-press-rail ${compact ? "mt-8" : "mt-10 lg:mt-14"}`}>
+      <div className="placement-press-rail mt-10">
         <HorizontalScroller
           marquee
           marqueeAlways

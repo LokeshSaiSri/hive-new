@@ -5,11 +5,12 @@ import type { CoursePageConfig } from "@/data/coursePages/types";
 
 type CourseFeesProps = {
   fees: NonNullable<CoursePageConfig["fees"]>;
+  className?: string;
 };
 
-export function CourseFees({ fees }: CourseFeesProps) {
+export function CourseFees({ fees, className }: CourseFeesProps) {
   return (
-    <section className="hive-dark-band section-py">
+    <section className={`hive-dark-band section-py ${className ?? ""}`}>
       <div className="section-container">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:items-start lg:gap-14">
           <ScrollReveal>

@@ -7,12 +7,13 @@ import type { CoursePageConfig } from "@/data/coursePages/types";
 type AdmissionsFeesDeadlinesProps = {
   fees: NonNullable<CoursePageConfig["fees"]>;
   deadlines: AdmissionDeadline[];
+  className?: string;
 };
 
-export function AdmissionsFeesDeadlines({ fees, deadlines }: AdmissionsFeesDeadlinesProps) {
+export function AdmissionsFeesDeadlines({ fees, deadlines, className }: AdmissionsFeesDeadlinesProps) {
   return (
-    <section className="program-tab-section hive-dark-band overflow-hidden border-y border-white/10">
-      <div className="section-container section-py">
+    <section className={`program-tab-section hive-dark-band overflow-hidden border-white/10 section-py ${className ?? "border-y"}`}>
+      <div className="section-container">
         <div className="admissions-fees-deadlines">
           <div className="admissions-fees-deadlines__fees">
             <ScrollReveal>

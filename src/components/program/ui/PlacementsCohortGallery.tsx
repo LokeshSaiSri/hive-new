@@ -295,7 +295,7 @@ function FlipbookViewer({
   );
 }
 
-export function PlacementsCohortGallery() {
+export function PlacementsCohortGallery({ className }: { className?: string }) {
   const [activeEditionId, setActiveEditionId] = useState(placementReportEditions[1]?.id ?? "year-2");
   const [pageIndex, setPageIndex] = useState(0);
   const [pageTotal, setPageTotal] = useState(placementReportEditions[1]?.pages.length ?? 0);
@@ -317,8 +317,8 @@ export function PlacementsCohortGallery() {
   };
 
   return (
-    <section className="placement-flipbook-section">
-      <div className="placement-flipbook-section__intro section-container section-py">
+    <section className={`placement-flipbook-section section-py ${className ?? ""}`}>
+      <div className="placement-flipbook-section__intro section-container">
         <ScrollReveal>
           <SectionIntro
             eyebrow="Placement reports"

@@ -16,6 +16,7 @@ type ProgramCohortVoicesProps = {
   eyebrow?: string;
   statement?: string;
   emphasis?: string;
+  className?: string;
 };
 
 export function ProgramCohortVoices({
@@ -23,6 +24,7 @@ export function ProgramCohortVoices({
   eyebrow = "Class of 2024–25",
   statement = "Where our alumni",
   emphasis = "are now.",
+  className,
 }: ProgramCohortVoicesProps) {
   const prefersReducedMotion = useReducedMotion();
   const [active, setActive] = useState(0);
@@ -74,7 +76,7 @@ export function ProgramCohortVoices({
   const current = stories[active];
 
   return (
-    <section className="program-tab-section program-cohort-voices hive-dark-band overflow-hidden">
+    <section className={`program-tab-section program-cohort-voices hive-dark-band overflow-hidden ${className ?? ""}`}>
       <div className="program-cohort-voices__mesh" aria-hidden />
       <div className="section-container relative z-10 section-py">
         <ScrollReveal>

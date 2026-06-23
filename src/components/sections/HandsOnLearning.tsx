@@ -5,7 +5,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 export function HandsOnLearning() {
   return (
     <>
-      <section id="experiential-learning" className="bg-white pt-12 sm:pt-16 lg:pt-20">
+      <section id="experiential-learning" className="bg-white pt-12 lg:pt-16">
         <div className="section-container">
           <ScrollReveal className="section-header-center">
             <SectionEyebrow>Hands-on Learning</SectionEyebrow>

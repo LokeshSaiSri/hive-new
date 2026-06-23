@@ -38,6 +38,9 @@ export function Mentors() {
   const [category, setCategory] =
     useState<(typeof mentorCategories)[number]>("Marketing");
   const filtered = mentors.filter((m) => m.category === category);
+  const midpoint = Math.ceil(filtered.length / 2);
+  const topRowMentors = filtered.slice(0, midpoint);
+  const bottomRowMentors = filtered.slice(midpoint);
 
   return (
     <section className="overflow-hidden section-band-light">
@@ -60,17 +63,34 @@ export function Mentors() {
         </ScrollReveal>
       </div>
 
-      <div className="mt-12">
-        <HorizontalScroller
-          marquee
-          marqueePauseOnHover={false}
-          marqueeSpeed="slow"
-          slideClassName="basis-auto"
-        >
-          {filtered.map((mentor) => (
-            <MentorCard key={mentor.name} mentor={mentor} />
-          ))}
-        </HorizontalScroller>
+      <div className="mt-12 flex flex-col gap-6 sm:gap-8">
+        {topRowMentors.length > 0 && (
+          <HorizontalScroller
+            marquee
+            marqueePauseOnHover={false}
+            marqueeSpeed="slow"
+            marqueeDirection="left"
+            slideClassName="basis-auto"
+          >
+            {topRowMentors.map((mentor) => (
+              <MentorCard key={mentor.name} mentor={mentor} />
+            ))}
+          </HorizontalScroller>
+        )}
+        {bottomRowMentors.length > 0 && (
+          <HorizontalScroller
+            marquee
+            marqueePauseOnHover={false}
+            marqueeSpeed="slow"
+            marqueeDirection="right"
+            slideClassName="basis-auto"
+            className="pl-12 sm:pl-24"
+          >
+            {bottomRowMentors.map((mentor) => (
+              <MentorCard key={mentor.name} mentor={mentor} />
+            ))}
+          </HorizontalScroller>
+        )}
       </div>
     </section>
   );

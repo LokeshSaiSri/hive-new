@@ -27,15 +27,15 @@ export default function Home() {
         <HomeNewsSection />
         <HandsOnLearning />
         <WhyRevenue />
-        <Programmes />
+        <Programmes className="pt-0" />
         <CareerPath />
         <LiveChallenges />
-        <Pedagogy />
+        <Pedagogy className="pt-0" />
         <Mentors />
         <StudentStories />
-        <PgpReels />
-        <NextSteps />
-        <ExploreSection />
+        <PgpReels className="pt-0" />
+        <NextSteps className="pt-0" />
+        <ExploreSection className="pt-0" />
         <Campus />
         <FAQ />
       </main>

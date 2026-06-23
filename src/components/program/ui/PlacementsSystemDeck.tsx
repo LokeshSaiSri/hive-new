@@ -11,6 +11,7 @@ import { useAutoAdvance } from "@/lib/useAutoAdvance";
 type PlacementsSystemDeckProps = {
   pillars: PlacementSystemPillar[];
   intro?: string;
+  className?: string;
 };
 
 const accentClass = ["is-north", "is-team", "is-rhythm", "is-prep"] as const;
@@ -140,7 +141,7 @@ function PillarGlyph({ index }: { index: number }) {
   );
 }
 
-export function PlacementsSystemDeck({ pillars, intro }: PlacementsSystemDeckProps) {
+export function PlacementsSystemDeck({ pillars, intro, className }: PlacementsSystemDeckProps) {
   const prefersReducedMotion = useReducedMotion();
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -160,8 +161,8 @@ export function PlacementsSystemDeck({ pillars, intro }: PlacementsSystemDeckPro
   const signals = pillarSignals[current.title] ?? [];
 
   return (
-    <section className="program-tab-section placement-os overflow-hidden">
-      <div className="section-container section-py">
+    <section className={`program-tab-section placement-os overflow-hidden section-py ${className ?? ""}`}>
+      <div className="section-container">
         <div className="placement-os__header">
           <ScrollReveal>
             <SectionIntro
