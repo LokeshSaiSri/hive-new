@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionIntro } from "@/components/ui/SectionIntro";
 import { PillButton } from "@/components/ui/PillButton";
-import { placementHandbooks, placementReportEditions } from "@/data/placementReports";
+import { placementReportEditions } from "@/data/placementReports";
 import { programmePlacementSummaries } from "@/data/sitePages";
 
 export function PlacementReportEditions({ className }: { className?: string }) {
@@ -12,60 +12,15 @@ export function PlacementReportEditions({ className }: { className?: string }) {
       <div className="section-container">
         <ScrollReveal>
           <SectionIntro
-            eyebrow="Placement handbooks"
-            statement="Download the"
-            emphasis="latest editions."
-            description="Placement Report 2025–26 first, then the HiveSchool digital brochure."
-            align="left"
-          />
-        </ScrollReveal>
-
-        <div className="mt-10 grid gap-5 lg:grid-cols-2">
-          {placementHandbooks.map((handbook) => (
-            <ScrollReveal key={handbook.id}>
-              <article className="placement-edition-card group overflow-hidden rounded-2xl border border-ink/8 bg-white shadow-[0_24px_70px_rgba(6,15,50,0.08)]">
-                <div className="grid md:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
-                  <div className="relative aspect-[4/5] min-h-[240px] md:aspect-auto md:min-h-[320px]">
-                    <Image
-                      src={handbook.coverImage}
-                      alt={`${handbook.title} cover`}
-                      fill
-                      className="object-cover object-top transition duration-700 group-hover:scale-[1.03]"
-                      sizes="(max-width: 768px) 100vw, 40vw"
-                    />
-                    <div className="absolute left-4 top-4 rounded-full bg-ink/80 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-white">
-                      PDF
-                    </div>
-                  </div>
-                  <div className="flex flex-col justify-center p-6 sm:p-8">
-                    <p className="text-xs font-bold uppercase tracking-[0.24em] text-light-blue">
-                      {handbook.year}
-                    </p>
-                    <h3 className="mt-2 text-2xl font-semibold text-ink">{handbook.title}</h3>
-                    <p className="mt-2 text-sm text-mid-gray">{handbook.subtitle}</p>
-                    <div className="placement-edition-card__actions mt-6">
-                      <PillButton href={handbook.pdfHref} variant="primary" tone="light">
-                        Download PDF
-                      </PillButton>
-                    </div>
-                  </div>
-                </div>
-              </article>
-            </ScrollReveal>
-          ))}
-        </div>
-
-        <ScrollReveal className="mt-16">
-          <SectionIntro
             eyebrow="Placement archive"
-            statement="Two audited"
-            emphasis="flipbook editions."
-            description="Each cohort publishes a full placement report — salary bands, role mix, and hiring partners."
+            statement="Reports &"
+            emphasis="programme handbook."
+            description="The 2025–26 placement report, PGP brochure, and Year 1 outcomes — salary bands, role mix, and hiring partners."
             align="left"
           />
         </ScrollReveal>
 
-        <div className="mt-10 grid gap-5 lg:grid-cols-2">
+        <div className="mt-10 grid gap-5 lg:grid-cols-3">
           {placementReportEditions.map((edition) => (
             <ScrollReveal key={edition.id}>
               <article className="placement-edition-card group overflow-hidden rounded-2xl border border-ink/8 bg-white shadow-[0_24px_70px_rgba(6,15,50,0.08)]">
@@ -91,40 +46,46 @@ export function PlacementReportEditions({ className }: { className?: string }) {
                     <h3 className="mt-2 text-2xl font-semibold text-ink">{edition.label}</h3>
                     <p className="mt-2 text-sm text-mid-gray">{edition.subtitle}</p>
 
-                    <dl className="mt-6 grid grid-cols-2 gap-3">
-                      <div className="rounded-xl bg-cream px-4 py-3">
-                        <dt className="text-[10px] font-bold uppercase tracking-[0.18em] text-mid-gray">
-                          Avg CTC
-                        </dt>
-                        <dd className="mt-1 text-xl font-bold text-ink">{edition.avgCtc}</dd>
-                      </div>
-                      <div className="rounded-xl bg-cream px-4 py-3">
-                        <dt className="text-[10px] font-bold uppercase tracking-[0.18em] text-mid-gray">
-                          Highest
-                        </dt>
-                        <dd className="mt-1 text-xl font-bold text-ink">{edition.highest}</dd>
-                      </div>
-                      {edition.median && (
+                    {edition.avgCtc && edition.highest ? (
+                      <dl className="mt-6 grid grid-cols-2 gap-3">
                         <div className="rounded-xl bg-cream px-4 py-3">
                           <dt className="text-[10px] font-bold uppercase tracking-[0.18em] text-mid-gray">
-                            Median
+                            Avg CTC
                           </dt>
-                          <dd className="mt-1 text-xl font-bold text-ink">{edition.median}</dd>
+                          <dd className="mt-1 text-xl font-bold text-ink">{edition.avgCtc}</dd>
                         </div>
-                      )}
-                      {edition.jump && (
                         <div className="rounded-xl bg-cream px-4 py-3">
                           <dt className="text-[10px] font-bold uppercase tracking-[0.18em] text-mid-gray">
-                            Salary jump
+                            Highest
                           </dt>
-                          <dd className="mt-1 text-xl font-bold text-ink">{edition.jump}</dd>
+                          <dd className="mt-1 text-xl font-bold text-ink">{edition.highest}</dd>
                         </div>
-                      )}
-                    </dl>
+                        {edition.median && (
+                          <div className="rounded-xl bg-cream px-4 py-3">
+                            <dt className="text-[10px] font-bold uppercase tracking-[0.18em] text-mid-gray">
+                              Median
+                            </dt>
+                            <dd className="mt-1 text-xl font-bold text-ink">{edition.median}</dd>
+                          </div>
+                        )}
+                        {edition.jump && (
+                          <div className="rounded-xl bg-cream px-4 py-3">
+                            <dt className="text-[10px] font-bold uppercase tracking-[0.18em] text-mid-gray">
+                              Salary jump
+                            </dt>
+                            <dd className="mt-1 text-xl font-bold text-ink">{edition.jump}</dd>
+                          </div>
+                        )}
+                      </dl>
+                    ) : (
+                      <p className="mt-6 text-sm leading-relaxed text-mid-gray">{edition.subtitle}</p>
+                    )}
 
                     <div className="placement-edition-card__actions mt-6 flex flex-wrap gap-3">
                       <PillButton href={edition.pdfHref} variant="primary" tone="light">
-                        {edition.id === "year-2" ? "Download PDF" : "View outcomes"}
+                        {edition.pdfHref.endsWith(".pdf")
+                          ? `Download ${edition.downloadLabel}`
+                          : "View outcomes"}
                       </PillButton>
                       <PillButton href="#placement-archive" variant="secondary" tone="light">
                         Open flipbook

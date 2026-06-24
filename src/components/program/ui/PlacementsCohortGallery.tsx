@@ -15,7 +15,6 @@ import { PillButton } from "@/components/ui/PillButton";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionIntro } from "@/components/ui/SectionIntro";
 import {
-  placementHandbooks,
   placementReportEditions,
   type PlacementReportEdition,
   type PlacementReportPage,
@@ -50,6 +49,68 @@ function Year1DesignedPage({
 }: {
   pageId: Extract<PlacementReportPage, { type: "designed" }>["id"];
 }) {
+  if (pageId === "brochure-cover") {
+    return (
+      <div className="placement-flipbook-designed placement-flipbook-designed--cover">
+        <p className="placement-flipbook-designed__brand">HiveSchool</p>
+        <h3 className="placement-flipbook-designed__title">Programme Brochure</h3>
+        <p className="placement-flipbook-designed__edition">Handbook · 2025–26</p>
+        <p className="placement-flipbook-designed__subtitle">PGP in Revenue &amp; Marketing</p>
+        <div className="placement-flipbook-designed__rule" />
+        <p className="placement-flipbook-designed__tagline">India&apos;s revenue-focused business school</p>
+      </div>
+    );
+  }
+
+  if (pageId === "brochure-pgp") {
+    return (
+      <div className="placement-flipbook-designed">
+        <p className="placement-flipbook-designed__kicker">The programme</p>
+        <h3 className="placement-flipbook-designed__heading">12 months · Gurugram campus</h3>
+        <ul className="placement-flipbook-designed__list">
+          <li>Revenue, marketing &amp; entrepreneurship</li>
+          <li>Live company challenges from week one</li>
+          <li>Mentors from Zepto, Blinkit, Razorpay &amp; more</li>
+          <li>Residential cohort · hands-on GTM training</li>
+        </ul>
+      </div>
+    );
+  }
+
+  if (pageId === "brochure-outcomes") {
+    return (
+      <div className="placement-flipbook-designed">
+        <p className="placement-flipbook-designed__kicker">Career outcomes</p>
+        <h3 className="placement-flipbook-designed__heading">Built for revenue roles</h3>
+        <div className="placement-flipbook-designed__metrics">
+          <div>
+            <span>Avg CTC</span>
+            <strong>₹16.47L</strong>
+          </div>
+          <div>
+            <span>Highest</span>
+            <strong>₹27.8L</strong>
+          </div>
+        </div>
+        <p className="placement-flipbook-designed__copy">
+          100+ hiring partners across SaaS, D2C and consumer tech.
+        </p>
+      </div>
+    );
+  }
+
+  if (pageId === "brochure-back") {
+    return (
+      <div className="placement-flipbook-designed placement-flipbook-designed--back">
+        <p className="placement-flipbook-designed__brand">HiveSchool</p>
+        <p className="placement-flipbook-designed__edition">PGP Handbook · 2025–26</p>
+        <p className="placement-flipbook-designed__copy">
+          Download the full digital brochure for curriculum, mentors, fees and admissions.
+        </p>
+      </div>
+    );
+  }
+
   if (pageId === "year1-cover") {
     return (
       <div className="placement-flipbook-designed placement-flipbook-designed--cover">
@@ -322,59 +383,16 @@ export function PlacementsCohortGallery({ className }: { className?: string }) {
       <div className="placement-flipbook-section__intro section-container">
         <ScrollReveal>
           <SectionIntro
-            eyebrow="Placement handbooks"
-            statement="Download the"
-            emphasis="latest editions."
-            description="Placement Report 2025–26 and the HiveSchool digital brochure — in the order published for applicants and hiring partners."
-            light
-            align="left"
-          />
-        </ScrollReveal>
-
-        <div className="mt-8 grid gap-4 sm:grid-cols-2">
-          {placementHandbooks.map((handbook) => (
-            <ScrollReveal key={handbook.id}>
-              <article className="placement-edition-card group overflow-hidden rounded-2xl border border-ink/8 bg-white shadow-[0_24px_70px_rgba(6,15,50,0.08)]">
-                <div className="grid sm:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
-                  <div className="relative aspect-[4/5] min-h-[200px] sm:aspect-auto sm:min-h-[240px]">
-                    <Image
-                      src={handbook.coverImage}
-                      alt={`${handbook.title} cover`}
-                      fill
-                      className="object-cover object-top transition duration-700 group-hover:scale-[1.03]"
-                      sizes="(max-width: 640px) 100vw, 240px"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center p-5 sm:p-6">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-light-blue">
-                      {handbook.year}
-                    </p>
-                    <h3 className="mt-2 text-xl font-semibold text-ink">{handbook.title}</h3>
-                    <p className="mt-2 text-sm text-mid-gray">{handbook.subtitle}</p>
-                    <div className="mt-5">
-                      <PillButton href={handbook.pdfHref} variant="primary" tone="light">
-                        Download PDF
-                      </PillButton>
-                    </div>
-                  </div>
-                </div>
-              </article>
-            </ScrollReveal>
-          ))}
-        </div>
-
-        <ScrollReveal className="mt-14">
-          <SectionIntro
             eyebrow="Placement reports"
             statement="Audited outcomes."
             emphasis="Flip through each edition."
-            description="Browse Year 1 and Year 2 placement reports in an interactive flipbook — the same Scratch Magazine experience as Masters' Union."
+            description="Browse the 2025–26 placement report, programme handbook, and Year 1 outcomes in an interactive flipbook."
             light
             align="left"
           />
           <div className="mt-6 flex flex-wrap gap-3">
             <PillButton variant="highlight" tone="light" href={activeEdition.pdfHref}>
-              Download {activeEdition.label} report
+              Download {activeEdition.downloadLabel}
             </PillButton>
             <PillButton variant="secondary" tone="light" href="/pgp/placements">
               View all placements

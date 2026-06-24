@@ -2,7 +2,18 @@ import { asset } from "@/lib/assets";
 
 export type PlacementReportPage =
   | { type: "image"; src: string; alt: string }
-  | { type: "designed"; id: "year1-cover" | "year1-stats" | "year1-outcomes" | "year1-back" };
+  | {
+      type: "designed";
+      id:
+        | "year1-cover"
+        | "year1-stats"
+        | "year1-outcomes"
+        | "year1-back"
+        | "brochure-cover"
+        | "brochure-pgp"
+        | "brochure-outcomes"
+        | "brochure-back";
+    };
 
 export type PlacementReportEdition = {
   id: string;
@@ -10,43 +21,15 @@ export type PlacementReportEdition = {
   year: string;
   label: string;
   subtitle: string;
-  avgCtc: string;
-  highest: string;
+  avgCtc?: string;
+  highest?: string;
   median?: string;
   jump?: string;
   coverImage: string;
   pdfHref: string;
+  downloadLabel: string;
   pages: PlacementReportPage[];
 };
-
-export type PlacementHandbook = {
-  id: string;
-  title: string;
-  subtitle: string;
-  year: string;
-  pdfHref: string;
-  coverImage: string;
-};
-
-/** Downloadable placement handbooks — order matters (2025–26 first, brochure second). */
-export const placementHandbooks: PlacementHandbook[] = [
-  {
-    id: "placement-report-2025-26",
-    title: "Placement Report",
-    subtitle: "PGP Cohort Year 2 · Residential",
-    year: "2025–26",
-    pdfHref: "/HiveSchool Placement Report 2025-26.pdf",
-    coverImage: asset("images/placement-reports/year-2-pdf-cover.jpg"),
-  },
-  {
-    id: "hiveschool-brochure",
-    title: "HiveSchool Brochure",
-    subtitle: "Digital programme overview",
-    year: "2026",
-    pdfHref: "/HIVESCHOOL-Brochure-Digital.pdf",
-    coverImage: asset("images/placement-reports/year-1-cover.jpg"),
-  },
-];
 
 const year2Pages: PlacementReportPage[] = Array.from({ length: 23 }, (_, index) => ({
   type: "image" as const,
@@ -69,7 +52,24 @@ export const placementReportEditions: PlacementReportEdition[] = [
     jump: "+184%",
     coverImage: asset("images/placement-reports/year-2-pdf-cover.jpg"),
     pdfHref: "/HiveSchool Placement Report 2025-26.pdf",
+    downloadLabel: "Year 2 report",
     pages: year2Pages,
+  },
+  {
+    id: "pgp-brochure",
+    edition: "Handbook",
+    year: "2025–26",
+    label: "Programme Brochure",
+    subtitle: "PGP in Revenue & Marketing",
+    coverImage: asset("images/placement-reports/brochure-cover.jpg"),
+    pdfHref: "/HIVESCHOOL-BROCHURE-DIGITAL-COMPRESSED.pdf",
+    downloadLabel: "programme brochure",
+    pages: [
+      { type: "designed", id: "brochure-cover" },
+      { type: "designed", id: "brochure-pgp" },
+      { type: "designed", id: "brochure-outcomes" },
+      { type: "designed", id: "brochure-back" },
+    ],
   },
   {
     id: "year-1",
@@ -81,6 +81,7 @@ export const placementReportEditions: PlacementReportEdition[] = [
     highest: "₹30L",
     coverImage: asset("images/placement-reports/year-1-cover.jpg"),
     pdfHref: "/pgp/placements",
+    downloadLabel: "Year 1 report",
     pages: [
       { type: "designed", id: "year1-cover" },
       { type: "designed", id: "year1-stats" },
