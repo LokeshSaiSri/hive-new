@@ -1,16 +1,17 @@
 #!/usr/bin/env node
 /**
  * Re-encode MP4s in assets/videos for web delivery.
- * - Hero / programme heroes: max 1280px wide, no audio, CRF 28
- * - Reels: max 720px wide, light AAC audio, CRF 30
- * Run: node scripts/compress-videos.mjs
+ *
+ * Standard (fast site):  npm run compress-videos
+ * High quality (R2 CDN): npm run compress-videos:hq
  */
 import { execSync } from "node:child_process";
-import { existsSync, mkdirSync, readdirSync, renameSync, statSync, unlinkSync } from "node:fs";
+import { existsSync, readdirSync, renameSync, statSync, unlinkSync } from "node:fs";
 import { join } from "node:path";
 
 const root = process.cwd();
 const videosRoot = join(root, "assets", "videos");
+const highQuality = process.argv.includes("--hq");
 
 function sizeMb(path) {
   return (statSync(path).size / 1024 / 1024).toFixed(1);
@@ -18,43 +19,31 @@ function sizeMb(path) {
 
 function compress(input, profile) {
   const tmp = `${input}.tmp.mp4`;
+
+  const heroArgs = highQuality
+    ? ["-vf", "scale='min(1920,iw)':-2", "-crf", "22", "-preset", "slow"]
+    : ["-vf", "scale='min(1280,iw)':-2", "-crf", "28", "-preset", "medium"];
+
+  const reelArgs = highQuality
+    ? ["-vf", "scale='min(1080,iw)':-2", "-crf", "24", "-preset", "slow"]
+    : ["-vf", "scale='min(720,iw)':-2", "-crf", "30", "-preset", "medium"];
+
   const args =
     profile === "hero"
-      ? [
-          "-y",
-          "-i",
-          input,
-          "-vf",
-          "scale='min(1280,iw)':-2",
-          "-c:v",
-          "libx264",
-          "-crf",
-          "28",
-          "-preset",
-          "medium",
-          "-movflags",
-          "+faststart",
-          "-an",
-          tmp,
-        ]
+      ? ["-y", "-i", input, ...heroArgs, "-c:v", "libx264", "-movflags", "+faststart", "-an", tmp]
       : [
           "-y",
           "-i",
           input,
-          "-vf",
-          "scale='min(720,iw)':-2",
+          ...reelArgs,
           "-c:v",
           "libx264",
-          "-crf",
-          "30",
-          "-preset",
-          "medium",
           "-movflags",
           "+faststart",
           "-c:a",
           "aac",
           "-b:a",
-          "96k",
+          highQuality ? "128k" : "96k",
           "-ac",
           "2",
           tmp,
@@ -90,7 +79,7 @@ const heroNames = new Set([
 ]);
 
 const files = walk(videosRoot);
-console.log(`Compressing ${files.length} videos…\n`);
+console.log(`Compressing ${files.length} videos (${highQuality ? "HQ for R2" : "standard"})…\n`);
 
 for (const file of files) {
   const name = file.split("/").pop();

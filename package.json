@@ -5,6 +5,8 @@
   "scripts": {
     "prepare-assets": "node scripts/prepare-assets.mjs",
     "compress-videos": "node scripts/compress-videos.mjs",
+    "compress-videos:hq": "node scripts/compress-videos.mjs --hq",
+    "upload-videos:r2": "node scripts/upload-videos-r2.mjs",
     "verify-assets": "node scripts/verify-assets.mjs",
     "predev": "npm run prepare-assets",
     "prebuild": "npm run prepare-assets && npm run verify-assets",
@@ -24,6 +26,7 @@
     "react-pageflip": "^2.0.3"
   },
   "devDependencies": {
+    "@aws-sdk/client-s3": "^3.1075.0",
     "@netlify/plugin-nextjs": "^5.15.12",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",

@@ -2,9 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { asset } from "@/lib/assets";
+import { asset, videoAsset } from "@/lib/assets";
 
-const DEFAULT_VIDEO_SRC = asset("videos/hero-campus.mp4");
+const DEFAULT_VIDEO_SRC = videoAsset("videos/hero-campus.mp4");
 const DEFAULT_POSTER_SRC = asset("images/misc/hero-campus-poster.jpg");
 
 type HeroBackgroundVideoProps = {

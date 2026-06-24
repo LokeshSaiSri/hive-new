@@ -1,4 +1,4 @@
-import { asset } from "@/lib/assets";
+import { asset, videoAsset } from "@/lib/assets";
 
 export type PgpReel = {
   id: string;
@@ -13,7 +13,7 @@ export const pgpReels: PgpReel[] = [
   {
     id: "dzkdz",
     image: asset("images/pgp-reels/ig-reel-dzkdzios021.jpg"),
-    video: asset("videos/pgp-reels/ig-reel-dzkdzios021.mp4"),
+    video: videoAsset("videos/pgp-reels/ig-reel-dzkdzios021.mp4"),
     caption: "How learning works at Hive",
     tag: "Learning",
     instagramUrl: "https://www.instagram.com/reel/DZKdzIOS021/",
@@ -21,7 +21,7 @@ export const pgpReels: PgpReel[] = [
   {
     id: "duizk",
     image: asset("images/pgp-reels/ig-reel-duizkegknq6.jpg"),
-    video: asset("videos/pgp-reels/ig-reel-duizkegknq6.mp4"),
+    video: videoAsset("videos/pgp-reels/ig-reel-duizkegknq6.mp4"),
     caption: "Inside the revenue sprint",
     tag: "Learning",
     instagramUrl: "https://www.instagram.com/reel/DUIzkEgknQ6/",
@@ -29,7 +29,7 @@ export const pgpReels: PgpReel[] = [
   {
     id: "dzake",
     image: asset("images/pgp-reels/ig-reel-dzakeghskjx.jpg"),
-    video: asset("videos/pgp-reels/ig-reel-dzakeghskjx.mp4"),
+    video: videoAsset("videos/pgp-reels/ig-reel-dzakeghskjx.mp4"),
     caption: "B2B revenue in practice",
     tag: "B2B / D2C",
     instagramUrl: "https://www.instagram.com/reel/DZaKeghSkjx/",
@@ -37,7 +37,7 @@ export const pgpReels: PgpReel[] = [
   {
     id: "dzcdv",
     image: asset("images/pgp-reels/ig-reel-dzcdvwrbkpg.jpg"),
-    video: asset("videos/pgp-reels/ig-reel-dzcdvwrbkpg.mp4"),
+    video: videoAsset("videos/pgp-reels/ig-reel-dzcdvwrbkpg.mp4"),
     caption: "D2C brand building sprint",
     tag: "B2B / D2C",
     instagramUrl: "https://www.instagram.com/reel/DZCdVWRBKPg/",
@@ -45,7 +45,7 @@ export const pgpReels: PgpReel[] = [
   {
     id: "dx6w",
     image: asset("images/pgp-reels/ig-reel-dx6w.jpg"),
-    video: asset("videos/pgp-reels/ig-reel-dx6w.mp4"),
+    video: videoAsset("videos/pgp-reels/ig-reel-dx6w.mp4"),
     caption: "C2 × Blabliblu challenge",
     tag: "Challenge",
     instagramUrl: "https://www.instagram.com/reel/DX6w08dy7oh/",
@@ -53,7 +53,7 @@ export const pgpReels: PgpReel[] = [
   {
     id: "dssss",
     image: asset("images/pgp-reels/ig-reel-dssssx-errd.jpg"),
-    video: asset("videos/pgp-reels/ig-reel-dssssx-errd.mp4"),
+    video: videoAsset("videos/pgp-reels/ig-reel-dssssx-errd.mp4"),
     caption: "Capstone presentations",
     tag: "Capstone",
     instagramUrl: "https://www.instagram.com/reel/DSSSsX-ErRD/",
@@ -61,7 +61,7 @@ export const pgpReels: PgpReel[] = [
   {
     id: "drczh",
     image: asset("images/pgp-reels/ig-reel-drczhx4eifz.jpg"),
-    video: asset("videos/pgp-reels/ig-reel-drczhx4eifz.mp4"),
+    video: videoAsset("videos/pgp-reels/ig-reel-drczhx4eifz.mp4"),
     caption: "Final capstone pitch day",
     tag: "Capstone",
     instagramUrl: "https://www.instagram.com/reel/DRCZHx4EiFZ/",
@@ -69,7 +69,7 @@ export const pgpReels: PgpReel[] = [
   {
     id: "dxzk",
     image: asset("images/pgp-reels/ig-reel-dxzk.jpg"),
-    video: asset("videos/pgp-reels/ig-reel-dxzk.mp4"),
+    video: videoAsset("videos/pgp-reels/ig-reel-dxzk.mp4"),
     caption: "PGP C2 Orientation",
     tag: "Orientation",
     instagramUrl: "https://www.instagram.com/reel/DXzKL9rS1VZ/",
@@ -77,7 +77,7 @@ export const pgpReels: PgpReel[] = [
   {
     id: "dxoq",
     image: asset("images/pgp-reels/ig-reel-dxoq.jpg"),
-    video: asset("videos/pgp-reels/ig-reel-dxoq.mp4"),
+    video: videoAsset("videos/pgp-reels/ig-reel-dxoq.mp4"),
     caption: "Class of 2027 · Day 1",
     tag: "Orientation",
     instagramUrl: "https://www.instagram.com/reel/DXoqdteEoSP/",

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { HeroBackgroundVideo } from "@/components/ui/HeroBackgroundVideo";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import type { FellowshipOverview } from "@/data/fellowship/ai-marketing-overview";
-import { asset } from "@/lib/assets";
+import { videoAsset } from "@/lib/assets";
 import { youtubeThumbnail } from "@/lib/youtube";
 
 type FellowshipHeroProps = {
@@ -13,7 +13,7 @@ type FellowshipHeroProps = {
 
 export function FellowshipHero({ hero }: FellowshipHeroProps) {
   const posterSrc = youtubeThumbnail(hero.videoId);
-  const videoSrc = asset(hero.backgroundVideo);
+  const videoSrc = videoAsset(hero.backgroundVideo);
 
   return (
     <section className="fellowship-hero" aria-label="AI Marketing Fellowship">

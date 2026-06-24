@@ -4,7 +4,7 @@ import { PillButton } from "@/components/ui/PillButton";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { HeroBackgroundVideo } from "@/components/ui/HeroBackgroundVideo";
 import type { CoursePageConfig } from "@/data/coursePages/types";
-import { asset } from "@/lib/assets";
+import { videoAsset } from "@/lib/assets";
 import { youtubeThumbnail } from "@/lib/youtube";
 
 type CourseHeroProps = {
@@ -14,7 +14,7 @@ type CourseHeroProps = {
 export function CourseHero({ hero }: CourseHeroProps) {
   const posterVideoId = hero.posterVideoId ?? hero.videoId;
   const posterSrc = youtubeThumbnail(posterVideoId);
-  const videoSrc = asset(hero.backgroundVideo);
+  const videoSrc = videoAsset(hero.backgroundVideo);
 
   return (
     <section className="relative hive-dark-band overflow-hidden">
