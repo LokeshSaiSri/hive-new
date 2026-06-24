@@ -11,9 +11,6 @@ import {
   type ReactNode,
 } from "react";
 import dynamic from "next/dynamic";
-import { PillButton } from "@/components/ui/PillButton";
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { SectionIntro } from "@/components/ui/SectionIntro";
 import {
   placementReportEditions,
   type PlacementReportEdition,
@@ -233,27 +230,6 @@ export function PlacementsCohortGallery({ className }: { className?: string }) {
 
   return (
     <section className={`placement-flipbook-section section-py ${className ?? ""}`}>
-      <div className="placement-flipbook-section__intro section-container">
-        <ScrollReveal>
-          <SectionIntro
-            eyebrow="Placement reports"
-            statement="Audited outcomes."
-            emphasis="Flip through each edition."
-            description="Browse Year 1 and Year 2 placement reports in an interactive flipbook — the same Scratch Magazine experience as Masters' Union."
-            light
-            align="left"
-          />
-          <div className="mt-6 flex flex-wrap gap-3">
-            <PillButton variant="highlight" tone="light" href={activeEdition.pdfHref}>
-              Download {activeEdition.label} report
-            </PillButton>
-            <PillButton variant="secondary" tone="light" href="/pgp/placements">
-              View all placements
-            </PillButton>
-          </div>
-        </ScrollReveal>
-      </div>
-
       <div className="placement-flipbook-stage">
         <div className="placement-flipbook-stage__inner section-container">
           <aside className="placement-flipbook-sidebar" aria-label="Report editions">
