@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Upload assets/videos/**/*.mp4 to Cloudflare R2 (S3-compatible API).
+ * Upload all .mp4 files under assets/videos to Cloudflare R2 (S3-compatible API).
  *
  * Required env (do not commit):
  *   R2_ACCOUNT_ID
@@ -49,6 +49,7 @@ const client = new S3Client({
   region: "auto",
   endpoint: `https://${accountId}.r2.cloudflarestorage.com`,
   credentials: { accessKeyId, secretAccessKey },
+  forcePathStyle: true,
 });
 
 function walkMp4(dir) {
