@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useVideo } from "@/components/providers/VideoProvider";
+import { useInViewOnce } from "@/lib/useInViewOnce";
 import { youtubePreviewEmbedUrl, youtubeThumbnail } from "@/lib/youtube";
 
 type CampusVideoHeroProps = {
@@ -29,21 +30,24 @@ export function CampusVideoHero({
   inlinePreview = true,
 }: CampusVideoHeroProps) {
   const { openVideo } = useVideo();
+  const { ref, inView } = useInViewOnce<HTMLButtonElement>("200px");
   const [previewReady, setPreviewReady] = useState(false);
   const [posterUrl, setPosterUrl] = useState(posterSrc ?? youtubeThumbnail(videoId));
 
   useEffect(() => {
     setPreviewReady(false);
     setPosterUrl(posterSrc ?? youtubeThumbnail(videoId));
+  }, [videoId, posterSrc]);
 
-    if (!inlinePreview) return;
-
+  useEffect(() => {
+    if (!inlinePreview || !inView) return;
     const readyFallback = window.setTimeout(() => setPreviewReady(true), 2200);
     return () => window.clearTimeout(readyFallback);
-  }, [videoId, posterSrc, inlinePreview]);
+  }, [videoId, inlinePreview, inView]);
 
   return (
     <button
+      ref={ref}
       type="button"
       onClick={() => openVideo(videoId)}
       className={`campus-video-hero group relative block w-full overflow-hidden text-left ${
@@ -60,8 +64,7 @@ export function CampusVideoHero({
           src={posterUrl}
           alt=""
           fill
-          priority
-          unoptimized
+          loading={fullScreen ? "eager" : "lazy"}
           className={`object-cover transition-all duration-700 group-hover:scale-[1.02] ${
             inlinePreview && previewReady ? "opacity-0" : "opacity-100"
           }`}
@@ -69,12 +72,13 @@ export function CampusVideoHero({
           onError={() => setPosterUrl(youtubeThumbnail(videoId, "hqdefault"))}
         />
 
-        {inlinePreview && (
+        {inlinePreview && inView && (
           <div className="campus-video-hero__preview pointer-events-none absolute inset-0 overflow-hidden">
             <iframe
               src={youtubePreviewEmbedUrl(videoId)}
               title=""
               tabIndex={-1}
+              loading="lazy"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               className={`campus-video-hero__preview-iframe transition-opacity duration-700 ${
                 previewReady ? "opacity-100" : "opacity-0"

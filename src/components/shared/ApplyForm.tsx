@@ -8,7 +8,7 @@ import { HeroStudentCollage } from "@/components/ui/HeroStudentCollage";
 import { cities } from "@/data/nav";
 import { programmes } from "@/data/programmes";
 import type { ProgramSlug } from "@/data/programPages/types";
-import { submitHubSpotForm } from "@/lib/hubspot/client";
+import { submitLeadForm } from "@/lib/leads/submit";
 import { mapApplyFormFields } from "@/lib/hubspot/fields";
 import { resolveProgramSlugFromTitle } from "@/lib/hubspot/resolve-course";
 import { admissionHero } from "@/data/partners";
@@ -324,7 +324,7 @@ export function ApplyForm({
     setSubmitting(true);
 
     try {
-      await submitHubSpotForm(targetCourse, mapApplyFormFields(form));
+      await submitLeadForm(targetCourse, mapApplyFormFields(form));
       setSubmitted(true);
       return true;
     } catch (submitError) {

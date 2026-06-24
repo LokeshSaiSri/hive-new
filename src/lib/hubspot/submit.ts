@@ -1,3 +1,5 @@
+import { buildHubSpotSubmissionContext } from "@/lib/hubspot/context";
+
 export type HubSpotSubmissionField = {
   name: string;
   value: string;
@@ -14,7 +16,7 @@ export async function submitToHubSpot({
   portalId,
   formGuid,
   fields,
-  context,
+  context: contextInput,
 }: {
   portalId: string;
   formGuid: string;
@@ -22,6 +24,8 @@ export async function submitToHubSpot({
   context?: HubSpotSubmissionContext;
 }): Promise<void> {
   const url = `https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/${formGuid}`;
+
+  const context = buildHubSpotSubmissionContext(contextInput ?? {});
 
   const payload: {
     fields: { objectTypeId: string; name: string; value: string }[];
@@ -37,7 +41,7 @@ export async function submitToHubSpot({
       })),
   };
 
-  if (context?.pageUri || context?.pageName || context?.hutk || context?.ipAddress) {
+  if (context) {
     payload.context = context;
   }
 

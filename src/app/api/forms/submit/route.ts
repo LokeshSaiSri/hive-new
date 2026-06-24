@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { getHubSpotFormGuid, getHubSpotPortalId } from "@/data/hubspot";
+import { buildHubSpotSubmissionContext, resolveHubSpotPageUri } from "@/lib/hubspot/context";
 import { submitToHubSpot, type HubSpotSubmissionField } from "@/lib/hubspot/submit";
+import { trackLeadConversion } from "@/lib/tracking/server-events";
+import type { LeadTrackingContext } from "@/lib/tracking/types";
 import type { ProgramSlug } from "@/data/programPages/types";
 
 const PROGRAM_SLUGS = new Set<ProgramSlug>(["pgp", "ai-marketing", "ug"]);
@@ -19,6 +22,7 @@ type SubmitBody = {
   pageUri?: string;
   pageName?: string;
   hutk?: string;
+  tracking?: LeadTrackingContext;
 };
 
 export async function POST(request: Request) {
@@ -50,16 +54,29 @@ export async function POST(request: Request) {
   }
 
   try {
+    const hubspotContext = buildHubSpotSubmissionContext({
+      pageUri: body.pageUri,
+      pageName: body.pageName,
+      hutk: body.hutk,
+      ipAddress: getClientIp(request),
+    });
+
     await submitToHubSpot({
       portalId,
       formGuid,
       fields: body.fields,
-      context: {
-        pageUri: body.pageUri,
-        pageName: body.pageName,
-        hutk: body.hutk,
-        ipAddress: getClientIp(request),
-      },
+      context: hubspotContext,
+    });
+
+    const trackingPageUri = resolveHubSpotPageUri(body.pageUri) ?? body.pageUri;
+
+    void trackLeadConversion({
+      course: course as ProgramSlug,
+      fields: body.fields,
+      tracking: body.tracking,
+      pageUri: trackingPageUri,
+      pageName: body.pageName,
+      ipAddress: getClientIp(request),
     });
 
     return NextResponse.json({ ok: true });

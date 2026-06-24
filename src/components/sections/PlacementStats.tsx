@@ -1,12 +1,20 @@
+import dynamic from "next/dynamic";
 import { SectionIntro } from "@/components/ui/SectionIntro";
 import { MarqueeRows } from "@/components/ui/MarqueeRow";
-import { PlacementStatsCharts } from "@/components/ui/PlacementStatsCharts";
 import { PillButton } from "@/components/ui/PillButton";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { VideoCard } from "@/components/ui/VideoCard";
 import { HiringPartnerLogo } from "@/components/ui/HiringPartnerLogo";
 import { founderQuote, placementReportVideoId } from "@/data/stats";
 import { hiringPartnerLogos } from "@/data/partners";
+
+const PlacementStatsCharts = dynamic(
+  () =>
+    import("@/components/ui/PlacementStatsCharts").then((m) => ({
+      default: m.PlacementStatsCharts,
+    })),
+  { loading: () => <div className="min-h-[min(360px,50vh)]" aria-hidden /> },
+);
 
 export function PlacementStats() {
   const half = Math.ceil(hiringPartnerLogos.length / 2);

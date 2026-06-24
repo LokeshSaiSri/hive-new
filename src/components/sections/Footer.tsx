@@ -34,8 +34,9 @@ const exploreLinks = [
 ];
 
 const otherLinks = [
-  { label: "Terms & Conditions", href: "/terms" },
-  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms & Conditions", href: "/tnc-2" },
+  { label: "Privacy Policy", href: "/privacy-poliicy-2" },
+  { label: "Refund Policy", href: "/refund-policy-2" },
 ];
 
 function SocialIcon({

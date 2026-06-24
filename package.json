@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "prepare-assets": "node scripts/prepare-assets.mjs",
+    "compress-videos": "node scripts/compress-videos.mjs",
     "verify-assets": "node scripts/verify-assets.mjs",
     "predev": "npm run prepare-assets",
     "prebuild": "npm run prepare-assets && npm run verify-assets",

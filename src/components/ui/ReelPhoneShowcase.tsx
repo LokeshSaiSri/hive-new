@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { getReelsByIds, pgpReels, type PgpReel } from "@/data/reels";
+import { useInViewOnce } from "@/lib/useInViewOnce";
 import { easeHive } from "@/lib/motion";
 
 const SWIPE_THRESHOLD_PX = 48;
@@ -52,6 +53,7 @@ function ReelBackCard({ reel, side, onSelect }: ReelBackCardProps) {
               src={reel.image}
               alt={reel.caption}
               fill
+              loading="lazy"
               className="object-cover object-center"
               sizes="200px"
             />
@@ -77,6 +79,10 @@ export function ReelPhoneShowcase({
   variant = "full",
   instanceKey,
 }: ReelPhoneShowcaseProps) {
+  const { ref: containerRef, inView } = useInViewOnce<HTMLDivElement>(
+    variant === "embedded" ? "120px" : "320px",
+  );
+
   const reels = useMemo(
     () => reelsProp ?? (reelIds ? getReelsByIds(reelIds) : pgpReels),
     [reelsProp, reelIds],
@@ -100,6 +106,7 @@ export function ReelPhoneShowcase({
 
   const total = reels.length;
   const reel = reels[activeIndex];
+  const shouldLoadVideo = inView && reel;
 
   activeIndexRef.current = activeIndex;
   isPausedRef.current = isPaused;
@@ -215,7 +222,7 @@ export function ReelPhoneShowcase({
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video || !reel) return;
+    if (!video || !shouldLoadVideo) return;
 
     let cancelled = false;
 
@@ -232,11 +239,12 @@ export function ReelPhoneShowcase({
       cancelled = true;
       video.removeEventListener("loadeddata", onReady);
     };
-  }, [reel?.id, reel?.video, syncVideo]);
+  }, [reel?.id, reel?.video, shouldLoadVideo, syncVideo]);
 
   useEffect(() => {
+    if (!shouldLoadVideo) return;
     void syncVideo();
-  }, [isPaused, soundOn, syncVideo]);
+  }, [isPaused, soundOn, shouldLoadVideo, syncVideo]);
 
   if (!reel || total === 0) return null;
 
@@ -245,6 +253,7 @@ export function ReelPhoneShowcase({
 
   return (
     <div
+      ref={containerRef}
       className={`reel-showcase mx-auto flex w-full flex-col items-center ${
         embedded ? "reel-showcase--embedded" : "max-w-5xl"
       }`}
@@ -291,21 +300,32 @@ export function ReelPhoneShowcase({
                   exit="exit"
                   transition={{ duration: 0.28, ease: easeHive }}
                 >
-                  <video
-                    ref={videoRef}
-                    src={reel.video}
-                    poster={reel.image}
-                    className="pointer-events-none absolute inset-0 h-full w-full object-cover"
-                    loop
-                    playsInline
-                    preload="auto"
-                    muted={!soundOn}
-                    aria-hidden
-                  />
+                  {shouldLoadVideo ? (
+                    <video
+                      ref={videoRef}
+                      src={reel.video}
+                      poster={reel.image}
+                      className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+                      loop
+                      playsInline
+                      preload="none"
+                      muted={!soundOn}
+                      aria-hidden
+                    />
+                  ) : (
+                    <Image
+                      src={reel.image}
+                      alt=""
+                      fill
+                      loading="lazy"
+                      className="object-cover object-center"
+                      sizes="280px"
+                    />
+                  )}
                 </motion.div>
               </AnimatePresence>
 
-              {isPaused && (
+              {isPaused && shouldLoadVideo && (
                 <span className="reel-pause-btn" aria-hidden>
                   <svg viewBox="0 0 24 24" fill="currentColor" className="ml-0.5 h-7 w-7">
                     <path d="M8 5v14l11-7z" />

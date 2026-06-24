@@ -20,15 +20,39 @@ export function HeroBackgroundVideo({
 }: HeroBackgroundVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoReady, setVideoReady] = useState(false);
+  const [activeSrc, setActiveSrc] = useState<string | null>(null);
   const isRemotePoster = posterSrc.startsWith("http");
 
   useEffect(() => {
     setVideoReady(false);
+    setActiveSrc(null);
+
+    let cancelled = false;
+    let idleId: number | undefined;
+
+    const activate = () => {
+      if (!cancelled) setActiveSrc(videoSrc);
+    };
+
+    if (typeof requestIdleCallback === "function") {
+      idleId = requestIdleCallback(activate, { timeout: 1200 });
+    } else {
+      idleId = window.setTimeout(activate, 400);
+    }
+
+    return () => {
+      cancelled = true;
+      if (typeof requestIdleCallback === "function" && idleId !== undefined) {
+        cancelIdleCallback(idleId);
+      } else if (idleId !== undefined) {
+        window.clearTimeout(idleId);
+      }
+    };
   }, [videoSrc]);
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
+    if (!video || !activeSrc) return;
 
     let mounted = true;
 
@@ -47,7 +71,7 @@ export function HeroBackgroundVideo({
     video.addEventListener("playing", markReady);
     tryPlay();
 
-    const readyFallback = window.setTimeout(markReady, 1600);
+    const readyFallback = window.setTimeout(markReady, 2000);
 
     return () => {
       mounted = false;
@@ -56,7 +80,7 @@ export function HeroBackgroundVideo({
       video.removeEventListener("loadeddata", markReady);
       video.removeEventListener("playing", markReady);
     };
-  }, [videoSrc]);
+  }, [activeSrc]);
 
   const wrapperClass =
     variant === "full"
@@ -77,28 +101,30 @@ export function HeroBackgroundVideo({
         sizes="100vw"
       />
 
-      <video
-        key={videoSrc}
-        ref={videoRef}
-        className={`hero-video absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
-          videoReady ? "opacity-100" : "opacity-0"
-        }`}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        poster={posterSrc}
-        disablePictureInPicture
-        controls={false}
-        onCanPlay={() => setVideoReady(true)}
-        onLoadedData={() => setVideoReady(true)}
-        onPlay={() => setVideoReady(true)}
-        aria-hidden
-        tabIndex={-1}
-      >
-        <source src={videoSrc} type="video/mp4" />
-      </video>
+      {activeSrc && (
+        <video
+          key={activeSrc}
+          ref={videoRef}
+          className={`hero-video absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
+            videoReady ? "opacity-100" : "opacity-0"
+          }`}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster={posterSrc}
+          disablePictureInPicture
+          controls={false}
+          onCanPlay={() => setVideoReady(true)}
+          onLoadedData={() => setVideoReady(true)}
+          onPlay={() => setVideoReady(true)}
+          aria-hidden
+          tabIndex={-1}
+        >
+          <source src={activeSrc} type="video/mp4" />
+        </video>
+      )}
 
       {variant === "wedge" && (
         <div className="hero-video-edge-fade pointer-events-none absolute inset-0 z-[2]" aria-hidden />

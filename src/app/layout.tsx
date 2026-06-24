@@ -4,6 +4,8 @@ import { VideoProvider } from "@/components/providers/VideoProvider";
 import { ScrollToTopOnLoad } from "@/components/providers/ScrollToTopOnLoad";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import { HubSpotTracking } from "@/components/providers/HubSpotTracking";
+import { GoogleTagManager } from "@/components/providers/GoogleTagManager";
+import { MetaClickCapture } from "@/components/providers/MetaClickCapture";
 import { asset } from "@/lib/assets";
 import "./globals.css";
 
@@ -40,6 +42,8 @@ export default function RootLayout({
     <html lang="en" className={`${outfit.variable} ${fraunces.variable}`}>
       <body className="min-h-screen overflow-x-clip">
         <ScrollToTopOnLoad />
+        <GoogleTagManager />
+        <MetaClickCapture />
         <HubSpotTracking />
         <SmoothScroll>
           <VideoProvider>{children}</VideoProvider>

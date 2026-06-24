@@ -6,6 +6,15 @@ import { useEffect, useState, type ReactNode } from "react";
 
 const NAV_OFFSET = 88;
 
+function shouldUseSmoothScroll() {
+  if (typeof window === "undefined") return false;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
+  // Native scroll on touch devices — Lenis adds jank on mobile.
+  if (window.matchMedia("(pointer: coarse)").matches) return false;
+  if (window.matchMedia("(max-width: 1024px)").matches) return false;
+  return true;
+}
+
 function AnchorScroll() {
   const lenis = useLenis();
 
@@ -38,7 +47,7 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
   const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
-    setEnabled(!window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    setEnabled(shouldUseSmoothScroll());
   }, []);
 
   if (!enabled) return <>{children}</>;

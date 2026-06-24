@@ -8,7 +8,7 @@ import { hiringPartnerLogos } from "@/data/partners";
 import { PlacementStatsCharts } from "@/components/ui/PlacementStatsCharts";
 import type { CourseMetaItem } from "@/data/coursePages/types";
 import type { ProgramSlug } from "@/data/programPages/types";
-import { submitHubSpotForm } from "@/lib/hubspot/client";
+import { submitLeadForm } from "@/lib/leads/submit";
 import { mapCourseApplicationFields } from "@/lib/hubspot/fields";
 import { useAutoAdvance } from "@/lib/useAutoAdvance";
 import { easeHive } from "@/lib/motion";
@@ -529,7 +529,7 @@ export function CourseApplicationForm({
     setSubmitting(true);
 
     try {
-      await submitHubSpotForm(courseSlug, mapCourseApplicationFields(form));
+      await submitLeadForm(courseSlug, mapCourseApplicationFields(form));
       setSubmitted(true);
     } catch (submitError) {
       setError(
