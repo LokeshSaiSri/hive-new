@@ -1,18 +1,23 @@
 import type { HubSpotSubmissionContext } from "@/lib/hubspot/submit";
 
 const LOCAL_HOSTS = new Set(["localhost", "127.0.0.1", "0.0.0.0"]);
+const PREVIEW_HOST_PATTERN = /\.(vercel\.app|netlify\.app)$/i;
 
 function isValidHubspotUtk(hutk?: string): hutk is string {
   if (!hutk) return false;
   const trimmed = hutk.trim();
-  // HubSpot rejects empty/placeholder values with INVALID_HUTK.
   return trimmed.length >= 16 && !/^hutk$/i.test(trimmed);
+}
+
+function shouldCanonicalizeHost(hostname: string, productionHost: string): boolean {
+  if (LOCAL_HOSTS.has(hostname)) return true;
+  if (PREVIEW_HOST_PATTERN.test(hostname)) return true;
+  return hostname !== productionHost;
 }
 
 /**
  * HubSpot marks submissions as spam when pageUri is from an unregistered domain
- * (e.g. localhost). When NEXT_PUBLIC_SITE_URL is set, local submits use the
- * production path on the registered domain while keeping the real page title.
+ * (localhost, vercel.app previews, etc.). Rewrites to NEXT_PUBLIC_SITE_URL path.
  */
 export function resolveHubSpotPageUri(pageUri?: string): string | undefined {
   if (!pageUri) return undefined;
@@ -22,10 +27,15 @@ export function resolveHubSpotPageUri(pageUri?: string): string | undefined {
 
   try {
     const url = new URL(pageUri);
-    if (!LOCAL_HOSTS.has(url.hostname)) return pageUri;
-    return `${siteUrl}${url.pathname}${url.search}${url.hash}`;
-  } catch {
+    const productionHost = new URL(siteUrl).hostname;
+
+    if (shouldCanonicalizeHost(url.hostname, productionHost)) {
+      return `${siteUrl}${url.pathname}${url.search}${url.hash}`;
+    }
+
     return pageUri;
+  } catch {
+    return siteUrl;
   }
 }
 

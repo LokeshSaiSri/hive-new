@@ -7,6 +7,7 @@ import type { LeadTrackingContext } from "@/lib/tracking/types";
 import type { ProgramSlug } from "@/data/programPages/types";
 
 const PROGRAM_SLUGS = new Set<ProgramSlug>(["pgp", "ai-marketing", "ug"]);
+const HUBSPOT_UTK_COOKIE = /(?:^|;\s*)hubspotutk=([^;]*)/;
 
 function getClientIp(request: Request): string | undefined {
   const forwarded = request.headers.get("x-forwarded-for");
@@ -14,6 +15,14 @@ function getClientIp(request: Request): string | undefined {
     return forwarded.split(",")[0]?.trim();
   }
   return request.headers.get("x-real-ip") ?? undefined;
+}
+
+function getHubspotUtkFromRequest(request: Request, bodyHutk?: string): string | undefined {
+  if (bodyHutk?.trim()) return bodyHutk.trim();
+  const cookieHeader = request.headers.get("cookie");
+  if (!cookieHeader) return undefined;
+  const match = cookieHeader.match(HUBSPOT_UTK_COOKIE);
+  return match?.[1] ? decodeURIComponent(match[1]) : undefined;
 }
 
 type SubmitBody = {
@@ -57,7 +66,7 @@ export async function POST(request: Request) {
     const hubspotContext = buildHubSpotSubmissionContext({
       pageUri: body.pageUri,
       pageName: body.pageName,
-      hutk: body.hutk,
+      hutk: getHubspotUtkFromRequest(request, body.hutk),
       ipAddress: getClientIp(request),
     });
 

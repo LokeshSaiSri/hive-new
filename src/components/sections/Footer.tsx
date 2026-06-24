@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { asset } from "@/lib/assets";
+import { isStaticAssetHref } from "@/lib/isStaticAssetHref";
 
 const pgpLinks = [
   { label: "Overview", href: "/pgp" },
@@ -58,6 +59,22 @@ function SocialIcon({
     >
       {children}
     </a>
+  );
+}
+
+function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
+  const className = "text-sm text-white/60 transition hover:text-white";
+  if (isStaticAssetHref(href)) {
+    return (
+      <a href={href} className={className} target="_blank" rel="noopener noreferrer">
+        {children}
+      </a>
+    );
+  }
+  return (
+    <Link href={href} className={className}>
+      {children}
+    </Link>
   );
 }
 
@@ -117,9 +134,7 @@ export function Footer() {
               <ul className="mt-4 space-y-2.5">
                 {pgpLinks.map((link) => (
                   <li key={link.href}>
-                    <Link href={link.href} className="text-sm text-white/60 transition hover:text-white">
-                      {link.label}
-                    </Link>
+                    <FooterLink href={link.href}>{link.label}</FooterLink>
                   </li>
                 ))}
               </ul>
@@ -129,9 +144,7 @@ export function Footer() {
               <ul className="mt-4 space-y-2.5">
                 {fellowshipLinks.map((link) => (
                   <li key={link.href}>
-                    <Link href={link.href} className="text-sm text-white/60 transition hover:text-white">
-                      {link.label}
-                    </Link>
+                    <FooterLink href={link.href}>{link.label}</FooterLink>
                   </li>
                 ))}
               </ul>
@@ -141,16 +154,12 @@ export function Footer() {
               <ul className="mt-4 space-y-2.5">
                 {exploreLinks.map((link) => (
                   <li key={link.href}>
-                    <Link href={link.href} className="text-sm text-white/60 transition hover:text-white">
-                      {link.label}
-                    </Link>
+                    <FooterLink href={link.href}>{link.label}</FooterLink>
                   </li>
                 ))}
                 {ugLinks.map((link) => (
                   <li key={link.href}>
-                    <Link href={link.href} className="text-sm text-white/60 transition hover:text-white">
-                      UG · {link.label}
-                    </Link>
+                    <FooterLink href={link.href}>UG · {link.label}</FooterLink>
                   </li>
                 ))}
               </ul>
@@ -160,9 +169,7 @@ export function Footer() {
               <ul className="mt-4 space-y-2.5">
                 {otherLinks.map((link) => (
                   <li key={link.href}>
-                    <Link href={link.href} className="text-sm text-white/60 transition hover:text-white">
-                      {link.label}
-                    </Link>
+                    <FooterLink href={link.href}>{link.label}</FooterLink>
                   </li>
                 ))}
               </ul>

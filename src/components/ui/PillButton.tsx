@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
+import { isStaticAssetHref } from "@/lib/isStaticAssetHref";
 
 type PillButtonProps = {
   variant?: "primary" | "secondary" | "highlight";
@@ -45,6 +46,20 @@ export function PillButton({
   const classes = `${base} ${toneStyles[tone][variant]} ${className}`;
 
   if (href) {
+    if (isStaticAssetHref(href)) {
+      return (
+        <a
+          href={href}
+          className={classes}
+          onClick={onClick}
+          target={href.endsWith(".pdf") ? "_blank" : undefined}
+          rel={href.endsWith(".pdf") ? "noopener noreferrer" : undefined}
+        >
+          {children}
+        </a>
+      );
+    }
+
     return (
       <Link href={href} className={classes} onClick={onClick}>
         {children}
