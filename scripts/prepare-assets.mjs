@@ -4,7 +4,6 @@ import { join } from "node:path";
 const root = process.cwd();
 const source = join(root, "assets");
 const target = join(root, "public", "assets");
-const skipVideos = Boolean(process.env.NEXT_PUBLIC_MEDIA_CDN_URL?.trim());
 
 function copyTree(src, dest, { skipDirNames = [] } = {}) {
   mkdirSync(dest, { recursive: true });
@@ -33,10 +32,7 @@ if (existsSync(target)) {
   rmSync(target, { recursive: true, force: true, ...(stat.isSymbolicLink() ? {} : {}) });
 }
 
-copyTree(source, target, { skipDirNames: skipVideos ? ["videos"] : [] });
+// Videos live on Cloudflare R2 — never bundled in the deploy.
+copyTree(source, target, { skipDirNames: ["videos"] });
 
-if (skipVideos) {
-  console.log("prepare-assets: copied assets/ -> public/assets/ (videos skipped — CDN enabled)");
-} else {
-  console.log("prepare-assets: copied assets/ -> public/assets/");
-}
+console.log("prepare-assets: copied assets/ -> public/assets/ (videos on R2 CDN)");
