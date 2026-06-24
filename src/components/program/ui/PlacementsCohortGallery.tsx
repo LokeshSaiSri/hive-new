@@ -44,145 +44,6 @@ const FlipbookShell = forwardRef<HTMLDivElement, { children: ReactNode; classNam
   },
 );
 
-function Year1DesignedPage({
-  pageId,
-}: {
-  pageId: Extract<PlacementReportPage, { type: "designed" }>["id"];
-}) {
-  if (pageId === "brochure-cover") {
-    return (
-      <div className="placement-flipbook-designed placement-flipbook-designed--cover">
-        <p className="placement-flipbook-designed__brand">HiveSchool</p>
-        <h3 className="placement-flipbook-designed__title">Programme Brochure</h3>
-        <p className="placement-flipbook-designed__edition">Handbook · 2025–26</p>
-        <p className="placement-flipbook-designed__subtitle">PGP in Revenue &amp; Marketing</p>
-        <div className="placement-flipbook-designed__rule" />
-        <p className="placement-flipbook-designed__tagline">India&apos;s revenue-focused business school</p>
-      </div>
-    );
-  }
-
-  if (pageId === "brochure-pgp") {
-    return (
-      <div className="placement-flipbook-designed">
-        <p className="placement-flipbook-designed__kicker">The programme</p>
-        <h3 className="placement-flipbook-designed__heading">12 months · Gurugram campus</h3>
-        <ul className="placement-flipbook-designed__list">
-          <li>Revenue, marketing &amp; entrepreneurship</li>
-          <li>Live company challenges from week one</li>
-          <li>Mentors from Zepto, Blinkit, Razorpay &amp; more</li>
-          <li>Residential cohort · hands-on GTM training</li>
-        </ul>
-      </div>
-    );
-  }
-
-  if (pageId === "brochure-outcomes") {
-    return (
-      <div className="placement-flipbook-designed">
-        <p className="placement-flipbook-designed__kicker">Career outcomes</p>
-        <h3 className="placement-flipbook-designed__heading">Built for revenue roles</h3>
-        <div className="placement-flipbook-designed__metrics">
-          <div>
-            <span>Avg CTC</span>
-            <strong>₹16.47L</strong>
-          </div>
-          <div>
-            <span>Highest</span>
-            <strong>₹27.8L</strong>
-          </div>
-        </div>
-        <p className="placement-flipbook-designed__copy">
-          100+ hiring partners across SaaS, D2C and consumer tech.
-        </p>
-      </div>
-    );
-  }
-
-  if (pageId === "brochure-back") {
-    return (
-      <div className="placement-flipbook-designed placement-flipbook-designed--back">
-        <p className="placement-flipbook-designed__brand">HiveSchool</p>
-        <p className="placement-flipbook-designed__edition">PGP Handbook · 2025–26</p>
-        <p className="placement-flipbook-designed__copy">
-          Download the full digital brochure for curriculum, mentors, fees and admissions.
-        </p>
-      </div>
-    );
-  }
-
-  if (pageId === "year1-cover") {
-    return (
-      <div className="placement-flipbook-designed placement-flipbook-designed--cover">
-        <p className="placement-flipbook-designed__brand">HiveSchool</p>
-        <h3 className="placement-flipbook-designed__title">Placement Report</h3>
-        <p className="placement-flipbook-designed__edition">Edition 01 · 2024–25</p>
-        <p className="placement-flipbook-designed__subtitle">Inaugural online cohort</p>
-        <div className="placement-flipbook-designed__rule" />
-        <p className="placement-flipbook-designed__tagline">Audited placement outcomes</p>
-      </div>
-    );
-  }
-
-  if (pageId === "year1-stats") {
-    return (
-      <div className="placement-flipbook-designed">
-        <p className="placement-flipbook-designed__kicker">Year 1 outcomes</p>
-        <h3 className="placement-flipbook-designed__heading">Inaugural online cohort</h3>
-        <div className="placement-flipbook-designed__metrics">
-          <div>
-            <span>Average CTC</span>
-            <strong>₹14.76L</strong>
-          </div>
-          <div>
-            <span>Highest CTC</span>
-            <strong>₹30L</strong>
-          </div>
-        </div>
-        <p className="placement-flipbook-designed__copy">
-          The inaugural online cohort set the floor for HiveSchool placement outcomes before the
-          residential PGP launched.
-        </p>
-      </div>
-    );
-  }
-
-  if (pageId === "year1-outcomes") {
-    return (
-      <div className="placement-flipbook-designed">
-        <p className="placement-flipbook-designed__kicker">Where graduates went</p>
-        <h3 className="placement-flipbook-designed__heading">Consumer tech · SaaS · D2C</h3>
-        <ul className="placement-flipbook-designed__list">
-          <li>B2B sales &amp; revenue roles across SaaS</li>
-          <li>Growth &amp; marketing at D2C brands</li>
-          <li>Founder&apos;s office at high-growth startups</li>
-          <li>Enterprise partnerships &amp; GTM</li>
-        </ul>
-        <p className="placement-flipbook-designed__copy">
-          Full audited breakdown in the Year 2 residential report.
-        </p>
-      </div>
-    );
-  }
-
-  return (
-    <div className="placement-flipbook-designed placement-flipbook-designed--back">
-      <p className="placement-flipbook-designed__brand">HiveSchool</p>
-      <p className="placement-flipbook-designed__edition">Year 1 · 2024–25</p>
-      <div className="placement-flipbook-designed__metrics placement-flipbook-designed__metrics--compact">
-        <div>
-          <span>Avg</span>
-          <strong>₹14.76L</strong>
-        </div>
-        <div>
-          <span>High</span>
-          <strong>₹30L</strong>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function ImagePage({ src, alt }: { src: string; alt: string }) {
   return (
     <div className="placement-flipbook-image">
@@ -278,20 +139,10 @@ function FlipbookViewer({
       edition.pages.map((page, index) => {
         const isCover = index === 0 || index === edition.pages.length - 1;
 
-        if (page.type === "image") {
-          return (
-            <FlipbookShell key={`${edition.id}-${index}`} className={isCover ? "is-cover" : ""}>
-              <div data-density={isCover ? "hard" : "soft"} className="placement-flipbook-page__inner">
-                <ImagePage src={page.src} alt={page.alt} />
-              </div>
-            </FlipbookShell>
-          );
-        }
-
         return (
           <FlipbookShell key={`${edition.id}-${index}`} className={isCover ? "is-cover" : ""}>
             <div data-density={isCover ? "hard" : "soft"} className="placement-flipbook-page__inner">
-              <Year1DesignedPage pageId={page.id} />
+              <ImagePage src={page.src} alt={page.alt} />
             </div>
           </FlipbookShell>
         );
@@ -358,7 +209,9 @@ function FlipbookViewer({
 }
 
 export function PlacementsCohortGallery({ className }: { className?: string }) {
-  const [activeEditionId, setActiveEditionId] = useState(placementReportEditions[0]?.id ?? "year-2");
+  const [activeEditionId, setActiveEditionId] = useState(
+    placementReportEditions[0]?.id ?? "year-2",
+  );
   const [pageIndex, setPageIndex] = useState(0);
   const [pageTotal, setPageTotal] = useState(placementReportEditions[0]?.pages.length ?? 0);
   const [scrubPage, setScrubPage] = useState<number | null>(null);
@@ -386,13 +239,13 @@ export function PlacementsCohortGallery({ className }: { className?: string }) {
             eyebrow="Placement reports"
             statement="Audited outcomes."
             emphasis="Flip through each edition."
-            description="Browse the 2025–26 placement report, programme handbook, and Year 1 outcomes in an interactive flipbook."
+            description="Browse Year 1 and Year 2 placement reports in an interactive flipbook — the same Scratch Magazine experience as Masters' Union."
             light
             align="left"
           />
           <div className="mt-6 flex flex-wrap gap-3">
             <PillButton variant="highlight" tone="light" href={activeEdition.pdfHref}>
-              Download {activeEdition.downloadLabel}
+              Download {activeEdition.label} report
             </PillButton>
             <PillButton variant="secondary" tone="light" href="/pgp/placements">
               View all placements
