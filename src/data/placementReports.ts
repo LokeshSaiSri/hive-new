@@ -19,6 +19,35 @@ export type PlacementReportEdition = {
   pages: PlacementReportPage[];
 };
 
+export type PlacementHandbook = {
+  id: string;
+  title: string;
+  subtitle: string;
+  year: string;
+  pdfHref: string;
+  coverImage: string;
+};
+
+/** Downloadable placement handbooks — order matters (2025–26 first, brochure second). */
+export const placementHandbooks: PlacementHandbook[] = [
+  {
+    id: "placement-report-2025-26",
+    title: "Placement Report",
+    subtitle: "PGP Cohort Year 2 · Residential",
+    year: "2025–26",
+    pdfHref: "/HiveSchool Placement Report 2025-26.pdf",
+    coverImage: asset("images/placement-reports/year-2-pdf-cover.jpg"),
+  },
+  {
+    id: "hiveschool-brochure",
+    title: "HiveSchool Brochure",
+    subtitle: "Digital programme overview",
+    year: "2026",
+    pdfHref: "/HIVESCHOOL-Brochure-Digital.pdf",
+    coverImage: asset("images/placement-reports/year-1-cover.jpg"),
+  },
+];
+
 const year2Pages: PlacementReportPage[] = Array.from({ length: 23 }, (_, index) => ({
   type: "image" as const,
   src: asset(
@@ -28,6 +57,20 @@ const year2Pages: PlacementReportPage[] = Array.from({ length: 23 }, (_, index) 
 }));
 
 export const placementReportEditions: PlacementReportEdition[] = [
+  {
+    id: "year-2",
+    edition: "Edition 02",
+    year: "2025–26",
+    label: "Year 2",
+    subtitle: "PGP Cohort 1 · Residential",
+    avgCtc: "₹16.47L",
+    highest: "₹27.8L",
+    median: "₹15L",
+    jump: "+184%",
+    coverImage: asset("images/placement-reports/year-2-pdf-cover.jpg"),
+    pdfHref: "/HiveSchool Placement Report 2025-26.pdf",
+    pages: year2Pages,
+  },
   {
     id: "year-1",
     edition: "Edition 01",
@@ -44,19 +87,5 @@ export const placementReportEditions: PlacementReportEdition[] = [
       { type: "designed", id: "year1-outcomes" },
       { type: "designed", id: "year1-back" },
     ],
-  },
-  {
-    id: "year-2",
-    edition: "Edition 02",
-    year: "2025–26",
-    label: "Year 2",
-    subtitle: "PGP Cohort 1 · Residential",
-    avgCtc: "₹16.47L",
-    highest: "₹27.8L",
-    median: "₹15L",
-    jump: "+184%",
-    coverImage: asset("images/placement-reports/year-2-pdf-cover.jpg"),
-    pdfHref: "/HiveSchool Placement Report 2025-26.pdf",
-    pages: year2Pages,
   },
 ];

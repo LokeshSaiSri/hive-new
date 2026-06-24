@@ -15,6 +15,7 @@ import { PillButton } from "@/components/ui/PillButton";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionIntro } from "@/components/ui/SectionIntro";
 import {
+  placementHandbooks,
   placementReportEditions,
   type PlacementReportEdition,
   type PlacementReportPage,
@@ -296,9 +297,9 @@ function FlipbookViewer({
 }
 
 export function PlacementsCohortGallery({ className }: { className?: string }) {
-  const [activeEditionId, setActiveEditionId] = useState(placementReportEditions[1]?.id ?? "year-2");
+  const [activeEditionId, setActiveEditionId] = useState(placementReportEditions[0]?.id ?? "year-2");
   const [pageIndex, setPageIndex] = useState(0);
-  const [pageTotal, setPageTotal] = useState(placementReportEditions[1]?.pages.length ?? 0);
+  const [pageTotal, setPageTotal] = useState(placementReportEditions[0]?.pages.length ?? 0);
   const [scrubPage, setScrubPage] = useState<number | null>(null);
 
   const activeEdition =
@@ -320,6 +321,49 @@ export function PlacementsCohortGallery({ className }: { className?: string }) {
     <section className={`placement-flipbook-section section-py ${className ?? ""}`}>
       <div className="placement-flipbook-section__intro section-container">
         <ScrollReveal>
+          <SectionIntro
+            eyebrow="Placement handbooks"
+            statement="Download the"
+            emphasis="latest editions."
+            description="Placement Report 2025–26 and the HiveSchool digital brochure — in the order published for applicants and hiring partners."
+            light
+            align="left"
+          />
+        </ScrollReveal>
+
+        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          {placementHandbooks.map((handbook) => (
+            <ScrollReveal key={handbook.id}>
+              <article className="placement-edition-card group overflow-hidden rounded-2xl border border-ink/8 bg-white shadow-[0_24px_70px_rgba(6,15,50,0.08)]">
+                <div className="grid sm:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+                  <div className="relative aspect-[4/5] min-h-[200px] sm:aspect-auto sm:min-h-[240px]">
+                    <Image
+                      src={handbook.coverImage}
+                      alt={`${handbook.title} cover`}
+                      fill
+                      className="object-cover object-top transition duration-700 group-hover:scale-[1.03]"
+                      sizes="(max-width: 640px) 100vw, 240px"
+                    />
+                  </div>
+                  <div className="flex flex-col justify-center p-5 sm:p-6">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-light-blue">
+                      {handbook.year}
+                    </p>
+                    <h3 className="mt-2 text-xl font-semibold text-ink">{handbook.title}</h3>
+                    <p className="mt-2 text-sm text-mid-gray">{handbook.subtitle}</p>
+                    <div className="mt-5">
+                      <PillButton href={handbook.pdfHref} variant="primary" tone="light">
+                        Download PDF
+                      </PillButton>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </ScrollReveal>
+          ))}
+        </div>
+
+        <ScrollReveal className="mt-14">
           <SectionIntro
             eyebrow="Placement reports"
             statement="Audited outcomes."

@@ -52,6 +52,11 @@ export function CourseInlineCtaBand({ cta }: CourseInlineCtaBandProps) {
                   {cta.secondary.label}
                 </PillButton>
               )}
+              {cta.additionalLinks?.map((link) => (
+                <PillButton key={link.href} variant="secondary" tone={tone} href={link.href}>
+                  {link.label}
+                </PillButton>
+              ))}
             </div>
           </div>
         </ScrollReveal>
