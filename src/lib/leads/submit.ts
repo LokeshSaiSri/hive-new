@@ -19,7 +19,7 @@ function getHubspotUtk(): string | undefined {
 export async function submitLeadForm(
   course: ProgramSlug,
   fields: HubSpotSubmissionField[],
-): Promise<void> {
+): Promise<string> {
   const eventId = createLeadEventId();
   const lead = parseLeadFields(fields);
 
@@ -41,15 +41,10 @@ export async function submitLeadForm(
     }),
   });
 
+  const data = (await response.json()) as { thankYouUrl?: string; error?: string };
+
   if (!response.ok) {
-    let message = "Could not submit application. Please try again.";
-    try {
-      const data = (await response.json()) as { error?: string };
-      if (data.error) message = data.error;
-    } catch {
-      // Keep default message.
-    }
-    throw new Error(message);
+    throw new Error(data.error ?? "Could not submit application. Please try again.");
   }
 
   pushGoogleLeadEvent({
@@ -60,4 +55,9 @@ export async function submitLeadForm(
     programme: lead.programme,
     city: lead.city,
   });
+
+  return (
+    data.thankYouUrl ??
+    `/pgp-revenue-tech-entrepreneurship-form-submitted?submissionGuid=${encodeURIComponent(eventId)}`
+  );
 }

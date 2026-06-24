@@ -21,6 +21,16 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/pgp-revenue-tech-entrepreneurship",
+        destination: "/pgp",
+        permanent: true,
+      },
+      {
+        source: "/pgp-revenue-tech-entrepreneurship/:path*",
+        destination: "/pgp",
+        permanent: true,
+      },
+      {
         source: "/download-placement-form",
         destination: "/HiveSchool Placement Report 2025-26.pdf",
         permanent: true,

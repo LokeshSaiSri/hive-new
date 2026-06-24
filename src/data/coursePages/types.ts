@@ -21,8 +21,6 @@ export type CourseInlineCta = {
   description: string;
   primary: CourseCta;
   secondary?: CourseCta;
-  /** Extra download links shown after secondary (e.g. handbook PDFs). */
-  additionalLinks?: CourseCta[];
 };
 
 export type CoursePillar = {

@@ -5,6 +5,7 @@ import { submitToHubSpot, type HubSpotSubmissionField } from "@/lib/hubspot/subm
 import { trackLeadConversion } from "@/lib/tracking/server-events";
 import type { LeadTrackingContext } from "@/lib/tracking/types";
 import type { ProgramSlug } from "@/data/programPages/types";
+import { buildThankYouUrl } from "@/data/formThankYou";
 
 const PROGRAM_SLUGS = new Set<ProgramSlug>(["pgp", "ai-marketing", "ug"]);
 const HUBSPOT_UTK_COOKIE = /(?:^|;\s*)hubspotutk=([^;]*)/;
@@ -70,7 +71,7 @@ export async function POST(request: Request) {
       ipAddress: getClientIp(request),
     });
 
-    await submitToHubSpot({
+    const hubspotResult = await submitToHubSpot({
       portalId,
       formGuid,
       fields: body.fields,
@@ -78,17 +79,24 @@ export async function POST(request: Request) {
     });
 
     const trackingPageUri = resolveHubSpotPageUri(body.pageUri) ?? body.pageUri;
+    const eventId = body.tracking?.eventId ?? crypto.randomUUID();
 
     void trackLeadConversion({
       course: course as ProgramSlug,
       fields: body.fields,
-      tracking: body.tracking,
+      tracking: { ...body.tracking, eventId },
       pageUri: trackingPageUri,
       pageName: body.pageName,
       ipAddress: getClientIp(request),
     });
 
-    return NextResponse.json({ ok: true });
+    const thankYouUrl = buildThankYouUrl(
+      course as ProgramSlug,
+      eventId,
+      hubspotResult.redirectUri,
+    );
+
+    return NextResponse.json({ ok: true, thankYouUrl, eventId });
   } catch (error) {
     console.error("HubSpot form submission failed:", error);
     return NextResponse.json({ error: "Could not submit application" }, { status: 502 });

@@ -12,6 +12,10 @@ export type HubSpotSubmissionContext = {
   ipAddress?: string;
 };
 
+export type HubSpotSubmitResult = {
+  redirectUri?: string;
+};
+
 export async function submitToHubSpot({
   portalId,
   formGuid,
@@ -22,7 +26,7 @@ export async function submitToHubSpot({
   formGuid: string;
   fields: HubSpotSubmissionField[];
   context?: HubSpotSubmissionContext;
-}): Promise<void> {
+}): Promise<HubSpotSubmitResult> {
   const url = `https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/${formGuid}`;
 
   const context = buildHubSpotSubmissionContext(contextInput ?? {});
@@ -54,5 +58,12 @@ export async function submitToHubSpot({
   if (!response.ok) {
     const detail = await response.text();
     throw new Error(`HubSpot submission failed (${response.status}): ${detail}`);
+  }
+
+  try {
+    const data = (await response.json()) as { redirectUri?: string };
+    return { redirectUri: data.redirectUri };
+  } catch {
+    return {};
   }
 }

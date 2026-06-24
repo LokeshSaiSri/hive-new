@@ -529,8 +529,8 @@ export function CourseApplicationForm({
     setSubmitting(true);
 
     try {
-      await submitLeadForm(courseSlug, mapCourseApplicationFields(form));
-      setSubmitted(true);
+      const thankYouUrl = await submitLeadForm(courseSlug, mapCourseApplicationFields(form));
+      window.location.assign(thankYouUrl);
     } catch (submitError) {
       setError(
         submitError instanceof Error

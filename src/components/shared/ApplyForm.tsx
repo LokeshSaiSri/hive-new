@@ -324,8 +324,8 @@ export function ApplyForm({
     setSubmitting(true);
 
     try {
-      await submitLeadForm(targetCourse, mapApplyFormFields(form));
-      setSubmitted(true);
+      const thankYouUrl = await submitLeadForm(targetCourse, mapApplyFormFields(form));
+      window.location.assign(thankYouUrl);
       return true;
     } catch (submitError) {
       setError(
