@@ -20,6 +20,9 @@
 # copied static assets (source of truth is /assets)
 /public/assets
 
+# videos hosted on Cloudflare R2 — not in repo
+assets/videos/**/*.mp4
+
 # production
 /build
 

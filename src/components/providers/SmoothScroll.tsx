@@ -9,9 +9,6 @@ const NAV_OFFSET = 88;
 function shouldUseSmoothScroll() {
   if (typeof window === "undefined") return false;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
-  // Native scroll on touch devices — Lenis adds jank on mobile.
-  if (window.matchMedia("(pointer: coarse)").matches) return false;
-  if (window.matchMedia("(max-width: 1024px)").matches) return false;
   return true;
 }
 
@@ -33,7 +30,7 @@ function AnchorScroll() {
       if (!section) return;
 
       event.preventDefault();
-      lenis.scrollTo(section, { offset: -NAV_OFFSET, duration: 1.15 });
+      lenis.scrollTo(section, { offset: -NAV_OFFSET, duration: 0.9 });
     };
 
     document.addEventListener("click", onClick);
@@ -56,11 +53,8 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
     <ReactLenis
       root
       options={{
-        lerp: 0.09,
-        duration: 1.15,
-        smoothWheel: true,
-        wheelMultiplier: 0.92,
-        touchMultiplier: 1.35,
+        // Native wheel/trackpad — stops immediately when the user stops (no drift).
+        smoothWheel: false,
         autoRaf: true,
       }}
     >

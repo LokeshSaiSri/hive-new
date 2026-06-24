@@ -9,7 +9,7 @@ export function getMediaCdnUrl(): string | undefined {
   return url ? url.replace(/\/$/, "") : undefined;
 }
 
-/** Video URLs — served from R2/CDN when configured, otherwise local /assets/videos. */
+/** Video URLs — always served from R2/CDN (local .mp4 files are not bundled). */
 export function videoAsset(path: string): string {
   const normalized = path.replace(/^\//, "");
   const cdn = getMediaCdnUrl();
@@ -18,6 +18,7 @@ export function videoAsset(path: string): string {
     return `${cdn}/${normalized}`;
   }
 
+  // Dev fallback when CDN env is missing — run with NEXT_PUBLIC_MEDIA_CDN_URL in .env
   return asset(normalized);
 }
 
