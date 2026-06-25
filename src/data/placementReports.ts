@@ -1,4 +1,5 @@
 import { asset } from "@/lib/assets";
+import { placementReportDownloadPath } from "@/data/placementReportAccess";
 
 export type PlacementReportPage = { type: "image"; src: string; alt: string };
 
@@ -14,6 +15,8 @@ export type PlacementReportEdition = {
   jump?: string;
   coverImage: string;
   pdfHref: string;
+  /** Gated download form — PDF is not linked directly in the UI. */
+  downloadHref: string;
   pages: PlacementReportPage[];
 };
 
@@ -47,6 +50,7 @@ export const placementReportEditions: PlacementReportEdition[] = [
     jump: "+184%",
     coverImage: asset("images/placement-reports/year-2-pdf-cover.jpg"),
     pdfHref: "/HiveSchool Placement Report 2025-26.pdf",
+    downloadHref: placementReportDownloadPath("year-2"),
     pages: year2Pages,
   },
   {
@@ -59,6 +63,7 @@ export const placementReportEditions: PlacementReportEdition[] = [
     highest: "₹30L",
     coverImage: asset("images/placement-reports/brochure-cover.jpg"),
     pdfHref: "/HIVESCHOOL-Brochure-Digital.pdf",
+    downloadHref: placementReportDownloadPath("year-1"),
     pages: brochurePages,
   },
 ];

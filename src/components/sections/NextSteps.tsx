@@ -1,5 +1,6 @@
 import { SectionIntro } from "@/components/ui/SectionIntro";
 import { PillButton } from "@/components/ui/PillButton";
+import { placementReportDownloadPath } from "@/data/placementReportAccess";
 import { ScrollReveal, StaggerReveal, StaggerItem } from "@/components/ui/ScrollReveal";
 import { nextStepCards } from "@/data/programmes";
 
@@ -42,7 +43,7 @@ export function NextSteps({ className }: { className?: string }) {
           <PillButton variant="highlight" tone="dark" href="#apply">
             Apply to HiveSchool
           </PillButton>
-          <PillButton variant="secondary" tone="dark" href="/HiveSchool Placement Report 2025-26.pdf">
+          <PillButton variant="secondary" tone="dark" href={placementReportDownloadPath("year-2")}>
             Download Placement Report
           </PillButton>
         </ScrollReveal>

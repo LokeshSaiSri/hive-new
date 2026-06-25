@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { asset } from "@/lib/assets";
 import { isStaticAssetHref } from "@/lib/isStaticAssetHref";
+import { placementReportDownloadPath } from "@/data/placementReportAccess";
 
 const pgpLinks = [
   { label: "Overview", href: "/pgp" },
@@ -29,7 +30,7 @@ const ugLinks = [
 
 const exploreLinks = [
   { label: "Life at Hive", href: "/campus" },
-  { label: "Placement Report", href: "/HiveSchool Placement Report 2025-26.pdf" },
+  { label: "Placement Report", href: placementReportDownloadPath("year-2") },
   { label: "Career Outcomes", href: "/placements" },
   { label: "FAQs", href: "/#faq" },
 ];

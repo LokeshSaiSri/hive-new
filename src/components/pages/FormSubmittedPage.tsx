@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { placementReportDownloadPath } from "@/data/placementReportAccess";
 import { Nav } from "@/components/sections/Nav";
 import { Footer } from "@/components/sections/Footer";
 import { PillButton } from "@/components/ui/PillButton";
@@ -32,7 +33,7 @@ export function FormSubmittedPage({ programme, applyHref }: FormSubmittedPagePro
           </p>
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <PillButton variant="highlight" tone="dark" href="/HiveSchool Placement Report 2025-26.pdf">
+            <PillButton variant="highlight" tone="dark" href={placementReportDownloadPath("year-2")}>
               Download Placement Report
             </PillButton>
             <PillButton variant="secondary" tone="dark" href={applyHref}>

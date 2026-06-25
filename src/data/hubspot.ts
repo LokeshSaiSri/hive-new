@@ -10,6 +10,7 @@ import type { ProgramSlug } from "@/data/programPages/types";
  * - Website — PGP Application
  * - Website — AI Marketing Fellowship Application
  * - Website — UG Application
+ * - Website — Placement Report Download (optional; falls back to PGP form)
  *
  * Required contact properties on each form:
  * - firstname (Full name — we send first + last when available)
@@ -57,6 +58,13 @@ export function getHubSpotTrackingScriptUrl(portalId: string): string {
 
 export function getHubSpotFormGuid(slug: ProgramSlug): string | undefined {
   return FORM_GUID_ENV[slug];
+}
+
+/** HubSpot form for gated placement report downloads. Falls back to PGP form if unset. */
+export function getPlacementReportFormGuid(): string | undefined {
+  const dedicated = process.env.NEXT_PUBLIC_HUBSPOT_FORM_PLACEMENT_REPORT?.trim();
+  if (dedicated) return dedicated;
+  return FORM_GUID_ENV.pgp;
 }
 
 export function isHubSpotConfigured(slug: ProgramSlug): boolean {

@@ -1,4 +1,5 @@
 import { asset } from "@/lib/assets";
+import { placementReportDownloadPath } from "@/data/placementReportAccess";
 import type { ProgramTabHeroContent } from "@/data/coursePages/pgp-tabs";
 
 export type SiteHubHeroContent = ProgramTabHeroContent & {
@@ -18,7 +19,7 @@ export const placementsHubHero: SiteHubHeroContent = {
     { value: "100+", label: "Hiring partners" },
     { value: "2", label: "Published editions" },
   ],
-  primaryCta: { label: "Download Year 2 report", href: "/HiveSchool Placement Report 2025-26.pdf" },
+  primaryCta: { label: "Download Year 2 report", href: placementReportDownloadPath("year-2") },
   secondaryCta: { label: "Explore flipbook", href: "#placement-archive" },
 };
 

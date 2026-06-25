@@ -30,11 +30,6 @@ const nextConfig: NextConfig = {
         destination: "/pgp",
         permanent: true,
       },
-      {
-        source: "/download-placement-form",
-        destination: "/HiveSchool Placement Report 2025-26.pdf",
-        permanent: true,
-      },
       { source: "/careers", destination: "/", permanent: false },
       { source: "/event-index", destination: "/", permanent: false },
       { source: "/event-index/:path*", destination: "/", permanent: false },

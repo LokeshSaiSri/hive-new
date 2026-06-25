@@ -78,7 +78,7 @@ export function PlacementReportEditions({ className }: { className?: string }) {
                     </dl>
 
                     <div className="placement-edition-card__actions mt-6 flex flex-wrap gap-3">
-                      <PillButton href={edition.pdfHref} variant="primary" tone="light">
+                      <PillButton href={edition.downloadHref} variant="primary" tone="light">
                         Download PDF
                       </PillButton>
                       <PillButton href="#placement-archive" variant="secondary" tone="light">

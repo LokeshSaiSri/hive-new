@@ -1,4 +1,5 @@
 import { asset } from "@/lib/assets";
+import { placementReportDownloadPath } from "@/data/placementReportAccess";
 
 export type ProgramTabHeroContent = {
   eyebrow: string;
@@ -370,7 +371,7 @@ export const pgpPlacementNews: NewsArticle[] = [
     title: "Year 2 PGP · ₹16.47L avg · ₹27.8L highest",
     date: "2025–26",
     image: asset("images/placement-reports/year-2-pdf-cover.jpg"),
-    href: "/HiveSchool Placement Report 2025-26.pdf",
+    href: placementReportDownloadPath("year-2"),
   },
   {
     outlet: "Hindustan Times",

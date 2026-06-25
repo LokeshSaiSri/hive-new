@@ -286,10 +286,8 @@ export function PlacementsCohortGallery({ className }: { className?: string }) {
                 aria-label="Jump to page"
               />
               <a
-                href={activeEdition.pdfHref}
+                href={activeEdition.downloadHref}
                 className="placement-flipbook-toolbar__download"
-                target={activeEdition.pdfHref.endsWith(".pdf") ? "_blank" : undefined}
-                rel={activeEdition.pdfHref.endsWith(".pdf") ? "noopener noreferrer" : undefined}
               >
                 PDF
               </a>

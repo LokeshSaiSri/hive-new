@@ -6,6 +6,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { VideoCard } from "@/components/ui/VideoCard";
 import { HiringPartnerLogo } from "@/components/ui/HiringPartnerLogo";
 import { founderQuote, placementReportVideoId } from "@/data/stats";
+import { placementReportDownloadPath } from "@/data/placementReportAccess";
 import { hiringPartnerLogos } from "@/data/partners";
 
 type ProgramPlacementsProps = {
@@ -79,7 +80,7 @@ export function ProgramPlacements({
               <PillButton
                 variant="secondary"
                 tone="dark"
-                href="/HiveSchool Placement Report 2025-26.pdf"
+                href={placementReportDownloadPath("year-2")}
                 className="w-full sm:w-auto"
               >
                 Download report
