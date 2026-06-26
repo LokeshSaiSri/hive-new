@@ -89,7 +89,7 @@ export function WhyRevenue({ sections: sectionsProp }: WhyRevenueProps = {}) {
 
     const timer = window.setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % industryColumns.length);
-    }, 7000);
+    }, 3000);
 
     return () => window.clearInterval(timer);
   }, [isInView, isPaused, prefersReducedMotion]);

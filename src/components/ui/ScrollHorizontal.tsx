@@ -108,7 +108,7 @@ export function ScrollHorizontal({
           </div>
         )}
 
-        <div className="flex min-h-0 flex-1 overflow-y-auto overflow-x-hidden">
+        <div className="flex min-h-0 flex-1 overflow-y-auto overflow-x-hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <motion.div
             ref={trackRef}
             style={{ x }}

@@ -63,7 +63,7 @@ export function Mentors() {
         </ScrollReveal>
       </div>
 
-      <div className="mt-12 flex flex-col gap-6 sm:gap-8">
+      <div className="mt-12 flex flex-col gap-6 sm:gap-8 lg:hidden">
         {topRowMentors.length > 0 && (
           <HorizontalScroller
             marquee
@@ -87,6 +87,22 @@ export function Mentors() {
             className="pl-12 sm:pl-24"
           >
             {bottomRowMentors.map((mentor) => (
+              <MentorCard key={mentor.name} mentor={mentor} />
+            ))}
+          </HorizontalScroller>
+        )}
+      </div>
+
+      <div className="mt-12 hidden lg:flex flex-col gap-8">
+        {filtered.length > 0 && (
+          <HorizontalScroller
+            marquee
+            marqueePauseOnHover={false}
+            marqueeSpeed="slow"
+            marqueeDirection="left"
+            slideClassName="basis-auto"
+          >
+            {filtered.map((mentor) => (
               <MentorCard key={mentor.name} mentor={mentor} />
             ))}
           </HorizontalScroller>

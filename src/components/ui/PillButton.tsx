@@ -46,7 +46,7 @@ export function PillButton({
   const classes = `${base} ${toneStyles[tone][variant]} ${className}`;
 
   if (href) {
-    if (isStaticAssetHref(href)) {
+    if (isStaticAssetHref(href) || href.startsWith("#")) {
       return (
         <a
           href={href}
@@ -68,7 +68,7 @@ export function PillButton({
   }
 
   return (
-    <button type="button" className={classes} {...props}>
+    <button type="button" className={classes} onClick={onClick} {...props}>
       {children}
     </button>
   );

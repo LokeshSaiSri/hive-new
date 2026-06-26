@@ -487,8 +487,8 @@ export const pgpAdmissionEvaluators: AdmissionEvaluator[] = [
 ];
 
 export const pgpAdmissionDeadlines: AdmissionDeadline[] = [
-  { round: "01", label: "Round 1 deadline", date: "May 15, '26", status: "active" },
-  { round: "02", label: "Round 2 deadline", date: "June 30, '26", status: "upcoming" },
+  { round: "01", label: "Round 1 deadline", date: "May 15, '26", status: "upcoming" },
+  { round: "02", label: "Round 2 deadline", date: "June 30, '26", status: "active" },
   { round: "03", label: "Round 3 deadline", date: "August 15, '26", status: "upcoming" },
 ];
 

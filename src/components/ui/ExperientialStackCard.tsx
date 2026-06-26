@@ -75,11 +75,11 @@ export function ExperientialStackCard({
       style={{ y, scale, zIndex, pointerEvents, opacity }}
     >
       <motion.div
-        className="premium-surface-dark premium-metallic-edge flex h-full min-h-0 flex-col justify-center rounded-[calc(2rem-1px)] p-7 sm:p-8 md:p-10 lg:p-12"
+        className="premium-surface-dark premium-metallic-edge flex h-full min-h-0 flex-col justify-center rounded-[calc(2rem-1px)] p-7 sm:p-8 md:p-10 lg:p-10"
         style={{ boxShadow: shadow }}
       >
-        <div className="grid h-full min-h-0 grid-rows-[minmax(0,1fr)_auto] gap-7 sm:gap-8 lg:grid-rows-1 lg:grid-cols-[minmax(0,0.84fr)_minmax(0,1.38fr)] lg:gap-16">
-          <div className="relative flex h-full min-h-0 flex-col overflow-y-auto px-2 py-2 sm:px-6 sm:py-5 lg:px-8 lg:py-7">
+        <div className="grid h-full min-h-0 grid-rows-[minmax(0,1fr)_auto] gap-7 sm:gap-8 lg:grid-rows-1 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1.1fr)] lg:gap-12">
+          <div className="relative flex h-full min-h-0 flex-col overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden px-2 py-2 sm:px-6 sm:py-5 lg:px-8 lg:py-7">
             <div className="relative w-full my-auto flex-shrink-0">
               <motion.span
                 className="pointer-events-none absolute right-2 top-0 select-none font-bold text-white/[0.06] sm:right-4"
@@ -95,25 +95,25 @@ export function ExperientialStackCard({
               {panel.eyebrow}
             </p>
 
-            <h3 className="mt-5 max-w-4xl text-[clamp(1.75rem,3.8vw,2.75rem)] font-bold leading-[1.08] tracking-tight text-white">
+            <h3 className="mt-2 max-w-4xl text-[clamp(1.25rem,2.5vw,2rem)] font-bold leading-[1.08] tracking-tight text-white">
               {panel.title}
             </h3>
 
-            <p className="mt-5 max-w-3xl text-lg leading-relaxed text-white/70 sm:text-xl">
+            <p className="mt-2 max-w-3xl text-sm leading-relaxed text-white/70 sm:text-base">
               {panel.description}
             </p>
 
             {panel.bullets && (
-              <ul className="mt-7 space-y-0 border-t border-white/10">
+              <ul className="mt-4 space-y-0 border-t border-white/10">
                 {panel.bullets.map((b) => (
                   <li
                     key={b.number}
-                    className="flex gap-5 border-b border-white/10 py-4 sm:gap-6 sm:py-5"
+                    className="flex gap-4 border-b border-white/10 py-2 sm:gap-5 sm:py-3"
                   >
-                    <span className="text-spark-gradient font-serif text-5xl font-bold leading-none sm:text-6xl">
+                    <span className="text-spark-gradient font-serif text-3xl font-bold leading-none sm:text-4xl">
                       {b.number}
                     </span>
-                    <span className="pt-1.5 text-base leading-relaxed text-white/85 sm:text-lg">
+                    <span className="pt-0.5 text-xs leading-relaxed text-white/85 sm:text-sm">
                       {b.text}
                     </span>
                   </li>
@@ -121,7 +121,7 @@ export function ExperientialStackCard({
               </ul>
             )}
 
-            <div className="mt-7 flex flex-wrap items-center gap-4 pb-1 sm:gap-5">
+            <div className="mt-5 flex flex-wrap items-center gap-4 pb-1 sm:gap-5">
               <button
                 type="button"
                 onClick={() => panel.videoId && openVideo(panel.videoId)}

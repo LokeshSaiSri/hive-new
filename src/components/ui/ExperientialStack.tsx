@@ -92,7 +92,7 @@ export function ExperientialStack() {
           </motion.p>
 
           <div className="relative flex min-h-0 flex-1 items-center px-2 pb-10 pt-3 sm:px-4 sm:pb-12 lg:px-5">
-            <div className="relative mx-auto h-[min(880px,90svh)] w-full max-w-[min(92rem,98vw)]">
+            <div className="relative mx-auto h-[min(800px,82svh)] w-full max-w-[min(92rem,98vw)]">
               {handsOnPanels.map((panel, i) => (
                 <ExperientialStackCard
                   key={panel.id}

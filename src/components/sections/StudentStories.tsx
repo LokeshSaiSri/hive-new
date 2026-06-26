@@ -24,23 +24,35 @@ function StoryPreviewPanel({ story }: { story: Testimonial }) {
       className="student-story-preview h-full"
     >
       <div className="student-story-preview__player">
-        <Image
-          src={youtubeThumbnail(story.videoId, posterQuality)}
-          alt=""
-          fill
-          unoptimized
-          className="object-cover"
-          sizes="(max-width: 1024px) 100vw, 720px"
-          onError={() => {
-            if (posterQuality !== "hqdefault") setPosterQuality("hqdefault");
-          }}
-        />
-        <iframe
-          src={youtubePreviewEmbedUrl(story.videoId)}
-          title={`${story.name} preview`}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          className="student-story-preview__iframe pointer-events-none absolute inset-0 h-full w-full border-0"
-        />
+        {story.videoId ? (
+          <>
+            <Image
+              src={youtubeThumbnail(story.videoId, posterQuality)}
+              alt=""
+              fill
+              unoptimized
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 720px"
+              onError={() => {
+                if (posterQuality !== "hqdefault") setPosterQuality("hqdefault");
+              }}
+            />
+            <iframe
+              src={youtubePreviewEmbedUrl(story.videoId)}
+              title={`${story.name} preview`}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              className="student-story-preview__iframe pointer-events-none absolute inset-0 h-full w-full border-0"
+            />
+          </>
+        ) : (
+          <Image
+            src={story.image}
+            alt={`${story.name} at ${story.company}`}
+            fill
+            className="object-cover"
+            sizes="(max-width: 1024px) 100vw, 720px"
+          />
+        )}
         <span className="student-story-preview__scrim pointer-events-none absolute inset-0" aria-hidden />
         <span className="pointer-events-none absolute bottom-4 left-4 right-4 text-left sm:bottom-5">
           <span className="block text-lg font-bold text-white sm:text-xl">{story.name}</span>
@@ -65,16 +77,22 @@ function StoryPreviewPanel({ story }: { story: Testimonial }) {
           <span className="text-sm text-white/55">Muted preview playing</span>
         )}
 
-        <button
-          type="button"
-          onClick={() => openVideo(story.videoId)}
-          className="student-story-preview__sound-btn"
-        >
-          <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden>
-            <path d="M8 5v14l11-7z" />
-          </svg>
-          Watch full video
-        </button>
+        {story.videoId ? (
+          <button
+            type="button"
+            onClick={() => openVideo(story.videoId!)}
+            className="student-story-preview__sound-btn"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden>
+              <path d="M8 5v14l11-7z" />
+            </svg>
+            Watch full video
+          </button>
+        ) : (
+          <span className="student-story-preview__sound-btn text-white/40 cursor-not-allowed">
+            Reading profile...
+          </span>
+        )}
       </div>
     </motion.div>
   );

@@ -103,26 +103,26 @@ function ProgrammeCard({
           className="sm:[&_button]:rounded-none"
         />
 
-        <div className="flex flex-1 flex-col p-6 sm:p-7">
+        <div className="flex flex-1 flex-col p-5 sm:p-5">
           <span className="inline-flex w-fit rounded-full border border-electric-blue/15 bg-electric-blue/[0.06] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-electric-blue">
             {programme.status}
           </span>
 
-          <h3 className="mt-4 text-xl font-bold leading-[1.15] tracking-tight gradient-headline-light sm:text-2xl">
+          <h3 className="mt-3 text-lg font-bold leading-[1.15] tracking-tight gradient-headline-light sm:text-xl">
             {programme.title}
           </h3>
 
-          <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-mid-gray">
+          <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-mid-gray">
             {programme.description}
           </p>
 
-          <dl className="mt-6 divide-y divide-ink/[0.06] border-y border-ink/[0.06] text-sm">
+          <dl className="mt-4 divide-y divide-ink/[0.06] border-y border-ink/[0.06] text-sm">
             {[
               ["Eligibility", programme.eligibility],
               ["Format", programme.format],
               ["Duration", programme.duration],
             ].map(([label, val]) => (
-              <div key={label} className="flex justify-between gap-4 py-3">
+              <div key={label} className="flex justify-between gap-4 py-2">
                 <dt className="text-[11px] font-bold uppercase tracking-[0.14em] text-mid-gray">
                   {label}
                 </dt>
@@ -131,7 +131,7 @@ function ProgrammeCard({
             ))}
           </dl>
 
-          <div className="mt-auto flex flex-wrap gap-3 pt-6">
+          <div className="mt-auto flex flex-wrap gap-3 pt-4">
             <PillButton variant="primary" tone="light" href={programme.enrolHref}>
               Enrol
             </PillButton>
@@ -219,9 +219,9 @@ export function Programmes({ className }: { className?: string }) {
         </div>
       </div>
 
-      <div className="mt-16 hidden border-t border-white/10 pt-14 lg:block">
+      <div className="mt-12 border-t border-white/10 pt-12 sm:mt-16 sm:pt-14">
         <div className="section-container mb-8">
-          <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-white/40">
+          <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-white/40 sm:text-xs sm:tracking-[0.28em]">
             Explore all programmes
           </p>
         </div>
@@ -230,27 +230,6 @@ export function Programmes({ className }: { className?: string }) {
             <ProgrammeCard key={programme.id} programme={programme} />
           ))}
         </ScrollHorizontal>
-      </div>
-
-      <div className="mt-8 border-t border-white/10 pt-12 lg:hidden">
-        <div className="section-container mb-8">
-          <p className="text-xs font-bold uppercase tracking-[0.25em] text-white/40">
-            Explore all programmes
-          </p>
-        </div>
-        <HorizontalScroller slideClassName="basis-[78%] sm:basis-[70%]">
-          {programmes.map((p) => (
-            <ProgrammeThumb
-              key={p.id}
-              programme={p}
-              active={p.id === tabToId[activeTab]}
-              onClick={() => {
-                const tab = programmeTabs.find((t) => tabToId[t] === p.id);
-                if (tab) setActiveTab(tab);
-              }}
-            />
-          ))}
-        </HorizontalScroller>
       </div>
     </section>
   );

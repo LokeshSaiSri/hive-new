@@ -113,6 +113,17 @@ export function HeroStudentCollage({
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={active.name}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.2}
+              onDragEnd={(e, { offset }) => {
+                const swipe = offset.x;
+                if (swipe < -50) {
+                  setActiveIndex((activeIndex + 1) % students.length);
+                } else if (swipe > 50) {
+                  setActiveIndex((activeIndex - 1 + students.length) % students.length);
+                }
+              }}
               variants={prefersReducedMotion ? featuredVariantsReduced : featuredVariants}
               initial="enter"
               animate="center"

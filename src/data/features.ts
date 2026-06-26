@@ -64,6 +64,7 @@ export const pedagogyPanels: FeaturePanel[] = [
       "Structured sprints taught by operators who've scaled the companies you want to join. Not textbooks — real playbooks from the frontlines of business.",
     reelIds: ["dzkdz", "duizk", "dx6w"],
     ctaLabel: "Watch a Sprint",
+    ctaHref: "/pgp#curriculum",
   },
   {
     id: "build",
@@ -87,6 +88,7 @@ export const pedagogyPanels: FeaturePanel[] = [
       },
     ],
     ctaLabel: "Explore Tracks",
+    ctaHref: "/pgp#curriculum",
   },
   {
     id: "pitch",
@@ -96,5 +98,6 @@ export const pedagogyPanels: FeaturePanel[] = [
       "Capstone presentations to founders and senior leaders — the same format that turned brand challenges into job offers.",
     reelIds: ["dssss", "drczh"],
     ctaLabel: "See a Pitch",
+    ctaHref: "/pgp#curriculum",
   },
 ];

@@ -70,7 +70,7 @@ type HeroStudentCardProps = {
   role: string;
   company: string;
   companyLogo?: string;
-  videoId: string;
+  videoId?: string;
   isActive: boolean;
   onSelect: () => void;
 };
@@ -92,7 +92,9 @@ export function HeroStudentListItem({
       type="button"
       onMouseEnter={onSelect}
       onFocus={onSelect}
-      onClick={() => openVideo(videoId)}
+      onClick={() => {
+        if (videoId) openVideo(videoId);
+      }}
       layout
       animate={{
         backgroundColor: isActive
@@ -163,10 +165,10 @@ export function HeroStudentFeatured({
     <button
       type="button"
       onClick={() => {
-        if (!previewMode) openVideo(videoId);
+        if (!previewMode && videoId) openVideo(videoId);
       }}
       className={`group flex w-full max-w-[220px] flex-col items-center gap-4 text-left sm:max-w-[240px] ${
-        previewMode ? "cursor-default" : "cursor-pointer"
+        previewMode || !videoId ? "cursor-default" : "cursor-pointer"
       }`}
       aria-label={previewMode ? `${name} selected` : `Play testimonial from ${name}`}
     >

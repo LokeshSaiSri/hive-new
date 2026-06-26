@@ -5,7 +5,7 @@ export type Testimonial = {
   role: string;
   company: string;
   companyLogo?: string;
-  videoId: string;
+  videoId?: string;
   image: string;
 };
 
