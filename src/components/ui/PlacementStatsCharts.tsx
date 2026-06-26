@@ -134,6 +134,14 @@ const GRID_COLS = {
   "mini-two": "grid-cols-2",
 } as const;
 
+// Compact (in-form) charts keep all bars on one row so the distribution reads
+// as a single chart instead of wrapping into two rows on mobile.
+const COMPACT_GRID_COLS = {
+  default: "grid-cols-6",
+  "mini-three": "grid-cols-3",
+  "mini-two": "grid-cols-2",
+} as const;
+
 const CHART_LAYOUT = {
   default: {
     gridWrap: "",
@@ -167,12 +175,12 @@ const CHART_LAYOUT = {
 const COMPACT_CHART_LAYOUT = {
   default: {
     gridWrap: "",
-    gridGap: "gap-x-1",
-    barWidth: "w-[55%] max-w-[1.65rem] min-w-[0.8rem] sm:max-w-[1.85rem]",
+    gridGap: "gap-x-0.5 sm:gap-x-1",
+    barWidth: "w-[62%] max-w-[1.6rem] min-w-[0.7rem] sm:max-w-[1.85rem]",
     trackHeight: "min-h-[4rem] flex-1",
-    valueClass: "text-[11px] font-bold tabular-nums leading-tight text-white sm:text-xs",
-    labelClass: "text-[9px] font-semibold leading-snug text-white/72 sm:text-[10px]",
-    labelMaxW: "max-w-[4rem]",
+    valueClass: "text-[10px] font-bold tabular-nums leading-tight text-white sm:text-xs",
+    labelClass: "text-[9px] font-medium leading-tight text-white/72 sm:text-[10px]",
+    labelMaxW: "max-w-[2.75rem] sm:max-w-[3.25rem]",
   },
   "mini-three": {
     gridWrap: "mx-auto w-full max-w-xs",
@@ -196,6 +204,29 @@ const COMPACT_CHART_LAYOUT = {
 
 const barEase = [0.2, 0.9, 0.2, 1] as const;
 
+const COMPACT_LABEL_ABBREV: Record<string, string> = {
+  Average: "Avg",
+  Highest: "High",
+  "1-2 Yrs Exp": "1–2 yr",
+  ">2 Yrs Exp": "2+ yr",
+};
+
+function CompactBarLabel({ label }: { label: string }) {
+  const topMatch = /^Top (\d+%)$/.exec(label);
+  // Always render two lines so every column reserves identical label height —
+  // otherwise taller (two-line) labels shrink their flex-1 track and lift bars.
+  const [line1, line2] = topMatch
+    ? ["Top", topMatch[1]]
+    : [COMPACT_LABEL_ABBREV[label] ?? label, "\u00A0"];
+
+  return (
+    <span className="flex flex-col items-center gap-0.5 leading-none">
+      <span>{line1}</span>
+      <span>{line2}</span>
+    </span>
+  );
+}
+
 function VerticalBars({
   bars,
   active,
@@ -211,6 +242,7 @@ function VerticalBars({
 }) {
   const prefersReducedMotion = useReducedMotion();
   const layout = compact ? COMPACT_CHART_LAYOUT[size] : CHART_LAYOUT[size];
+  const gridCols = compact ? COMPACT_GRID_COLS[size] : GRID_COLS[size];
   const trackHeight = compact
     ? layout.trackHeight
     : fill
@@ -246,7 +278,7 @@ function VerticalBars({
       </div>
 
       <div
-        className={`relative grid ${GRID_COLS[size]} ${layout.gridGap} ${layout.gridWrap} ${
+        className={`relative grid ${gridCols} ${layout.gridGap} ${layout.gridWrap} ${
           fillsPanel ? "h-full min-h-0 flex-1 items-stretch" : ""
         }`}
       >
@@ -288,9 +320,9 @@ function VerticalBars({
               initial={prefersReducedMotion ? false : { opacity: 0, y: 4 }}
               animate={active ? { opacity: 1, y: 0 } : { opacity: 0, y: 4 }}
               transition={{ duration: 0.45, delay: 0.2 + i * 0.06, ease: easeHive }}
-              className={`${compact ? "mt-1.5" : "mt-3"} px-1 text-center ${layout.labelMaxW} ${layout.labelClass}`}
+              className={`${compact ? "mt-1.5" : "mt-3"} px-0.5 text-center ${layout.labelMaxW} ${layout.labelClass}`}
             >
-              {bar.label}
+              {compact ? <CompactBarLabel label={bar.label} /> : bar.label}
             </motion.p>
           </div>
         ))}

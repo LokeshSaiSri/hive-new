@@ -4,6 +4,7 @@ import {
   PLACEMENT_REPORT_ACCESS_COOKIE,
   getPlacementReportEdition,
 } from "@/data/placementReportAccess";
+import { getGatedDocumentById } from "@/data/gatedDocuments";
 import { buildHubSpotSubmissionContext, resolveHubSpotPageUri } from "@/lib/hubspot/context";
 import { submitToHubSpot, type HubSpotSubmissionField } from "@/lib/hubspot/submit";
 
@@ -25,6 +26,8 @@ function getHubspotUtkFromRequest(request: Request, bodyHutk?: string): string |
 
 type SubmitBody = {
   edition?: string;
+  /** Alternative to `edition` — a gated handbook/brochure document id. */
+  document?: string;
   fields?: HubSpotSubmissionField[];
   pageUri?: string;
   pageName?: string;
@@ -40,10 +43,16 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
   }
 
-  const editionId = body.edition;
-  const edition = getPlacementReportEdition(editionId);
-  if (!edition) {
-    return NextResponse.json({ error: "A valid report edition is required" }, { status: 400 });
+  // Resolve the download target — either a gated placement edition (served via
+  // the cookie-gated download route) or a public handbook/brochure document.
+  const edition = body.edition ? getPlacementReportEdition(body.edition) : undefined;
+  const gatedDocument = body.document ? getGatedDocumentById(body.document) : undefined;
+
+  if (!edition && !gatedDocument) {
+    return NextResponse.json(
+      { error: "A valid report edition or document is required" },
+      { status: 400 },
+    );
   }
 
   if (!Array.isArray(body.fields) || body.fields.length === 0) {
@@ -55,7 +64,7 @@ export async function POST(request: Request) {
 
   if (!portalId || !formGuid) {
     return NextResponse.json(
-      { error: "Placement report form is not configured" },
+      { error: "Download form is not configured" },
       { status: 503 },
     );
   }
@@ -75,25 +84,33 @@ export async function POST(request: Request) {
       context: hubspotContext,
     });
 
-    const downloadUrl = `/api/placement-report/download?edition=${encodeURIComponent(edition.id)}`;
+    const downloadUrl = edition
+      ? `/api/placement-report/download?edition=${encodeURIComponent(edition.id)}`
+      : gatedDocument!.pdfHref;
+
     const response = NextResponse.json({
       ok: true,
       downloadUrl,
-      editionId: edition.id,
+      editionId: edition?.id,
+      documentId: gatedDocument?.id,
       pageUri: resolveHubSpotPageUri(body.pageUri) ?? body.pageUri,
     });
 
-    response.cookies.set(PLACEMENT_REPORT_ACCESS_COOKIE, edition.id, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
-      maxAge: 60 * 60,
-      path: "/",
-    });
+    // Only placement-report PDFs are middleware-gated, so set the access cookie
+    // for them. Handbook/brochure PDFs are public and download directly.
+    if (edition) {
+      response.cookies.set(PLACEMENT_REPORT_ACCESS_COOKIE, edition.id, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+        maxAge: 60 * 60,
+        path: "/",
+      });
+    }
 
     return response;
   } catch (error) {
-    console.error("Placement report form submission failed:", error);
+    console.error("Download form submission failed:", error);
     return NextResponse.json({ error: "Could not submit form" }, { status: 502 });
   }
 }

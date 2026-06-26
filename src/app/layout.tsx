@@ -6,6 +6,7 @@ import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import { HubSpotTracking } from "@/components/providers/HubSpotTracking";
 import { GoogleTagManager } from "@/components/providers/GoogleTagManager";
 import { MetaClickCapture } from "@/components/providers/MetaClickCapture";
+import { PlacementReportModal } from "@/components/providers/PlacementReportModal";
 import { asset } from "@/lib/assets";
 import "./globals.css";
 
@@ -48,6 +49,7 @@ export default function RootLayout({
         <SmoothScroll>
           <VideoProvider>{children}</VideoProvider>
         </SmoothScroll>
+        <PlacementReportModal />
       </body>
     </html>
   );
