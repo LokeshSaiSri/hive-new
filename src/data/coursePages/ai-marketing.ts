@@ -1,5 +1,5 @@
 import type { CoursePageConfig } from "@/data/coursePages/types";
-import { asset } from "@/lib/assets";
+import { asset, videoAsset } from "@/lib/assets";
 
 export const aiMarketingCoursePage: CoursePageConfig = {
   slug: "ai-marketing",
@@ -234,7 +234,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
           "Build: Choose your venture",
           "Prove: First brand visit + opening challenge",
         ],
-        image: "images/timeline/month1.webp",
+        image: videoAsset("images/timeline/month1.webp"),
       },
       {
         phase: "Month 2",
@@ -246,7 +246,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
           "Build: First live campaign",
           "Prove: The ad showdown",
         ],
-        image: "images/timeline/month2.webp",
+        image: videoAsset("images/timeline/month2.webp"),
       },
       {
         phase: "Month 3",
@@ -258,7 +258,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
           "Build: Scale venture · deploy AI agent",
           "Prove: Marketplace + dashboard challenges",
         ],
-        image: "images/timeline/month3.webp",
+        image: videoAsset("images/timeline/month3.webp"),
       },
       {
         phase: "Month 4",
@@ -270,7 +270,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
           "Build: Finalise portfolio",
           "Prove: Founder's Track Pitch Day",
         ],
-        image: "images/timeline/month4.webp",
+        image: videoAsset("images/timeline/month4.webp"),
       },
       {
         phase: "Months 5–6",
@@ -282,7 +282,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
           "Build: Continue venture with Incubation",
           "Prove: Mock interviews & hiring processes",
         ],
-        image: "images/timeline/month5.webp",
+        image: videoAsset("images/timeline/month5.webp"),
       },
     ],
   },
