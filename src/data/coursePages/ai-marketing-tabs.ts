@@ -62,9 +62,9 @@ export const aiMarketingTabHero: Record<
       "Discovery call, business case discussion, and culture fit — three conversations to understand your background, thinking, and alignment with the cohort.",
     stats: [
       { value: "3", label: "Admission steps" },
-      { value: "0", label: "Application fee" },
-      { value: "6 mo", label: "Full-time programme" },
-      { value: "Oct '26", label: "Next intake" },
+      { value: "<7%", label: "Acceptance rate" },
+      { value: "6 months", label: "Full-time programme" },
+      { value: "October '26", label: "Next intake" },
     ],
     primaryCta: { label: "Start your application", href: "#apply" },
     secondaryCta: { label: "See the process", href: "#selection" },
@@ -75,7 +75,7 @@ export const aiMarketingTracksIntro =
   "Four tracks. One complete marketer. Brand (8 sprints), performance (10), AI ops (7), and entrepreneurship running parallel throughout.";
 
 export const aiMarketingMentorsIntro =
-  "Eleven practitioners — not professors. People building India's fastest-growing brands. They teach the way they work, by example.";
+  "Industry mentors — not professors. People building India's fastest-growing brands. They teach the way they work, by example.";
 
 export const aiMarketingCurriculumTracks: CurriculumTrack[] = [
   {
@@ -244,7 +244,7 @@ export { pgpAlumniQuotes as aiMarketingAlumniQuotes } from "@/data/coursePages/p
 export const aiMarketingPlacementNews: NewsArticle[] = [
   {
     outlet: "Placement Report",
-    title: "Year 2 PGP · ₹16.47L avg · ₹27.8L highest",
+    title: "Year 2 PGP · ₹16.47L average · ₹27.8L highest",
     date: "2025–26",
     image: asset("images/news/annual-placement.jpg"),
     href: "/pgp/placements",
@@ -252,7 +252,7 @@ export const aiMarketingPlacementNews: NewsArticle[] = [
   {
     outlet: "Hindustan Times",
     title: "HiveSchool Placements Set New Benchmark | Average 14.76 LPA, Highest 30 LPA",
-    date: "Aug 05, 2025",
+    date: "August 05, 2025",
     image: asset("images/news/hindustan-times.jpg"),
     href: "https://www.hindustantimes.com/brand-stories/hiveschool-placements-set-new-benchmark-average-14-76-lpa-highest-30-lpa-101754121352098.html",
   },
@@ -260,7 +260,7 @@ export const aiMarketingPlacementNews: NewsArticle[] = [
     outlet: "ANINEWS",
     title:
       "HiveSchool Gains Strong Traction Among CAT Aspirants With 15 LPA Average Placement and 30 LPA Highest Offer",
-    date: "Jul 18, 2025",
+    date: "July 18, 2025",
     image: asset("images/news/ani-news.jpeg"),
     href: "https://theprint.in/ani-press-releases/hiveschool-gains-strong-traction-among-cat-aspirants-with-15-lpa-average-placement-and-30-lpa-highest-offer/",
   },
@@ -268,7 +268,7 @@ export const aiMarketingPlacementNews: NewsArticle[] = [
     outlet: "The Print",
     title:
       "HiveSchool eyes Top 20 B-Schools league before 2030, after ₹14.76 LPA average in its inaugural year",
-    date: "Jun 22, 2025",
+    date: "June 22, 2025",
     image: asset("images/news/the-print.jpg"),
     href: "https://theprint.in/ani-press-releases/hiveschool-eyes-top-20-b-schools-league-before-2030-after-%e2%82%b914-76-lpa-average-in-its-inaugural-year/2724384/",
   },
@@ -283,9 +283,9 @@ export const aiMarketingAdmissionsIntro: AiMarketingAdmissionsIntro = {
   videoId: "vCfoRUGuszE",
   stats: [
     { value: "3", label: "Admission steps" },
-    { value: "₹4.5L", label: "+ GST programme fee", highlight: true },
-    { value: "6 mo", label: "On-campus" },
-    { value: "Oct '26", label: "Next intake" },
+    { value: "₹4.5L", label: "Programme fee", highlight: true },
+    { value: "6 months", label: "On-campus" },
+    { value: "October '26", label: "Next intake" },
   ],
 };
 
@@ -341,9 +341,9 @@ export const aiMarketingAdmissionEvaluators: AdmissionEvaluator[] = [
 ];
 
 export const aiMarketingAdmissionDeadlines: AdmissionDeadline[] = [
-  { round: "01", label: "Round 1 deadline", date: "May 15, '26", status: "upcoming" },
-  { round: "02", label: "Round 2 deadline", date: "June 30, '26", status: "active" },
-  { round: "03", label: "Round 3 deadline", date: "August 15, '26", status: "upcoming" },
+  { round: "01", label: "Round 1 deadline", date: "July 31, '26", status: "active" },
+  { round: "02", label: "Round 2 deadline", date: "August 31, '26", status: "upcoming" },
+  { round: "03", label: "Round 3 deadline", date: "September 25, '26", status: "upcoming" },
 ];
 
 export const aiMarketingScholarships: ScholarshipCard[] = [

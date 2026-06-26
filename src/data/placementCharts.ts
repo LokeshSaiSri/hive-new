@@ -18,8 +18,8 @@ export const ctcDistribution: PlacementBar[] = [
 
 export const salaryByExperience: PlacementBar[] = [
   { label: "Freshers", value: "₹14.6L", amount: 14.6, visualHeight: 52 },
-  { label: "1-2 Yrs Exp", value: "₹15.33L", amount: 15.33, visualHeight: 56 },
-  { label: ">2 Yrs Exp", value: "₹19.2L", amount: 19.2, visualHeight: 74, highlight: true },
+  { label: "1-2 Years Exp", value: "₹15.33L", amount: 15.33, visualHeight: 56 },
+  { label: ">2 Years Exp", value: "₹19.2L", amount: 19.2, visualHeight: 74, highlight: true },
 ];
 
 export const salaryJump: PlacementBar[] = [

@@ -186,7 +186,7 @@ function MetricSpotlight({
               className={`h-1.5 w-1.5 rounded-full bg-accent ${paused ? "" : "animate-pulse"}`}
               aria-hidden
             />
-            Oct 2026 intake
+            October 2026 intake
           </span>
         </div>
 
@@ -678,7 +678,7 @@ export function CourseApplicationForm({
                 {submitted ? (
                   <SuccessState />
                 ) : (
-                  <form onSubmit={handleSubmit} noValidate className="mt-8">
+                  <form onSubmit={handleSubmit} noValidate className="mt-8" data-hs-cf-bound="true">
                     <div className="grid gap-5 sm:grid-cols-2">
                       {FIELD_ORDER.slice(0, 2).map((key) => (
                         <FormField

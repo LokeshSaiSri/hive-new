@@ -129,6 +129,7 @@ export function DownloadGateForm({
         ) : (
           <form
             onSubmit={handleSubmit}
+            data-hs-cf-bound="true"
             className={`rounded-2xl border border-white/10 bg-white/[0.04] ${
               compact ? "p-5 sm:p-8" : "p-8"
             }`}

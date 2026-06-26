@@ -18,7 +18,7 @@ export const exploreCards = [
   {
     title: "Placement Outcomes",
     description:
-      "100+ hiring partners. +184% avg salary jump. Revenue roles, not support functions.",
+      "100+ hiring partners. +184% average salary jump. Revenue roles, not support functions.",
     image: asset("images/misc/admitted.png"),
     href: "#placement-report",
   },

@@ -13,7 +13,7 @@ export function ProgramStudentStories({ className }: { className?: string } = {}
             align="left"
             eyebrow="Student voices"
             statement="Hear it from"
-            emphasis="the cohort."
+            emphasis="the PGP cohort."
           />
         </ScrollReveal>
       </div>

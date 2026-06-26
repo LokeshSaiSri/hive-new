@@ -39,7 +39,7 @@ export function AiMarketingCurriculumTab({ config }: AiMarketingCurriculumTabPro
       {config.paths && <CoursePaths paths={config.paths} className="pt-0 border-t-0" />}
       <ProgramMentors
         eyebrow="Practitioners, not professors"
-        statement="Eleven practitioners."
+        statement="Industry mentors."
         emphasis="Not professors."
         description={aiMarketingMentorsIntro}
       />

@@ -52,7 +52,7 @@ const CHARTS: ChartConfig[] = [
     title: "Salary by Experience",
     subtitle: "Average offer levels across fresher and experienced candidates.",
     kpiValue: "₹19.2L",
-    kpiLabel: "Avg for >2 yrs experience",
+    kpiLabel: "Average for >2 years experience",
     takeaways: [
       "Freshers average ₹14.6L — competitive for first revenue roles.",
       "1–2 years experience lands around ₹15.33L.",
@@ -205,10 +205,10 @@ const COMPACT_CHART_LAYOUT = {
 const barEase = [0.2, 0.9, 0.2, 1] as const;
 
 const COMPACT_LABEL_ABBREV: Record<string, string> = {
-  Average: "Avg",
+  Average: "Average",
   Highest: "High",
-  "1-2 Yrs Exp": "1–2 yr",
-  ">2 Yrs Exp": "2+ yr",
+  "1-2 Years Exp": "1–2 years",
+  ">2 Years Exp": "2+ years",
 };
 
 function CompactBarLabel({ label }: { label: string }) {

@@ -41,7 +41,7 @@ export function PillButton({
   ...props
 }: PillButtonProps) {
   const base =
-    "inline-flex min-h-11 items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition-all duration-300 ease-out";
+    "inline-flex w-full sm:w-auto min-h-11 items-center justify-center rounded-full px-6 py-3 text-sm sm:text-base font-semibold transition-all duration-300 ease-out";
 
   const classes = `${base} ${toneStyles[tone][variant]} ${className}`;
 

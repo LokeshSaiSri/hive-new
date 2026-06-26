@@ -121,9 +121,9 @@ export const pgpTabHero: Record<"curriculum" | "placements" | "admissions", Prog
     description:
       "We evaluate candidates through conversations and case discussions. We're looking for people with the drive to build in revenue and growth, the clarity to communicate, and the hunger to lead.",
     stats: [
-      { value: "3–5 wks", label: "Process duration" },
+      { value: "3–5 weeks", label: "Process duration" },
       { value: "<7%", label: "Acceptance rate" },
-      { value: "0–4 yrs", label: "Experience welcome" },
+      { value: "0–4 years", label: "Experience welcome" },
       { value: "No fee", label: "Application fee" },
     ],
     primaryCta: { label: "Start your application", href: "#apply" },
@@ -368,7 +368,7 @@ export const pgpAlumniQuotes: AlumniQuote[] = [
 export const pgpPlacementNews: NewsArticle[] = [
   {
     outlet: "Placement Report",
-    title: "Year 2 PGP · ₹16.47L avg · ₹27.8L highest",
+    title: "Year 2 PGP · ₹16.47L average · ₹27.8L highest",
     date: "2025–26",
     image: asset("images/placement-reports/year-2-pdf-cover.jpg"),
     href: placementReportDownloadPath("year-2"),
@@ -376,7 +376,7 @@ export const pgpPlacementNews: NewsArticle[] = [
   {
     outlet: "Hindustan Times",
     title: "HiveSchool Placements Set New Benchmark | Average 14.76 LPA, Highest 30 LPA",
-    date: "Aug 05, 2025",
+    date: "August 05, 2025",
     image: asset("images/news/hindustan-times.jpg"),
     href: "https://www.hindustantimes.com/brand-stories/hiveschool-placements-set-new-benchmark-average-14-76-lpa-highest-30-lpa-101754121352098.html",
   },
@@ -384,7 +384,7 @@ export const pgpPlacementNews: NewsArticle[] = [
     outlet: "ANINEWS",
     title:
       "HiveSchool Gains Strong Traction Among CAT Aspirants With 15 LPA Average Placement and 30 LPA Highest Offer",
-    date: "Jul 18, 2025",
+    date: "July 18, 2025",
     image: asset("images/news/ani-news.jpeg"),
     href: "https://theprint.in/ani-press-releases/hiveschool-gains-strong-traction-among-cat-aspirants-with-15-lpa-average-placement-and-30-lpa-highest-offer/",
   },
@@ -392,21 +392,21 @@ export const pgpPlacementNews: NewsArticle[] = [
     outlet: "The Print",
     title:
       "HiveSchool eyes Top 20 B-Schools league before 2030, after ₹14.76 LPA average in its inaugural year",
-    date: "Jun 22, 2025",
+    date: "June 22, 2025",
     image: asset("images/news/the-print.jpg"),
     href: "https://theprint.in/ani-press-releases/hiveschool-eyes-top-20-b-schools-league-before-2030-after-%e2%82%b914-76-lpa-average-in-its-inaugural-year/2724384/",
   },
   {
     outlet: "Tribune India",
     title: "HiveSchool's Annual Placements surpasses many Mini IIMs & Tier-2 MBAs in India",
-    date: "Jun 14, 2025",
+    date: "June 14, 2025",
     image: asset("images/news/tribune-india.jpg"),
     href: "https://www.tribuneindia.com/news/business/hiveschools-annual-placements-surpasses-many-mini-iims-tier-2-mbas-in-india/",
   },
   {
     outlet: "Dailyhunt",
     title: "HiveSchool's Annual Placements surpasses many Mini IIMs & Tier-2 MBAs in India",
-    date: "Jun 12, 2025",
+    date: "June 12, 2025",
     image: asset("images/news/dailyhunt.jpg"),
     href: "https://m.dailyhunt.in/news/india/english/sangri+today-epaper-dhca0872bf801748bd9f43791084210e94/hiveschools+annual+placements+surpasses+many+mini+iims+tier2+mbas+in+india-newsid-dhca0872bf801748bd9f43791084210e94_ddf45ab06eda11f0bfd6d3ae60ce180d?sm=Y",
   },
@@ -430,7 +430,7 @@ export const pgpAdmissionsIntro = {
   stats: [
     { value: "<7%", label: "Acceptance" },
     { value: "50", label: "Handpicked cohort", highlight: true },
-    { value: "9 mo", label: "Duration" },
+    { value: "9 months", label: "Duration" },
     { value: "May 15, '26", label: "Round 1 closes" },
   ],
 };

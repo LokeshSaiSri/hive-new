@@ -11,7 +11,7 @@ export const pgpCoursePage: CoursePageConfig = {
   hero: {
     badge: "Post Graduate Programme",
     location: "Gurugram",
-    intake: "Oct 2026",
+    intake: "October 2026",
     title: "Revenue, AI &",
     emphasis: "Entrepreneurship",
     description:
@@ -171,7 +171,7 @@ export const pgpCoursePage: CoursePageConfig = {
     statement: "Fees and",
     emphasis: "scholarships",
     badge: "Post Graduate Programme",
-    intake: "Oct 2026",
+    intake: "October 2026",
     description:
       "9-month full-time residential. Includes tuition, tools, mentorship & placement support. Banking partners and financial assistance available.",
     lines: [

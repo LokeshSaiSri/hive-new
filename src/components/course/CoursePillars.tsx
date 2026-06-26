@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionIntro } from "@/components/ui/SectionIntro";
 import { HorizontalScroller } from "@/components/ui/HorizontalScroller";
@@ -23,9 +24,14 @@ function PillarCard({ pillar, index, isBento, isQuadBento }: PillarCardProps) {
         isBento
           ? `course-pillars-bento__card hover-lift-card ${index === 0 && !isQuadBento ? "course-pillars-bento__card--lead" : ""
           }`
-          : "course-pillar-card h-full"
+          : "course-pillar-card h-full flex flex-col"
       }
     >
+      {pillar.image && (
+        <div className="relative mb-5 w-full shrink-0 overflow-hidden rounded-xl bg-ink/5" style={{ aspectRatio: "4/3" }}>
+          <Image src={pillar.image} alt={pillar.title} fill className="object-contain" />
+        </div>
+      )}
       <p
         className={
           isBento

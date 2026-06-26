@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useInView, useReducedMotion } from "framer-motion";
 import type { MegaStat } from "@/data/stats";
 
-const HIGHLIGHT_STATS = new Set(["Average CTC", "Highest CTC", "Avg Salary Jump"]);
+const HIGHLIGHT_STATS = new Set(["Average CTC", "Highest CTC", "Average Salary Jump"]);
 
 function parseStatValue(value: string) {
   const match = value.match(/^([^\d]*)([\d.]+)(.*)$/);

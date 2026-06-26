@@ -379,7 +379,8 @@ export function ApplyForm({
 
   const inner = (
     <>
-      <div className="pointer-events-none absolute inset-0">
+      <div className="pointer-events-none absolute inset-0 sm:hidden bg-ink" aria-hidden />
+      <div className="pointer-events-none absolute inset-0 hidden sm:block">
         {isHome ? (
           <>
             <div className="hero-grid-lines absolute inset-0 opacity-40" />
@@ -433,8 +434,8 @@ export function ApplyForm({
       </div>
 
       <div
-        className={`section-container relative z-10 flex flex-col justify-center py-20 lg:py-24 ${
-          isHome ? "min-h-[92svh]" : "min-h-[72svh]"
+        className={`section-container relative z-10 flex flex-col justify-center py-10 sm:py-20 lg:py-24 ${
+          isHome ? "min-h-[85svh] sm:min-h-[92svh]" : "min-h-[85svh] sm:min-h-[72svh]"
         }`}
       >
         <div className="mb-6 flex items-center gap-3 lg:hidden">
@@ -503,7 +504,7 @@ export function ApplyForm({
                 </div>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} noValidate className="mt-6">
+              <form onSubmit={handleSubmit} noValidate className="mt-6" data-hs-cf-bound="true">
                 <div className="mb-3 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.22em] text-white/35">
                   <span>
                     {step + 1} / {STEPS.length}
@@ -522,7 +523,7 @@ export function ApplyForm({
                   )}
                 </div>
 
-                <div className="min-h-[280px] sm:min-h-[320px]">
+                <div className="min-h-[200px] sm:min-h-[320px]">
                   <AnimatePresence mode="wait" custom={direction}>
                     <motion.div
                       key={current.id}
@@ -552,7 +553,7 @@ export function ApplyForm({
                               onFocus={() => setInputFocused(true)}
                               onBlur={() => setInputFocused(false)}
                               onChange={(e) => setField(current.id, e.target.value)}
-                              className="w-full border-b-2 border-white/20 bg-transparent py-3 text-2xl font-medium text-white outline-none transition-colors placeholder:text-white/25 focus:border-white sm:text-3xl"
+                              className="w-full border-b-2 border-white/20 bg-transparent py-2 sm:py-3 text-xl font-medium text-white outline-none transition-colors placeholder:text-white/25 focus:border-white sm:text-3xl"
                               placeholder={
                                 current.id === "fullName"
                                   ? "Your full name"
@@ -674,15 +675,15 @@ export function ApplyForm({
                   </AnimatePresence>
                 </div>
 
-                <div className="mt-8 flex flex-wrap items-center gap-4">
+                <div className="mt-8 flex flex-col sm:flex-row flex-wrap items-center gap-4">
                   {step < STEPS.length - 1 ? (
                     <>
-                      <PillButton type="button" variant="primary" tone="dark" onClick={goNext}>
+                      <PillButton type="button" variant="primary" tone="dark" onClick={goNext} className="w-full sm:w-auto">
                         Continue
                       </PillButton>
                       {current.type !== "programme" && (
-                        <span className="text-xs text-white/30">
-                          or press{" "}
+                        <span className="text-xs text-white/30 text-center w-full sm:w-auto">
+                           or press{" "}
                           <kbd className="rounded border border-white/15 px-1.5 py-0.5 font-sans text-white/50">
                             Enter
                           </kbd>
@@ -738,14 +739,14 @@ export function ApplyForm({
 
   if (isHome) {
     return (
-      <section id="apply" className="relative min-h-[92svh] overflow-hidden hive-dark-band">
+      <section id="apply" className="relative min-h-[85svh] sm:min-h-[92svh] overflow-hidden hive-dark-band">
         {inner}
       </section>
     );
   }
 
   return (
-    <div className="relative min-h-[72svh] overflow-hidden">
+    <div className="relative min-h-[85svh] sm:min-h-[72svh] overflow-hidden">
       {inner}
     </div>
   );

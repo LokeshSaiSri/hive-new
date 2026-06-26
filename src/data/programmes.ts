@@ -20,7 +20,7 @@ export const programmes: Programme[] = [
     videoId: "rFZLsmtruzM",
     description:
       "9-month full-time programme with tuition, tools, mentorship & placement support.",
-    eligibility: "0-5 yrs experience",
+    eligibility: "0-5 years experience",
     format: "On Campus (Opt-in Residential)",
     duration: "9 Months",
     status: "Round 2 Applications Open",
@@ -47,7 +47,7 @@ export const programmes: Programme[] = [
     badge: "Undergraduate",
     videoId: "gpXQDETej2k",
     description:
-      "3-year UG with 2+1 live project internships — industry-led, starting Aug 2027.",
+      "3-year UG with 2+1 live project internships — industry-led, starting August 2027.",
     eligibility: "Class XII Students & Pass-outs",
     format: "On Campus (Opt-in Residential)",
     duration: "3 Years",

@@ -6,25 +6,25 @@ export const ugCoursePage: CoursePageConfig = {
   meta: {
     title: "Undergraduate Programme | HiveSchool",
     description:
-      "A 3-year UG for founders, growth operators, and AI-native problem solvers — industry-led, starting Aug 2027 in Gurugram.",
+      "A 3-year UG for founders, growth operators, and AI-native problem solvers — industry-led, starting August 2027 in Gurugram.",
   },
   hero: {
     badge: "Undergraduate Programme",
     location: "Gurugram",
-    intake: "Aug 2027",
+    intake: "August 2027",
     title: "The undergraduate program.",
     emphasis: "Built differently.",
     description:
-      "A 3-year UG with 2+1 live project internships — for founders, growth operators, and AI-native problem solvers, starting Aug 2027.",
+      "A 3-year UG with 2+1 live project internships — for founders, growth operators, and AI-native problem solvers, starting August 2027.",
     videoId: "gpXQDETej2k",
     backgroundVideo: "videos/campus-hero.mp4",
     primaryCta: { label: "Apply for Class of 2030", href: "#apply" },
     secondaryCta: { label: "Download brochure", href: "#apply" },
     stats: [
       { value: "3", label: "Year programme" },
-      { value: "12MO", label: "Paid industry work" },
+      { value: "12 Months", label: "Paid industry work" },
       { value: "100+", label: "Founders & operators" },
-      { value: "Aug '27", label: "Cohort begins" },
+      { value: "August '27", label: "Cohort begins" },
     ],
     meta: [
       { label: "Format", value: "Industry-led UG" },
@@ -184,7 +184,12 @@ export const ugCoursePage: CoursePageConfig = {
       },
     ],
   },
+  applicationForm: {
+    title: "Undergraduate Programme Application",
+    headline: "Undergraduate application",
+  },
   sections: {
+    applicationForm: true,
     placement: false,
     mentors: true,
     challenges: true,

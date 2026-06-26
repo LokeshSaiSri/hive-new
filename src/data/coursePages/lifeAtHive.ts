@@ -49,7 +49,7 @@ export const aiMarketingLifeAtHive: LifeAtHiveContent = {
   statement: "A glimpse into",
   emphasis: "a week at Hive.",
   description:
-    "Sessions Mon–Tue, challenge day Wednesday, depth sprints Thu–Fri, and First Principles Saturdays — off-campus inside real businesses.",
+    "Sessions Monday–Tuesday, challenge day Wednesday, depth sprints Thursday–Friday, and First Principles Saturdays — off-campus inside real businesses.",
   days: lifeAtHiveDays([
     "Monday",
     "Tuesday",

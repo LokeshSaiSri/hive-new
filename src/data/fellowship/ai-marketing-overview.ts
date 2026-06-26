@@ -69,7 +69,7 @@ export const fellowshipVisuals = {
 export const fellowshipOverview = {
   hero: {
     ...aiMarketingCoursePage.hero,
-    tagline: "Oct 2026 · Gurugram",
+    tagline: "October 2026 · Gurugram",
     description: "Six months on campus. Ten live capstones. One portfolio that gets you hired.",
   },
   spreads: fellowshipVisuals.spreads,

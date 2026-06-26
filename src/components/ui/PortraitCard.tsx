@@ -36,7 +36,11 @@ export function PortraitCard({
 }: PortraitCardProps) {
   const { openVideo } = useVideo();
   const widthClass =
-    layout === "fluid" ? "w-full" : size === "large" ? "w-[280px] sm:w-[300px]" : "w-[260px]";
+    layout === "fluid" 
+      ? "w-full" 
+      : size === "large" 
+        ? "w-[200px] sm:w-[240px] lg:w-[300px]" 
+        : "w-[180px] sm:w-[200px] lg:w-[260px]";
 
   const handleClick = () => {
     if (onSelect) {
@@ -85,9 +89,9 @@ export function PortraitCard({
           )}
         </span>
       )}
-      <div className="absolute inset-x-0 bottom-0 p-4">
-        <p className="text-base font-bold leading-tight text-white">{name}</p>
-        <p className="mt-1 line-clamp-2 text-sm leading-snug text-white/75">{role}</p>
+      <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4">
+        <p className="text-sm sm:text-base font-bold leading-tight text-white">{name}</p>
+        <p className="mt-0.5 sm:mt-1 line-clamp-2 text-xs sm:text-sm leading-snug text-white/75">{role}</p>
       </div>
       {videoId && (
         <span className="absolute bottom-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/95 opacity-0 shadow-md transition-all duration-300 group-hover:opacity-100">

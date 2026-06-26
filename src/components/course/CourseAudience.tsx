@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { PillButton } from "@/components/ui/PillButton";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionIntro } from "@/components/ui/SectionIntro";
@@ -28,8 +29,13 @@ export function CourseAudience({ audience, className }: CourseAudienceProps) {
             }`}
         >
           {audience.items.map((item, index) => (
-            <ScrollReveal key={item.index} delay={index * 0.05}>
-              <article className="course-audience-card">
+            <ScrollReveal key={item.index} delay={index * 0.05} className="h-full">
+              <article className="course-audience-card h-full flex flex-col">
+                {item.image && (
+                  <div className="relative mb-5 w-full shrink-0 overflow-hidden rounded-xl bg-white/5" style={{ aspectRatio: "4/3" }}>
+                    <Image src={item.image} alt={item.title} fill className="object-contain" />
+                  </div>
+                )}
                 <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-accent">
                   {item.index}
                 </p>

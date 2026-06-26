@@ -12,7 +12,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
   hero: {
     badge: "Fellowship Programme",
     location: "On-campus · Gurugram",
-    intake: "Oct 2026",
+    intake: "October 2026",
     title: "AI Marketing &",
     emphasis: "Entrepreneurship",
     description:
@@ -36,75 +36,75 @@ export const aiMarketingCoursePage: CoursePageConfig = {
   },
   pillars: {
     eyebrow: "Why this is different",
-    statement: "Four things you won't find",
-    emphasis: "in a marketing course",
+    statement: "We built the coolest AI marketing",
+    emphasis: "and entrepreneurship program India has ever seen.",
     description:
-      "Most programs teach, then test. Here, you build — then learn what worked.",
+      "",
     items: [
       {
         index: "01",
-        title: "Entrepreneurship-led",
-        tagline: "Your venture is the classroom",
-        image: asset("images/why/present-to-founders.webp"),
+        title: "Performance vs Storytelling",
+        tagline: "A normal marketer vs Top 1%",
+        image: asset("images/Website pics/d2c bazaar/DSC01796.jpeg"),
         description:
-          "Every concept lands on a real venture you build. The brand is the classroom.",
+          "A normal marketer would think of Performance Marketing like a Meta Dashboard concept. But Top 1% marketer would think of creating a storyline for a brand that can sell organically and reduce CAC’s. Just like these students are doing here.",
       },
       {
         index: "02",
-        title: "AI-native from Day 1",
-        tagline: "AI in every sprint",
-        image: asset("images/why/ship-work.webp"),
+        title: "Branding beyond lectures",
+        tagline: "Toe-Mah-Toes",
+        image: asset("images/Website pics/d2c bazaar/DSC05783.jpeg"),
         description:
-          "AI isn't a module bolted on at the end. It runs through every sprint, taught by every practitioner.",
+          "Branding is not a concept that can be learned in a lecture. For us, Branding is actually creating the most different brand that people will actually buy.",
       },
       {
         index: "03",
-        title: "Challenge-based",
-        tagline: "Real briefs every Wednesday",
-        image: asset("images/life/life-3.avif"),
+        title: "Positioning is not a framework",
+        tagline: "First Female Sensual Perfume",
+        image: asset("images/Website pics/d2c bazaar/DSC01747.jpeg"),
         description:
-          "Every Wednesday: a real brand, a real brief, a real deadline. You're judged on the work, not an exam.",
+          "Positioning is not just a 4 matrix framework. It is understanding how can we build a brand even in a fragmented market like Perfumes. Hey btw, we're building India's First Female Sensual Perfume Brand. Go buy from us.",
       },
       {
         index: "04",
-        title: "Real work from Week 1",
-        tagline: "Campaigns live from month one",
-        image: asset("images/life/gym-hiveschool.jpg"),
+        title: "Real Performance Marketing",
+        tagline: "Generating sales (Griply)",
+        image: asset("images/Website pics/d2c bazaar/DSC01280.jpeg"),
         description:
-          "You ship campaigns, build pages, run ads, and read dashboards from the first month. Your portfolio writes itself.",
+          "We learnt performance Marketing by actually running Meta Ads for our product. Already generated X sales btw.",
       },
     ],
   },
   audience: {
-    eyebrow: "Who this is for",
-    statement: "Three career directions.",
-    emphasis: "One build-first approach.",
+    eyebrow: "Outdated vs Real Marketing",
+    statement: "Learn from operators,",
+    emphasis: "not 10-year-old courses.",
     description:
-      "Open to college students and graduates from any academic background or discipline.",
+      "",
     items: [
       {
         index: "01",
-        title: "Pursue a marketing career",
-        tagline: "D2C · agencies · startups",
-        image: asset("images/life/life-2.avif"),
+        title: "Comparison: Other programs vs Hive",
+        tagline: "Tired of outdated concepts?",
+        image: asset("images/Website pics/d2c bazaar/DSC01390.jpeg"),
         description:
-          "For early-career professionals seeking hands-on roles at D2C brands, consumer technology companies, agencies, or high-growth startups.",
+          "I want to start my Marketing Career - but all these same 10 year old courses are teaching concepts that are outdated. 'It’s the same dark room and a 10 year experienced Performance Marketers teaching me about today’s marketing.'",
       },
       {
         index: "02",
-        title: "Build an independent practice",
-        tagline: "Clients · portfolio · revenue",
-        image: asset("images/life/depender.avif"),
+        title: "Learn from active operators",
+        tagline: "Mentors from top brands",
+        image: asset("images/Website pics/d2c bazaar/DSC01391.jpeg"),
         description:
-          "For professionals who wish to offer specialised marketing services on their own, with a portfolio and client relationships developed during the programme.",
+          "My brand professor from Nestle taught me how to create the quirkiest socks brand.",
       },
       {
         index: "03",
-        title: "Launch your own brand",
-        tagline: "Source · brand · sell",
-        image: asset("images/misc/life-at-hive.webp"),
+        title: "Real unit economics",
+        tagline: "Healthy contribution margins",
+        image: asset("images/Website pics/d2c bazaar/DSC01402.jpeg"),
         description:
-          "For founders and creators with a product idea or audience, learning marketing by building a D2C brand end to end — from sourcing and branding to listing, promotion, and sales.",
+          "Our growth mentor from Libas taught us how to have healthy contribution margins in a Cookie Brand. (e.g. ₹5 for packaging, ₹5 for COGS, etc.)",
       },
     ],
     footnote:
@@ -119,21 +119,21 @@ export const aiMarketingCoursePage: CoursePageConfig = {
         index: "Learn",
         title: "Practitioner-led sprints",
         subtitle: "Operators teach. You apply the same week.",
-        image: asset("images/life/life-1.avif"),
+        image: asset("images/Website pics/D2c showcase/DSC02669.jpeg"),
         href: "/ai-marketing/curriculum",
       },
       {
         index: "Build",
         title: "On your venture",
         subtitle: "Every lesson ships on the brand you are building.",
-        image: asset("images/why/ship-work.webp"),
+        image: asset("images/Website pics/Orientation/DSC01944.jpeg"),
         href: "/ai-marketing/curriculum",
       },
       {
         index: "Prove",
         title: "Wednesday challenges",
         subtitle: "Brief at 10 AM. Pitch to a panel by 8 PM.",
-        image: asset("images/life/life-5.avif"),
+        image: asset("images/Website pics/D2c showcase/DSC02765.jpeg"),
         href: "/ai-marketing/curriculum",
       },
     ],
@@ -149,7 +149,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
         index: "01",
         title: "Build a D2C brand",
         tagline: "Product to shelf to revenue",
-        image: asset("images/life/admission-image.avif"),
+        image: asset("images/Website pics/d2c bazaar/DSC01429.jpeg"),
         description:
           "Take a product from concept to shelf — covering sourcing, branding, marketplace listing, paid acquisition, and customer growth with measurable outcomes.",
         tags: ["Amazon", "Flipkart", "Blinkit", "Shopify"],
@@ -159,7 +159,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
         index: "02",
         title: "Start a content channel",
         tagline: "Audience from zero",
-        image: asset("images/life/life-1.avif"),
+        image: asset("images/Website pics/d2c bazaar/DSC01503.jpeg"),
         description:
           "Build and grow an audience from the ground up through content strategy, platform mechanics, format development, and monetisation — executed hands-on throughout the programme.",
         tags: ["Instagram", "YouTube", "LinkedIn", "Creator IP"],
@@ -169,7 +169,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
         index: "03",
         title: "Build a freelance agency",
         tagline: "Clients and commercial work",
-        image: asset("images/misc/life-at-hive.webp"),
+        image: asset("images/Website pics/d2c bazaar/DSC01548.jpeg"),
         description:
           "Acquire clients, deliver professional marketing engagements, and graduate with a portfolio supported by live work and commercial outcomes.",
         tags: ["D2C clients", "SaaS clients", "Retainers", "Case studies"],
@@ -230,7 +230,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
         description:
           "Choose your venture, define the niche, and ship your first challenge.",
         tags: [
-          "Learn: Positioning, GTM, content, AI foundations",
+          "Learn: Positioning, growth, content, AI foundations",
           "Build: Choose your venture",
           "Prove: First brand visit + opening challenge",
         ],
@@ -244,7 +244,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
         tags: [
           "Learn: Meta, Google, YouTube, Shopify, e-comm, q-comm",
           "Build: First live campaign",
-          "Prove: The ₹5,000 ad showdown",
+          "Prove: The ad showdown",
         ],
         image: "images/timeline/month2.webp",
       },
@@ -381,7 +381,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
       {
         question: "Who is this fellowship for?",
         answer:
-          "College students or graduates from any stream. Whether you want a marketing job, a freelance practice, or your own D2C brand — the programme is built around building, not sitting in lectures.",
+          "Anyone with the drive to learn — there's no age bar or background requirement. College students, graduates, working professionals, career-switchers, even a 70-year-old who simply wants to learn AI marketing are all welcome. Whether you want a marketing job, a freelance practice, or your own D2C brand — the programme is built around building, not sitting in lectures.",
       },
       {
         question: "How does the Learn · Build · Prove loop work?",
@@ -401,7 +401,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
       {
         question: "What is the programme fee?",
         answer:
-          "₹4,50,000 + GST. The fee covers on-campus learning, live campaign budgets, tool access, and AI subscriptions during the fellowship.",
+          "₹4,50,000. The fee covers on-campus learning, live campaign budgets, tool access, and AI subscriptions during the fellowship.",
       },
       {
         question: "How does admissions work?",
@@ -418,7 +418,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
     intake: "October 2026",
     description:
       "Programme fee includes ad budgets for live campaigns, tool access, and AI subscriptions during the fellowship.",
-    lines: [{ label: "Programme fee", amount: "₹4,50,000 + GST", highlight: true }],
+    lines: [{ label: "Programme fee", amount: "₹4,50,000", highlight: true }],
     scholarships: [
       {
         title: "Merit Scholarship",
@@ -434,10 +434,9 @@ export const aiMarketingCoursePage: CoursePageConfig = {
           "For candidates already building a brand, audience, or creative practice with traction or clear intent.",
       },
     ],
-    note: "College students or graduates. Any background, any stream.",
   },
   applicationForm: {
-    title: "AI Marketing Application Form",
+    title: "Fellowship Application Form",
     headline: "Fellowship application",
   },
   sections: {

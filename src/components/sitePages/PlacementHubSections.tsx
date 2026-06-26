@@ -22,9 +22,9 @@ export function PlacementReportEditions({ className }: { className?: string }) {
 
         <div className="mt-10 grid gap-5 lg:grid-cols-2">
           {placementReportEditions.map((edition) => (
-            <ScrollReveal key={edition.id}>
-              <article className="placement-edition-card group overflow-hidden rounded-2xl border border-ink/8 bg-white shadow-[0_24px_70px_rgba(6,15,50,0.08)]">
-                <div className="grid md:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
+            <ScrollReveal key={edition.id} className="h-full">
+              <article className="placement-edition-card group overflow-hidden rounded-2xl border border-ink/8 bg-white shadow-[0_24px_70px_rgba(6,15,50,0.08)] h-full">
+                <div className="grid md:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] h-full">
                   <div className="relative aspect-[4/5] min-h-[240px] md:aspect-auto md:min-h-[320px]">
                     <Image
                       src={edition.coverImage}
@@ -49,7 +49,7 @@ export function PlacementReportEditions({ className }: { className?: string }) {
                     <dl className="mt-6 grid grid-cols-2 gap-3">
                       <div className="rounded-xl bg-cream px-4 py-3">
                         <dt className="text-[10px] font-bold uppercase tracking-[0.18em] text-mid-gray">
-                          Avg CTC
+                          Average CTC
                         </dt>
                         <dd className="mt-1 text-xl font-bold text-ink">{edition.avgCtc}</dd>
                       </div>

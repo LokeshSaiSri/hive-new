@@ -84,8 +84,8 @@ export function CourseTimelineStage({
         </span>
 
         <div className="curriculum-stage__head">
-          <p className="curriculum-stage__eyebrow">{phase.phase}</p>
-          <h3 className="curriculum-stage__title">{phase.title}</h3>
+          <p className="curriculum-stage__eyebrow text-xs sm:text-sm">{phase.phase}</p>
+          <h3 className="curriculum-stage__title text-2xl sm:text-3xl lg:text-4xl">{phase.title}</h3>
         </div>
 
         <div className="curriculum-stage__split">
@@ -102,10 +102,10 @@ export function CourseTimelineStage({
           </div>
 
           <div className="curriculum-stage__panel curriculum-stage__panel--out">
-            <p className="curriculum-stage__panel-label curriculum-stage__panel-label--light">
+            <p className="curriculum-stage__panel-label curriculum-stage__panel-label--light text-xs sm:text-sm">
               What you ship
             </p>
-            <p className="curriculum-stage__description">{phase.description}</p>
+            <p className="curriculum-stage__description text-sm sm:text-base line-clamp-3 sm:line-clamp-none">{phase.description}</p>
           </div>
         </div>
       </div>

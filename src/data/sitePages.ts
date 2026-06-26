@@ -14,8 +14,8 @@ export const placementsHubHero: SiteHubHeroContent = {
   description:
     "Browse placement editions, salary distributions, and programme-specific hiring reports — the full placement archive across HiveSchool.",
   stats: [
-    { value: "₹16.47L", label: "Year 2 avg CTC" },
-    { value: "+184%", label: "Avg salary jump" },
+    { value: "₹16.47L", label: "Year 2 average CTC" },
+    { value: "+184%", label: "Average salary jump" },
     { value: "100+", label: "Hiring partners" },
     { value: "2", label: "Published editions" },
   ],

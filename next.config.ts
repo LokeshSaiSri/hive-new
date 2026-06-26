@@ -7,6 +7,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "img.youtube.com",
       },
+      {
+        protocol: "https",
+        hostname: "pub-760fa3db0e0e491da59597144b40ce1f.r2.dev",
+      },
     ],
     formats: ["image/avif", "image/webp"],
   },

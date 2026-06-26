@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionIntro } from "@/components/ui/SectionIntro";
 import type { CoursePageConfig } from "@/data/coursePages/types";
@@ -28,8 +29,13 @@ export function CoursePaths({ paths, className }: CoursePathsProps) {
           }`}
         >
           {paths.items.map((path, index) => (
-            <ScrollReveal key={path.index} delay={index * 0.08}>
-              <article className="course-path-card h-full">
+            <ScrollReveal key={path.index} delay={index * 0.08} className="h-full">
+              <article className="course-path-card h-full flex flex-col">
+                {path.image && (
+                  <div className="relative mb-5 w-full shrink-0 overflow-hidden rounded-xl bg-white/5" style={{ aspectRatio: "4/3" }}>
+                    <Image src={path.image} alt={path.title} fill className="object-contain" />
+                  </div>
+                )}
                 <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-accent">
                   {path.index}
                 </p>

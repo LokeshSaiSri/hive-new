@@ -17,7 +17,7 @@ export function TabGroup<T extends string>({
 }: TabGroupProps<T>) {
   return (
     <div
-      className={`flex flex-wrap gap-2 border-b pb-4 ${
+      className={`flex overflow-x-auto gap-2 border-b pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${
         dark ? "border-white/10" : "border-ink/10"
       } ${className}`}
     >
@@ -27,7 +27,7 @@ export function TabGroup<T extends string>({
           type="button"
           suppressHydrationWarning
           onClick={() => onChange(tab)}
-          className={`rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-300 ${
+          className={`whitespace-nowrap shrink-0 rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-300 ${
             active === tab
               ? dark
                 ? "border border-white/90 bg-gradient-to-b from-white to-[#f6f8fe] text-ink shadow-[0_8px_28px_rgba(0,0,0,0.2)]"

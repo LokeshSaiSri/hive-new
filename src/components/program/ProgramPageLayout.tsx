@@ -24,7 +24,7 @@ export function ProgramPageLayout({
       <Nav />
       <main className="program-page">
         {lead}
-        <ProgramSubNav nav={nav} activeTab={activeTab} />
+        {nav.tabs.length > 1 && <ProgramSubNav nav={nav} activeTab={activeTab} />}
         {children}
       </main>
       <Footer />

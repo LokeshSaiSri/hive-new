@@ -39,8 +39,8 @@ export function CourseCapstones({ capstones, className }: CourseCapstonesProps) 
                   {item.index}
                   {item.featured ? " · Final capstone" : ""}
                 </p>
-                <h3 className="mt-3 text-lg font-bold leading-snug text-ink">{item.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-mid-gray">{item.description}</p>
+                <h3 className="mt-2 sm:mt-3 text-base sm:text-lg font-bold leading-snug text-ink">{item.title}</h3>
+                <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm leading-relaxed text-mid-gray line-clamp-3 sm:line-clamp-none">{item.description}</p>
               </article>
             </ScrollReveal>
           ))}

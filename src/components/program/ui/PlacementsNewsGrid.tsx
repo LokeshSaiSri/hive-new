@@ -120,7 +120,7 @@ export function PlacementsNewsGrid({ articles, compact = false, className }: Pla
           eyebrow="In the news"
           statement="As featured in India's"
           emphasis="leading publications."
-          description="Latest · Year 2 PGP Cohort 1: ₹16.47L avg · ₹27.8L highest · +184% avg salary jump"
+          description="Latest · Year 2 PGP Cohort 1: ₹16.47L average · ₹27.8L highest · +184% average salary jump"
           light={false}
           align="left"
         />

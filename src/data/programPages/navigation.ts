@@ -22,7 +22,10 @@ const DEFAULT_PROGRAMME_LABELS: Record<ProgramSlug, string> = {
 };
 
 function tabsForSlug(slug: ProgramSlug): TabDef[] {
-  if (slug === "ai-marketing" || slug === "ug") {
+  if (slug === "ug") {
+    return BASE_TABS.filter((tab) => tab.id === "overview");
+  }
+  if (slug === "ai-marketing") {
     return BASE_TABS.filter((tab) => tab.id !== "placements");
   }
   return BASE_TABS;

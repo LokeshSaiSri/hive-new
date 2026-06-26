@@ -9,7 +9,7 @@ export const whyHiveStats: MegaStat[] = [
   {
     value: "₹16.47L",
     title: "Average CTC",
-    shortLabel: "Avg CTC",
+    shortLabel: "Average CTC",
     description: "in PGP Cohort placements",
   },
   {
@@ -20,8 +20,8 @@ export const whyHiveStats: MegaStat[] = [
   },
   {
     value: "+184%",
-    title: "Avg Salary Jump",
-    shortLabel: "Avg Jump",
+    title: "Average Salary Jump",
+    shortLabel: "Average Jump",
     description: "from pre-programme to placement",
   },
   {
