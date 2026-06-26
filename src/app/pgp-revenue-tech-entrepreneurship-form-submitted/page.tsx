@@ -10,7 +10,7 @@ export default function PgpFormSubmittedPage() {
   return (
     <FormSubmittedPage
       programme="PGP in Revenue, Tech and Entrepreneurship"
-      applyHref="/pgp/admissions"
+      applyHref="/pgp-revenue-tech-entrepreneurship/admissions"
     />
   );
 }

@@ -92,10 +92,10 @@ export function CampusTourPanel() {
               ))}
             </ul>
             <div className="mt-8 flex flex-wrap gap-3">
-              <PillButton href="/pgp/admissions" variant="highlight" tone="dark">
+              <PillButton href="/pgp-revenue-tech-entrepreneurship/admissions" variant="highlight" tone="dark">
                 Apply to PGP
               </PillButton>
-              <PillButton href="/pgp" variant="secondary" tone="dark">
+              <PillButton href="/pgp-revenue-tech-entrepreneurship" variant="secondary" tone="dark">
                 Explore programmes
               </PillButton>
             </div>
@@ -192,7 +192,7 @@ export function CampusVisitPanel() {
           <ScrollReveal>
             <div className="flex h-full flex-col justify-center gap-3">
               <Link
-                href="/pgp/admissions"
+                href="/pgp-revenue-tech-entrepreneurship/admissions"
                 className="rounded-xl border border-white/10 px-5 py-4 text-sm font-semibold text-white transition hover:border-white/25 hover:bg-white/[0.04]"
               >
                 PGP admissions →

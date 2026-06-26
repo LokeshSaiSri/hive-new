@@ -43,7 +43,7 @@ export function FormSubmittedPage({ programme, applyHref }: FormSubmittedPagePro
 
           <p className="mt-8 text-sm text-white/45">
             Questions?{" "}
-            <Link href="/pgp/admissions" className="text-white/70 underline underline-offset-4">
+            <Link href="/pgp-revenue-tech-entrepreneurship/admissions" className="text-white/70 underline underline-offset-4">
               Talk to admissions
             </Link>
           </p>

@@ -75,7 +75,7 @@ export function ProgramMentors({
         </ScrollReveal>
 
         <ScrollReveal className="mt-8">
-          <TabGroup tabs={activeCategories as string[]} active={category} onChange={setCategory as string[]} />
+          <TabGroup tabs={activeCategories as string[]} active={category} onChange={setCategory as any} />
         </ScrollReveal>
       </div>
 

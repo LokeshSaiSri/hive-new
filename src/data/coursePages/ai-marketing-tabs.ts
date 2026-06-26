@@ -247,7 +247,7 @@ export const aiMarketingPlacementNews: NewsArticle[] = [
     title: "Year 2 PGP · ₹16.47L average · ₹27.8L highest",
     date: "2025–26",
     image: asset("images/news/annual-placement.jpg"),
-    href: "/pgp/placements",
+    href: "/pgp-revenue-tech-entrepreneurship/placements",
   },
   {
     outlet: "Hindustan Times",

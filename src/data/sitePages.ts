@@ -36,7 +36,7 @@ export const mentorsHubHero: SiteHubHeroContent = {
     { value: "35+", label: "Prep sessions" },
     { value: "1:1", label: "Mentor ownership" },
   ],
-  primaryCta: { label: "See programmes", href: "/pgp" },
+  primaryCta: { label: "See programmes", href: "/pgp-revenue-tech-entrepreneurship" },
   secondaryCta: { label: "Browse directory", href: "#mentor-directory" },
 };
 
@@ -54,7 +54,7 @@ export const campusHubHero: SiteHubHeroContent = {
     { value: "Hybrid", label: "Live + residential" },
   ],
   primaryCta: { label: "Watch campus tour", href: "#campus-tour" },
-  secondaryCta: { label: "View programmes", href: "/pgp" },
+  secondaryCta: { label: "View programmes", href: "/pgp-revenue-tech-entrepreneurship" },
 };
 
 export const mentorSessionSteps = [
@@ -107,7 +107,7 @@ export const campusLifeGallery = [
 export const programmePlacementSummaries = [
   {
     title: "PGP in Revenue AI & Entrepreneurship",
-    href: "/pgp/placements",
+    href: "/pgp-revenue-tech-entrepreneurship/placements",
     avgCtc: "₹16.47L",
     highest: "₹27.8L",
     highlight: "Year 2 residential cohort",

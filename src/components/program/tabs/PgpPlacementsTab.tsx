@@ -31,7 +31,7 @@ export function PgpPlacementsTab() {
       <ProgramCohortVoices stories={buildCohortStories(pgpAlumniQuotes, testimonials)} />
       <ProgramPlacements
         cohortLabel="Placement Report 2025–26 · PGP Cohort Year 2"
-        applyHref="/pgp/admissions"
+        applyHref="/pgp-revenue-tech-entrepreneurship/admissions"
       />
       <PlacementsSystemDeck pillars={pgpPlacementSystem} intro={pgpPlacementSystemIntro} />
       <PlacementsDistributionCharts />

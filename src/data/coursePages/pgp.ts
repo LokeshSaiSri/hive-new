@@ -19,8 +19,8 @@ export const pgpCoursePage: CoursePageConfig = {
     videoId: "rFZLsmtruzM",
     backgroundVideo: "videos/pgp-hero.mp4",
     posterVideoId: "3OVg1OFxd1k",
-    primaryCta: { label: "Apply Now", href: "/pgp/admissions" },
-    secondaryCta: { label: "Download Placement Report", href: "/pgp/placements" },
+    primaryCta: { label: "Apply Now", href: "/pgp-revenue-tech-entrepreneurship/admissions" },
+    secondaryCta: { label: "Download Placement Report", href: "/pgp-revenue-tech-entrepreneurship/placements" },
     stats: [
       { value: "09", label: "Months full-time residential" },
       { value: "₹16.47L", label: "Average CTC" },
@@ -69,7 +69,7 @@ export const pgpCoursePage: CoursePageConfig = {
       title: "Not sure if this programme is right for you?",
       description:
         "Speak with the admissions team for a personal profile review and an honest read on whether you'll fit the cohort.",
-      primary: { label: "Book a call", href: "/pgp/admissions" },
+      primary: { label: "Book a call", href: "/pgp-revenue-tech-entrepreneurship/admissions" },
       secondary: { label: "Download PGP handbook", href: "/4-Month-Roadmap-Brand-x-Revenue.pdf" },
     },
     {
@@ -79,7 +79,7 @@ export const pgpCoursePage: CoursePageConfig = {
       title: "Get the full breakdown of sprints, tools, and challenges",
       description:
         "Understand how the journey is structured — from foundations to live company work.",
-      primary: { label: "Apply now", href: "/pgp/admissions" },
+      primary: { label: "Apply now", href: "/pgp-revenue-tech-entrepreneurship/admissions" },
       secondary: { label: "Download PGP handbook", href: "/4-Month-Roadmap-Brand-x-Revenue.pdf" },
     },
     {
@@ -89,8 +89,8 @@ export const pgpCoursePage: CoursePageConfig = {
       title: "Work on real business problems every sprint",
       description:
         "Replace passive lectures with proof-of-work, operator feedback, and role-ready outcomes.",
-      primary: { label: "See how it works", href: "/pgp/curriculum" },
-      secondary: { label: "View placements", href: "/pgp/placements" },
+      primary: { label: "See how it works", href: "/pgp-revenue-tech-entrepreneurship/curriculum" },
+      secondary: { label: "View placements", href: "/pgp-revenue-tech-entrepreneurship/placements" },
     },
     {
       id: "placements-cta",
@@ -99,8 +99,8 @@ export const pgpCoursePage: CoursePageConfig = {
       title: "See where graduates go after HiveSchool",
       description:
         "Role-wise outcomes, hiring partner network, and proof-of-work from recent cohorts.",
-      primary: { label: "View placements", href: "/pgp/placements" },
-      secondary: { label: "Download reports", href: "/pgp/placements" },
+      primary: { label: "View placements", href: "/pgp-revenue-tech-entrepreneurship/placements" },
+      secondary: { label: "Download reports", href: "/pgp-revenue-tech-entrepreneurship/placements" },
     },
   ],
   timeline: {

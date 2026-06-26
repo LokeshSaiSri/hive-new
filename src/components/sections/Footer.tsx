@@ -7,11 +7,11 @@ import { isStaticAssetHref } from "@/lib/isStaticAssetHref";
 import { placementReportDownloadPath } from "@/data/placementReportAccess";
 
 const pgpLinks = [
-  { label: "Overview", href: "/pgp" },
-  { label: "Curriculum", href: "/pgp/curriculum" },
-  { label: "Placements", href: "/pgp/placements" },
-  { label: "Admissions", href: "/pgp/admissions" },
-  { label: "Application Form", href: "/pgp#apply" },
+  { label: "Overview", href: "/pgp-revenue-tech-entrepreneurship" },
+  { label: "Curriculum", href: "/pgp-revenue-tech-entrepreneurship/curriculum" },
+  { label: "Placements", href: "/pgp-revenue-tech-entrepreneurship/placements" },
+  { label: "Admissions", href: "/pgp-revenue-tech-entrepreneurship/admissions" },
+  { label: "Application Form", href: "/pgp-revenue-tech-entrepreneurship#apply" },
 ];
 
 const fellowshipLinks = [

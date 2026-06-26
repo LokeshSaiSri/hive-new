@@ -19,7 +19,7 @@ export const navItems: NavItem[] = [
     items: [
       {
         label: "PGP in Revenue AI & Entrepreneurship",
-        href: "/pgp",
+        href: "/pgp-revenue-tech-entrepreneurship",
       },
       {
         label: "AI Marketing Fellowship",

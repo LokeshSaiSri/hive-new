@@ -335,7 +335,7 @@ export function CourseVisualStory({
           <div className="mt-16 pb-32">
             <div className="flex flex-col gap-6 relative">
               {audience.items.map((item, index) => (
-                <StackedCard key={item.index} item={item} index={index} total={audience.items.length} />
+                <StackedCard key={item.index} item={item} index={index} />
               ))}
             </div>
           </div>

@@ -50,7 +50,7 @@ export function PgpCurriculumTab({ config }: PgpCurriculumTabProps) {
       {placementsCta && <ProgramVisualCtaBand cta={placementsCta} chip="100+ hiring partners" className="pt-0 border-t-0" />}
       <ProgramCohortVoices stories={buildCohortStories(pgpAlumniQuotes, testimonials)} />
       <ProgramReels eyebrow="Reels" statement="Student" emphasis="shorts." className="pt-0 border-t-0" />
-      <ProgramFaq faqs={config.faqs} variant="theatre" applyHref="/pgp/admissions" />
+      <ProgramFaq faqs={config.faqs} variant="theatre" applyHref="/pgp-revenue-tech-entrepreneurship/admissions" />
     </>
   );
 }

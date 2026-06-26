@@ -24,8 +24,8 @@ export const programmes: Programme[] = [
     format: "On Campus (Opt-in Residential)",
     duration: "9 Months",
     status: "Round 2 Applications Open",
-    learnMoreHref: "/pgp",
-    enrolHref: "/pgp#apply",
+    learnMoreHref: "/pgp-revenue-tech-entrepreneurship",
+    enrolHref: "/pgp-revenue-tech-entrepreneurship#apply",
   },
   {
     id: "ai-marketing",
@@ -62,7 +62,7 @@ export const nextStepCards = [
     title: "PGP in Revenue, AI & Entrepreneurship",
     description:
       "India's revenue-first business school — 9-month residential PGP in Gurugram.",
-    href: "/pgp",
+    href: "/pgp-revenue-tech-entrepreneurship",
   },
   {
     title: "AI Marketing & Entrepreneurship Fellowship",
