@@ -241,7 +241,7 @@ export function ApplyForm({
     city: "",
   });
   const [error, setError] = useState<string | undefined>();
-  const [submitted, setSubmitted] = useState(false);
+  const [submitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [inputFocused, setInputFocused] = useState(false);
 

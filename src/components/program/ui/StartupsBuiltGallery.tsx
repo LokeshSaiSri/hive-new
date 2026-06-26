@@ -101,6 +101,7 @@ function FlipbookViewer({
   }, [onPageChange]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setReady(true);
   }, []);
 

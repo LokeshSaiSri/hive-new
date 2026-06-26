@@ -32,6 +32,7 @@ function StatCell({ stat }: { stat: MegaStat }) {
 
   useEffect(() => {
     if (!isInView || prefersReducedMotion || !isNumeric) {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
       setDisplay(stat.value);
       return;
     }

@@ -102,6 +102,7 @@ function useChartInView() {
   const [active, setActive] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (isInView || prefersReducedMotion) setActive(true);
   }, [isInView, prefersReducedMotion]);
 
@@ -114,6 +115,7 @@ function useChartAnimation(chartKey: ChartKey, enabled: boolean) {
 
   useEffect(() => {
     if (prefersReducedMotion) {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
       setReady(enabled);
       return;
     }

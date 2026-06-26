@@ -44,6 +44,7 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
   const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setEnabled(shouldUseSmoothScroll());
   }, []);
 

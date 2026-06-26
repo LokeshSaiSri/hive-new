@@ -9,7 +9,6 @@ import { TabGroup } from "@/components/ui/TabGroup";
 import { VideoCard } from "@/components/ui/VideoCard";
 import { PillButton } from "@/components/ui/PillButton";
 import { ScrollHorizontal } from "@/components/ui/ScrollHorizontal";
-import { HorizontalScroller } from "@/components/ui/HorizontalScroller";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { programmes } from "@/data/programmes";
 

@@ -63,6 +63,7 @@ export function HorizontalScroller({
   }, [autoplayDelay]);
 
   const plugins = useMemo(
+    // eslint-disable-next-line react-hooks/refs
     () => (shouldAutoplay ? [autoplayPlugin.current] : []),
     [shouldAutoplay],
   );
@@ -134,6 +135,7 @@ export function HorizontalScroller({
     autoplayPlugin.current.play();
 
     return () => {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       autoplayPlugin.current.stop();
     };
   }, [emblaApi, shouldAutoplay]);

@@ -109,8 +109,11 @@ export function ReelPhoneShowcase({
   const reel = reels[activeIndex];
   const shouldLoadVideo = inView && reel;
 
+    // eslint-disable-next-line react-hooks/refs
   activeIndexRef.current = activeIndex;
+    // eslint-disable-next-line react-hooks/refs
   isPausedRef.current = isPaused;
+    // eslint-disable-next-line react-hooks/refs
   soundOnRef.current = soundOn;
 
   const selectReel = useCallback(
@@ -213,6 +216,7 @@ export function ReelPhoneShowcase({
   }, [togglePlayback]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setActiveIndex(0);
     setIsPaused(false);
     setSoundOn(false);

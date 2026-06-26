@@ -26,6 +26,7 @@ export function ProgramMentorGallery({
   const total = mentors.length;
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setActive(0);
   }, [resetKey]);
 

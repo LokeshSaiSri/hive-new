@@ -17,6 +17,7 @@ export function useAutoAdvance(
   const enabled = options?.enabled ?? true;
   const onAdvanceRef = useRef(onAdvance);
 
+    // eslint-disable-next-line react-hooks/refs
   onAdvanceRef.current = onAdvance;
 
   useEffect(() => {

@@ -497,7 +497,7 @@ export function CourseApplicationForm({
     linkedin: "",
   });
   const [error, setError] = useState<string>();
-  const [submitted, setSubmitted] = useState(false);
+  const [submitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [activeMetric, setActiveMetric] = useState(0);
   const [metricPaused, setMetricPaused] = useState(false);

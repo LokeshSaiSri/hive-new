@@ -1,6 +1,5 @@
 "use client";
 
-import { VideoCard } from "@/components/ui/VideoCard";
 
 import { PillButton } from "@/components/ui/PillButton";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";

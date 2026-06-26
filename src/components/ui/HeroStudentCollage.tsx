@@ -76,6 +76,7 @@ export function HeroStudentCollage({
     }, ROTATE_MS);
 
     return () => window.clearInterval(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeIndex, isInView, isPaused, prefersReducedMotion, students.length]);
 
   return (

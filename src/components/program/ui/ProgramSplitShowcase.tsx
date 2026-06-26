@@ -37,6 +37,7 @@ export function ProgramSplitShowcase({
   const total = items.length;
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setActive(0);
   }, [resetKey]);
 

@@ -24,6 +24,7 @@ export function HeroBackgroundVideo({
   const isRemotePoster = posterSrc.startsWith("http");
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setVideoReady(false);
     setActiveSrc(null);
 

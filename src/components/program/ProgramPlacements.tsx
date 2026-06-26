@@ -11,13 +11,13 @@ import { hiringPartnerLogos } from "@/data/partners";
 
 type ProgramPlacementsProps = {
   cohortLabel?: string;
-  className?: string;
+
   applyHref?: string;
 };
 
 export function ProgramPlacements({
   cohortLabel = "Placement Report 2024–25 · PGP Cohort Year 1",
-  className,
+
   applyHref = "#apply",
 }: ProgramPlacementsProps) {
   const half = Math.ceil(hiringPartnerLogos.length / 2);

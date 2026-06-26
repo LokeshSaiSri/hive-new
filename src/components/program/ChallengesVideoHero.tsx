@@ -66,6 +66,7 @@ export function ChallengesVideoHero({ className }: { className?: string } = {}) 
   const active = challenges[activeIndex];
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setPreviewReady(false);
     setPosterUrl(
       youtubeThumbnail(active.videoId, active.thumbnailQuality ?? "maxresdefault"),

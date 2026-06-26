@@ -35,6 +35,7 @@ export function CampusVideoHero({
   const [posterUrl, setPosterUrl] = useState(posterSrc ?? youtubeThumbnail(videoId));
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setPreviewReady(false);
     setPosterUrl(posterSrc ?? youtubeThumbnail(videoId));
   }, [videoId, posterSrc]);

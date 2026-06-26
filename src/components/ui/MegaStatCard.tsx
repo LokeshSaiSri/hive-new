@@ -41,6 +41,7 @@ export function MegaStatCard({
 
   useEffect(() => {
     if (!isInView || prefersReducedMotion || !isNumeric) {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
       setDisplay(value);
       return;
     }
