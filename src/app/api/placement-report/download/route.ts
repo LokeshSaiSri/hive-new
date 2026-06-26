@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { PLACEMENT_REPORT_ACCESS_COOKIE } from "@/data/placementReportAccess";
-import { readPlacementReportFile } from "@/lib/placementReport/download";
+import { getPlacementReportEdition } from "@/data/placementReportAccess";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -20,21 +20,10 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: "Complete the form to download this report" }, { status: 403 });
   }
 
-  try {
-    const file = await readPlacementReportFile(editionId);
-    if (!file) {
-      return NextResponse.json({ error: "Report not found" }, { status: 404 });
-    }
-
-    return new NextResponse(file.buffer, {
-      headers: {
-        "Content-Type": "application/pdf",
-        "Content-Disposition": `attachment; filename="${file.filename}"`,
-        "Cache-Control": "private, no-store",
-      },
-    });
-  } catch (error) {
-    console.error("Placement report download failed:", error);
-    return NextResponse.json({ error: "Could not load report" }, { status: 500 });
+  const edition = getPlacementReportEdition(editionId);
+  if (!edition) {
+    return NextResponse.json({ error: "Report not found" }, { status: 404 });
   }
+
+  return NextResponse.redirect(new URL(edition.pdfHref, request.url));
 }
