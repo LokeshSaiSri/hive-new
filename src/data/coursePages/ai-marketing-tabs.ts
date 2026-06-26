@@ -126,17 +126,17 @@ export const aiMarketingToolStackIntro =
 export const aiMarketingToolStack: ToolCategory[] = [
   {
     title: "Performance & growth",
-    icon: videoAsset("images/tech/tech-stack-2.png"),
+    image: videoAsset("images/tech/tech-stack-2.png"),
     items: ["Meta Ads", "Google Ads", "YouTube Ads", "Shopify", "GA4", "Google Tag Manager"],
   },
   {
     title: "Brand & content",
-    icon: videoAsset("images/tech/tech-stack-1.png"),
+    image: videoAsset("images/tech/tech-stack-1.png"),
     items: ["Figma", "Canva", "CapCut", "Notion", "Buffer", "Instagram / YouTube"],
   },
   {
     title: "AI & automation",
-    icon: videoAsset("images/tech/tech-stack-3.png"),
+    image: videoAsset("images/tech/tech-stack-3.png"),
     items: ["ChatGPT", "Claude", "Zapier", "Make", "Clay", "Perplexity"],
   },
 ];
