@@ -72,6 +72,7 @@ export function Nav() {
               >
                 <button
                   type="button"
+                  suppressHydrationWarning
                   className={`flex items-center gap-1.5 ${desktopNavLink} ${
                     openDropdown === item.label ? desktopNavLinkActive : ""
                   }`}

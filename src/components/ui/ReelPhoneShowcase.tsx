@@ -37,6 +37,7 @@ function ReelBackCard({ reel, side, onSelect }: ReelBackCardProps) {
         <motion.button
           type="button"
           key={reel.id}
+          suppressHydrationWarning
           onClick={(event) => {
             event.stopPropagation();
             onSelect();
@@ -273,6 +274,7 @@ export function ReelPhoneShowcase({
 
             <button
               type="button"
+              suppressHydrationWarning
               className="reel-phone-screen"
               onPointerDown={handleScreenPointerDown}
               onPointerUp={handleScreenPointerUp}
@@ -358,6 +360,7 @@ export function ReelPhoneShowcase({
             <button
               key={item.id}
               type="button"
+              suppressHydrationWarning
               role="tab"
               aria-selected={index === activeIndex}
               aria-label={item.caption}

@@ -545,6 +545,7 @@ export function ApplyForm({
                           current.type === "tel") && (
                           <div className="relative max-w-xl">
                             <input
+                              suppressHydrationWarning
                               ref={inputRef}
                               type={current.type}
                               value={form[current.id]}

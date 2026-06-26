@@ -245,6 +245,7 @@ function MetricSpotlight({
             return (
               <button
                 key={metric.label}
+                suppressHydrationWarning
                 type="button"
                 onClick={() => onSelect(index)}
                 className={`group relative overflow-hidden rounded-xl border px-3.5 py-3 text-left transition-all duration-300 ${isActive
@@ -336,7 +337,7 @@ function ApplicationDossier({ form }: { form: FormState }) {
     <div className="card-metallic-blue rounded-2xl p-4 shadow-[0_10px_28px_rgba(30,68,226,0.08)]">
       <div className="flex items-center justify-between gap-3">
         <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-ink/45">
-          Your dossier
+          Your application process
         </p>
         <span className="text-[10px] font-semibold text-electric-blue">{Math.round(progress)}%</span>
       </div>
@@ -361,7 +362,7 @@ function ApplicationDossier({ form }: { form: FormState }) {
             {form.name.trim() || "Your name appears here"}
           </p>
           <p className="truncate text-xs text-ink/50">
-            {form.email.trim() || "Email · Phone · LinkedIn build your profile"}
+            {form.email.trim() || "Email · Phone · LinkedIn"}
           </p>
         </div>
       </div>
@@ -417,6 +418,7 @@ function FormField({
         {meta.label}
       </label>
       <input
+        suppressHydrationWarning
         id={`apply-${fieldKey}`}
         name={fieldKey}
         type={meta.type}
@@ -559,7 +561,7 @@ export function CourseApplicationForm({
             <em className="font-serif font-medium not-italic text-brand-blue">{headline}</em>
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-ink/58 sm:text-base">
-            Same programme details. A faster path in — tell us who you are and we&apos;ll line up
+            A faster path in — tell us who you are and we&apos;ll line up
             your admissions conversation.
           </p>
         </div>
@@ -716,6 +718,7 @@ export function CourseApplicationForm({
                     )}
 
                     <motion.button
+                      suppressHydrationWarning
                       type="submit"
                       disabled={!isComplete || submitting}
                       whileHover={isComplete && !submitting && !prefersReducedMotion ? { scale: 1.01 } : undefined}
@@ -735,9 +738,6 @@ export function CourseApplicationForm({
                       {isComplete && !submitting && <SubmitArrow />}
                     </motion.button>
 
-                    <p className="mt-4 text-center text-xs text-ink/42">
-                      No spam. A real admissions call from Gurugram within 2 business days.
-                    </p>
                   </form>
                 )}
               </div>

@@ -24,6 +24,7 @@ function ChallengeThumb({
   return (
     <button
       type="button"
+      suppressHydrationWarning
       onClick={onSelect}
       className={`challenges-video-thumb group ${active ? "is-active" : ""}`}
       aria-label={challenge.caption}
@@ -78,6 +79,7 @@ export function ChallengesVideoHero({ className }: { className?: string } = {}) 
     <section id="challenges" className={`challenges-video-hero panel-bleed ${className ?? ""}`}>
       <button
         type="button"
+        suppressHydrationWarning
         onClick={() => openVideo(active.videoId)}
         className="challenges-video-hero__stage group"
         aria-label={`Play ${active.caption}`}

@@ -38,8 +38,8 @@ export function CourseTimelineStage({
   });
 
   const opacity = useTransform(dist, (d) => {
-    if (d < -0.15) return 0;
-    if (d < 0) return Math.min(1, 1 + d * 5);
+    if (d < -1.15) return 0;
+    if (d < -1) return Math.max(0, 1 + (d + 1) * 6.5);
     if (d > 1) return 0;
     if (d > 0.85) return Math.max(0, 1 - (d - 0.85) * 6.5);
     return 1;

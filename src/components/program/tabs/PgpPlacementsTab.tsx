@@ -8,6 +8,7 @@ import { PlacementsSystemDeck } from "@/components/program/ui/PlacementsSystemDe
 import { WhyRevenue } from "@/components/sections/WhyRevenue";
 import { ProgramCohortVoices } from "@/components/program/ui/ProgramCohortVoices";
 import { ProofOfWorkStrip } from "@/components/program/ui/ProofOfWorkStrip";
+import { StartupsBuiltGallery } from "@/components/program/ui/StartupsBuiltGallery";
 import { buildCohortStories } from "@/data/coursePages/cohortStories";
 import {
   pgpAlumniQuotes,
@@ -28,9 +29,13 @@ export function PgpPlacementsTab() {
       <PlacementsHiringBand />
       <WhyRevenue sections={{ contrast: false, ladder: false }} />
       <ProgramCohortVoices stories={buildCohortStories(pgpAlumniQuotes, testimonials)} />
-      <ProgramPlacements cohortLabel="Placement Report 2025–26 · PGP Cohort Year 2" />
+      <ProgramPlacements
+        cohortLabel="Placement Report 2025–26 · PGP Cohort Year 2"
+        applyHref="/pgp/admissions"
+      />
       <PlacementsSystemDeck pillars={pgpPlacementSystem} intro={pgpPlacementSystemIntro} />
       <PlacementsDistributionCharts />
+      <StartupsBuiltGallery className="pt-0 pb-0 border-t-0" />
       <ProofOfWorkStrip items={pgpPortfolioDeliverables} />
       <PlacementsCareerPathways groups={pgpCareerPathways} className="pt-0 border-t-0" />
       <PlacementsNewsGrid articles={pgpPlacementNews} className="pt-0 border-t-0" />

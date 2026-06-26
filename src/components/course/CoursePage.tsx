@@ -22,6 +22,11 @@ import { CourseAudience } from "@/components/course/CourseAudience";
 import { CourseVisualStory } from "@/components/course/CourseVisualStory";
 import { ProgramCampus } from "@/components/program/ProgramCampus";
 import { PlacementsCohortGallery } from "@/components/program/ui/PlacementsCohortGallery";
+import { StartupsBuiltGallery } from "@/components/program/ui/StartupsBuiltGallery";
+import { ProofOfWorkStrip } from "@/components/program/ui/ProofOfWorkStrip";
+import { mentors } from "@/data/mentors";
+import { pgpPortfolioDeliverables } from "@/data/coursePages/pgp-tabs";
+import { aiMarketingPortfolioDeliverables } from "@/data/coursePages/ai-marketing-tabs";
 import type { CoursePageConfig } from "@/data/coursePages/types";
 import type { ProgramSlug } from "@/data/programPages/types";
 
@@ -47,11 +52,9 @@ export function CoursePage({ config, slug }: CoursePageProps) {
     currentDark = true;
   }
   if (config.sections.reels) {
-    seqClasses.reels = currentDark ? "pt-0" : "";
     currentDark = true;
   }
   if (config.sections.studentStories) {
-    seqClasses.studentStories = currentDark ? "pt-0" : "";
     currentDark = true;
   }
   if (config.sections.campus) {
@@ -89,10 +92,10 @@ export function CoursePage({ config, slug }: CoursePageProps) {
       {cta1 && <CourseInlineCtaBand cta={cta1} />}
 
       {config.sections.visualStory &&
-      config.pillars &&
-      config.audience &&
-      config.highlights &&
-      config.paths ? (
+        config.pillars &&
+        config.audience &&
+        config.highlights &&
+        config.paths ? (
         <CourseVisualStory
           pillars={config.pillars}
           audience={config.audience}
@@ -104,6 +107,7 @@ export function CoursePage({ config, slug }: CoursePageProps) {
           {config.pillars && <CoursePillars pillars={config.pillars} />}
           {config.audience && <CourseAudience audience={config.audience} />}
           {config.highlights && <CourseHighlights highlights={config.highlights} />}
+          {slug === "ai-marketing" && <StartupsBuiltGallery />}
           {config.paths && <CoursePaths paths={config.paths} />}
         </>
       )}
@@ -114,7 +118,21 @@ export function CoursePage({ config, slug }: CoursePageProps) {
 
       {slug === "pgp" && <PlacementsCohortGallery className="pt-0 border-t-0" />}
 
-      {config.sections.mentors && <ProgramMentors />}
+      {config.sections.mentors && (
+        <ProgramMentors
+          {...(slug === "ai-marketing"
+            ? {
+                categoryOverride: ["Marketing", "Growth", "Data and AI"] as const,
+                mentorsOverride: mentors
+                  .filter((m) => m.category !== "Sales")
+                  .map((m) => ({
+                    ...m,
+                    category: m.category === "GTM" ? "Growth" : m.category,
+                  })) as typeof mentors,
+              }
+            : {})}
+        />
+      )}
 
       {config.sections.challenges && <ProgramChallenges />}
 
@@ -136,6 +154,12 @@ export function CoursePage({ config, slug }: CoursePageProps) {
         ) : (
           <ProgramCampus className={seqClasses.campus} />
         ))}
+
+      <ProofOfWorkStrip
+        items={slug === "pgp" ? pgpPortfolioDeliverables : aiMarketingPortfolioDeliverables}
+      />
+
+      <StartupsBuiltGallery className="pt-0 border-t-0" />
 
       {cta4 && <CourseInlineCtaBand cta={cta4} />}
 

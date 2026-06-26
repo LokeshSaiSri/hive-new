@@ -197,6 +197,7 @@ export function ProofOfWorkStrip({
                     key={item.title}
                     type="button"
                     role="tab"
+                    suppressHydrationWarning
                     aria-selected={isActive}
                     onClick={() => selectItem(index)}
                     className={`portfolio-vault__rail-btn ${accentClass[index % accentClass.length]} ${isActive ? "is-active" : ""

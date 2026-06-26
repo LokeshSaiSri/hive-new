@@ -25,6 +25,7 @@ export function TabGroup<T extends string>({
         <button
           key={tab}
           type="button"
+          suppressHydrationWarning
           onClick={() => onChange(tab)}
           className={`rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-300 ${
             active === tab

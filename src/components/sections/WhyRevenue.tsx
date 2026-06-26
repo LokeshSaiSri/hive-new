@@ -119,7 +119,7 @@ export function WhyRevenue({ sections: sectionsProp }: WhyRevenueProps = {}) {
 
               <div className="mt-8 grid gap-6 lg:grid-cols-2 lg:gap-8 lg:items-stretch">
                 <div className="h-full rounded-2xl border border-white/30 bg-white p-8 shadow-[0_16px_38px_rgba(6,15,50,0.12)] sm:p-10 lg:p-12">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-mid-gray">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-ink/80">
                     Most MBA programs
                   </p>
                   <h4 className="mt-4 text-3xl font-bold text-ink/60 sm:text-4xl">
@@ -248,12 +248,23 @@ export function WhyRevenue({ sections: sectionsProp }: WhyRevenueProps = {}) {
                       <AnimatePresence mode="wait" initial={false}>
                         <motion.div
                           key={industry.industry}
+                          drag="x"
+                          dragConstraints={{ left: 0, right: 0 }}
+                          dragElastic={0.2}
+                          onDragEnd={(e, { offset }) => {
+                            const swipe = offset.x;
+                            if (swipe < -50) {
+                              setActiveIndex((prev) => (prev + 1) % industryColumns.length);
+                            } else if (swipe > 50) {
+                              setActiveIndex((prev) => (prev - 1 + industryColumns.length) % industryColumns.length);
+                            }
+                          }}
                           variants={prefersReducedMotion ? featuredVariantsReduced : featuredVariants}
                           initial="enter"
                           animate="center"
                           exit="exit"
                           transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
-                          className="w-full"
+                          className="w-full cursor-grab active:cursor-grabbing"
                         >
                           <div className="card-metallic-dark text-white shadow-[0_24px_56px_rgba(6,15,50,0.24)] ring-2 ring-blue-glow/40 rounded-xl p-6 sm:p-8 w-full">
                             <div className="flex items-start justify-between gap-2">

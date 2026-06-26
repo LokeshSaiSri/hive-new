@@ -49,6 +49,7 @@ export function PortraitCard({
   const card = (
     <button
       type="button"
+      suppressHydrationWarning
       onMouseEnter={onHoverStart}
       onClick={handleClick}
       className={`group relative block aspect-[3/4] w-full shrink-0 overflow-hidden text-left ${

@@ -3,6 +3,7 @@ import { PillButton } from "@/components/ui/PillButton";
 import { placementReportDownloadPath } from "@/data/placementReportAccess";
 import { ScrollReveal, StaggerReveal, StaggerItem } from "@/components/ui/ScrollReveal";
 import { nextStepCards } from "@/data/programmes";
+import { AdmissionsForm } from "@/components/sections/AdmissionsForm";
 
 export function NextSteps({ className }: { className?: string }) {
   return (
@@ -29,7 +30,7 @@ export function NextSteps({ className }: { className?: string }) {
                   </p>
                   <a
                     href={card.href}
-                    className="link-highlight mt-5 inline-block text-sm text-electric-blue"
+                    className="mt-5 inline-block text-sm font-semibold text-electric-blue transition-colors hover:text-ink"
                   >
                     Learn more →
                   </a>
@@ -46,6 +47,10 @@ export function NextSteps({ className }: { className?: string }) {
           <PillButton variant="secondary" tone="dark" href={placementReportDownloadPath("year-2")}>
             Download Placement Report
           </PillButton>
+        </ScrollReveal>
+
+        <ScrollReveal className="mt-16 sm:mt-24">
+          <AdmissionsForm />
         </ScrollReveal>
       </div>
     </section>

@@ -121,6 +121,7 @@ export function ProgramStoryTheatre({ stories, label }: ProgramStoryTheatreProps
                 <div className="program-story-theatre__hero-nav">
                   <button
                     type="button"
+                    suppressHydrationWarning
                     onClick={goPrev}
                     className="program-story-theatre__hero-nav-btn"
                     aria-label="Previous story"
@@ -132,6 +133,7 @@ export function ProgramStoryTheatre({ stories, label }: ProgramStoryTheatreProps
                   </span>
                   <button
                     type="button"
+                    suppressHydrationWarning
                     onClick={goNext}
                     className="program-story-theatre__hero-nav-btn"
                     aria-label="Next story"
@@ -143,32 +145,34 @@ export function ProgramStoryTheatre({ stories, label }: ProgramStoryTheatreProps
             </div>
           </div>
 
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div
-              key={current.videoId}
-              className="program-story-theatre__player-wrap"
-              initial={prefersReducedMotion ? false : { opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={prefersReducedMotion ? undefined : { opacity: 0, x: -20 }}
-              transition={{ duration: 0.45, ease: easeHive }}
-            >
-              <div className="premium-frame-dark program-story-theatre__player-frame">
-                <div className="premium-surface-dark premium-metallic-edge program-story-theatre__player-surface">
-                  <StoryTheatrePlayer
-                    videoId={current.videoId}
-                    name={current.name}
-                    onPlayingChange={handlePlayingChange}
-                  />
-                  <p className="program-story-theatre__now-playing">
-                    <span className="program-story-theatre__now-playing-label">
-                      {isVideoPlaying ? "Now playing" : "Up next"}
-                    </span>
-                    {current.name}
-                  </p>
+          {current.videoId && (
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={current.videoId}
+                className="program-story-theatre__player-wrap"
+                initial={prefersReducedMotion ? false : { opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={prefersReducedMotion ? undefined : { opacity: 0, x: -20 }}
+                transition={{ duration: 0.45, ease: easeHive }}
+              >
+                <div className="premium-frame-dark program-story-theatre__player-frame">
+                  <div className="premium-surface-dark premium-metallic-edge program-story-theatre__player-surface">
+                    <StoryTheatrePlayer
+                      videoId={current.videoId}
+                      name={current.name}
+                      onPlayingChange={handlePlayingChange}
+                    />
+                    <p className="program-story-theatre__now-playing">
+                      <span className="program-story-theatre__now-playing-label">
+                        {isVideoPlaying ? "Now playing" : "Up next"}
+                      </span>
+                      {current.name}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
+              </motion.div>
+            </AnimatePresence>
+          )}
         </div>
 
         {stories.length > 1 && (
@@ -183,6 +187,7 @@ export function ProgramStoryTheatre({ stories, label }: ProgramStoryTheatreProps
               return (
                 <button
                   key={story.name}
+                  suppressHydrationWarning
                   ref={(node) => {
                     thumbRefs.current[index] = node;
                   }}

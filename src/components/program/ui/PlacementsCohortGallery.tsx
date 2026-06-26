@@ -151,6 +151,7 @@ function FlipbookViewer({
     <div className="placement-flipbook-viewer">
       <button
         type="button"
+        suppressHydrationWarning
         className="placement-flipbook-nav placement-flipbook-nav--prev"
         onClick={() => flip("prev")}
         aria-label="Previous page"
@@ -195,6 +196,7 @@ function FlipbookViewer({
 
       <button
         type="button"
+        suppressHydrationWarning
         className="placement-flipbook-nav placement-flipbook-nav--next"
         onClick={() => flip("next")}
         aria-label="Next page"
@@ -237,6 +239,7 @@ export function PlacementsCohortGallery({ className }: { className?: string }) {
               <button
                 key={edition.id}
                 type="button"
+                suppressHydrationWarning
                 className={`placement-flipbook-thumb ${
                   edition.id === activeEditionId ? "is-active" : ""
                 }`}

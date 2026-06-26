@@ -49,6 +49,7 @@ export function CampusVideoHero({
     <button
       ref={ref}
       type="button"
+      suppressHydrationWarning
       onClick={() => openVideo(videoId)}
       className={`campus-video-hero group relative block w-full overflow-hidden text-left ${
         fullScreen ? "min-h-[100svh] h-[100svh]" : ""

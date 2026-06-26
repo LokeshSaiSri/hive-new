@@ -49,6 +49,7 @@ export function PillButton({
     if (isStaticAssetHref(href) || href.startsWith("#")) {
       return (
         <a
+          suppressHydrationWarning
           href={href}
           className={classes}
           onClick={onClick}
@@ -61,14 +62,14 @@ export function PillButton({
     }
 
     return (
-      <Link href={href} className={classes} onClick={onClick}>
+      <Link suppressHydrationWarning href={href} className={classes} onClick={onClick}>
         {children}
       </Link>
     );
   }
 
   return (
-    <button type="button" className={classes} onClick={onClick} {...props}>
+    <button suppressHydrationWarning type="button" className={classes} onClick={onClick} {...props}>
       {children}
     </button>
   );

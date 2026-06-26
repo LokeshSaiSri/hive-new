@@ -17,7 +17,7 @@ export const industryColumns: IndustryColumn[] = [
     videoId: "0D0DH9qIIj0",
     roles: [
       { title: "Brand Manager", function: "Brand & Positioning" },
-      { title: "Performance Marketer", function: "Growth & Acquisition" },
+      { title: "Growth Marketer", function: "Growth & Acquisition" },
       { title: "Marketplace Manager", function: "Quick Commerce & D2C" },
     ],
   },

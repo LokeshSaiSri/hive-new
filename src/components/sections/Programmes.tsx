@@ -13,7 +13,7 @@ import { HorizontalScroller } from "@/components/ui/HorizontalScroller";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { programmes } from "@/data/programmes";
 
-const programmeTabs = ["Undergraduate", "PGP", "Fellowship"] as const;
+const programmeTabs = ["PGP", "Fellowship", "Undergraduate"] as const;
 type ProgrammeTab = (typeof programmeTabs)[number];
 
 const tabToId: Record<ProgrammeTab, string> = {

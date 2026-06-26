@@ -131,6 +131,7 @@ export function ProgramCohortVoices({
                     <div className="program-cohort-voices__nav">
                       <button
                         type="button"
+                        suppressHydrationWarning
                         onClick={() => go(active - 1)}
                         className="program-cohort-voices__nav-btn"
                         aria-label="Previous student story"
@@ -142,6 +143,7 @@ export function ProgramCohortVoices({
                       </span>
                       <button
                         type="button"
+                        suppressHydrationWarning
                         onClick={() => go(active + 1)}
                         className="program-cohort-voices__nav-btn"
                         aria-label="Next student story"
@@ -223,6 +225,7 @@ export function ProgramCohortVoices({
                 return (
                   <button
                     key={story.name}
+                    suppressHydrationWarning
                     ref={(node) => {
                       thumbRefs.current[index] = node;
                     }}

@@ -39,15 +39,21 @@ export function ProgramMentors({
   statement = "Operators who've",
   emphasis = "done the work.",
   description = "Founders, CXOs, and GTM leaders — slotted into sprints by discipline.",
+  categoryOverride,
+  mentorsOverride,
 }: {
   eyebrow?: string;
   statement?: string;
   emphasis?: string;
   description?: string;
+  categoryOverride?: readonly string[];
+  mentorsOverride?: typeof mentors;
 } = {}) {
-  const [category, setCategory] =
-    useState<(typeof mentorCategories)[number]>("Marketing");
-  const filtered = mentors.filter((m) => m.category === category);
+  const activeCategories = categoryOverride ?? mentorCategories;
+  const activeMentors = mentorsOverride ?? mentors;
+
+  const [category, setCategory] = useState<string>(activeCategories[0]);
+  const filtered = activeMentors.filter((m) => m.category === category);
 
   const midpoint = Math.ceil(filtered.length / 2);
   const topRowMentors = filtered.slice(0, midpoint);
@@ -69,7 +75,7 @@ export function ProgramMentors({
         </ScrollReveal>
 
         <ScrollReveal className="mt-8">
-          <TabGroup tabs={mentorCategories} active={category} onChange={setCategory} />
+          <TabGroup tabs={activeCategories as any} active={category} onChange={setCategory as any} />
         </ScrollReveal>
       </div>
 

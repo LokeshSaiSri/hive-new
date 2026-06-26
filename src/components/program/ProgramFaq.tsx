@@ -12,9 +12,10 @@ type ProgramFaqProps = {
   faqs: CoursePageConfig["faqs"];
   variant?: "default" | "theatre";
   className?: string;
+  applyHref?: string;
 };
 
-export function ProgramFaq({ faqs, variant = "default", className }: ProgramFaqProps) {
+export function ProgramFaq({ faqs, variant = "default", className, applyHref = "#apply" }: ProgramFaqProps) {
   const [openIndex, setOpenIndex] = useState(0);
   const prefersReducedMotion = useReducedMotion();
 
@@ -35,7 +36,7 @@ export function ProgramFaq({ faqs, variant = "default", className }: ProgramFaqP
                 align="left"
               />
               <div className="mt-8">
-                <PillButton variant="highlight" tone="dark" href="#apply">
+                <PillButton variant="highlight" tone="dark" href={applyHref}>
                   Still have questions? Enquire now
                 </PillButton>
               </div>
@@ -47,6 +48,7 @@ export function ProgramFaq({ faqs, variant = "default", className }: ProgramFaqP
                   const isActive = index === openIndex;
                   return (
                     <button
+                      suppressHydrationWarning
                       key={item.question}
                       type="button"
                       role="tab"
@@ -99,7 +101,7 @@ export function ProgramFaq({ faqs, variant = "default", className }: ProgramFaqP
               align="left"
             />
             <div className="mt-8">
-              <PillButton variant="highlight" tone="light" href="#apply">
+              <PillButton variant="highlight" tone="light" href={applyHref}>
                 Still have questions? Enquire now
               </PillButton>
             </div>
@@ -113,6 +115,7 @@ export function ProgramFaq({ faqs, variant = "default", className }: ProgramFaqP
                 <ScrollReveal key={item.question} delay={index * 0.04}>
                   <article className="program-faq-item">
                     <button
+                      suppressHydrationWarning
                       type="button"
                       className="flex w-full items-start justify-between gap-4 text-left"
                       aria-expanded={isOpen}

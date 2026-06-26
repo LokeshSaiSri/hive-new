@@ -229,6 +229,7 @@ export function CourseTimeline({ timeline, className }: CourseTimelineProps) {
                   <button
                     key={phase.phase}
                     type="button"
+                    suppressHydrationWarning
                     className={`curriculum-rail-pill ${
                       index === activeIndex ? "is-active" : ""
                     } ${index < activeIndex ? "is-past" : ""}`}
@@ -287,6 +288,7 @@ export function CourseTimeline({ timeline, className }: CourseTimelineProps) {
 
                           <button
                             type="button"
+                            suppressHydrationWarning
                             className={`curriculum-theatre__rail-btn ${
                               isActive ? "is-active" : ""
                             } ${isPast ? "is-past" : ""}`}

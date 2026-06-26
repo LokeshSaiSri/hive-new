@@ -64,6 +64,7 @@ export function StoryTheatrePlayer({ videoId, name, onPlayingChange }: StoryThea
       ) : (
         <button
           type="button"
+          suppressHydrationWarning
           onClick={handlePlay}
           className="program-story-theatre__player-poster group"
           aria-label={`Play ${name}'s story`}

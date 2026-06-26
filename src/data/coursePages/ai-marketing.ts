@@ -25,7 +25,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
       { value: "06", label: "Months" },
       { value: "4+2", label: "Months curriculum + placements" },
       { value: "4", label: "Core tracks" },
-      { value: "₹4.5L", label: "+ GST · programme fee" },
+      { value: "25+", label: "Industrial Mentors" },
     ],
     meta: [
       { label: "Format", value: "Full-time on campus" },
@@ -195,7 +195,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
       title: "Proof of work, not a promise",
       description:
         "Agencies, D2C brands, consumer tech — or your own freelance practice. Either way, you leave with work that got judged in the room.",
-      primary: { label: "See career outcomes", href: "/ai-marketing/placements" },
+      primary: { label: "See curriculum", href: "/ai-marketing/curriculum" },
       secondary: { label: "Apply now", href: "#apply" },
     },
     {

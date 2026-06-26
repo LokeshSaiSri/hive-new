@@ -65,6 +65,7 @@ export function AdmissionsProcessDeck({ rounds, className }: AdmissionsProcessDe
             {rounds.map((round, index) => (
               <button
                 key={round.round}
+                suppressHydrationWarning
                 type="button"
                 role="tab"
                 aria-selected={index === activeRound}
