@@ -68,7 +68,7 @@ export const testimonials: Testimonial[] = [
     companyLogo: cdnAsset("images/logos/payoneer-logo.png"),
     image: cdnAsset("images/students/Aryan.webp"),
     quote: "The fellowship changed how I look at performance marketing entirely. I went from zero to handling a live brand budget in just two months.",
-    linkedin: "https://linkedin.com/",
+    linkedin: "https://www.linkedin.com/in/suri-aryan/",
   },
   {
     name: "Hritik",
@@ -76,7 +76,7 @@ export const testimonials: Testimonial[] = [
     company: "Space Basic",
     image: cdnAsset("images/students/Hrithik.webp"),
     quote: "Working directly in a Founder's Office wouldn't have been possible without the rigorous challenges and portfolio we built here.",
-    linkedin: "https://linkedin.com/",
+    linkedin: "https://www.linkedin.com/in/hrithik-kaul/",
   },
   {
     name: "Soumya",
@@ -101,6 +101,6 @@ export const testimonials: Testimonial[] = [
     company: "MyGate",
     image: cdnAsset("images/students/Deepanshu.webp"),
     quote: "The emphasis on enterprise sales and understanding B2B funnels gave me an immediate edge over other candidates at MyGate.",
-    linkedin: "https://linkedin.com/",
+    linkedin: "https://www.linkedin.com/in/deepanshu-profile/",
   },
 ];
