@@ -1,4 +1,4 @@
-import { asset, videoAsset } from "@/lib/assets";
+import { videoAsset, cdnAsset } from "@/lib/assets";
 import type {
   AdmissionDeadline,
   AdmissionEvaluator,
@@ -247,14 +247,14 @@ export const aiMarketingPlacementNews: NewsArticle[] = [
     outlet: "Placement Report",
     title: "Year 2 PGP · ₹16.47L average · ₹27.8L highest",
     date: "2025–26",
-    image: videoAsset("images/news/annual-placement.jpg"),
+    image: cdnAsset("images/news/annual-placement.jpg"),
     href: "/pgp-revenue-tech-entrepreneurship/placements",
   },
   {
     outlet: "Hindustan Times",
     title: "HiveSchool Placements Set New Benchmark | Average 14.76 LPA, Highest 30 LPA",
     date: "August 05, 2025",
-    image: videoAsset("images/news/hindustan-times.jpg"),
+    image: cdnAsset("images/news/hindustan-times.jpg"),
     href: "https://www.hindustantimes.com/brand-stories/hiveschool-placements-set-new-benchmark-average-14-76-lpa-highest-30-lpa-101754121352098.html",
   },
   {
@@ -262,7 +262,7 @@ export const aiMarketingPlacementNews: NewsArticle[] = [
     title:
       "HiveSchool Gains Strong Traction Among CAT Aspirants With 15 LPA Average Placement and 30 LPA Highest Offer",
     date: "July 18, 2025",
-    image: videoAsset("images/news/ani-news.jpeg"),
+    image: cdnAsset("images/news/ani-news.jpeg"),
     href: "https://theprint.in/ani-press-releases/hiveschool-gains-strong-traction-among-cat-aspirants-with-15-lpa-average-placement-and-30-lpa-highest-offer/",
   },
   {
@@ -270,7 +270,7 @@ export const aiMarketingPlacementNews: NewsArticle[] = [
     title:
       "HiveSchool eyes Top 20 B-Schools league before 2030, after ₹14.76 LPA average in its inaugural year",
     date: "June 22, 2025",
-    image: videoAsset("images/news/the-print.jpg"),
+    image: cdnAsset("images/news/the-print.jpg"),
     href: "https://theprint.in/ani-press-releases/hiveschool-eyes-top-20-b-schools-league-before-2030-after-%e2%82%b914-76-lpa-average-in-its-inaugural-year/2724384/",
   },
 ];
