@@ -161,13 +161,7 @@ export const mentors: Mentor[] = [
     image: cdnAsset("images/mentors/Shikha N..jpg"),
     category: "Data and AI",
   },
-  {
-    name: "Rachit Srivastava",
-    role: "Executive Director",
-    companyLabel: "FAVCY",
-    image: cdnAsset("images/mentors/Rachit Srivastava.jpg"),
-    category: "Data and AI",
-  },
+
   {
     name: "Amit Jawar",
     role: "Vice President Sales & Marketing",
