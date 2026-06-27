@@ -85,7 +85,7 @@ export const testimonials: Testimonial[] = [
     companyLogo: cdnAsset("images/logos/yatra.png"),
     image: cdnAsset("images/students/Saumya.webp"),
     quote: "The mock interviews and resume reviews during the placement months were brutally honest, which made the actual Yatra interviews a breeze.",
-    linkedin: "https://linkedin.com/",
+    linkedin: "https://www.linkedin.com/in/somyaa-9802251b1/",
   },
   {
     name: "Harsh",
@@ -93,7 +93,7 @@ export const testimonials: Testimonial[] = [
     company: "Vetic",
     image: cdnAsset("images/students/Harsh.webp"),
     quote: "I didn't just learn marketing; I learned how to manage projects, build dashboards, and scale revenue from Day 1.",
-    linkedin: "https://linkedin.com/",
+    linkedin: "https://www.linkedin.com/in/harsh-mehndiratta-770813216/",
   },
   {
     name: "Deepanshu",
