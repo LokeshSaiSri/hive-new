@@ -40,7 +40,6 @@ export function PgpReels({ className }: { className?: string }) {
               </svg>
               @hiveschool.co
             </Link>
-            <p className="text-sm text-white/45">{pgpReels.length} reels · updated weekly</p>
           </div>
         </ScrollReveal>
 

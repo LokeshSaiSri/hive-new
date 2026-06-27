@@ -24,8 +24,8 @@ const fellowshipLinks = [
 
 const ugLinks = [
   { label: "Overview", href: "/ug" },
-  { label: "Curriculum", href: "/ug/curriculum" },
-  { label: "Admissions", href: "/ug/admissions" },
+  { label: "Curriculum", href: "/ug#timeline" },
+  { label: "Admissions", href: "/ug#apply" },
   { label: "Application Form", href: "/ug#apply" },
 ];
 
@@ -145,7 +145,7 @@ export function Footer() {
               <p className="text-sm font-semibold text-white">AI Marketing Fellowship</p>
               <ul className="mt-4 space-y-2.5">
                 {fellowshipLinks.map((link) => (
-                  <li key={link.href}>
+                  <li key={link.label}>
                     <FooterLink href={link.href}>{link.label}</FooterLink>
                   </li>
                 ))}
@@ -155,12 +155,12 @@ export function Footer() {
               <p className="text-sm font-semibold text-white">Explore HiveSchool</p>
               <ul className="mt-4 space-y-2.5">
                 {exploreLinks.map((link) => (
-                  <li key={link.href}>
+                  <li key={link.label}>
                     <FooterLink href={link.href}>{link.label}</FooterLink>
                   </li>
                 ))}
                 {ugLinks.map((link) => (
-                  <li key={link.href}>
+                  <li key={link.label}>
                     <FooterLink href={link.href}>UG · {link.label}</FooterLink>
                   </li>
                 ))}
@@ -170,7 +170,7 @@ export function Footer() {
               <p className="text-sm font-semibold text-white">Other Links</p>
               <ul className="mt-4 space-y-2.5">
                 {otherLinks.map((link) => (
-                  <li key={link.href}>
+                  <li key={link.label}>
                     <FooterLink href={link.href}>{link.label}</FooterLink>
                   </li>
                 ))}

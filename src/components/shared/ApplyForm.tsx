@@ -91,7 +91,7 @@ function validateField(id: FieldKey, value: string): string | undefined {
     const stripped = value.replace(/[\s\-()]/g, "");
     if (!/^\+?\d+$/.test(stripped)) return "Phone number can only contain digits";
     const digits = value.replace(/\D/g, "");
-    if (digits.length < 10) return "Phone number must be at least 10 digits";
+    if (digits.length !== 10) return "Phone number must be exactly 10 digits";
   }
   return undefined;
 }

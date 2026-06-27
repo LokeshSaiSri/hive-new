@@ -74,16 +74,8 @@ export function CourseCapstonesShowcase({ capstones, className }: CourseCapstone
         </ScrollReveal>
       </div>
 
-      <div className="hidden lg:block">
-        <ScrollHorizontal durationScale={0.88}>
-          {items.map((item) => (
-            <CapstoneDeckCard key={item.index} capstone={item} />
-          ))}
-        </ScrollHorizontal>
-      </div>
-
-      <div className="section-container pb-14 pt-2 lg:hidden">
-        <HorizontalScroller slideClassName="basis-[88%] sm:basis-[74%]" bleed={false}>
+      <div className="section-container pb-14 pt-2">
+        <HorizontalScroller slideClassName="w-auto" bleed={false} autoplay={true} autoplayDelay={3500}>
           {items.map((item) => (
             <CapstoneDeckCard key={item.index} capstone={item} />
           ))}
