@@ -163,7 +163,7 @@ export function ProgramStoryTheatre({ stories, label }: ProgramStoryTheatreProps
                       onPlayingChange={handlePlayingChange}
                     />
                   ) : (
-                    <div className="relative h-full w-full bg-[#060f32]">
+                    <div className="program-story-theatre__player bg-[#060f32]">
                       <Image
                         src={current.image}
                         alt={current.name}
