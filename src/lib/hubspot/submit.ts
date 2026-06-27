@@ -32,14 +32,13 @@ export async function submitToHubSpot({
   const context = buildHubSpotSubmissionContext(contextInput ?? {});
 
   const payload: {
-    fields: { objectTypeId: string; name: string; value: string }[];
+    fields: { name: string; value: string }[];
     context?: HubSpotSubmissionContext;
   } = {
     fields: fields
       .map((field) => ({ ...field, value: field.value.trim() }))
       .filter((field) => field.value.length > 0)
       .map((field) => ({
-        objectTypeId: "0-1",
         name: field.name,
         value: field.value,
       })),

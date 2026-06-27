@@ -28,7 +28,7 @@ export const HUBSPOT_CONTACT_FIELDS = {
   lastName: "lastname",
   email: "email",
   phone: "phone",
-  linkedin: "linkedin",
+  linkedin: "hs_linkedin_url",
   city: "city",
   programmeOfInterest: "programme_of_interest",
 } as const;
