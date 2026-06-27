@@ -45,7 +45,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
         index: "01",
         title: "Performance vs Storytelling",
         tagline: "A normal marketer vs Top 1%",
-        image: videoAsset("images/Website pics/d2c bazaar/DSC01796.jpeg"),
+        image: cdnAsset("images/Website pics/d2c bazaar/DSC01796.jpeg"),
         description:
           "A normal marketer would think of Performance Marketing like a Meta Dashboard concept. But Top 1% marketer would think of creating a storyline for a brand that can sell organically and reduce CAC’s. Just like these students are doing here.",
       },
@@ -53,7 +53,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
         index: "02",
         title: "Branding beyond lectures",
         tagline: "Toe-Mah-Toes",
-        image: videoAsset("images/Website pics/d2c bazaar/DSC05783.jpeg"),
+        image: cdnAsset("images/Website pics/d2c bazaar/DSC05783.jpeg"),
         description:
           "Branding is not a concept that can be learned in a lecture. For us, Branding is actually creating the most different brand that people will actually buy.",
       },
@@ -61,7 +61,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
         index: "03",
         title: "Positioning is not a framework",
         tagline: "First Female Sensual Perfume",
-        image: videoAsset("images/Website pics/d2c bazaar/DSC01747.jpeg"),
+        image: cdnAsset("images/Website pics/d2c bazaar/DSC01747.jpeg"),
         description:
           "Positioning is not just a 4 matrix framework. It is understanding how can we build a brand even in a fragmented market like Perfumes. Hey btw, we're building India's First Female Sensual Perfume Brand. Go buy from us.",
       },
@@ -69,7 +69,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
         index: "04",
         title: "Real Performance Marketing",
         tagline: "Generating sales (Griply)",
-        image: videoAsset("images/Website pics/d2c bazaar/DSC01280.jpeg"),
+        image: cdnAsset("images/Website pics/d2c bazaar/DSC01280.jpeg"),
         description:
           "We learnt performance Marketing by actually running Meta Ads for our product. Already generated X sales btw.",
       },
