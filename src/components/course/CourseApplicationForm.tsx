@@ -12,6 +12,7 @@ import { submitLeadForm } from "@/lib/leads/submit";
 import { mapCourseApplicationFields } from "@/lib/hubspot/fields";
 import { useAutoAdvance } from "@/lib/useAutoAdvance";
 import { easeHive } from "@/lib/motion";
+import { isValidEmail } from "@/lib/validateEmail";
 
 type CourseApplicationFormProps = {
   courseSlug: ProgramSlug;
@@ -122,7 +123,7 @@ function SubmitArrow() {
 
 function validateForm(form: FormState): string | undefined {
   if (!form.name.trim()) return "Please enter your name";
-  if (!form.email.trim() || !/^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(form.email.trim()))
+  if (!form.email.trim() || !isValidEmail(form.email))
     return "Please enter a valid email address";
   if (!form.phone.trim()) return "Please enter your phone number";
   const strippedPhone = form.phone.replace(/[\s\-()]/g, "");

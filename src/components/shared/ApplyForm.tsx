@@ -13,6 +13,7 @@ import { mapApplyFormFields } from "@/lib/hubspot/fields";
 import { resolveProgramSlugFromTitle } from "@/lib/hubspot/resolve-course";
 import { admissionHero } from "@/data/partners";
 import { easeHive } from "@/lib/motion";
+import { isValidEmail } from "@/lib/validateEmail";
 
 export type ApplyFormProps = {
   variant?: "home" | "program";
@@ -85,7 +86,7 @@ const AUTO_ADVANCE_MS = 420;
 
 function validateField(id: FieldKey, value: string): string | undefined {
   if (!value.trim()) return "This field is required";
-  if (id === "email" && !/^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(value.trim()))
+  if (id === "email" && !isValidEmail(value))
     return "Enter a valid email address";
   if (id === "phone") {
     const stripped = value.replace(/[\s\-()]/g, "");

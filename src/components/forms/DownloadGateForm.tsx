@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import Image from "next/image";
 import { PillButton } from "@/components/ui/PillButton";
+import { isValidEmail } from "@/lib/validateEmail";
 
 type DownloadFormValues = { fullName: string; email: string; phone: string };
 
@@ -43,7 +44,7 @@ export function DownloadGateForm({
       return;
     }
 
-    if (!/^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(form.email.trim())) {
+    if (!isValidEmail(form.email)) {
       setError("Enter a valid email address.");
       return;
     }
@@ -135,6 +136,7 @@ export function DownloadGateForm({
         ) : (
           <form
             onSubmit={handleSubmit}
+            noValidate
             data-hs-cf-bound="true"
             className={`rounded-2xl border border-white/10 bg-white/[0.04] ${
               compact ? "p-5 sm:p-8" : "p-8"
