@@ -665,7 +665,7 @@ export function PlacementStatsCharts({ variant = "default" }: { variant?: "defau
 
             <ChartStepRail charts={CHARTS} activeKey={selected} onSelect={setSelected} />
 
-            <div className="mt-6">
+            <div className="mt-6 min-h-[340px] sm:min-h-[280px] lg:min-h-[300px]">
               <ChartContextPanel chart={chart} />
             </div>
           </div>
@@ -684,7 +684,7 @@ export function PlacementStatsCharts({ variant = "default" }: { variant?: "defau
                 </span>
               </div>
 
-              <div className="flex min-h-0 flex-1 flex-col justify-center">
+              <div className="flex min-h-[280px] sm:min-h-[320px] lg:min-h-[340px] flex-1 flex-col justify-center">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={selected}
