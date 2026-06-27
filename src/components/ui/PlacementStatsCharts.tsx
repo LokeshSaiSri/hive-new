@@ -115,7 +115,7 @@ function useChartAnimation(chartKey: ChartKey, enabled: boolean) {
 
   useEffect(() => {
     if (prefersReducedMotion) {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setReady(enabled);
       return;
     }
@@ -258,20 +258,18 @@ function VerticalBars({
 
   return (
     <div
-      className={`relative overflow-hidden ${
-        compact
+      className={`relative overflow-hidden ${compact
           ? "flex h-full min-h-0 flex-col"
           : "placement-chart-panel chart-panel-metallic rounded-xl px-3 py-4 sm:px-4 sm:py-5"
-      } ${fillsPanel && !compact ? "flex min-h-0 flex-1 flex-col" : ""}`}
+        } ${fillsPanel && !compact ? "flex min-h-0 flex-1 flex-col" : ""}`}
       role="img"
       aria-label={bars.map((b) => `${b.label} ${b.value}`).join(", ")}
     >
       <div
-        className={`pointer-events-none absolute flex flex-col justify-between ${
-          compact
+        className={`pointer-events-none absolute flex flex-col justify-between ${compact
             ? "inset-x-3 bottom-7 top-6 sm:inset-x-3.5 sm:bottom-8 sm:top-7"
             : "inset-x-3 bottom-8 top-8 sm:inset-x-4 sm:bottom-9 sm:top-9"
-        }`}
+          }`}
         aria-hidden
       >
         {[0, 1, 2, 3].map((line) => (
@@ -280,9 +278,8 @@ function VerticalBars({
       </div>
 
       <div
-        className={`relative grid ${gridCols} ${layout.gridGap} ${layout.gridWrap} ${
-          fillsPanel ? "h-full min-h-0 flex-1 items-stretch" : ""
-        }`}
+        className={`relative grid ${gridCols} ${layout.gridGap} ${layout.gridWrap} ${fillsPanel ? "h-full min-h-0 flex-1 items-stretch" : ""
+          }`}
       >
         {bars.map((bar, i) => (
           <div
@@ -300,9 +297,8 @@ function VerticalBars({
 
             <div className={`relative flex w-full items-end justify-center ${trackHeight}`}>
               <motion.div
-                className={`${layout.barWidth} rounded-t-[8px] ${
-                  bar.highlight ? "placement-bar-highlight" : "placement-bar-blue"
-                }`}
+                className={`${layout.barWidth} rounded-t-[8px] ${bar.highlight ? "placement-bar-highlight" : "placement-bar-blue"
+                  }`}
                 style={{ height: `${bar.visualHeight}%` }}
                 initial={prefersReducedMotion ? false : { scaleY: 0, opacity: 0.35 }}
                 animate={
@@ -350,9 +346,8 @@ function IndustryPie({
       initial={prefersReducedMotion ? false : { opacity: 0, x: -10 }}
       animate={active ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
       transition={{ duration: 0.45, delay: 0.18 + i * 0.08, ease: easeHive }}
-      className={`flex items-center justify-between gap-2 rounded-lg border border-white/10 bg-white/[0.04] text-white/88 ${
-        compact ? "px-2.5 py-2 text-[11px] sm:text-xs" : "px-4 py-3 text-lg sm:text-xl"
-      }`}
+      className={`flex items-center justify-between gap-2 rounded-lg border border-white/10 bg-white/[0.04] text-white/88 ${compact ? "px-2.5 py-2 text-[11px] sm:text-xs" : "px-4 py-3 text-lg sm:text-xl"
+        }`}
     >
       <span className="flex min-w-0 items-center gap-2">
         <span
@@ -363,9 +358,8 @@ function IndustryPie({
         <span className="truncate font-semibold">{item.label}</span>
       </span>
       <strong
-        className={`shrink-0 font-bold tabular-nums text-white ${
-          compact ? "text-sm sm:text-base" : "text-2xl sm:text-3xl"
-        }`}
+        className={`shrink-0 font-bold tabular-nums text-white ${compact ? "text-sm sm:text-base" : "text-2xl sm:text-3xl"
+          }`}
       >
         {item.share}%
       </strong>
@@ -436,6 +430,7 @@ function ChartStepRail({
           return (
             <button
               key={chart.key}
+              suppressHydrationWarning
               type="button"
               onClick={() => onSelect(chart.key)}
               aria-current={isActive ? "step" : undefined}
@@ -447,16 +442,14 @@ function ChartStepRail({
               ].join(" ")}
             >
               <span
-                className={`block text-xs font-bold tabular-nums tracking-wider sm:text-sm ${
-                  isActive ? "text-accent" : isPast ? "text-white/50" : "text-white/35"
-                }`}
+                className={`block text-xs font-bold tabular-nums tracking-wider sm:text-sm ${isActive ? "text-accent" : isPast ? "text-white/50" : "text-white/35"
+                  }`}
               >
                 {chart.index}
               </span>
               <span
-                className={`mt-1.5 block text-[11px] font-semibold leading-snug sm:text-sm ${
-                  isActive ? "text-white" : "text-white/60"
-                }`}
+                className={`mt-1.5 block text-[11px] font-semibold leading-snug sm:text-sm ${isActive ? "text-white" : "text-white/60"
+                  }`}
               >
                 {chart.title}
               </span>
@@ -498,9 +491,8 @@ function ChartContextPanel({
           className="mt-3 rounded-lg border border-white/12 bg-white/[0.04] px-3 py-2.5"
         >
           <p
-            className={`text-xl font-bold leading-none tracking-tight sm:text-2xl ${
-              chart.accent ? "text-accent" : "text-white"
-            }`}
+            className={`text-xl font-bold leading-none tracking-tight sm:text-2xl ${chart.accent ? "text-accent" : "text-white"
+              }`}
           >
             {chart.kpiValue}
           </p>
@@ -555,9 +547,8 @@ function ChartContextPanel({
         className="mt-6 rounded-xl border border-white/12 bg-white/[0.04] px-4 py-4 sm:px-5"
       >
         <p
-          className={`text-[clamp(2rem,4vw,2.75rem)] font-bold leading-none tracking-tight ${
-            chart.accent ? "text-accent" : "text-white"
-          }`}
+          className={`text-[clamp(2rem,4vw,2.75rem)] font-bold leading-none tracking-tight ${chart.accent ? "text-accent" : "text-white"
+            }`}
         >
           {chart.kpiValue}
         </p>
@@ -653,9 +644,8 @@ export function PlacementStatsCharts({ variant = "default" }: { variant?: "defau
           {CHARTS.map((entry) => (
             <span
               key={entry.key}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                entry.key === selected ? "w-5 bg-accent" : "w-1.5 bg-white/20"
-              }`}
+              className={`h-1.5 rounded-full transition-all duration-300 ${entry.key === selected ? "w-5 bg-accent" : "w-1.5 bg-white/20"
+                }`}
               aria-hidden
             />
           ))}

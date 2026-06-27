@@ -38,6 +38,7 @@ export const aiMarketingTabHero: Record<
       { value: "25+", label: "Intensive sprints" },
       { value: "10", label: "Live challenges" },
     ],
+    primaryCta: { label: "Apply now", href: "/ai-marketing#apply" },
     secondaryCta: { label: "Download brochure", href: "/AI-Marketing-Fellowship-Brochure.pdf" },
   },
   placements: {
@@ -66,7 +67,7 @@ export const aiMarketingTabHero: Record<
       { value: "6 months", label: "Full-time programme" },
       { value: "October '26", label: "Next intake" },
     ],
-    primaryCta: { label: "Start your application", href: "#apply" },
+    primaryCta: { label: "Start your application", href: "/ai-marketing#apply" },
     secondaryCta: { label: "See the process", href: "#selection" },
   },
 };

@@ -39,7 +39,7 @@ export function PgpPlacementsTab() {
       <ProofOfWorkStrip items={pgpPortfolioDeliverables} />
       <PlacementsCareerPathways groups={pgpCareerPathways} className="pt-0 border-t-0" />
       <PlacementsNewsGrid articles={pgpPlacementNews} className="pt-0 border-t-0" />
-      <ProgramFaq faqs={config.faqs} variant="theatre" />
+      <ProgramFaq faqs={config.faqs} variant="theatre" applyHref="/pgp-revenue-tech-entrepreneurship/admissions" />
     </>
   );
 }

@@ -26,7 +26,7 @@ export const exploreCards = [
     title: "Experience Our Campus",
     description:
       "Pitch arenas, brainstorm pods, and a campus built for operators — tour it now.",
-    image: asset("images/misc/life-at-hive.webp"),
+    image: asset("images/life/life-3.avif"),
     href: "#campus",
   },
 ];

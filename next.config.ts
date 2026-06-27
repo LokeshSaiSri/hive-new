@@ -25,13 +25,13 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/pgp-revenue-tech-entrepreneurship",
-        destination: "/pgp",
+        source: "/pgp",
+        destination: "/pgp-revenue-tech-entrepreneurship",
         permanent: true,
       },
       {
-        source: "/pgp-revenue-tech-entrepreneurship/:path*",
-        destination: "/pgp",
+        source: "/pgp/:path*",
+        destination: "/pgp-revenue-tech-entrepreneurship/:path*",
         permanent: true,
       },
       { source: "/careers", destination: "/", permanent: false },

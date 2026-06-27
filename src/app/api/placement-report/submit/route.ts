@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getHubSpotPortalId, getPlacementReportFormGuid } from "@/data/hubspot";
+import { getHubSpotPortalId, getPlacementReportFormGuid, getGatedDocumentFormGuid } from "@/data/hubspot";
 import {
   PLACEMENT_REPORT_ACCESS_COOKIE,
   getPlacementReportEdition,
@@ -60,7 +60,7 @@ export async function POST(request: Request) {
   }
 
   const portalId = getHubSpotPortalId();
-  const formGuid = getPlacementReportFormGuid();
+  const formGuid = edition ? getPlacementReportFormGuid() : getGatedDocumentFormGuid();
 
   if (!portalId || !formGuid) {
     return NextResponse.json(

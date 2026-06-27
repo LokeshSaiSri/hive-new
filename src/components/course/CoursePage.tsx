@@ -165,7 +165,7 @@ export function CoursePage({ config, slug }: CoursePageProps) {
 
       {config.sections.admissions && <ProgramAdmissions slug={slug} className={seqClasses.admissions} />}
 
-      <ProgramFaq faqs={config.faqs} />
+      <ProgramFaq faqs={config.faqs} applyHref={`/${slug}#apply`} />
     </ProgramPageLayout>
   );
 }

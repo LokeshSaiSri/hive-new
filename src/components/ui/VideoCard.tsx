@@ -35,21 +35,20 @@ export function VideoCard({
   return (
     <div className={className}>
       <button
+        suppressHydrationWarning
         type="button"
         onClick={() => openVideo(videoId)}
-        className={`group relative w-full overflow-hidden ${
-          fill ? "h-full min-h-[260px] hover:opacity-95" : "hover-lift-card"
-        } ${flush ? "rounded-none" : "rounded-2xl"} ${large ? "shadow-xl" : ""}`}
+        className={`group relative w-full overflow-hidden ${fill ? "h-full min-h-[260px] hover:opacity-95" : "hover-lift-card"
+          } ${flush ? "rounded-none" : "rounded-2xl"} ${large ? "shadow-xl" : ""}`}
         aria-label={caption ?? "Play video"}
       >
         <div
-          className={`relative w-full overflow-hidden bg-ink ${
-            fill
+          className={`relative w-full overflow-hidden bg-ink ${fill
               ? "h-full min-h-[260px]"
               : large
                 ? "aspect-[16/9] sm:aspect-[21/9]"
                 : "aspect-video"
-          }`}
+            }`}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img

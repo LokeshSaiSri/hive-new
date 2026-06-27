@@ -59,7 +59,7 @@ export function AiMarketingCurriculumTab({ config }: AiMarketingCurriculumTabPro
       <LifeAtHiveSection content={aiMarketingLifeAtHive} className="pt-0 border-t-0" />
       {intakeCta && <ProgramVisualCtaBand cta={intakeCta} chip="October 2026 intake" className="pt-0 border-t-0" />}
       <ProgramCohortVoices stories={buildCohortStories(aiMarketingAlumniQuotes, testimonials)} />
-      <ProgramFaq faqs={config.faqs} variant="theatre" className="pt-0 border-t-0" />
+      <ProgramFaq faqs={config.faqs} applyHref="/ai-marketing#apply" variant="theatre" className="pt-0 border-t-0" />
     </>
   );
 }

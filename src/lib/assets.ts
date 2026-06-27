@@ -1,5 +1,7 @@
-/** Local static asset paths served from /public/assets */
 export function asset(path: string): string {
+  if (path.startsWith("http") || path.startsWith("/assets/")) {
+    return path;
+  }
   return `/assets/${path.replace(/^\//, "")}`;
 }
 
@@ -24,4 +26,17 @@ export function videoAsset(path: string): string {
 
 export function videosHostedOnCdn(): boolean {
   return Boolean(getMediaCdnUrl());
+}
+
+/** Images hosted on CDN (e.g. R2) */
+export function cdnAsset(path: string): string {
+  const normalized = path.replace(/^\//, "");
+  const cdn = getMediaCdnUrl();
+
+  if (cdn) {
+    return `${cdn}/${normalized}`;
+  }
+
+  // Fallback to local
+  return asset(normalized);
 }

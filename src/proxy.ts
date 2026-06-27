@@ -6,7 +6,7 @@ import {
   placementReportDownloadPath,
 } from "@/data/placementReportAccess";
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const editionId = GATED_PLACEMENT_REPORT_PATHS[pathname];
 

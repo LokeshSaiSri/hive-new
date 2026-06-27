@@ -46,7 +46,7 @@ export function PillButton({
   const classes = `${base} ${toneStyles[tone][variant]} ${className}`;
 
   if (href) {
-    if (isStaticAssetHref(href) || href.startsWith("#")) {
+    if (isStaticAssetHref(href) || href.includes("#")) {
       return (
         <a
           suppressHydrationWarning

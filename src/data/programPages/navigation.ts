@@ -32,7 +32,7 @@ function tabsForSlug(slug: ProgramSlug): TabDef[] {
 }
 
 function buildNav(slug: ProgramSlug): ProgramNavConfig {
-  const base = `/${slug}`;
+  const base = slug === "pgp" ? "/pgp-revenue-tech-entrepreneurship" : `/${slug}`;
 
   return {
     slug,

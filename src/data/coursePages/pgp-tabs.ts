@@ -98,7 +98,7 @@ export const pgpTabHero: Record<"curriculum" | "placements" | "admissions", Prog
       { value: "25+", label: "Intensive sprints" },
       { value: "100+", label: "Practitioner faculty" },
     ],
-    secondaryCta: { label: "Download brochure", href: "#apply" },
+    secondaryCta: { label: "Download brochure", href: "/pgp-revenue-tech-entrepreneurship/admissions" },
   },
   placements: {
     eyebrow: "Post Graduate Programme · Placements",

@@ -63,7 +63,7 @@ export function ProgramTabPage({ slug, tab }: ProgramTabPageProps) {
       {tab === "admissions" && (
         <>
           <ProgramAdmissions slug={slug} />
-          <ProgramFaq faqs={config.faqs} />
+          <ProgramFaq faqs={config.faqs} applyHref={`/${slug}#apply`} />
         </>
       )}
     </ProgramPageLayout>

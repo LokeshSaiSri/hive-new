@@ -29,7 +29,7 @@ function PillarCard({ pillar, index, isBento, isQuadBento }: PillarCardProps) {
     >
       {pillar.image && (
         <div className="relative mb-5 w-full shrink-0 overflow-hidden rounded-xl bg-ink/5" style={{ aspectRatio: "4/3" }}>
-          <Image src={pillar.image} alt={pillar.title} fill className="object-contain" />
+          <Image src={pillar.image} alt={pillar.title} fill className="object-contain" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
         </div>
       )}
       <p

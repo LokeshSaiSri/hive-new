@@ -290,7 +290,7 @@ export function CurriculumTracksArena({ tracks, intro, className }: CurriculumTr
   const current = tracks[active];
 
   return (
-    <section className={`program-tab-section tracks-compass overflow-hidden ${className ?? ""}`}>
+    <section id="tracks" className={`program-tab-section tracks-compass overflow-hidden ${className ?? ""}`}>
       <div className="tracks-compass__backdrop" aria-hidden>
         <div className="tracks-compass__mesh" />
         <div className="tracks-compass__grain" />

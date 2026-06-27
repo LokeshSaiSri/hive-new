@@ -39,8 +39,8 @@ export function PortraitCard({
     layout === "fluid" 
       ? "w-full" 
       : size === "large" 
-        ? "w-[200px] sm:w-[240px] lg:w-[300px]" 
-        : "w-[180px] sm:w-[200px] lg:w-[260px]";
+        ? "w-[160px] sm:w-[240px] lg:w-[300px]" 
+        : "w-[140px] sm:w-[200px] lg:w-[260px]";
 
   const handleClick = () => {
     if (onSelect) {
@@ -80,7 +80,8 @@ export function PortraitCard({
               alt={companyLabel ?? name}
               width={72}
               height={20}
-              className="h-4 w-auto max-w-full object-contain"
+              className="max-w-full object-contain"
+              style={{ width: "auto", height: "16px" }}
             />
           ) : (
             <span className="truncate text-[9px] font-bold uppercase tracking-wide text-ink">

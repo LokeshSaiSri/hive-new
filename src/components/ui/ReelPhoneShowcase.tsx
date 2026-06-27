@@ -95,7 +95,7 @@ export function ReelPhoneShowcase({
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const [soundOn, setSoundOn] = useState(false);
+  const [soundOn, setSoundOn] = useState(true);
   const [slideDirection, setSlideDirection] = useState<1 | -1>(1);
 
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -103,7 +103,7 @@ export function ReelPhoneShowcase({
   const pointerStartX = useRef<number | null>(null);
   const suppressClickRef = useRef(false);
   const isPausedRef = useRef(false);
-  const soundOnRef = useRef(false);
+  const soundOnRef = useRef(true);
 
   const total = reels.length;
   const reel = reels[activeIndex];
@@ -161,6 +161,8 @@ export function ReelPhoneShowcase({
       await video.play();
     } catch {
       video.muted = true;
+      setSoundOn(false);
+      soundOnRef.current = false;
       try {
         await video.play();
       } catch {
@@ -219,10 +221,10 @@ export function ReelPhoneShowcase({
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setActiveIndex(0);
     setIsPaused(false);
-    setSoundOn(false);
+    setSoundOn(true);
     activeIndexRef.current = 0;
     isPausedRef.current = false;
-    soundOnRef.current = false;
+    soundOnRef.current = true;
   }, [reelsKey]);
 
   useEffect(() => {

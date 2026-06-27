@@ -125,6 +125,7 @@ export function Nav() {
 
         <button
           type="button"
+          suppressHydrationWarning
           className="flex h-11 w-11 items-center justify-center rounded-full text-white transition-all duration-300 hover:bg-white/10 hover:text-white lg:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"

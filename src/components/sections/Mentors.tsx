@@ -38,7 +38,8 @@ export function Mentors() {
   const [category, setCategory] =
     useState<(typeof mentorCategories)[number]>("Marketing");
   const filtered = mentors.filter((m) => m.category === category);
-  const midpoint = Math.ceil(filtered.length / 2);
+  const isOneLine = ["Sales", "GTM", "Growth"].includes(category);
+  const midpoint = isOneLine ? filtered.length : Math.ceil(filtered.length / 2);
   const topRowMentors = filtered.slice(0, midpoint);
   const bottomRowMentors = filtered.slice(midpoint);
 
@@ -66,7 +67,7 @@ export function Mentors() {
       <div className="mt-12 flex flex-col gap-6 sm:gap-8 lg:hidden">
         {topRowMentors.length > 0 && (
           <HorizontalScroller
-            marquee
+            marquee={topRowMentors.length >= 3}
             marqueePauseOnHover={false}
             marqueeSpeed="slow"
             marqueeDirection="left"
@@ -79,7 +80,7 @@ export function Mentors() {
         )}
         {bottomRowMentors.length > 0 && (
           <HorizontalScroller
-            marquee
+            marquee={bottomRowMentors.length >= 3}
             marqueePauseOnHover={false}
             marqueeSpeed="slow"
             marqueeDirection="right"

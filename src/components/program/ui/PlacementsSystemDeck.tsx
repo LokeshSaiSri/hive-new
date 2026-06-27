@@ -220,6 +220,7 @@ export function PlacementsSystemDeck({ pillars, intro, className }: PlacementsSy
                   return (
                     <button
                       key={pillar.title}
+                      suppressHydrationWarning
                       type="button"
                       role="tab"
                       aria-selected={isActive}

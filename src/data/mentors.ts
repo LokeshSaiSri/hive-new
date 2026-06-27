@@ -68,7 +68,7 @@ export const mentors: Mentor[] = [
     name: "Rithish Kumar",
     role: "Founder",
     companyLabel: "PeeSafe",
-    image: asset("images/mentors/rithish-kumar.jpg"),
+    image: asset("images/mentors/rithish-kumar.png"),
     companyLogo: asset("images/logos/panel-mentors/peesafe.webp"),
     category: "Marketing",
   },

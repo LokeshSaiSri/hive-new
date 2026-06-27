@@ -84,7 +84,7 @@ export function AiMarketingAdmissionsTab({ config }: AiMarketingAdmissionsTabPro
 
       <ProgramCohortVoices stories={buildCohortStories(aiMarketingAlumniQuotes, testimonials)} />
 
-      <ProgramFaq faqs={admissionsFaqs} variant="theatre" className="pt-0 border-t-0" />
+      <ProgramFaq faqs={admissionsFaqs} applyHref="/ai-marketing#apply" variant="theatre" className="pt-0 border-t-0" />
     </>
   );
 }

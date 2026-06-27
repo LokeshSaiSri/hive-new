@@ -60,11 +60,17 @@ export function getHubSpotFormGuid(slug: ProgramSlug): string | undefined {
   return FORM_GUID_ENV[slug];
 }
 
-/** HubSpot form for gated placement report downloads. Falls back to PGP form if unset. */
 export function getPlacementReportFormGuid(): string | undefined {
   const dedicated = process.env.NEXT_PUBLIC_HUBSPOT_FORM_PLACEMENT_REPORT?.trim();
   if (dedicated) return dedicated;
   return FORM_GUID_ENV.pgp;
+}
+
+/** HubSpot form for general gated document downloads (e.g., handbook). Falls back to Placement Report form if unset. */
+export function getGatedDocumentFormGuid(): string | undefined {
+  const dedicated = process.env.NEXT_PUBLIC_HUBSPOT_FORM_GENERAL_ENQUIRY?.trim();
+  if (dedicated) return dedicated;
+  return getPlacementReportFormGuid();
 }
 
 export function isHubSpotConfigured(slug: ProgramSlug): boolean {

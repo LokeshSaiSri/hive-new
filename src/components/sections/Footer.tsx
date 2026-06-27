@@ -106,9 +106,9 @@ export function Footer() {
               />
             </Link>
             <p className="mt-6 max-w-xs text-sm leading-relaxed text-white/65">
-              Building 9A, DLF Cyber City,
+              The Circle, 3rd Floor, Huda City Centre Metro Station, Sector 29,
               <br />
-              Gurugram, Haryana — 122022
+              Gurugram, Haryana — 122002
             </p>
             <div className="mt-6 flex gap-3">
               <SocialIcon href="https://instagram.com/hiveschool.co" label="Instagram">

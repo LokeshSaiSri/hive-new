@@ -76,7 +76,7 @@ function ProgrammeShowcase({
         </dl>
         <div className="mt-8 flex flex-wrap gap-4">
           <PillButton variant="highlight" tone={dark ? "dark" : "light"} href={programme.enrolHref}>
-            Enrol Now
+            Enroll Now
           </PillButton>
           <PillButton variant="secondary" tone={dark ? "dark" : "light"} href={programme.learnMoreHref}>
             Learn More
@@ -132,7 +132,7 @@ function ProgrammeCard({
 
           <div className="mt-auto flex flex-wrap gap-3 pt-4">
             <PillButton variant="primary" tone="light" href={programme.enrolHref}>
-              Enrol
+              Enroll
             </PillButton>
             <PillButton variant="secondary" tone="light" href={programme.learnMoreHref}>
               Learn more

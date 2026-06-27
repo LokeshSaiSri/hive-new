@@ -11,7 +11,7 @@ export const hiringPartnerLogos: PartnerLogo[] = [
   { name: "Google", src: asset("images/logos/google.png"), treatment: "color" },
   {
     name: "Payoneer",
-    src: asset("images/logos/hiring-partners/payoneer.svg"),
+    src: asset("images/logos/hiring-partners/payoneer-logo.png"),
     treatment: "light",
   },
   { name: "Razorpay", src: asset("images/logos/razorpay.png"), treatment: "mono" },
