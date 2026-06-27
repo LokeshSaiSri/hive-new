@@ -48,6 +48,12 @@ export function DownloadGateForm({
       return;
     }
 
+    const phoneDigits = form.phone.replace(/\D/g, "");
+    if (phoneDigits.length !== 10) {
+      setError("Phone number must be exactly 10 digits.");
+      return;
+    }
+
     setError(undefined);
     setSubmitting(true);
 
@@ -176,9 +182,15 @@ export function DownloadGateForm({
                 <input
                   type="tel"
                   value={form.phone}
-                  onChange={(event) => setForm((current) => ({ ...current, phone: event.target.value }))}
+                  onChange={(event) => {
+                    const digits = event.target.value.replace(/\D/g, "").slice(0, 10);
+                    setForm((current) => ({ ...current, phone: digits }));
+                  }}
                   className="w-full rounded-xl border border-white/10 bg-ink/40 px-4 py-3 text-white outline-none transition focus:border-accent"
                   autoComplete="tel"
+                  maxLength={10}
+                  inputMode="numeric"
+                  placeholder="10-digit mobile number"
                 />
               </label>
             </div>
