@@ -12,7 +12,7 @@ export function FAQ() {
   const current = faqItems[active];
 
   return (
-    <section className="section-band-light">
+    <section id="faq" className="section-band-light">
       <div className="section-container">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:items-start lg:gap-14">
           <ScrollReveal className="order-2 lg:order-1">

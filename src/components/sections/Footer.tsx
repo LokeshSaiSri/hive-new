@@ -17,16 +17,12 @@ const pgpLinks = [
 const fellowshipLinks = [
   { label: "Overview", href: "/ai-marketing" },
   { label: "Curriculum", href: "/ai-marketing/curriculum" },
-  { label: "Placement network", href: "/ai-marketing/placements" },
   { label: "Admissions", href: "/ai-marketing/admissions" },
   { label: "Application Form", href: "/ai-marketing#apply" },
 ];
 
 const ugLinks = [
-  { label: "Overview", href: "/ug" },
-  { label: "Curriculum", href: "/ug#timeline" },
-  { label: "Admissions", href: "/ug#apply" },
-  { label: "Application Form", href: "/ug#apply" },
+  { label: "UG", href: "/ug" },
 ];
 
 const exploreLinks = [
@@ -161,7 +157,7 @@ export function Footer() {
                 ))}
                 {ugLinks.map((link) => (
                   <li key={link.label}>
-                    <FooterLink href={link.href}>UG · {link.label}</FooterLink>
+                    <FooterLink href={link.href}>{link.label}</FooterLink>
                   </li>
                 ))}
               </ul>
