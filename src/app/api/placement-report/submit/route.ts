@@ -77,12 +77,13 @@ export async function POST(request: Request) {
       ipAddress: getClientIp(request),
     });
 
-    await submitToHubSpot({
+    // Submit to HubSpot in the background so the user gets the download instantly
+    submitToHubSpot({
       portalId,
       formGuid,
       fields: body.fields,
       context: hubspotContext,
-    });
+    }).catch((error) => console.error("Background HubSpot submission failed:", error));
 
     const downloadUrl = edition
       ? `/api/placement-report/download?edition=${encodeURIComponent(edition.id)}`
