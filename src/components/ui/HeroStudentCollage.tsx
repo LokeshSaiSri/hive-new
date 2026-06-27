@@ -146,22 +146,44 @@ export function HeroStudentCollage({
         </div>
 
         {students.length > 1 && (
-          <div className="mt-5 flex items-center gap-1.5">
-            {students.map((student, index) => {
-              const isActive = index === activeIndex;
-              return (
-                <button
-                  key={student.name}
-                  type="button"
-                  onClick={() => setActiveIndex(index)}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${
-                    isActive ? "w-5 bg-white" : "w-1.5 bg-white/20 hover:bg-white/40"
-                  }`}
-                  aria-label={`Show ${student.name}'s story`}
-                  aria-current={isActive}
-                />
-              );
-            })}
+          <div className="mt-5 flex items-center justify-center gap-3">
+            <button
+              type="button"
+              onClick={() => setActiveIndex((prev) => (prev > 0 ? prev - 1 : students.length - 1))}
+              className="flex h-6 w-6 items-center justify-center rounded-full bg-white/5 text-white/40 transition hover:bg-white/10 hover:text-white"
+              aria-label="Previous story"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5">
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+            </button>
+            <div className="flex items-center gap-1.5">
+              {students.map((student, index) => {
+                const isActive = index === activeIndex;
+                return (
+                  <button
+                    key={student.name}
+                    type="button"
+                    onClick={() => setActiveIndex(index)}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      isActive ? "w-5 bg-white" : "w-1.5 bg-white/20 hover:bg-white/40"
+                    }`}
+                    aria-label={`Show ${student.name}'s story`}
+                    aria-current={isActive}
+                  />
+                );
+              })}
+            </div>
+            <button
+              type="button"
+              onClick={() => setActiveIndex((prev) => (prev < students.length - 1 ? prev + 1 : 0))}
+              className="flex h-6 w-6 items-center justify-center rounded-full bg-white/5 text-white/40 transition hover:bg-white/10 hover:text-white"
+              aria-label="Next story"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5">
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </button>
           </div>
         )}
       </div>
