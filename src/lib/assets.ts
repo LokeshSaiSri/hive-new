@@ -33,7 +33,7 @@ export function cdnAsset(path: string): string {
   const cdn = getMediaCdnUrl();
 
   if (cdn) {
-    return `${cdn}/${encodeURI(normalized).replace(/%2520/g, "%20")}`;
+    return `${cdn}/${encodeURI(normalized).replace(/%2520/g, "%20")}?v=2`;
   }
 
   // Fallback to local
