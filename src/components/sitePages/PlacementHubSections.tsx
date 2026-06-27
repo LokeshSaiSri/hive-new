@@ -111,7 +111,7 @@ export function ProgrammePlacementSummaries({ className }: { className?: string 
           />
         </ScrollReveal>
 
-        <div className="mt-10 grid gap-4 lg:grid-cols-3">
+        <div className="mt-10 grid gap-4 lg:grid-cols-2">
           {programmePlacementSummaries.map((programme) => (
             <ScrollReveal key={programme.href}>
               <Link

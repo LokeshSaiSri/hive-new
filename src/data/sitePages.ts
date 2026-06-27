@@ -114,14 +114,6 @@ export const programmePlacementSummaries = [
     cta: "PGP placement report",
   },
   {
-    title: "Undergraduate Programme",
-    href: "/ug/placements",
-    avgCtc: "Early career",
-    highest: "Internship-led",
-    highlight: "Revenue roles from year one",
-    cta: "UG placement outcomes",
-  },
-  {
     title: "AI Marketing Fellowship",
     href: "/ai-marketing/placements",
     avgCtc: "Brand & growth",
