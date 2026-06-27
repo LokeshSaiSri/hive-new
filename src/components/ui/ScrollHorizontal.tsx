@@ -12,6 +12,7 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 const TRACK_PADDING =
   "pl-4 pr-4 sm:pl-6 sm:pr-6 lg:pl-[max(1.5rem,calc((100vw-80rem)/2+2rem))] lg:pr-[max(1.5rem,calc((100vw-80rem)/2+2rem))]";
@@ -38,6 +39,7 @@ export function ScrollHorizontal({
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useReducedMotion();
+  const isMobile = useMediaQuery("(max-width: 1023px)");
   const [metrics, setMetrics] = useState({ distance: 0, height: 0 });
 
   const { scrollYProgress } = useScroll({
@@ -85,9 +87,9 @@ export function ScrollHorizontal({
     };
   }, [children, durationScale]);
 
-  if (prefersReducedMotion) {
+  if (prefersReducedMotion || isMobile) {
     return (
-      <div className={`overflow-x-auto ${TRACK_PADDING} ${className}`}>
+      <div className={`overflow-x-auto snap-x snap-mandatory [-webkit-overflow-scrolling:touch] ${TRACK_PADDING} ${className}`}>
         <div className={`flex gap-6 pb-2 ${trackClassName}`}>{children}</div>
       </div>
     );
