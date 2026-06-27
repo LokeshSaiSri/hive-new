@@ -1,0 +1,2 @@
+# Videos are hosted on Cloudflare R2 — do not commit .mp4 files here.
+# Upload: npm run upload-videos:r2 (requires R2_* env vars in .env)
