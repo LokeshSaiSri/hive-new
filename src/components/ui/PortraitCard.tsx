@@ -68,7 +68,7 @@ export function PortraitCard({
         src={image}
         alt={name}
         fill
-        className="object-cover transition-transform duration-500 group-hover:scale-105"
+        className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
         sizes="300px"
       />
       <div className="overlay-portrait absolute inset-0" />

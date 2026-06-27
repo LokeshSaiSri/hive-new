@@ -119,7 +119,7 @@ export function HeroStudentListItem({
         transition={{ duration: 0.28, ease: easeHive }}
         className="relative h-11 w-11 shrink-0 overflow-hidden rounded-lg sm:h-12 sm:w-12"
       >
-        <Image src={src} alt={name} fill className="object-cover" sizes="48px" />
+        <Image src={src} alt={name} fill className="object-cover object-top" sizes="48px" />
       </motion.span>
       <CompanyLogoBadge company={company} logo={companyLogo} size="list" />
       <span className="min-w-0 flex-1">
@@ -178,7 +178,7 @@ export function HeroStudentFeatured({
             src={src}
             alt={name}
             fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
             sizes="185px"
             priority
           />

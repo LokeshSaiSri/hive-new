@@ -145,34 +145,44 @@ export function ProgramStoryTheatre({ stories, label }: ProgramStoryTheatreProps
             </div>
           </div>
 
-          {current.videoId && (
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.div
-                key={current.videoId}
-                className="program-story-theatre__player-wrap"
-                initial={prefersReducedMotion ? false : { opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={prefersReducedMotion ? undefined : { opacity: 0, x: -20 }}
-                transition={{ duration: 0.45, ease: easeHive }}
-              >
-                <div className="premium-frame-dark program-story-theatre__player-frame">
-                  <div className="premium-surface-dark premium-metallic-edge program-story-theatre__player-surface">
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={current.videoId ?? current.name}
+              className="program-story-theatre__player-wrap"
+              initial={prefersReducedMotion ? false : { opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={prefersReducedMotion ? undefined : { opacity: 0, x: -20 }}
+              transition={{ duration: 0.45, ease: easeHive }}
+            >
+              <div className="premium-frame-dark program-story-theatre__player-frame">
+                <div className="premium-surface-dark premium-metallic-edge program-story-theatre__player-surface">
+                  {current.videoId ? (
                     <StoryTheatrePlayer
                       videoId={current.videoId}
                       name={current.name}
                       onPlayingChange={handlePlayingChange}
                     />
-                    <p className="program-story-theatre__now-playing">
-                      <span className="program-story-theatre__now-playing-label">
-                        {isVideoPlaying ? "Now playing" : "Up next"}
-                      </span>
-                      {current.name}
-                    </p>
-                  </div>
+                  ) : (
+                    <div className="relative h-full w-full">
+                      <Image
+                        src={current.image}
+                        alt={current.name}
+                        fill
+                        className="object-cover object-top"
+                        sizes="(max-width: 1024px) 100vw, 800px"
+                      />
+                    </div>
+                  )}
+                  <p className="program-story-theatre__now-playing">
+                    <span className="program-story-theatre__now-playing-label">
+                      {current.videoId ? (isVideoPlaying ? "Now playing" : "Up next") : "Featured Story"}
+                    </span>
+                    {current.name}
+                  </p>
                 </div>
-              </motion.div>
-            </AnimatePresence>
-          )}
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
 
         {stories.length > 1 && (

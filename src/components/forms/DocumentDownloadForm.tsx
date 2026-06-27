@@ -46,7 +46,9 @@ export function DocumentDownloadForm({ document: doc, compact = false }: Documen
           throw new Error(data.error ?? "Could not submit form. Please try again.");
         }
 
-        await triggerFileDownload(data.downloadUrl, filename);
+        // Trigger the file download in the background without awaiting it,
+        // so the UI immediately advances to the 'Download started' success state.
+        triggerFileDownload(data.downloadUrl, filename).catch(console.error);
       }}
       onDownloadAgain={() => triggerFileDownload(doc.pdfHref, filename)}
     />
