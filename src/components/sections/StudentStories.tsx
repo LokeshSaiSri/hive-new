@@ -45,13 +45,28 @@ function StoryPreviewPanel({ story }: { story: Testimonial }) {
             />
           </>
         ) : (
-          <Image
-            src={story.image}
-            alt={`${story.name} at ${story.company}`}
-            fill
-            className="object-cover"
-            sizes="(max-width: 1024px) 100vw, 720px"
-          />
+          <>
+            <Image
+              src={story.image}
+              alt={`${story.name} at ${story.company}`}
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 720px"
+            />
+            {story.quote && (
+              <div className="absolute inset-0 bg-black/50 z-0" aria-hidden />
+            )}
+            {story.quote && (
+              <div className="absolute inset-0 flex flex-col items-center justify-center p-6 sm:p-10 text-center z-10 pointer-events-none pb-20">
+                <svg className="w-8 h-8 text-white/20 mb-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                </svg>
+                <p className="text-lg sm:text-xl md:text-2xl font-medium text-white leading-relaxed">
+                  {story.quote}
+                </p>
+              </div>
+            )}
+          </>
         )}
         <span className="student-story-preview__scrim pointer-events-none absolute inset-0" aria-hidden />
         <span className="pointer-events-none absolute bottom-4 left-4 right-4 text-left sm:bottom-5">
@@ -88,11 +103,19 @@ function StoryPreviewPanel({ story }: { story: Testimonial }) {
             </svg>
             Watch full video
           </button>
-        ) : (
-          <span className="student-story-preview__sound-btn text-white/40 cursor-not-allowed">
-            Reading profile...
-          </span>
-        )}
+        ) : story.linkedin ? (
+          <a
+            href={story.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="student-story-preview__sound-btn hover:text-white transition-colors"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden>
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+            </svg>
+            Connect on LinkedIn
+          </a>
+        ) : null}
       </div>
     </motion.div>
   );

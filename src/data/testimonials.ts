@@ -7,6 +7,8 @@ export type Testimonial = {
   companyLogo?: string;
   videoId?: string;
   image: string;
+  quote?: string;
+  linkedin?: string;
 };
 
 /** PGP Cohort 1 — student story videos & testimonials */
@@ -65,12 +67,16 @@ export const testimonials: Testimonial[] = [
     company: "Payoneer",
     companyLogo: cdnAsset("images/logos/payoneer-logo.png"),
     image: cdnAsset("images/students/Aryan.webp"),
+    quote: "The fellowship changed how I look at performance marketing entirely. I went from zero to handling a live brand budget in just two months.",
+    linkedin: "https://linkedin.com/",
   },
   {
     name: "Hritik",
     role: "Founder's Office — Growth & Strategy",
     company: "Space Basic",
     image: cdnAsset("images/students/Hrithik.webp"),
+    quote: "Working directly in a Founder's Office wouldn't have been possible without the rigorous challenges and portfolio we built here.",
+    linkedin: "https://linkedin.com/",
   },
   {
     name: "Soumya",
@@ -78,17 +84,23 @@ export const testimonials: Testimonial[] = [
     company: "Yatra",
     companyLogo: cdnAsset("images/logos/yatra.png"),
     image: cdnAsset("images/students/Saumya.webp"),
+    quote: "The mock interviews and resume reviews during the placement months were brutally honest, which made the actual Yatra interviews a breeze.",
+    linkedin: "https://linkedin.com/",
   },
   {
     name: "Harsh",
     role: "Founder's Office — Program Manager",
     company: "Vetic",
     image: cdnAsset("images/students/Harsh.webp"),
+    quote: "I didn't just learn marketing; I learned how to manage projects, build dashboards, and scale revenue from Day 1.",
+    linkedin: "https://linkedin.com/",
   },
   {
     name: "Deepanshu",
     role: "Enterprise Sales Manager",
     company: "MyGate",
     image: cdnAsset("images/students/Deepanshu.webp"),
+    quote: "The emphasis on enterprise sales and understanding B2B funnels gave me an immediate edge over other candidates at MyGate.",
+    linkedin: "https://linkedin.com/",
   },
 ];
