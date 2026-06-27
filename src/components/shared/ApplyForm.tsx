@@ -85,8 +85,8 @@ const AUTO_ADVANCE_MS = 420;
 
 function validateField(id: FieldKey, value: string): string | undefined {
   if (!value.trim()) return "This field is required";
-  if (id === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value))
-    return "Enter a valid email";
+  if (id === "email" && !/^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(value.trim()))
+    return "Enter a valid email address";
   if (id === "phone") {
     const stripped = value.replace(/[\s\-()]/g, "");
     if (!/^\+?\d+$/.test(stripped)) return "Phone number can only contain digits";

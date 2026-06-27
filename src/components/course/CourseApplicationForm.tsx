@@ -122,8 +122,8 @@ function SubmitArrow() {
 
 function validateForm(form: FormState): string | undefined {
   if (!form.name.trim()) return "Please enter your name";
-  if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
-    return "Please enter a valid email";
+  if (!form.email.trim() || !/^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(form.email.trim()))
+    return "Please enter a valid email address";
   if (!form.phone.trim()) return "Please enter your phone number";
   const strippedPhone = form.phone.replace(/[\s\-()]/g, "");
   if (!/^\+?\d+$/.test(strippedPhone)) return "Phone number can only contain digits";
@@ -253,8 +253,8 @@ function MetricSpotlight({
                 type="button"
                 onClick={() => onSelect(index)}
                 className={`group relative overflow-hidden rounded-xl border px-3.5 py-3 text-left transition-all duration-300 ${isActive
-                    ? "border-white/25 bg-white/10 shadow-[0_8px_28px_rgba(0,0,0,0.25)]"
-                    : "border-white/8 bg-white/[0.03] hover:border-white/16 hover:bg-white/[0.06]"
+                  ? "border-white/25 bg-white/10 shadow-[0_8px_28px_rgba(0,0,0,0.25)]"
+                  : "border-white/8 bg-white/[0.03] hover:border-white/16 hover:bg-white/[0.06]"
                   }`}
               >
                 <p className="text-[9px] font-bold uppercase tracking-[0.16em] text-white/42">
@@ -378,8 +378,8 @@ function ApplicationDossier({ form }: { form: FormState }) {
             <span
               key={key}
               className={`rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] transition-colors ${done
-                  ? "bg-electric-blue/10 text-electric-blue"
-                  : "bg-ink/[0.04] text-ink/35"
+                ? "bg-electric-blue/10 text-electric-blue"
+                : "bg-ink/[0.04] text-ink/35"
                 }`}
             >
               {FIELD_META[key].label}
@@ -415,8 +415,8 @@ function FormField({
       <label
         htmlFor={`apply-${fieldKey}`}
         className={`pointer-events-none absolute left-4 transition-all duration-200 ${lifted
-            ? "top-2 text-[10px] font-bold uppercase tracking-[0.12em] text-electric-blue"
-            : "top-1/2 -translate-y-1/2 text-[14px] text-ink/40"
+          ? "top-2 text-[10px] font-bold uppercase tracking-[0.12em] text-electric-blue"
+          : "top-1/2 -translate-y-1/2 text-[14px] text-ink/40"
           }`}
       >
         {meta.label}
@@ -433,10 +433,10 @@ function FormField({
         onBlur={onBlur}
         onChange={(e) => onChange(e.target.value)}
         className={`w-full rounded-xl border bg-white px-4 pb-3 pt-7 text-base sm:text-[15px] text-ink outline-none transition-all duration-200 placeholder:text-ink/30 ${focused
-            ? "border-electric-blue shadow-[0_0_0_4px_rgba(30,68,226,0.12),0_8px_20px_rgba(30,68,226,0.08)]"
-            : hasValue
-              ? "border-electric-blue/40 shadow-[0_4px_14px_rgba(30,68,226,0.06)]"
-              : "border-border-soft shadow-[0_2px_8px_rgba(6,15,50,0.04)] hover:border-ink/20 hover:shadow-[0_6px_16px_rgba(6,15,50,0.06)]"
+          ? "border-electric-blue shadow-[0_0_0_4px_rgba(30,68,226,0.12),0_8px_20px_rgba(30,68,226,0.08)]"
+          : hasValue
+            ? "border-electric-blue/40 shadow-[0_4px_14px_rgba(30,68,226,0.06)]"
+            : "border-border-soft shadow-[0_2px_8px_rgba(6,15,50,0.04)] hover:border-ink/20 hover:shadow-[0_6px_16px_rgba(6,15,50,0.06)]"
           }`}
         required
       />
@@ -665,10 +665,10 @@ export function CourseApplicationForm({
                     <span
                       key={key}
                       className={`h-1.5 rounded-full transition-all duration-300 ${i < filledCount
-                          ? "w-5 bg-blue-glow shadow-[0_0_10px_rgba(134,157,255,0.55)]"
-                          : focusedField === key
-                            ? "w-3 bg-white/55"
-                            : "w-1.5 bg-white/20"
+                        ? "w-5 bg-blue-glow shadow-[0_0_10px_rgba(134,157,255,0.55)]"
+                        : focusedField === key
+                          ? "w-3 bg-white/55"
+                          : "w-1.5 bg-white/20"
                         }`}
                       aria-hidden
                     />
@@ -728,8 +728,8 @@ export function CourseApplicationForm({
                       whileHover={isComplete && !submitting && !prefersReducedMotion ? { scale: 1.01 } : undefined}
                       whileTap={isComplete && !submitting && !prefersReducedMotion ? { scale: 0.99 } : undefined}
                       className={`mt-8 flex w-full items-center justify-center gap-3 rounded-full px-8 py-4 text-[15px] font-semibold transition-all duration-300 ${isComplete && !submitting
-                          ? "border border-electric-blue bg-electric-blue text-white shadow-[0_12px_36px_rgba(30,68,226,0.32)] hover:border-light-blue hover:bg-light-blue hover:shadow-[0_16px_44px_rgba(21,56,176,0.38)]"
-                          : "cursor-not-allowed border border-border-soft bg-ink/[0.04] text-ink/35"
+                        ? "border border-electric-blue bg-electric-blue text-white shadow-[0_12px_36px_rgba(30,68,226,0.32)] hover:border-light-blue hover:bg-light-blue hover:shadow-[0_16px_44px_rgba(21,56,176,0.38)]"
+                        : "cursor-not-allowed border border-border-soft bg-ink/[0.04] text-ink/35"
                         }`}
                     >
                       <span>
