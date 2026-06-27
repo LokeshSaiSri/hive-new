@@ -47,7 +47,6 @@ export function mapApplyFormFields(form: {
     { name: HUBSPOT_CONTACT_FIELDS.lastName, value: lastname },
     { name: HUBSPOT_CONTACT_FIELDS.email, value: form.email },
     { name: HUBSPOT_CONTACT_FIELDS.phone, value: formattedPhone },
-    { name: "phone", value: formattedPhone },
     { name: HUBSPOT_CONTACT_FIELDS.programmeOfInterest, value: form.programme },
   ];
 }
@@ -66,11 +65,9 @@ export function mapPlacementReportFields(form: {
     { name: HUBSPOT_CONTACT_FIELDS.lastName, value: lastname },
     { name: HUBSPOT_CONTACT_FIELDS.email, value: form.email },
     { name: HUBSPOT_CONTACT_FIELDS.phone, value: formattedPhone },
-    { name: "phone_number", value: formattedPhone },
-    { name: "mobilephone", value: formattedPhone },
     {
-      name: HUBSPOT_CONTACT_FIELDS.programmeOfInterest,
-      value: `Placement Report — ${form.editionLabel}`,
+      name: "message", // Sending to standard message text field instead of enum
+      value: `Requested Placement Report: ${form.editionLabel}`,
     },
   ];
 }
@@ -89,11 +86,9 @@ export function mapDocumentDownloadFields(form: {
     { name: HUBSPOT_CONTACT_FIELDS.lastName, value: lastname },
     { name: HUBSPOT_CONTACT_FIELDS.email, value: form.email },
     { name: HUBSPOT_CONTACT_FIELDS.phone, value: formattedPhone },
-    { name: "phone_number", value: formattedPhone },
-    { name: "mobilephone", value: formattedPhone },
     {
-      name: HUBSPOT_CONTACT_FIELDS.programmeOfInterest,
-      value: form.documentLabel,
+      name: "message", // Sending to standard message text field instead of enum
+      value: `Requested Document: ${form.documentLabel}`,
     },
   ];
 }
