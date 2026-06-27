@@ -37,12 +37,12 @@ export const challenges: Challenge[] = [
 
 export const spotlight = {
   hook: "From brand challenge to job offer.",
-  title: "Soham won the Dohful challenge — then joined as Growth Associate.",
+  title: "Soham won the Dohful challenge — then joined in the Founder's Office.",
   description:
     "Pitched quick-commerce strategy to the founders live. Got introduced. Hired to work on the same problem he solved as a student.",
   videoId: "0D0DH9qIIj0",
   name: "Soham Chatterjee",
-  role: "Growth Associate",
+  role: "Founder's Office",
   company: "Dohful",
   portrait: asset("images/students/Soham.webp"),
   steps: [
