@@ -31,6 +31,7 @@ export const handsOnPanels: FeaturePanel[] = [
     title: "Build Pipeline & Close Deals from Day One",
     description:
       "Structured sprints in B2B outbound, enterprise sales, and AI-assisted GTM. Learn to sell before you manage.",
+    videoId: "rFZLsmtruzM",
     ctaLabel: "See Revenue Sprint",
     bullets: [
       { number: "1", text: "Real CRM workflows from week one" },

@@ -17,6 +17,7 @@ export const pgpCoursePage: CoursePageConfig = {
     emphasis: "Entrepreneurship",
     description:
       "India's first AI-native, revenue-focused business school. A 9-month residential PGP programme in Gurugram for ambitious professionals building careers in revenue, marketing, and entrepreneurship.",
+    videoId: "rFZLsmtruzM",
     backgroundVideo: "videos/pgp-hero.mp4",
     posterVideoId: "3OVg1OFxd1k",
     primaryCta: { label: "Apply Now", href: "/pgp-revenue-tech-entrepreneurship#apply" },

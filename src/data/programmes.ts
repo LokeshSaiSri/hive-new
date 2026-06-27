@@ -17,6 +17,7 @@ export const programmes: Programme[] = [
     id: "pgp",
     title: "PGP in Revenue, AI & Entrepreneurship",
     badge: "Flagship",
+    videoId: "rFZLsmtruzM",
     description:
       "9-month full-time programme with tuition, tools, mentorship & placement support.",
     eligibility: "0-5 years experience",
