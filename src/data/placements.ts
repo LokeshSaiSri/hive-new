@@ -36,13 +36,6 @@ export const pgpCohortAlumni: AlumniPlacement[] = [
     videoId: "1p3gZEkfg74",
   },
   {
-    name: "Aryan Suri",
-    role: "Business Development Representative",
-    company: "Payoneer",
-    image: asset("images/students/Aryan.webp"),
-    previous: "Consulting",
-    },
-  {
     name: "Om Mishra",
     role: "Business Development Representative",
     company: "Payoneer",
@@ -50,21 +43,6 @@ export const pgpCohortAlumni: AlumniPlacement[] = [
     previous: "Consulting",
     videoId: "wh8cxiSDXeU",
   },
-  {
-    name: "Hritik",
-    role: "Founder's Office — Growth & Strategy",
-    company: "Space Basic",
-    image: asset("images/students/Hrithik.webp"),
-    previous: "Fresher",
-    videoId: "FtiZotYe_lg",
-  },
-  {
-    name: "Soumya",
-    role: "Customer Success Manager",
-    company: "Yatra",
-    image: asset("images/students/Saumya.webp"),
-    previous: "Operations",
-    },
   {
     name: "Sanyu",
     role: "Business Development Representative",
@@ -74,13 +52,6 @@ export const pgpCohortAlumni: AlumniPlacement[] = [
     videoId: "Z5ydfksTXNg",
   },
   {
-    name: "Harsh",
-    role: "Founder's Office — Program Manager",
-    company: "Vetic",
-    image: asset("images/students/Harsh.webp"),
-    previous: "Fresher",
-    },
-  {
     name: "Tanishq",
     role: "Account Manager",
     company: "Kaseya",
@@ -89,12 +60,40 @@ export const pgpCohortAlumni: AlumniPlacement[] = [
     videoId: "ECGkJ5jfKeM",
   },
   {
+    name: "Aryan Suri",
+    role: "Business Development Representative",
+    company: "Payoneer",
+    image: asset("images/students/Aryan.webp"),
+    previous: "Consulting",
+  },
+  {
+    name: "Hritik",
+    role: "Founder's Office — Growth & Strategy",
+    company: "Space Basic",
+    image: asset("images/students/Hrithik.webp"),
+    previous: "Fresher",
+  },
+  {
+    name: "Soumya",
+    role: "Customer Success Manager",
+    company: "Yatra",
+    image: asset("images/students/Saumya.webp"),
+    previous: "Operations",
+  },
+  {
+    name: "Harsh",
+    role: "Founder's Office — Program Manager",
+    company: "Vetic",
+    image: asset("images/students/Harsh.webp"),
+    previous: "Fresher",
+  },
+  {
     name: "Deepanshu",
     role: "Enterprise Sales Manager",
     company: "MyGate",
     image: asset("images/students/Deepanshu.webp"),
     previous: "B2B Sales",
-    },
+  },
 ];
 
 export const alumniPlacements: AlumniPlacement[] = pgpCohortAlumni;
