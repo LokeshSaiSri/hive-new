@@ -149,7 +149,7 @@ export function HeroStudentCollage({
           <div className="mt-5 flex items-center justify-center gap-3">
             <button
               type="button"
-              onClick={() => setActiveIndex((prev) => (prev > 0 ? prev - 1 : students.length - 1))}
+              onClick={() => setActiveIndex(activeIndex > 0 ? activeIndex - 1 : students.length - 1)}
               className="flex h-6 w-6 items-center justify-center rounded-full bg-white/5 text-white/40 transition hover:bg-white/10 hover:text-white"
               aria-label="Previous story"
             >
@@ -176,7 +176,7 @@ export function HeroStudentCollage({
             </div>
             <button
               type="button"
-              onClick={() => setActiveIndex((prev) => (prev < students.length - 1 ? prev + 1 : 0))}
+              onClick={() => setActiveIndex(activeIndex < students.length - 1 ? activeIndex + 1 : 0)}
               className="flex h-6 w-6 items-center justify-center rounded-full bg-white/5 text-white/40 transition hover:bg-white/10 hover:text-white"
               aria-label="Next story"
             >
