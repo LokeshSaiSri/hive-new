@@ -44,7 +44,6 @@ export const industryColumns: IndustryColumn[] = [
   {
     industry: "SaaS",
     tagline: "Pipeline to close — the engine of every software company.",
-    videoId: "rFZLsmtruzM",
     roles: [
       { title: "BDR / SDR", function: "Pipeline Generation" },
       { title: "Account Executive", function: "Closing Deals" },

@@ -40,7 +40,6 @@ export const testimonials: Testimonial[] = [
     role: "Business Development Representative",
     company: "Payoneer",
     companyLogo: cdnAsset("images/logos/payoneer-logo.png"),
-    videoId: "rFZLsmtruzM",
     image: cdnAsset("images/students/Aryan.webp"),
   },
   {
@@ -63,7 +62,6 @@ export const testimonials: Testimonial[] = [
     role: "Customer Success Manager",
     company: "Yatra",
     companyLogo: cdnAsset("images/logos/yatra.png"),
-    videoId: "FtiZotYe_lg",
     image: cdnAsset("images/students/Saumya.webp"),
   },
   {
@@ -78,7 +76,6 @@ export const testimonials: Testimonial[] = [
     name: "Harsh",
     role: "Founder's Office — Program Manager",
     company: "Vetic",
-    videoId: "GF82mn2Hzw0",
     image: cdnAsset("images/students/Harsh.webp"),
   },
   {
@@ -93,7 +90,6 @@ export const testimonials: Testimonial[] = [
     name: "Deepanshu",
     role: "Enterprise Sales Manager",
     company: "MyGate",
-    videoId: "0RGQ76E6JW4",
     image: cdnAsset("images/students/Deepanshu.webp"),
   },
 ];

@@ -41,8 +41,7 @@ export const pgpCohortAlumni: AlumniPlacement[] = [
     company: "Payoneer",
     image: asset("images/students/Aryan.webp"),
     previous: "Consulting",
-    videoId: "rFZLsmtruzM",
-  },
+    },
   {
     name: "Om Mishra",
     role: "Business Development Representative",
@@ -65,8 +64,7 @@ export const pgpCohortAlumni: AlumniPlacement[] = [
     company: "Yatra",
     image: asset("images/students/Saumya.webp"),
     previous: "Operations",
-    videoId: "FtiZotYe_lg",
-  },
+    },
   {
     name: "Sanyu",
     role: "Business Development Representative",
@@ -81,8 +79,7 @@ export const pgpCohortAlumni: AlumniPlacement[] = [
     company: "Vetic",
     image: asset("images/students/Harsh.webp"),
     previous: "Fresher",
-    videoId: "GF82mn2Hzw0",
-  },
+    },
   {
     name: "Tanishq",
     role: "Account Manager",
@@ -97,8 +94,7 @@ export const pgpCohortAlumni: AlumniPlacement[] = [
     company: "MyGate",
     image: asset("images/students/Deepanshu.webp"),
     previous: "B2B Sales",
-    videoId: "0RGQ76E6JW4",
-  },
+    },
 ];
 
 export const alumniPlacements: AlumniPlacement[] = pgpCohortAlumni;
