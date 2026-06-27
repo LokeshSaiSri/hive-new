@@ -98,6 +98,7 @@ export const pgpTabHero: Record<"curriculum" | "placements" | "admissions", Prog
       { value: "25+", label: "Intensive sprints" },
       { value: "100+", label: "Practitioner faculty" },
     ],
+    primaryCta: { label: "Apply in 60 sec", href: "/pgp-revenue-tech-entrepreneurship#apply" },
     secondaryCta: { label: "Download brochure", href: "/4-Month-Roadmap-Brand-x-Revenue.pdf" },
   },
   placements: {
@@ -112,6 +113,7 @@ export const pgpTabHero: Record<"curriculum" | "placements" | "admissions", Prog
       { value: "100+", label: "Hiring partners" },
       { value: "1:1", label: "Man-to-man tracking" },
     ],
+    primaryCta: { label: "Apply in 60 sec", href: "/pgp-revenue-tech-entrepreneurship#apply" },
     secondaryCta: { label: "Download placements report", href: placementReportDownloadPath("year-2") },
   },
   admissions: {
