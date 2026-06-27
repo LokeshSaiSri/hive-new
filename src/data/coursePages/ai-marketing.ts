@@ -45,7 +45,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
         index: "01",
         title: "Performance vs Storytelling",
         tagline: "A normal marketer vs Top 1%",
-        image: cdnAsset("images/Website pics/D2c showcase/DSC01245.jpeg"),
+        image: videoAsset("images/Website pics/d2c bazaar/DSC01796.jpeg"),
         description:
           "A normal marketer would think of Performance Marketing like a Meta Dashboard concept. But Top 1% marketer would think of creating a storyline for a brand that can sell organically and reduce CAC’s. Just like these students are doing here.",
       },
@@ -53,7 +53,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
         index: "02",
         title: "Branding beyond lectures",
         tagline: "Toe-Mah-Toes",
-        image: cdnAsset("images/Website pics/D2c showcase/DSC02669.jpeg"),
+        image: videoAsset("images/Website pics/d2c bazaar/DSC05783.jpeg"),
         description:
           "Branding is not a concept that can be learned in a lecture. For us, Branding is actually creating the most different brand that people will actually buy.",
       },
@@ -61,7 +61,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
         index: "03",
         title: "Positioning is not a framework",
         tagline: "First Female Sensual Perfume",
-        image: cdnAsset("images/Website pics/D2c showcase/DSC02675.jpeg"),
+        image: videoAsset("images/Website pics/d2c bazaar/DSC01747.jpeg"),
         description:
           "Positioning is not just a 4 matrix framework. It is understanding how can we build a brand even in a fragmented market like Perfumes. Hey btw, we're building India's First Female Sensual Perfume Brand. Go buy from us.",
       },
@@ -69,7 +69,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
         index: "04",
         title: "Real Performance Marketing",
         tagline: "Generating sales (Griply)",
-        image: cdnAsset("images/Website pics/D2c showcase/DSC02684.jpeg"),
+        image: videoAsset("images/Website pics/d2c bazaar/DSC01280.jpeg"),
         description:
           "We learnt performance Marketing by actually running Meta Ads for our product. Already generated X sales btw.",
       },
@@ -86,7 +86,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
         index: "01",
         title: "Comparison: Other programs vs Hive",
         tagline: "Tired of outdated concepts?",
-        image: cdnAsset("images/Website pics/D2c showcase/DSC02687.jpeg"),
+        image: cdnAsset("images/Website pics/d2c bazaar/DSC01390.jpeg"),
         description:
           "I want to start my Marketing Career - but all these same 10 year old courses are teaching concepts that are outdated. 'It’s the same dark room and a 10 year experienced Performance Marketers teaching me about today’s marketing.'",
       },
@@ -94,7 +94,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
         index: "02",
         title: "Learn from active operators",
         tagline: "Mentors from top brands",
-        image: cdnAsset("images/Website pics/D2c showcase/DSC02696.jpeg"),
+        image: cdnAsset("images/Website pics/d2c bazaar/DSC01391.jpeg"),
         description:
           "My brand professor from Nestle taught me how to create the quirkiest socks brand.",
       },
@@ -102,7 +102,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
         index: "03",
         title: "Real unit economics",
         tagline: "Healthy contribution margins",
-        image: cdnAsset("images/Website pics/Orientation/DSC01710.jpeg"),
+        image: cdnAsset("images/Website pics/d2c bazaar/DSC01402.jpeg"),
         description:
           "Our growth mentor from Libas taught us how to have healthy contribution margins in a Cookie Brand. (e.g. ₹5 for packaging, ₹5 for COGS, etc.)",
       },
@@ -119,21 +119,21 @@ export const aiMarketingCoursePage: CoursePageConfig = {
         index: "Learn",
         title: "Practitioner-led sprints",
         subtitle: "Operators teach. You apply the same week.",
-        image: cdnAsset("images/Website pics/Orientation/DSC01745.jpeg"),
+        image: cdnAsset("images/Website pics/D2c showcase/DSC02669.jpeg"),
         href: "/ai-marketing/curriculum",
       },
       {
         index: "Build",
         title: "On your venture",
         subtitle: "Every lesson ships on the brand you are building.",
-        image: cdnAsset("images/Website pics/Orientation/DSC01783.jpeg"),
+        image: cdnAsset("images/Website pics/Orientation/DSC01944.jpeg"),
         href: "/ai-marketing/curriculum",
       },
       {
         index: "Prove",
         title: "Wednesday challenges",
         subtitle: "Brief at 10 AM. Pitch to a panel by 8 PM.",
-        image: cdnAsset("images/Website pics/Orientation/DSC01789.jpeg"),
+        image: cdnAsset("images/Website pics/D2c showcase/DSC02765.jpeg"),
         href: "/ai-marketing/curriculum",
       },
     ],
@@ -149,7 +149,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
         index: "01",
         title: "Build a D2C brand",
         tagline: "Product to shelf to revenue",
-        image: cdnAsset("images/Website pics/d2c bazaar/DSC01382.jpeg"),
+        image: cdnAsset("images/Website pics/d2c bazaar/DSC01429.jpeg"),
         description:
           "Take a product from concept to shelf — covering sourcing, branding, marketplace listing, paid acquisition, and customer growth with measurable outcomes.",
         tags: ["Amazon", "Flipkart", "Blinkit", "Shopify"],
@@ -159,7 +159,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
         index: "02",
         title: "Start a content channel",
         tagline: "Audience from zero",
-        image: cdnAsset("images/Website pics/d2c bazaar/DSC01390.jpeg"),
+        image: cdnAsset("images/Website pics/d2c bazaar/DSC01503.jpeg"),
         description:
           "Build and grow an audience from the ground up through content strategy, platform mechanics, format development, and monetisation — executed hands-on throughout the programme.",
         tags: ["Instagram", "YouTube", "LinkedIn", "Creator IP"],
@@ -169,7 +169,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
         index: "03",
         title: "Build a freelance agency",
         tagline: "Clients and commercial work",
-        image: cdnAsset("images/Website pics/d2c bazaar/DSC01402.jpeg"),
+        image: cdnAsset("images/Website pics/d2c bazaar/DSC01548.jpeg"),
         description:
           "Acquire clients, deliver professional marketing engagements, and graduate with a portfolio supported by live work and commercial outcomes.",
         tags: ["D2C clients", "SaaS clients", "Retainers", "Case studies"],

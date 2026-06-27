@@ -1,4 +1,4 @@
-import { asset } from "@/lib/assets";
+import { asset, cdnAsset } from "@/lib/assets";
 
 export type Mentor = {
   name: string;
@@ -68,7 +68,7 @@ export const mentors: Mentor[] = [
     name: "Rithish Kumar",
     role: "Founder",
     companyLabel: "PeeSafe",
-    image: asset("images/mentors/rithish-kumar.png"),
+    image: cdnAsset("images/mentors/ritish-kumar.png"),
     companyLogo: asset("images/logos/panel-mentors/peesafe.webp"),
     category: "Marketing",
   },

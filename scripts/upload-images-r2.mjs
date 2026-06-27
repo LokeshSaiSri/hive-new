@@ -69,7 +69,7 @@ function walkImages(dir, targetFolders) {
   return files;
 }
 
-const targetFolders = ["news", "tech", "timeline"];
+const targetFolders = ["news", "tech", "timeline", "mentors", "Website pics"];
 const files = walkImages(imagesRoot, targetFolders);
 console.log(`Uploading ${files.length} images to R2 bucket "${bucket}" under prefix "${prefix}"...\n`);
 
