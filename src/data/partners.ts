@@ -53,7 +53,7 @@ export const hiringPartnerLogos: PartnerLogo[] = [
     treatment: "light",
   },
   { name: "MakeMyTrip", src: asset("images/logos/makemytrip.png"), treatment: "color" },
-  { name: "Rapido", src: asset("images/logos/rapido.png"), treatment: "color" },
+  { name: "Rapido", src: asset("images/logos/rapido.png"), treatment: "mono" },
   {
     name: "Rippling",
     src: asset("images/logos/hiring-partners/rippling.svg"),
