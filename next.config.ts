@@ -26,6 +26,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/apply-pgp-default",
+        destination: "/pgp-revenue-tech-entrepreneurship",
+        permanent: true,
+      },
+      {
         source: "/pgp",
         destination: "/pgp-revenue-tech-entrepreneurship",
         permanent: true,
