@@ -130,7 +130,7 @@ export function HeroStudentCollage({
               animate="center"
               exit="exit"
               transition={{ duration: 0.38, ease: easeHive }}
-              className="flex w-full flex-col items-center"
+              className="flex w-full flex-col items-center touch-pan-y"
             >
               <HeroStudentFeatured
                 src={active.image}

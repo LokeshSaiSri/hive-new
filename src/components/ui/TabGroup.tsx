@@ -17,7 +17,7 @@ export function TabGroup<T extends string>({
 }: TabGroupProps<T>) {
   return (
     <div
-      className={`flex overflow-x-auto gap-2 border-b pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${
+      className={`flex overflow-x-auto gap-2 border-b pb-4 [-webkit-overflow-scrolling:touch] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${
         dark ? "border-white/10" : "border-ink/10"
       } ${className}`}
     >
