@@ -28,13 +28,12 @@ export function videosHostedOnCdn(): boolean {
   return Boolean(getMediaCdnUrl());
 }
 
-/** Images hosted on CDN (e.g. R2) */
 export function cdnAsset(path: string): string {
   const normalized = path.replace(/^\//, "");
   const cdn = getMediaCdnUrl();
 
   if (cdn) {
-    return `${cdn}/${normalized}`;
+    return `${cdn}/${encodeURI(normalized).replace(/%2520/g, "%20")}`;
   }
 
   // Fallback to local

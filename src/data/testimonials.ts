@@ -1,4 +1,4 @@
-import { asset } from "@/lib/assets";
+import { asset, cdnAsset } from "@/lib/assets";
 
 export type Testimonial = {
   name: string;
