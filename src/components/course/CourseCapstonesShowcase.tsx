@@ -5,6 +5,7 @@ import { SectionIntro } from "@/components/ui/SectionIntro";
 import { HorizontalScroller } from "@/components/ui/HorizontalScroller";
 import { ScrollHorizontal } from "@/components/ui/ScrollHorizontal";
 import type { CourseCapstone, CoursePageConfig } from "@/data/coursePages/types";
+import Image from "next/image";
 
 type CourseCapstonesShowcaseProps = {
   capstones: NonNullable<CoursePageConfig["capstones"]>;
@@ -14,13 +15,24 @@ type CourseCapstonesShowcaseProps = {
 function CapstoneDeckCard({ capstone }: { capstone: CourseCapstone }) {
   return (
     <article
-      className={`capstone-deck-card shrink-0 ${capstone.featured ? "capstone-deck-card--finale" : ""
-        }`}
+      className={`group capstone-deck-card shrink-0 ${capstone.featured ? "capstone-deck-card--finale" : ""
+        } relative overflow-hidden`}
     >
       <div className="capstone-deck-card__glow" aria-hidden />
       <div className="capstone-deck-card__grain" aria-hidden />
+      
+      {capstone.image && (
+        <Image
+          src={capstone.image}
+          alt={capstone.title}
+          fill
+          className="object-cover opacity-60 mix-blend-overlay transition-opacity duration-500 group-hover:opacity-100 group-hover:mix-blend-normal"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        />
+      )}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10 z-0" aria-hidden />
 
-      <div className="capstone-deck-card__top">
+      <div className="capstone-deck-card__top relative z-10">
         <span className="capstone-deck-card__index">{capstone.index}</span>
         <div className="flex flex-wrap justify-end gap-1.5">
           {capstone.badge && (
@@ -36,7 +48,7 @@ function CapstoneDeckCard({ capstone }: { capstone: CourseCapstone }) {
         </div>
       </div>
 
-      <div className="capstone-deck-card__body">
+      <div className="capstone-deck-card__body relative z-10">
         {capstone.category && (
           <p className="capstone-deck-card__track">{capstone.category}</p>
         )}
@@ -44,7 +56,7 @@ function CapstoneDeckCard({ capstone }: { capstone: CourseCapstone }) {
         <p className="capstone-deck-card__copy">{capstone.description}</p>
       </div>
 
-      <div className="capstone-deck-card__foot">
+      <div className="capstone-deck-card__foot relative z-10">
         <span>Live deliverable</span>
         <span aria-hidden>·</span>
         <span>Portfolio piece</span>

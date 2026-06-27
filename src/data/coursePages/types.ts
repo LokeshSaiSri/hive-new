@@ -67,6 +67,7 @@ export type CourseCapstone = {
   featured?: boolean;
   category?: string;
   badge?: string;
+  image?: string;
 };
 
 export type CourseTextFaq = {

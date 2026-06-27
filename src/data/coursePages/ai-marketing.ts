@@ -301,6 +301,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
           "Listing + visibility for a cookie brand against Oreo and Parle.",
         category: "Marketplace",
         badge: "Live brief",
+        image: cdnAsset("images/Website pics/D2c showcase/DSC02687.jpeg"),
       },
       {
         index: "02",
@@ -309,6 +310,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
           "Dark-store entry plan, pricing, 4.2 stars in 60 days.",
         category: "Quick commerce",
         badge: "Pitch deck",
+        image: cdnAsset("images/Website pics/D2c showcase/DSC02696.jpeg"),
       },
       {
         index: "03",
@@ -316,6 +318,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
         description: "1M impressions in 30 days, zero ad spend.",
         category: "Content",
         badge: "Organic growth",
+        image: cdnAsset("images/Website pics/d2c bazaar/DSC01382.jpeg"),
       },
       {
         index: "04",
@@ -324,6 +327,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
           "The ₹5,000 ad showdown — real budget, real Shopify store. Lowest CAC wins.",
         category: "Performance",
         badge: "Real budget",
+        image: cdnAsset("images/Website pics/d2c bazaar/DSC01503.jpeg"),
       },
       {
         index: "05",
@@ -331,6 +335,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
         description: "Conversion dropped 23%. Audit it. Present the fix.",
         category: "E-commerce",
         badge: "Conversion",
+        image: cdnAsset("images/Website pics/Orientation/DSC01710.jpeg"),
       },
       {
         index: "06",
@@ -338,6 +343,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
         description: "Pivot from product-led to education-led content.",
         category: "Brand",
         badge: "30-day plan",
+        image: cdnAsset("images/Website pics/Orientation/DSC01745.jpeg"),
       },
       {
         index: "07",
@@ -345,6 +351,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
         description: "Trade pricing, shelf strategy, online-offline loop.",
         category: "Retail",
         badge: "Omnichannel",
+        image: cdnAsset("images/Website pics/d2c bazaar/DSC01747.jpeg"),
       },
       {
         index: "08",
@@ -352,6 +359,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
         description: "5-message sequence to win back cart abandoners.",
         category: "Lifecycle",
         badge: "Automation",
+        image: cdnAsset("images/Website pics/d2c bazaar/DSC01796.jpeg"),
       },
       {
         index: "09",
@@ -359,6 +367,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
         description: "No-code system that monitors 5 rivals daily.",
         category: "AI ops",
         badge: "No-code",
+        image: cdnAsset("images/Website pics/Orientation/DSC01783.jpeg"),
       },
       {
         index: "10",
@@ -368,6 +377,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
         category: "Analytics",
         badge: "Diagnosis",
         featured: true,
+        image: cdnAsset("images/Website pics/Orientation/DSC01789.jpeg"),
       },
     ],
   },
