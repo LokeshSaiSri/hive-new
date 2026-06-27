@@ -204,7 +204,7 @@ export function CampusVisitPanel() {
                 Fellowship admissions →
               </Link>
               <Link
-                href="https://www.instagram.com/hiveschool"
+                href="https://www.instagram.com/hiveschool.co"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-xl border border-white/10 px-5 py-4 text-sm font-semibold text-white/80 transition hover:border-white/25 hover:bg-white/[0.04]"

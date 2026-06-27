@@ -125,6 +125,10 @@ function validateForm(form: FormState): string | undefined {
   if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
     return "Please enter a valid email";
   if (!form.phone.trim()) return "Please enter your phone number";
+  const strippedPhone = form.phone.replace(/[\s\-()]/g, "");
+  if (!/^\+?\d+$/.test(strippedPhone)) return "Phone number can only contain digits";
+  const digits = form.phone.replace(/\D/g, "");
+  if (digits.length < 10) return "Phone number must be at least 10 digits";
   if (!form.linkedin.trim()) return "Please enter your LinkedIn profile";
   return undefined;
 }

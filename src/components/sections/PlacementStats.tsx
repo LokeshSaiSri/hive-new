@@ -74,7 +74,7 @@ export function PlacementStats() {
             <PlacementStatsCharts />
 
             <div className="flex flex-col items-stretch gap-3 border-t border-white/10 px-5 py-6 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-4 sm:px-6 sm:py-10">
-              <PillButton variant="highlight" tone="dark" href="#apply" className="w-full sm:w-auto">
+              <PillButton variant="highlight" tone="dark" href="/pgp-revenue-tech-entrepreneurship#apply" className="w-full sm:w-auto">
                 Join Hiveschool
               </PillButton>
               <PillButton

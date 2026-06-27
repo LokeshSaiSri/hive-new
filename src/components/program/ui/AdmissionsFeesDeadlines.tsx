@@ -8,9 +8,10 @@ type AdmissionsFeesDeadlinesProps = {
   fees: NonNullable<CoursePageConfig["fees"]>;
   deadlines: AdmissionDeadline[];
   className?: string;
+  applyHref?: string;
 };
 
-export function AdmissionsFeesDeadlines({ fees, deadlines, className }: AdmissionsFeesDeadlinesProps) {
+export function AdmissionsFeesDeadlines({ fees, deadlines, className, applyHref = "#apply" }: AdmissionsFeesDeadlinesProps) {
   return (
     <section className={`program-tab-section hive-dark-band overflow-hidden border-white/10 section-py ${className ?? "border-y"}`}>
       <div className="section-container">
@@ -49,10 +50,10 @@ export function AdmissionsFeesDeadlines({ fees, deadlines, className }: Admissio
                 </div>
 
                 <div className="admissions-fees-deadlines__actions">
-                  <PillButton variant="highlight" tone="dark" href="#apply">
+                  <PillButton variant="highlight" tone="dark" href={applyHref}>
                     Apply now
                   </PillButton>
-                  <PillButton variant="secondary" tone="dark" href="#apply">
+                  <PillButton variant="secondary" tone="dark" href={applyHref}>
                     Speak to us
                   </PillButton>
                 </div>
@@ -90,7 +91,7 @@ export function AdmissionsFeesDeadlines({ fees, deadlines, className }: Admissio
                       </div>
                     </div>
                     {item.status === "active" && (
-                      <PillButton variant="highlight" tone="dark" href="#apply" className="mt-4">
+                      <PillButton variant="highlight" tone="dark" href={applyHref} className="mt-4">
                         Apply now
                       </PillButton>
                     )}

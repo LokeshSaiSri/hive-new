@@ -10,7 +10,7 @@ export default function AiMarketingFormSubmittedPage() {
   return (
     <FormSubmittedPage
       programme="AI Marketing Fellowship"
-      applyHref="/ai-marketing/admissions"
+      applyHref="/#programmes"
     />
   );
 }

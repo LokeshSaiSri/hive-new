@@ -39,14 +39,14 @@ export function PgpAdmissionsTab({ config }: PgpAdmissionsTabProps) {
       <AdmissionsProcessDeck rounds={pgpAdmissionRounds} className="pt-0" />
       {fitCheckCta && <ProgramVisualCtaBand cta={fitCheckCta} chip="Admissions support" className="pt-0" />}
       {config.fees && (
-        <AdmissionsFeesDeadlines fees={config.fees} deadlines={pgpAdmissionDeadlines} className="pt-0 border-t-0" />
+        <AdmissionsFeesDeadlines fees={config.fees} deadlines={pgpAdmissionDeadlines} className="pt-0 border-t-0" applyHref="/pgp-revenue-tech-entrepreneurship#apply" />
       )}
       <AdmissionsScholarships scholarships={pgpScholarships} className="pt-0 border-t-0" />
       <PlacementsHiringBand description="See the hiring network you'll join after admission — from global technology leaders to India's fastest-growing startups." />
       {placementsCta && <ProgramVisualCtaBand cta={placementsCta} chip="Proof-of-work" className="pt-0" />}
       {curriculumCta && <ProgramVisualCtaBand cta={curriculumCta} chip="Curriculum" className="pt-0" />}
       <ProgramAdmissions slug="pgp" />
-      <ProgramFaq faqs={config.faqs} variant="theatre" />
+      <ProgramFaq faqs={config.faqs} variant="theatre" applyHref="/pgp-revenue-tech-entrepreneurship#apply" />
     </>
   );
 }

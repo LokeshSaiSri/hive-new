@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { navItems } from "@/data/nav";
 import { PillButton } from "@/components/ui/PillButton";
@@ -22,6 +23,13 @@ export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const pathname = usePathname() || "";
+
+  const applyHref = pathname.startsWith("/pgp")
+    ? "/pgp-revenue-tech-entrepreneurship#apply"
+    : pathname.startsWith("/ai-")
+    ? "/ai-marketing#apply"
+    : "/pgp-revenue-tech-entrepreneurship#apply";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 48);
@@ -118,7 +126,7 @@ export function Nav() {
         </nav>
 
         <div className="hidden lg:block">
-          <PillButton variant="highlight" tone="dark" href="#apply">
+          <PillButton variant="highlight" tone="dark" href={applyHref}>
             Join Hiveschool
           </PillButton>
         </div>
@@ -182,7 +190,7 @@ export function Nav() {
               <PillButton
                 variant="highlight"
                 tone="dark"
-                href="#apply"
+                href={applyHref}
                 className="w-full"
                 onClick={() => setMobileOpen(false)}
               >

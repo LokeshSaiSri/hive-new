@@ -36,7 +36,7 @@ export const mentorsHubHero: SiteHubHeroContent = {
     { value: "35+", label: "Prep sessions" },
     { value: "1:1", label: "Mentor ownership" },
   ],
-  primaryCta: { label: "See programmes", href: "/pgp-revenue-tech-entrepreneurship" },
+  primaryCta: { label: "See programmes", href: "/#programmes" },
   secondaryCta: { label: "Browse directory", href: "#mentor-directory" },
 };
 
@@ -46,15 +46,15 @@ export const campusHubHero: SiteHubHeroContent = {
   statement: "Built for pitches,",
   emphasis: "not classrooms.",
   description:
-    "A purpose-built residential campus in DLF Cyber City — pitch arenas, brainstorm pods, and operator-led sessions in spaces designed for revenue work.",
+    "A purpose-built residential campus in Millennium City — pitch arenas, brainstorm pods, and operator-led sessions in spaces designed for revenue work.",
   stats: [
     { value: "6", label: "Learning zones" },
     { value: "24/7", label: "Campus access" },
-    { value: "Gurugram", label: "DLF Cyber City" },
+    { value: "Gurugram", label: "Millennium City" },
     { value: "Hybrid", label: "Live + residential" },
   ],
   primaryCta: { label: "Watch campus tour", href: "#campus-tour" },
-  secondaryCta: { label: "View programmes", href: "/pgp-revenue-tech-entrepreneurship" },
+  secondaryCta: { label: "View programmes", href: "/#programmes" },
 };
 
 export const mentorSessionSteps = [
@@ -90,7 +90,7 @@ export const campusAmenities = [
   "Meeting rooms for mock interviews",
   "Common area and breakout lounges",
   "On-campus gym",
-  "DLF Cyber City · Gurugram",
+  "Millennium City · Gurugram",
 ] as const;
 
 export const campusLifeGallery = [

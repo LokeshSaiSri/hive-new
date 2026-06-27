@@ -8,6 +8,6 @@ export const metadata: Metadata = {
 
 export default function UgFormSubmittedPage() {
   return (
-    <FormSubmittedPage programme="Undergraduate Programme" applyHref="/ug/admissions" />
+    <FormSubmittedPage programme="Undergraduate Programme" applyHref="/#programmes" />
   );
 }

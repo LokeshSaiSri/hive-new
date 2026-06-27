@@ -60,7 +60,7 @@ export const termsOfUse: LegalDocument = {
       title: "Contact Us",
       paragraphs: [
         "Contact us if you have any questions about these Terms.",
-        "HiveSchool · Building 9A, DLF Cyber City, Gurugram, Haryana — 122022",
+        "HiveSchool · The Circle, 3rd Floor, Huda City Centre Metro Station, Sector 29, Gurugram, Haryana — 122002",
       ],
     },
   ],

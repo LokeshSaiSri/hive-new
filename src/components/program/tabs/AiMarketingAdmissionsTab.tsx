@@ -66,7 +66,7 @@ export function AiMarketingAdmissionsTab({ config }: AiMarketingAdmissionsTabPro
       {config.audience && <CourseAudience audience={config.audience} />}
 
       {config.fees && (
-        <AdmissionsFeesDeadlines fees={config.fees} deadlines={aiMarketingAdmissionDeadlines} className="pt-0 border-t-0" />
+        <AdmissionsFeesDeadlines fees={config.fees} deadlines={aiMarketingAdmissionDeadlines} className="pt-0 border-t-0" applyHref="/ai-marketing#apply" />
       )}
 
       <AdmissionsScholarships scholarships={aiMarketingScholarships} className="pt-0 border-t-0" />

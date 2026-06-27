@@ -95,7 +95,7 @@ export function ReelPhoneShowcase({
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const [soundOn, setSoundOn] = useState(true);
+  const [soundOn, setSoundOn] = useState(false);
   const [slideDirection, setSlideDirection] = useState<1 | -1>(1);
 
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -103,7 +103,7 @@ export function ReelPhoneShowcase({
   const pointerStartX = useRef<number | null>(null);
   const suppressClickRef = useRef(false);
   const isPausedRef = useRef(false);
-  const soundOnRef = useRef(true);
+  const soundOnRef = useRef(false);
 
   const total = reels.length;
   const reel = reels[activeIndex];
@@ -172,13 +172,18 @@ export function ReelPhoneShowcase({
   }, []);
 
   const togglePlayback = useCallback(() => {
-    setSoundOn(true);
-    soundOnRef.current = true;
-    setIsPaused((paused) => {
-      const next = !paused;
-      isPausedRef.current = next;
-      return next;
-    });
+    if (!soundOnRef.current) {
+      setSoundOn(true);
+      soundOnRef.current = true;
+      setIsPaused(false);
+      isPausedRef.current = false;
+    } else {
+      setIsPaused((paused) => {
+        const next = !paused;
+        isPausedRef.current = next;
+        return next;
+      });
+    }
   }, []);
 
   const handleScreenPointerDown = useCallback((event: React.PointerEvent<HTMLButtonElement>) => {
@@ -221,10 +226,10 @@ export function ReelPhoneShowcase({
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setActiveIndex(0);
     setIsPaused(false);
-    setSoundOn(true);
+    setSoundOn(false);
     activeIndexRef.current = 0;
     isPausedRef.current = false;
-    soundOnRef.current = true;
+    soundOnRef.current = false;
   }, [reelsKey]);
 
   useEffect(() => {

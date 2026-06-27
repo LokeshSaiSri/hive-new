@@ -29,7 +29,7 @@ export function AiMarketingPlacementsTab() {
       <PlacementsHiringBand description="From D2C disruptors to global technology leaders — fellows join teams shaping the future of brand, growth, and marketing in India." />
       <WhyRevenue sections={{ contrast: false, ladder: false }} />
       <ProgramCohortVoices stories={buildCohortStories(aiMarketingAlumniQuotes, testimonials)} />
-      <ProgramPlacements cohortLabel="AI Marketing Fellowship · Placement outcomes & hiring network" />
+      <ProgramPlacements cohortLabel="AI Marketing Fellowship · Placement outcomes & hiring network" applyHref="/ai-marketing#apply" />
       <PlacementsSystemDeck
         pillars={aiMarketingPlacementSystem}
         intro={aiMarketingPlacementSystemIntro}
@@ -38,7 +38,7 @@ export function AiMarketingPlacementsTab() {
       <PlacementsCareerPathways groups={aiMarketingCareerPathways} className="pt-0 border-t-0" />
       <PlacementsNewsGrid articles={aiMarketingPlacementNews} className="pt-0 border-t-0" />
       {intakeCta && <ProgramVisualCtaBand cta={intakeCta} chip="Next cohort" className="pt-0 border-t-0" />}
-      <ProgramFaq faqs={config.faqs} variant="theatre" />
+      <ProgramFaq faqs={config.faqs} variant="theatre" applyHref="/ai-marketing#apply" />
     </>
   );
 }

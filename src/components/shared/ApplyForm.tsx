@@ -25,7 +25,6 @@ type FormState = {
   email: string;
   phone: string;
   programme: string;
-  city: string;
 };
 
 type FieldKey = keyof FormState;
@@ -35,7 +34,7 @@ type Step = {
   question: string;
   emphasis: string;
   hint: string;
-  type: "text" | "email" | "tel" | "programme" | "city";
+  type: "text" | "email" | "tel" | "programme";
 };
 
 const STEPS: Step[] = [
@@ -67,13 +66,6 @@ const STEPS: Step[] = [
     hint: "Pick your closest match — we'll guide you on the call.",
     type: "programme",
   },
-  {
-    id: "city",
-    question: "Which city are",
-    emphasis: "you in?",
-    hint: "Helps us connect you with the right cohort lead.",
-    type: "city",
-  },
 ];
 
 const EXTRA_PROGRAMME = {
@@ -87,7 +79,6 @@ const STEP_LABELS: Record<FieldKey, string> = {
   email: "Email",
   phone: "Phone",
   programme: "Programme",
-  city: "City",
 };
 
 const AUTO_ADVANCE_MS = 420;
@@ -96,6 +87,12 @@ function validateField(id: FieldKey, value: string): string | undefined {
   if (!value.trim()) return "This field is required";
   if (id === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value))
     return "Enter a valid email";
+  if (id === "phone") {
+    const stripped = value.replace(/[\s\-()]/g, "");
+    if (!/^\+?\d+$/.test(stripped)) return "Phone number can only contain digits";
+    const digits = value.replace(/\D/g, "");
+    if (digits.length < 10) return "Phone number must be at least 10 digits";
+  }
   return undefined;
 }
 
@@ -238,7 +235,6 @@ export function ApplyForm({
     email: "",
     phone: "",
     programme: defaultProgramme,
-    city: "",
   });
   const [error, setError] = useState<string | undefined>();
   const [submitted] = useState(false);
@@ -308,12 +304,6 @@ export function ApplyForm({
   };
 
   const submitApplication = useCallback(async () => {
-    const err = validateField("city", form.city);
-    if (err) {
-      setError(err);
-      return false;
-    }
-
     const targetCourse = courseSlug ?? resolveProgramSlugFromTitle(form.programme);
     if (!targetCourse) {
       setError("Please select a programme to continue.");
@@ -633,31 +623,6 @@ export function ApplyForm({
                           </div>
                         )}
 
-                        {current.type === "city" && (
-                          <div className="flex max-w-xl flex-wrap gap-2">
-                            {cities.map((city, i) => {
-                              const selected = form.city === city;
-                              return (
-                                <motion.button
-                                  key={city}
-                                  type="button"
-                                  initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.92 }}
-                                  animate={{ opacity: 1, scale: 1 }}
-                                  transition={{ delay: i * 0.03, duration: 0.28, ease: easeHive }}
-                                  onClick={() => setField("city", city)}
-                                  className={`rounded-full border px-5 py-2.5 text-sm font-semibold transition-all duration-200 ${
-                                    selected
-                                      ? "border-white bg-white text-ink shadow-[0_8px_24px_rgba(255,255,255,0.15)]"
-                                      : "border-white/20 text-white/70 hover:border-white/50 hover:text-white"
-                                  }`}
-                                >
-                                  {city}
-                                </motion.button>
-                              );
-                            })}
-                          </div>
-                        )}
-
                         <AnimatePresence>
                           {error && (
                             <motion.p
@@ -699,10 +664,10 @@ export function ApplyForm({
                         </motion.span>
                       )}
                     </>
-                  ) : (
+                  ) : form.programme ? (
                     <motion.div
                       animate={
-                        form.city && !prefersReducedMotion
+                        !prefersReducedMotion
                           ? { scale: [1, 1.02, 1] }
                           : undefined
                       }
@@ -717,7 +682,7 @@ export function ApplyForm({
                         {submitting ? "Submitting..." : "Request a callback"}
                       </PillButton>
                     </motion.div>
-                  )}
+                  ) : null}
                 </div>
               </form>
             )}

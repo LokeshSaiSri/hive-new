@@ -31,7 +31,7 @@ export function PgpPlacementsTab() {
       <ProgramCohortVoices stories={buildCohortStories(pgpAlumniQuotes, testimonials)} />
       <ProgramPlacements
         cohortLabel="Placement Report 2025–26 · PGP Cohort Year 2"
-        applyHref="/pgp-revenue-tech-entrepreneurship/admissions"
+        applyHref="/pgp-revenue-tech-entrepreneurship#apply"
       />
       <PlacementsSystemDeck pillars={pgpPlacementSystem} intro={pgpPlacementSystemIntro} />
       <PlacementsDistributionCharts />
@@ -39,7 +39,7 @@ export function PgpPlacementsTab() {
       <ProofOfWorkStrip items={pgpPortfolioDeliverables} />
       <PlacementsCareerPathways groups={pgpCareerPathways} className="pt-0 border-t-0" />
       <PlacementsNewsGrid articles={pgpPlacementNews} className="pt-0 border-t-0" />
-      <ProgramFaq faqs={config.faqs} variant="theatre" applyHref="/pgp-revenue-tech-entrepreneurship/admissions" />
+      <ProgramFaq faqs={config.faqs} variant="theatre" applyHref="/pgp-revenue-tech-entrepreneurship#apply" />
     </>
   );
 }

@@ -17,6 +17,7 @@ const pgpLinks = [
 const fellowshipLinks = [
   { label: "Overview", href: "/ai-marketing" },
   { label: "Curriculum", href: "/ai-marketing/curriculum" },
+  { label: "Placement network", href: "/ai-marketing/placements" },
   { label: "Admissions", href: "/ai-marketing/admissions" },
   { label: "Application Form", href: "/ai-marketing#apply" },
 ];

@@ -98,7 +98,7 @@ export const pgpTabHero: Record<"curriculum" | "placements" | "admissions", Prog
       { value: "25+", label: "Intensive sprints" },
       { value: "100+", label: "Practitioner faculty" },
     ],
-    secondaryCta: { label: "Download brochure", href: "/pgp-revenue-tech-entrepreneurship/admissions" },
+    secondaryCta: { label: "Download brochure", href: "/4-Month-Roadmap-Brand-x-Revenue.pdf" },
   },
   placements: {
     eyebrow: "Post Graduate Programme · Placements",
@@ -112,7 +112,7 @@ export const pgpTabHero: Record<"curriculum" | "placements" | "admissions", Prog
       { value: "100+", label: "Hiring partners" },
       { value: "1:1", label: "Man-to-man tracking" },
     ],
-    secondaryCta: { label: "Download placements report", href: "#placements" },
+    secondaryCta: { label: "Download placements report", href: placementReportDownloadPath("year-2") },
   },
   admissions: {
     eyebrow: "Post Graduate Programme · Admissions",

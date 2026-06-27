@@ -82,7 +82,7 @@ export function CareerPath() {
         </ScrollReveal>
 
         <ScrollReveal className="mt-12 text-center sm:mt-14">
-          <PillButton variant="primary" tone="light" href="#programmes">
+          <PillButton variant="primary" tone="light" href="/pgp-revenue-tech-entrepreneurship#apply">
             Join Hiveschool
           </PillButton>
         </ScrollReveal>

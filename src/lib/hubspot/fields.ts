@@ -30,7 +30,6 @@ export function mapApplyFormFields(form: {
   email: string;
   phone: string;
   programme: string;
-  city: string;
 }): HubSpotSubmissionField[] {
   const { firstname, lastname } = splitFullName(form.fullName);
 
@@ -39,7 +38,6 @@ export function mapApplyFormFields(form: {
     { name: HUBSPOT_CONTACT_FIELDS.lastName, value: lastname },
     { name: HUBSPOT_CONTACT_FIELDS.email, value: form.email },
     { name: HUBSPOT_CONTACT_FIELDS.phone, value: form.phone },
-    { name: HUBSPOT_CONTACT_FIELDS.city, value: form.city },
     { name: HUBSPOT_CONTACT_FIELDS.programmeOfInterest, value: form.programme },
   ];
 }
