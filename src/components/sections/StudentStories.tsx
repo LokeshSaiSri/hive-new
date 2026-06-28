@@ -50,22 +50,10 @@ function StoryPreviewPanel({ story }: { story: Testimonial }) {
               src={story.image}
               alt={`${story.name} at ${story.company}`}
               fill
-              className="object-cover"
+              className="object-cover object-[50%_15%]"
               sizes="(max-width: 1024px) 100vw, 720px"
             />
-            {story.quote && (
-              <div className="absolute inset-0 bg-black/50 z-0" aria-hidden />
-            )}
-            {story.quote && (
-              <div className="absolute inset-0 flex flex-col items-center justify-center p-6 sm:p-10 text-center z-10 pointer-events-none pb-20">
-                <svg className="w-8 h-8 text-white/20 mb-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                </svg>
-                <p className="text-lg sm:text-xl md:text-2xl font-medium text-white leading-relaxed">
-                  {story.quote}
-                </p>
-              </div>
-            )}
+
           </>
         )}
         <span className="student-story-preview__scrim pointer-events-none absolute inset-0" aria-hidden />

@@ -230,9 +230,8 @@ export function CourseTimeline({ timeline, className }: CourseTimelineProps) {
                     key={phase.phase}
                     type="button"
                     suppressHydrationWarning
-                    className={`curriculum-rail-pill ${
-                      index === activeIndex ? "is-active" : ""
-                    } ${index < activeIndex ? "is-past" : ""}`}
+                    className={`curriculum-rail-pill ${index === activeIndex ? "is-active" : ""
+                      } ${index < activeIndex ? "is-past" : ""}`}
                     onClick={() => scrollToPhase(index)}
                     aria-current={index === activeIndex ? "step" : undefined}
                   >
@@ -280,18 +279,16 @@ export function CourseTimeline({ timeline, className }: CourseTimelineProps) {
                               ref={(node) => {
                                 dotRefs.current[index] = node;
                               }}
-                              className={`curriculum-theatre__dot ${
-                                isActive ? "is-active" : ""
-                              } ${isPast ? "is-past" : ""}`}
+                              className={`curriculum-theatre__dot ${isActive ? "is-active" : ""
+                                } ${isPast ? "is-past" : ""}`}
                             />
                           </div>
 
                           <button
                             type="button"
                             suppressHydrationWarning
-                            className={`curriculum-theatre__rail-btn ${
-                              isActive ? "is-active" : ""
-                            } ${isPast ? "is-past" : ""}`}
+                            className={`curriculum-theatre__rail-btn ${isActive ? "is-active" : ""
+                              } ${isPast ? "is-past" : ""}`}
                             onClick={() => scrollToPhase(index)}
                             aria-current={isActive ? "step" : undefined}
                           >
@@ -332,9 +329,8 @@ export function CourseTimeline({ timeline, className }: CourseTimelineProps) {
                     {phases.map((phase, index) => (
                       <span
                         key={phase.phase}
-                        className={`curriculum-theatre__progress-bar ${
-                          index === activeIndex ? "is-active" : ""
-                        } ${index < activeIndex ? "is-past" : ""}`}
+                        className={`curriculum-theatre__progress-bar ${index === activeIndex ? "is-active" : ""
+                          } ${index < activeIndex ? "is-past" : ""}`}
                       />
                     ))}
                   </div>
