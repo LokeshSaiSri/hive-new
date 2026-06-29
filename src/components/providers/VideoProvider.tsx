@@ -42,8 +42,18 @@ export function VideoProvider({ children }: { children: ReactNode }) {
             exit={{ opacity: 0 }}
             onClick={close}
           >
+            <button
+              type="button"
+              onClick={close}
+              className="absolute right-4 top-4 z-[110] flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm transition hover:scale-110 hover:bg-white/20 sm:right-6 sm:top-6 sm:h-12 sm:w-12"
+              aria-label="Close video"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-6 w-6">
+                <path d="M6 6l12 12M6 18L18 6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
             <motion.div
-              className="relative aspect-video w-[min(96vw,1400px)] overflow-hidden rounded-2xl bg-black shadow-2xl"
+              className="relative aspect-video w-[min(96vw,calc(85vh*16/9),1400px)] overflow-hidden rounded-2xl bg-black shadow-2xl"
               initial={{ scale: 0.92, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.92, opacity: 0 }}
@@ -57,16 +67,6 @@ export function VideoProvider({ children }: { children: ReactNode }) {
                 allowFullScreen
                 className="absolute inset-0 h-full w-full"
               />
-              <button
-                type="button"
-                onClick={close}
-                className="absolute -right-2 -top-12 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
-                aria-label="Close video"
-              >
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-5 w-5">
-                  <path d="M6 6l12 12M6 18L18 6" />
-                </svg>
-              </button>
             </motion.div>
           </motion.div>
         )}

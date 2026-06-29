@@ -13,7 +13,7 @@ export function PlacementReportEditions({ className }: { className?: string }) {
         <ScrollReveal>
           <SectionIntro
             eyebrow="Placement archive"
-            statement="Two audited"
+            statement="Two"
             emphasis="editions published."
             description="Each cohort publishes a full placement report — salary bands, role mix, and hiring partners."
             align="left"

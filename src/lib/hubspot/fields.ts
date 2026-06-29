@@ -1,5 +1,6 @@
 import { HUBSPOT_CONTACT_FIELDS } from "@/data/hubspot";
 import type { HubSpotSubmissionField } from "@/lib/hubspot/submit";
+import type { ProgramSlug } from "@/data/programPages/types";
 
 export function splitFullName(fullName: string): { firstname: string; lastname: string } {
   const parts = fullName.trim().split(/\s+/).filter(Boolean);
@@ -14,14 +15,22 @@ export function formatHubSpotPhone(phone: string): string {
   return phone.replace(/\D/g, "");
 }
 
-export function mapCourseApplicationFields(form: {
-  name: string;
-  email: string;
-  phone: string;
-  linkedin: string;
-}): HubSpotSubmissionField[] {
+export function mapCourseApplicationFields(
+  courseSlug: ProgramSlug,
+  form: {
+    name: string;
+    email: string;
+    phone: string;
+    linkedin: string;
+  }
+): HubSpotSubmissionField[] {
   const { firstname, lastname } = splitFullName(form.name);
   const formattedPhone = formatHubSpotPhone(form.phone);
+
+  let programmeTitle = "";
+  if (courseSlug === "pgp") programmeTitle = "PGP in Revenue, AI & Entrepreneurship";
+  else if (courseSlug === "ai-marketing") programmeTitle = "AI Marketing & Entrepreneurship Fellowship";
+  else if (courseSlug === "ug") programmeTitle = "Undergraduate Programme";
 
   return [
     { name: HUBSPOT_CONTACT_FIELDS.firstName, value: firstname },
@@ -30,6 +39,7 @@ export function mapCourseApplicationFields(form: {
     { name: HUBSPOT_CONTACT_FIELDS.phone, value: formattedPhone },
     { name: "phone", value: formattedPhone },
     { name: HUBSPOT_CONTACT_FIELDS.linkedin, value: form.linkedin },
+    { name: HUBSPOT_CONTACT_FIELDS.programmeOfInterest, value: programmeTitle },
   ];
 }
 

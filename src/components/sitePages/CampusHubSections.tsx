@@ -132,40 +132,24 @@ export function CampusLifeGallery() {
         </ScrollReveal>
       </div>
 
-      <div className="md:hidden mt-2 pb-14">
+      <div className="mt-2 pb-14 sm:pb-16">
         <HorizontalScroller
           autoplay
-          autoplayDelay={3000}
-          slideClassName="w-[17.5rem] flex-shrink-0"
+          autoplayDelay={2000}
+          slideClassName="w-[17.5rem] md:w-[26rem] flex-shrink-0"
         >
-          {campusLifeGallery.map((image) => (
-            <div key={image.src} className="relative h-[18rem] w-full overflow-hidden rounded-2xl border border-ink/8">
+          {[...campusLifeGallery, ...campusLifeGallery].map((image, i) => (
+            <div key={`${image.src}-${i}`} className="relative h-[18rem] md:h-[26rem] w-full overflow-hidden rounded-2xl border border-ink/8">
               <Image
                 src={image.src}
                 alt={image.alt}
                 fill
                 className="object-cover"
-                sizes="280px"
+                sizes="(max-width: 768px) 280px, 416px"
               />
             </div>
           ))}
         </HorizontalScroller>
-      </div>
-
-      <div className="hidden md:block">
-        <div className="campus-life-strip mt-2 pb-14 sm:pb-16">
-          {campusLifeGallery.map((image) => (
-            <div key={image.src} className="campus-life-strip__item">
-              <Image
-                src={image.src}
-                alt={image.alt}
-                fill
-                className="object-cover"
-                sizes="280px"
-              />
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );
@@ -179,14 +163,17 @@ export function CampusVisitPanel() {
           <ScrollReveal>
             <p className="text-xs font-bold uppercase tracking-[0.24em] text-light-blue">Visit</p>
             <h2 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">
-              Building 9A, DLF Cyber City
+              The Circle, Sector 29
             </h2>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-white/70">
               HiveSchool&apos;s Gurugram campus hosts full-time residential programmes, founder
               panels, and live brand challenges. Open houses and campus mixers are announced on our
               social channels.
             </p>
-            <p className="mt-4 text-sm text-white/50">Gurugram, Haryana — 122022</p>
+            <p className="mt-4 text-sm text-white/50">
+              3rd Floor, Huda City Centre Metro Station, Sector 29,<br />
+              Gurugram, Haryana — 122002
+            </p>
           </ScrollReveal>
 
           <ScrollReveal>

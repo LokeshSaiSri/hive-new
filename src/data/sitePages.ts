@@ -100,7 +100,6 @@ export const campusLifeGallery = [
   { src: asset("images/life/life-4.avif"), alt: "Campus common area" },
   { src: asset("images/life/life-5.avif"), alt: "Collaborative learning space" },
   { src: asset("images/life/gym-hiveschool.jpg"), alt: "HiveSchool gym" },
-  { src: asset("images/life/depender.avif"), alt: "Student life at HiveSchool" },
   { src: asset("images/life/admission-image.avif"), alt: "HiveSchool campus exterior" },
 ] as const;
 
