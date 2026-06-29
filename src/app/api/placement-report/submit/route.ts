@@ -77,13 +77,18 @@ export async function POST(request: Request) {
       ipAddress: getClientIp(request),
     });
 
-    // Submit to HubSpot in the background so the user gets the download instantly
-    submitToHubSpot({
-      portalId,
-      formGuid,
-      fields: body.fields,
-      context: hubspotContext,
-    }).catch((error) => console.error("Background HubSpot submission failed:", error));
+    // Await HubSpot submission to ensure the lead is saved before the serverless function exits.
+    // If it fails, we catch the error and proceed so the user still gets the download.
+    try {
+      await submitToHubSpot({
+        portalId,
+        formGuid,
+        fields: body.fields,
+        context: hubspotContext,
+      });
+    } catch (error) {
+      console.error("HubSpot submission failed:", error);
+    }
 
     const downloadUrl = edition
       ? `/api/placement-report/download?edition=${encodeURIComponent(edition.id)}`

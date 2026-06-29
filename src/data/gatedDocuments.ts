@@ -17,7 +17,7 @@ export type GatedDocument = {
 export const gatedDocuments: GatedDocument[] = [
   {
     id: "pgp-handbook",
-    pdfHref: "/4-Month-Roadmap-Brand-x-Revenue.pdf",
+    pdfHref: "/PGP-Offline-Brochure.pdf",
     eyebrow: "PGP Handbook",
     title: "Get the PGP handbook",
     description: "Share your details and we'll start the download immediately.",

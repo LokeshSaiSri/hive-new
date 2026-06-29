@@ -81,14 +81,18 @@ export async function POST(request: Request) {
     const trackingPageUri = resolveHubSpotPageUri(body.pageUri) ?? body.pageUri;
     const eventId = body.tracking?.eventId ?? crypto.randomUUID();
 
-    void trackLeadConversion({
-      course: course as ProgramSlug,
-      fields: body.fields,
-      tracking: { ...body.tracking, eventId },
-      pageUri: trackingPageUri,
-      pageName: body.pageName,
-      ipAddress: getClientIp(request),
-    });
+    try {
+      await trackLeadConversion({
+        course: course as ProgramSlug,
+        fields: body.fields,
+        tracking: { ...body.tracking, eventId },
+        pageUri: trackingPageUri,
+        pageName: body.pageName,
+        ipAddress: getClientIp(request),
+      });
+    } catch (error) {
+      console.error("Lead conversion tracking failed in API route:", error);
+    }
 
     const thankYouUrl = buildThankYouUrl(
       course as ProgramSlug,

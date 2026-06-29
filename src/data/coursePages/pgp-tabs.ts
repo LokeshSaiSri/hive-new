@@ -99,7 +99,7 @@ export const pgpTabHero: Record<"curriculum" | "placements" | "admissions", Prog
       { value: "100+", label: "Practitioner faculty" },
     ],
     primaryCta: { label: "Apply now", href: "/pgp-revenue-tech-entrepreneurship#apply" },
-    secondaryCta: { label: "Download brochure", href: "/4-Month-Roadmap-Brand-x-Revenue.pdf" },
+    secondaryCta: { label: "Download brochure", href: "/PGP-Offline-Brochure.pdf" },
   },
   placements: {
     eyebrow: "Post Graduate Programme · Placements",

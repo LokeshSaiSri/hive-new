@@ -71,7 +71,7 @@ export const pgpCoursePage: CoursePageConfig = {
       description:
         "Speak with the admissions team for a personal profile review and an honest read on whether you'll fit the cohort.",
       primary: { label: "Book a call", href: "/pgp-revenue-tech-entrepreneurship#apply" },
-      secondary: { label: "Download PGP handbook", href: "/4-Month-Roadmap-Brand-x-Revenue.pdf" },
+      secondary: { label: "Download PGP handbook", href: "/PGP-Offline-Brochure.pdf" },
     },
     {
       id: "curriculum",
@@ -81,7 +81,7 @@ export const pgpCoursePage: CoursePageConfig = {
       description:
         "Understand how the journey is structured — from foundations to live company work.",
       primary: { label: "Apply now", href: "/pgp-revenue-tech-entrepreneurship#apply" },
-      secondary: { label: "Download PGP handbook", href: "/4-Month-Roadmap-Brand-x-Revenue.pdf" },
+      secondary: { label: "Download PGP handbook", href: "/PGP-Offline-Brochure.pdf" },
     },
     {
       id: "challenges",
