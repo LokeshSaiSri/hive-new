@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Outfit, Fraunces } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { VideoProvider } from "@/components/providers/VideoProvider";
 import { ScrollToTopOnLoad } from "@/components/providers/ScrollToTopOnLoad";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
@@ -50,6 +51,7 @@ export default function RootLayout({
           <VideoProvider>{children}</VideoProvider>
         </SmoothScroll>
         <PlacementReportModal />
+        <Analytics />
       </body>
     </html>
   );
