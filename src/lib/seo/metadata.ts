@@ -7,6 +7,7 @@ import {
   SITE_NAME,
   absoluteUrl,
 } from "@/lib/seo/site";
+import { getOgImageForPath } from "@/lib/seo/og-images";
 
 type PageMetadataInput = {
   title: string;
@@ -25,7 +26,8 @@ export function buildPageMetadata({
 }: PageMetadataInput): Metadata {
   const canonicalPath = path.startsWith("/") ? path : `/${path}`;
   const canonicalUrl = absoluteUrl(canonicalPath);
-  const imageUrl = absoluteUrl(ogImage);
+  const imagePath = ogImage === DEFAULT_OG_IMAGE ? getOgImageForPath(canonicalPath) : ogImage;
+  const imageUrl = absoluteUrl(encodeURI(imagePath).replace(/%2520/g, "%20"));
 
   return {
     title,

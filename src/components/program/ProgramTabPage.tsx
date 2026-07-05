@@ -17,6 +17,7 @@ import { aiMarketingTabHero } from "@/data/coursePages/ai-marketing-tabs";
 import { pgpTabHero } from "@/data/coursePages/pgp-tabs";
 import { getProgramNav } from "@/data/programPages/navigation";
 import type { ProgramSlug } from "@/data/programPages/types";
+import { ProgramTabSchemas } from "@/lib/seo/page-schemas";
 
 type ProgramTabPageProps = {
   slug: ProgramSlug;
@@ -32,11 +33,13 @@ export function ProgramTabPage({ slug, tab }: ProgramTabPageProps) {
     const hero = slug === "pgp" ? pgpTabHero[tab] : aiMarketingTabHero[tab];
 
     return (
-      <ProgramPageLayout
-        slug={slug}
-        activeTab={tab}
-        lead={<ProgramTabHero content={hero} tabLabel={tabLabel} />}
-      >
+      <>
+        <ProgramTabSchemas slug={slug} tab={tab} />
+        <ProgramPageLayout
+          slug={slug}
+          activeTab={tab}
+          lead={<ProgramTabHero content={hero} tabLabel={tabLabel} />}
+        >
         {slug === "pgp" && tab === "curriculum" && <PgpCurriculumTab config={config} />}
         {slug === "pgp" && tab === "placements" && <PgpPlacementsTab />}
         {slug === "pgp" && tab === "admissions" && <PgpAdmissionsTab config={config} />}
@@ -46,16 +49,19 @@ export function ProgramTabPage({ slug, tab }: ProgramTabPageProps) {
         {slug === "ai-marketing" && tab === "admissions" && (
           <AiMarketingAdmissionsTab config={config} />
         )}
-      </ProgramPageLayout>
+        </ProgramPageLayout>
+      </>
     );
   }
 
   return (
-    <ProgramPageLayout
-      slug={slug}
-      activeTab={tab}
-      lead={<ProgramTabHeader slug={slug} tab={tab} />}
-    >
+    <>
+      <ProgramTabSchemas slug={slug} tab={tab} />
+      <ProgramPageLayout
+        slug={slug}
+        activeTab={tab}
+        lead={<ProgramTabHeader slug={slug} tab={tab} />}
+      >
       {tab === "curriculum" && config.timeline && (
         <CourseTimeline timeline={config.timeline} />
       )}
@@ -66,6 +72,7 @@ export function ProgramTabPage({ slug, tab }: ProgramTabPageProps) {
           <ProgramFaq faqs={config.faqs} applyHref={`/${slug}#apply`} />
         </>
       )}
-    </ProgramPageLayout>
+      </ProgramPageLayout>
+    </>
   );
 }

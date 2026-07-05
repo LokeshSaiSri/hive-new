@@ -4,6 +4,7 @@ import { Nav } from "@/components/sections/Nav";
 import { Hero } from "@/components/sections/Hero";
 import { PlacementStats } from "@/components/sections/PlacementStats";
 import { buildRootMetadata } from "@/lib/seo/metadata";
+import { HomePageSchemas } from "@/lib/seo/page-schemas";
 
 export const metadata: Metadata = buildRootMetadata();
 
@@ -75,6 +76,7 @@ const Footer = dynamic(
 export default function Home() {
   return (
     <>
+      <HomePageSchemas />
       <Nav />
       <main>
         <Hero />

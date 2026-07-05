@@ -1,13 +1,12 @@
 import { CoursePage } from "@/components/course/CoursePage";
-import { JsonLd } from "@/components/seo/JsonLd";
+import { CourseOverviewSchemas } from "@/lib/seo/page-schemas";
 import { getCoursePageConfig } from "@/data/coursePages/registry";
 import type { ProgramSlug } from "@/data/programPages/types";
-import { buildCourseSchema } from "@/lib/seo/schema";
 
 export function CourseOverviewPage({ slug }: { slug: ProgramSlug }) {
   return (
     <>
-      <JsonLd data={buildCourseSchema(slug)} />
+      <CourseOverviewSchemas slug={slug} />
       <CoursePage config={getCoursePageConfig(slug)} slug={slug} />
     </>
   );
