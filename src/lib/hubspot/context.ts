@@ -1,7 +1,7 @@
 import type { HubSpotSubmissionContext } from "@/lib/hubspot/submit";
 
 const LOCAL_HOSTS = new Set(["localhost", "127.0.0.1", "0.0.0.0"]);
-const PREVIEW_HOST_PATTERN = /\.(vercel\.app|netlify\.app)$/i;
+const PREVIEW_HOST_PATTERN = /\.vercel\.app$/i;
 
 function isValidHubspotUtk(hutk?: string): hutk is string {
   if (!hutk) return false;

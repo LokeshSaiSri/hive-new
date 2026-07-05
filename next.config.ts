@@ -17,6 +17,13 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // Canonical domain — www → apex (Vercel + Next.js)
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.hiveschool.co" }],
+        destination: "https://hiveschool.co/:path*",
+        permanent: true,
+      },
       // Legacy hiveschool.co paths (keep ads + bookmarks working)
       { source: "/privacy", destination: "/privacy-poliicy-2", permanent: true },
       { source: "/terms", destination: "/tnc-2", permanent: true },

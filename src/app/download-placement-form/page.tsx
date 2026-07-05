@@ -4,11 +4,14 @@ import { Footer } from "@/components/sections/Footer";
 import { PlacementReportDownloadForm } from "@/components/forms/PlacementReportDownloadForm";
 import { getPlacementReportEdition } from "@/data/placementReportAccess";
 import { placementReportEditions } from "@/data/placementReports";
+import { buildPageMetadata } from "@/lib/seo/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Download placement report — HiveSchool",
   description: "Request the HiveSchool placement report PDF.",
-};
+  path: "/download-placement-form",
+  noIndex: true,
+});
 
 type DownloadPlacementFormPageProps = {
   searchParams: Promise<{ edition?: string }>;

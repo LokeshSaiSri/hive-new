@@ -1,9 +1,0 @@
-[build]
-  command = "npm run prepare-assets && npm run verify-assets && npm run build"
-
-[build.environment]
-  NODE_VERSION = "20"
-
-# Do not set publish — @netlify/plugin-nextjs configures the output directory.
-[[plugins]]
-  package = "@netlify/plugin-nextjs"

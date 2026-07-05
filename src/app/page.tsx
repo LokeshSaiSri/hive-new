@@ -1,7 +1,11 @@
 import dynamic from "next/dynamic";
+import type { Metadata } from "next";
 import { Nav } from "@/components/sections/Nav";
 import { Hero } from "@/components/sections/Hero";
 import { PlacementStats } from "@/components/sections/PlacementStats";
+import { buildRootMetadata } from "@/lib/seo/metadata";
+
+export const metadata: Metadata = buildRootMetadata();
 
 function SectionFallback({ minHeight = "min-h-[28vh]" }: { minHeight?: string }) {
   return <div className={minHeight} aria-hidden />;

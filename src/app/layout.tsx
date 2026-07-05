@@ -7,7 +7,11 @@ import { HubSpotTracking } from "@/components/providers/HubSpotTracking";
 import { GoogleTagManager } from "@/components/providers/GoogleTagManager";
 import { MetaClickCapture } from "@/components/providers/MetaClickCapture";
 import { PlacementReportModal } from "@/components/providers/PlacementReportModal";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { asset } from "@/lib/assets";
+import { buildRootMetadata } from "@/lib/seo/metadata";
+import { buildGlobalSchemas } from "@/lib/seo/schema";
+import { getSiteUrl } from "@/lib/seo/site";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -25,9 +29,8 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "HiveSchool — India's Only Revenue Focused Business School",
-  description:
-    "India's definitive education in revenue, marketing, and entrepreneurship — for people who intend to lead what drives every business.",
+  metadataBase: new URL(getSiteUrl()),
+  ...buildRootMetadata(),
   icons: {
     icon: [
       { url: asset("images/hiveschool_logo.jpeg"), type: "image/jpeg", sizes: "any" },
@@ -45,6 +48,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${outfit.variable} ${fraunces.variable}`}>
       <body className="min-h-screen overflow-x-clip">
+        <JsonLd data={buildGlobalSchemas()} />
         <ScrollToTopOnLoad />
         <GoogleTagManager />
         <MetaClickCapture />
