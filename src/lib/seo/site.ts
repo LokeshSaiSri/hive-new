@@ -13,11 +13,21 @@ export const SOCIAL_PROFILES = [
   "https://linkedin.com/company/hiveschool",
 ] as const;
 
+export const CANONICAL_SITE_URL = "https://hiveschool.co";
+
 export function getSiteUrl(): string {
-  return (process.env.NEXT_PUBLIC_SITE_URL ?? "https://hiveschool.co").replace(
-    /\/$/,
-    "",
-  );
+  const fromEnv = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "");
+  const raw = fromEnv ?? CANONICAL_SITE_URL;
+
+  try {
+    const url = new URL(raw);
+    if (url.hostname === "www.hiveschool.co") {
+      url.hostname = "hiveschool.co";
+    }
+    return url.origin;
+  } catch {
+    return CANONICAL_SITE_URL;
+  }
 }
 
 export function absoluteUrl(path: string): string {
