@@ -69,12 +69,6 @@ const STEPS: Step[] = [
   },
 ];
 
-const EXTRA_PROGRAMME = {
-  title: "Launchpad",
-  badge: "Short-form",
-  description: "Fast-track immersion before committing to a full programme.",
-};
-
 const STEP_LABELS: Record<FieldKey, string> = {
   fullName: "Name",
   email: "Email",
@@ -244,7 +238,7 @@ export function ApplyForm({
 
   const current = STEPS[step];
   const progress = submitted ? 100 : ((step + 1) / STEPS.length) * 100;
-  const allProgrammes = [...programmes, EXTRA_PROGRAMME];
+  const allProgrammes = programmes;
 
   const goNext = useCallback(() => {
     const field = current.id;

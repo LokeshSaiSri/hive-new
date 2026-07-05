@@ -40,7 +40,6 @@ export const programmeOptions = [
   "PGP in Revenue AI & Entrepreneurship",
   "AI Marketing Fellowship",
   "Undergraduate Programme",
-  "Launchpad",
 ] as const;
 
 export const cities = [

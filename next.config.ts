@@ -22,7 +22,7 @@ const nextConfig: NextConfig = {
       { source: "/terms", destination: "/tnc-2", permanent: true },
       {
         source: "/sales-course-online-launchpad-program",
-        destination: "/ai-marketing",
+        destination: "/",
         permanent: true,
       },
       {

@@ -29,8 +29,11 @@ export const metadata: Metadata = {
   description:
     "India's definitive education in revenue, marketing, and entrepreneurship — for people who intend to lead what drives every business.",
   icons: {
-    icon: asset("images/misc/favicon-32.png"),
-    apple: asset("images/misc/favicon-256.png"),
+    icon: [
+      { url: asset("images/hiveschool_logo.jpeg"), type: "image/jpeg", sizes: "any" },
+    ],
+    apple: asset("images/hiveschool_logo.jpeg"),
+    shortcut: asset("images/hiveschool_logo.jpeg"),
   },
 };
 
