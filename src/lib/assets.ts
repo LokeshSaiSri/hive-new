@@ -13,6 +13,7 @@ export function getMediaCdnUrl(): string | undefined {
 
 /** Video URLs — always served from R2/CDN (local .mp4 files are not bundled). */
 export function videoAsset(path: string): string {
+  if (path.startsWith("http")) return path;
   const normalized = path.replace(/^\//, "");
   const cdn = getMediaCdnUrl();
 

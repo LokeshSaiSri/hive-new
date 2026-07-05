@@ -4,6 +4,7 @@ export type FeaturePanel = {
   title: string;
   description: string;
   videoId?: string;
+  imageUrl?: string;
   reelIds?: string[];
   ctaLabel?: string;
   ctaHref?: string;

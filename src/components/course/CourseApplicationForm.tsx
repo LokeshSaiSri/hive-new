@@ -158,7 +158,7 @@ function MetricSpotlight({
 }) {
   const prefersReducedMotion = useReducedMotion();
   const active = metrics[activeIndex];
-  const hint = METRIC_HINTS[active?.label] ?? "";
+  const hint = active?.hint ?? METRIC_HINTS[active?.label] ?? "";
 
   const half = Math.ceil(hiringPartnerLogos.length / 2);
   const row1 = hiringPartnerLogos.slice(0, half);
@@ -557,11 +557,11 @@ export function CourseApplicationForm({
   const content = (
     <>
       {!isFellowship && (
-        <div className="mb-8 max-w-xl lg:mb-10">
+        <div className="mb-8 max-w-3xl lg:mb-10">
           <p className="text-[10px] font-bold uppercase tracking-[0.32em] text-electric-blue">
             Admissions · 60 seconds
           </p>
-          <h2 className="mt-3 text-[clamp(1.75rem,3.5vw,2.35rem)] font-bold leading-tight text-ink">
+          <h2 className="mt-3 text-[clamp(1.25rem,2.5vw,2.35rem)] sm:text-[clamp(1.75rem,3.5vw,2.35rem)] sm:whitespace-nowrap font-bold leading-tight text-ink">
             Start your{" "}
             <em className="font-serif font-medium not-italic text-brand-blue">{headline}</em>
           </h2>

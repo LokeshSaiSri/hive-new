@@ -1,4 +1,4 @@
-export type ProgramSlug = "pgp" | "ai-marketing" | "ug";
+export type ProgramSlug = "pgp" | "ai-marketing" | "ug" | "online-pgp";
 
 export type ProgramTab = "overview" | "curriculum" | "placements" | "admissions";
 

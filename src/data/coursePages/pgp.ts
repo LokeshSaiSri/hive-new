@@ -177,8 +177,8 @@ export const pgpCoursePage: CoursePageConfig = {
       "9-month full-time residential. Includes tuition, tools, mentorship & placement support. Banking partners and financial assistance available.",
     lines: [
       { label: "Admission fee", amount: "₹50,000" },
-      { label: "Tuition fee", amount: "₹8,00,000" },
-      { label: "Total fee", amount: "₹8,50,000", highlight: true },
+      { label: "Tuition fee", amount: "₹7,50,000" },
+      { label: "Total fee", amount: "₹8,00,000", highlight: true },
     ],
     scholarships: [
       {

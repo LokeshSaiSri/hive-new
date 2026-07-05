@@ -1,3 +1,5 @@
+import type { FeaturePanel } from "../features";
+
 export type CourseStat = {
   value: string;
   label: string;
@@ -6,6 +8,7 @@ export type CourseStat = {
 export type CourseMetaItem = {
   label: string;
   value: string;
+  hint?: string;
 };
 
 export type CourseCta = {
@@ -29,6 +32,7 @@ export type CoursePillar = {
   description: string;
   image?: string;
   tagline?: string;
+  projects?: { link: string; image: string }[];
 };
 
 export type CourseTimelinePhase = {
@@ -127,6 +131,7 @@ export type CoursePageConfig = {
     emphasis: string;
     phases: CourseTimelinePhase[];
   };
+  sprints?: FeaturePanel[];
   fees?: {
     eyebrow: string;
     statement: string;
@@ -177,6 +182,13 @@ export type CoursePageConfig = {
   applicationForm?: {
     title: string;
     headline?: string;
+  };
+  campusVideo?: {
+    videoId: string;
+    eyebrow: string;
+    statement: string;
+    emphasis: string;
+    description: string;
   };
   sections: {
     placement: boolean;

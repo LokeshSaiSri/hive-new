@@ -1,6 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Allow cross-origin requests for local preview tunnels (like ngrok or localtunnel)
+  serverExternalPackages: [],
+  experimental: {
+    // some next versions put it under experimental, but the latest puts it at root.
+  },
+  allowedDevOrigins: [
+    "capable-hardening-yonder.ngrok-free.dev",
+    "*.ngrok-free.dev",
+    "*.loca.lt",
+  ],
   images: {
     unoptimized: true,
     remotePatterns: [

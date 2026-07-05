@@ -156,6 +156,7 @@ export function DownloadGateForm({
                   Full name
                 </span>
                 <input
+                  suppressHydrationWarning
                   type="text"
                   value={form.fullName}
                   onChange={(event) => setForm((current) => ({ ...current, fullName: event.target.value }))}
@@ -169,6 +170,7 @@ export function DownloadGateForm({
                   Email
                 </span>
                 <input
+                  suppressHydrationWarning
                   type="email"
                   value={form.email}
                   onChange={(event) => setForm((current) => ({ ...current, email: event.target.value }))}
@@ -182,6 +184,7 @@ export function DownloadGateForm({
                   Phone
                 </span>
                 <input
+                  suppressHydrationWarning
                   type="tel"
                   value={form.phone}
                   onChange={(event) => {

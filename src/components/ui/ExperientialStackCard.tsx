@@ -122,16 +122,18 @@ export function ExperientialStackCard({
             )}
 
             <div className="mt-5 flex flex-wrap items-center gap-4 pb-1 sm:gap-5">
-              <button
-                type="button"
-                onClick={() => panel.videoId && openVideo(panel.videoId)}
-                className="inline-flex items-center gap-2.5 rounded-full border border-blue-glow/45 bg-electric-blue/15 px-6 py-3 text-xs font-bold uppercase tracking-[0.14em] text-blue-glow shadow-[0_0_24px_rgba(134,157,255,0.18)] transition hover:border-blue-glow hover:bg-electric-blue/25 hover:text-white sm:text-sm"
-              >
-                <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 sm:h-5 sm:w-5">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-                Watch
-              </button>
+              {panel.videoId && (
+                <button
+                  type="button"
+                  onClick={() => openVideo(panel.videoId!)}
+                  className="inline-flex items-center gap-2.5 rounded-full border border-blue-glow/45 bg-electric-blue/15 px-6 py-3 text-xs font-bold uppercase tracking-[0.14em] text-blue-glow shadow-[0_0_24px_rgba(134,157,255,0.18)] transition hover:border-blue-glow hover:bg-electric-blue/25 hover:text-white sm:text-sm"
+                >
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 sm:h-5 sm:w-5">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                  Watch
+                </button>
+              )}
               {panel.ctaLabel && panel.ctaHref && (
                 <Link
                   href={panel.ctaHref}
@@ -154,32 +156,47 @@ export function ExperientialStackCard({
           </div>
 
           <div className="flex w-full min-h-0 items-center justify-center px-2 py-2 sm:px-5 lg:px-4 lg:py-6">
-            <button
-              type="button"
-              onClick={() => panel.videoId && openVideo(panel.videoId)}
-              className="group relative aspect-video w-full overflow-hidden rounded-2xl border border-white/10 sm:rounded-3xl"
-              aria-label={`Play ${panel.eyebrow} video`}
-            >
-            <Image
-              src={youtubeThumbnail(panel.videoId!)}
-              alt={panel.title}
-              fill
-              className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-              sizes="(max-width: 1024px) 100vw, 900px"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.src = youtubeThumbnail(panel.videoId!, "hqdefault");
-              }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/50 via-ink/5 to-transparent lg:bg-gradient-to-l lg:from-ink/40 lg:via-transparent lg:to-transparent" />
-            <span className="absolute inset-0 flex items-center justify-center">
-              <span className="flex h-16 w-16 items-center justify-center rounded-full border border-white/30 bg-white/95 text-ink shadow-2xl transition-transform duration-300 group-hover:scale-110 sm:h-20 sm:w-20">
-                <svg viewBox="0 0 24 24" fill="currentColor" className="ml-0.5 h-7 w-7 sm:h-8 sm:w-8">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </span>
-            </span>
-            </button>
+            {panel.videoId ? (
+              <button
+                type="button"
+                onClick={() => openVideo(panel.videoId!)}
+                className="group relative aspect-video w-full overflow-hidden rounded-2xl border border-white/10 sm:rounded-3xl"
+                aria-label={`Play ${panel.eyebrow} video`}
+              >
+                <Image
+                  src={panel.imageUrl || youtubeThumbnail(panel.videoId)}
+                  alt={panel.title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                  sizes="(max-width: 1024px) 100vw, 900px"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    if (!panel.imageUrl) {
+                      target.src = youtubeThumbnail(panel.videoId!, "hqdefault");
+                    }
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/50 via-ink/5 to-transparent lg:bg-gradient-to-l lg:from-ink/40 lg:via-transparent lg:to-transparent" />
+                <span className="absolute inset-0 flex items-center justify-center">
+                  <span className="flex h-16 w-16 items-center justify-center rounded-full border border-white/30 bg-white/95 text-ink shadow-2xl transition-transform duration-300 group-hover:scale-110 sm:h-20 sm:w-20">
+                    <svg viewBox="0 0 24 24" fill="currentColor" className="ml-0.5 h-7 w-7 sm:h-8 sm:w-8">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </span>
+                </span>
+              </button>
+            ) : panel.imageUrl ? (
+              <div className="group relative aspect-video w-full overflow-hidden rounded-2xl border border-white/10 sm:rounded-3xl shadow-xl">
+                <Image
+                  src={panel.imageUrl}
+                  alt={panel.title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                  sizes="(max-width: 1024px) 100vw, 900px"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/20 via-transparent to-transparent pointer-events-none" />
+              </div>
+            ) : null}
           </div>
         </div>
       </motion.div>

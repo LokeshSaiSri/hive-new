@@ -10,6 +10,7 @@ import { AiMarketingCurriculumTab } from "@/components/program/tabs/AiMarketingC
 import { PgpAdmissionsTab } from "@/components/program/tabs/PgpAdmissionsTab";
 import { PgpCurriculumTab } from "@/components/program/tabs/PgpCurriculumTab";
 import { PgpPlacementsTab } from "@/components/program/tabs/PgpPlacementsTab";
+import { OnlinePgpPlacementsTab } from "@/components/program/tabs/OnlinePgpPlacementsTab";
 import { ProgramTabHeader } from "@/components/program/ProgramTabHeader";
 import { CourseTimeline } from "@/components/course/CourseTimeline";
 import { getCoursePageConfig } from "@/data/coursePages/registry";
@@ -64,6 +65,10 @@ export function ProgramTabPage({ slug, tab }: ProgramTabPageProps) {
       >
       {tab === "curriculum" && config.timeline && (
         <CourseTimeline timeline={config.timeline} />
+      )}
+
+      {tab === "placements" && slug === "online-pgp" && (
+        <OnlinePgpPlacementsTab />
       )}
 
       {tab === "admissions" && (

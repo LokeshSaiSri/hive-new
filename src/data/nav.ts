@@ -29,6 +29,10 @@ export const navItems: NavItem[] = [
         label: "Undergraduate Programme",
         href: "/ug",
       },
+      {
+        label: "Online PGP",
+        href: "/online-pgp",
+      },
     ],
   },
   { type: "link", label: "Placements", href: "/placements" },

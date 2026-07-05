@@ -16,6 +16,7 @@ type ProgramCohortVoicesProps = {
   eyebrow?: string;
   statement?: string;
   emphasis?: string;
+  description?: string;
   className?: string;
 };
 
@@ -24,6 +25,7 @@ export function ProgramCohortVoices({
   eyebrow = "Class of 2024–25",
   statement = "Where our alumni",
   emphasis = "are now.",
+  description = "Real quotes and video stories from the cohort — in their own words.",
   className,
 }: ProgramCohortVoicesProps) {
   const prefersReducedMotion = useReducedMotion();
@@ -84,7 +86,7 @@ export function ProgramCohortVoices({
             eyebrow={eyebrow}
             statement={statement}
             emphasis={emphasis}
-            description="Real quotes and video stories from the cohort — in their own words."
+            description={description}
             light={false}
             align="left"
           />

@@ -13,16 +13,18 @@ const PROGRAM_TITLES: Record<ProgramSlug, string> = {
   pgp: "PGP in Revenue & Marketing",
   "ai-marketing": "AI Marketing Fellowship",
   ug: "UG Program",
+  "online-pgp": "Online Launchpad",
 };
 
 const DEFAULT_PROGRAMME_LABELS: Record<ProgramSlug, string> = {
   pgp: "PGP in Revenue, AI & Entrepreneurship",
   "ai-marketing": "AI Marketing & Entrepreneurship Fellowship",
   ug: "Undergraduate Programme",
+  "online-pgp": "Launchpad : B2B, Saas and Tech Sales",
 };
 
 function tabsForSlug(slug: ProgramSlug): TabDef[] {
-  if (slug === "ug") {
+  if (slug === "ug" || slug === "online-pgp") {
     return BASE_TABS.filter((tab) => tab.id === "overview");
   }
   if (slug === "ai-marketing") {
@@ -50,6 +52,7 @@ export const programNavigation: Record<ProgramSlug, ProgramNavConfig> = {
   pgp: buildNav("pgp"),
   "ai-marketing": buildNav("ai-marketing"),
   ug: buildNav("ug"),
+  "online-pgp": buildNav("online-pgp"),
 };
 
 export function getProgramNav(slug: ProgramSlug): ProgramNavConfig {
@@ -60,4 +63,4 @@ export function getDefaultProgrammeLabel(slug: ProgramSlug): string {
   return DEFAULT_PROGRAMME_LABELS[slug];
 }
 
-export const PROGRAM_SLUGS: ProgramSlug[] = ["pgp", "ai-marketing", "ug"];
+export const PROGRAM_SLUGS: ProgramSlug[] = ["pgp", "ai-marketing", "ug", "online-pgp"];

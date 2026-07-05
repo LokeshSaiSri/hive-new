@@ -1,6 +1,7 @@
 import { SectionIntro } from "@/components/ui/SectionIntro";
 import { MarqueeRows } from "@/components/ui/MarqueeRow";
 import { PlacementStatsCharts } from "@/components/ui/PlacementStatsCharts";
+import { LaunchpadStatsCharts } from "@/components/program/ui/LaunchpadStatsCharts";
 import { PillButton } from "@/components/ui/PillButton";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { VideoCard } from "@/components/ui/VideoCard";
@@ -8,21 +9,26 @@ import { HiringPartnerLogo } from "@/components/ui/HiringPartnerLogo";
 import { founderQuote, placementReportVideoId } from "@/data/stats";
 import { placementReportDownloadPath } from "@/data/placementReportAccess";
 import { hiringPartnerLogos } from "@/data/partners";
+import type { ProgramSlug } from "@/data/programPages/types";
 
 type ProgramPlacementsProps = {
   cohortLabel?: string;
-
   applyHref?: string;
+  slug?: ProgramSlug | string;
 };
 
 export function ProgramPlacements({
   cohortLabel = "Placement Report 2024–25 · PGP Cohort Year 1",
-
   applyHref = "#apply",
+  slug,
 }: ProgramPlacementsProps) {
   const half = Math.ceil(hiringPartnerLogos.length / 2);
   const row1 = hiringPartnerLogos.slice(0, half);
   const row2 = hiringPartnerLogos.slice(half);
+  
+  const isOnlinePgp = slug === "online-pgp";
+  const videoToUse = isOnlinePgp ? "vWvTOfz_XAc" : placementReportVideoId;
+  const reportLink = placementReportDownloadPath("year-2");
 
   return (
     <section id="placements" className="program-section hive-dark-band">
@@ -60,7 +66,7 @@ export function ProgramPlacements({
 
               <div className="relative flex min-h-[240px] flex-col sm:min-h-[280px] lg:min-h-0">
                 <VideoCard
-                  videoId={placementReportVideoId}
+                  videoId={videoToUse}
                   badge="Watch full breakdown"
                   flush
                   fill
@@ -71,11 +77,11 @@ export function ProgramPlacements({
 
             <div className="border-t border-white/10 px-5 py-3 sm:px-10 lg:px-14">
               <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-white/45">
-                {cohortLabel}
+                {isOnlinePgp ? "Placement Report · Data Breakdown" : cohortLabel}
               </p>
             </div>
 
-            <PlacementStatsCharts />
+            {isOnlinePgp ? <LaunchpadStatsCharts /> : <PlacementStatsCharts />}
 
             <div className="flex flex-col items-stretch gap-3 border-t border-white/10 px-5 py-6 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-4 sm:px-6 sm:py-10">
               <PillButton variant="highlight" tone="dark" href={applyHref} className="w-full sm:w-auto">
@@ -84,7 +90,7 @@ export function ProgramPlacements({
               <PillButton
                 variant="secondary"
                 tone="dark"
-                href={placementReportDownloadPath("year-2")}
+                href={reportLink}
                 className="w-full sm:w-auto"
               >
                 Download placement report

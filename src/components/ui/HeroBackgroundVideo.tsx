@@ -22,6 +22,11 @@ export function HeroBackgroundVideo({
   const [videoReady, setVideoReady] = useState(false);
   const [activeSrc, setActiveSrc] = useState<string | null>(null);
   const isRemotePoster = posterSrc.startsWith("http");
+  
+  const isYouTube = activeSrc?.includes("youtube.com") || activeSrc?.includes("youtu.be");
+  const youtubeId = isYouTube 
+    ? activeSrc?.split("v=")[1]?.split("&")[0] || activeSrc?.split("youtu.be/")[1]?.split("?")[0]
+    : null;
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -58,8 +63,10 @@ export function HeroBackgroundVideo({
     let mounted = true;
 
     const tryPlay = () => {
-      video.muted = true;
-      void video.play().catch(() => undefined);
+      if (!isYouTube) {
+        video.muted = true;
+        void video.play().catch(() => undefined);
+      }
     };
 
     const markReady = () => {
@@ -102,7 +109,7 @@ export function HeroBackgroundVideo({
         sizes="100vw"
       />
 
-      {activeSrc && (
+      {activeSrc && !isYouTube && (
         <video
           key={activeSrc}
           ref={videoRef}
@@ -125,6 +132,21 @@ export function HeroBackgroundVideo({
         >
           <source src={activeSrc} type="video/mp4" />
         </video>
+      )}
+
+      {activeSrc && isYouTube && youtubeId && (
+        <div className={`hero-video absolute inset-0 overflow-hidden pointer-events-none transition-opacity duration-1000 ${videoReady ? "opacity-100" : "opacity-0"}`}>
+          <iframe
+            key={activeSrc}
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none"
+            style={{ width: "100vw", height: "56.25vw", minHeight: "100vh", minWidth: "177.77vh" }}
+            src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${youtubeId}&modestbranding=1&rel=0&playsinline=1&disablekb=1&iv_load_policy=3&fs=0`}
+            allow="autoplay; encrypted-media"
+            onLoad={() => setTimeout(() => setVideoReady(true), 1500)}
+            tabIndex={-1}
+            aria-hidden
+          />
+        </div>
       )}
 
       {variant === "wedge" && (
