@@ -3,7 +3,7 @@
 import { useState, useCallback } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import type { InsightVideo } from "@/data/coursePages/online-pgp";
+import type { InsightVideo } from "@/data/coursePages/fellowship-gtm-revenue-ai";
 import { easeHive } from "@/lib/motion";
 
 type LaunchpadInsightsReelsProps = {

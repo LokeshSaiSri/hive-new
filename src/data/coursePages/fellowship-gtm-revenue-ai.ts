@@ -8,7 +8,7 @@ import type {
 import { placementReportDownloadPath } from "@/data/placementReportAccess";
 import { asset } from "@/lib/assets";
 
-export const ONLINE_PGP_PROGRAMME_TITLE = "Fellowship: GTM, Revenue & AI";
+export const FELLOWSHIP_PROGRAMME_TITLE = "Fellowship: GTM, Revenue & AI";
 
 // ─── Bootcamp Capstone Pillars (for LaunchpadBootcampDeck) ───────────────────
 export const launchpadBootcampPillars: PlacementSystemPillar[] = [
@@ -158,11 +158,11 @@ export const launchpadInsightVideos: InsightVideo[] = [
 ];
 
 // ─── Main Course Page Config ─────────────────────────────────────────────────
-export const onlinePgpCoursePage: CoursePageConfig = {
-  slug: "online-pgp",
-  programmeTitle: ONLINE_PGP_PROGRAMME_TITLE,
+export const fellowshipGtmRevenueAiCoursePage: CoursePageConfig = {
+  slug: "fellowship-gtm-revenue-ai",
+  programmeTitle: FELLOWSHIP_PROGRAMME_TITLE,
   meta: {
-    title: `${ONLINE_PGP_PROGRAMME_TITLE} | HiveSchool`,
+    title: `${FELLOWSHIP_PROGRAMME_TITLE} | HiveSchool`,
     description:
       "6-month part-time fellowship in GTM, revenue, and AI with live projects, hands-on mentorship, and a Delhi bootcamp — where every sprint builds toward commercial outcomes.",
   },
@@ -177,19 +177,19 @@ export const onlinePgpCoursePage: CoursePageConfig = {
     videoId: "rFZLsmtruzM",
     backgroundVideo: "https://www.youtube.com/watch?v=v_mgwD9wvG4",
     posterVideoId: "v_mgwD9wvG4",
-    primaryCta: { label: "Apply Now", href: "/online-pgp#apply" },
-    secondaryCta: { label: "Download Placement Report", href: placementReportDownloadPath("year-2") },
+    primaryCta: { label: "Apply Now", href: "/fellowship-gtm-revenue-ai#apply" },
+    secondaryCta: { label: "Download Placement Report", href: placementReportDownloadPath("year-1") },
     stats: [
-      { value: "6", label: "Months duration" },
       { value: "₹14.76L", label: "Average CTC" },
       { value: "₹30L", label: "Highest CTC" },
-      { value: "2X", label: "Average Jump" },
+      { value: "2X", label: "Average jump" },
+      { value: "100+", label: "Hiring partners" },
     ],
     meta: [
       { label: "Duration", value: "6 Months", hint: "6 months of live challenges, operator sprints, and a built-in placement system." },
       { label: "Commencement", value: "November 2026", hint: "November 2026 intake — online + Delhi bootcamp." },
       { label: "Format", value: "Online", hint: "Online part-time program with a 4-day residential bootcamp in Delhi." },
-      { label: "Average Jump", value: "2X", hint: "Average salary jump post-program based on previous cohorts." },
+      { label: "Bootcamp", value: "Delhi", hint: "4-day residential immersion with your cohort on campus." },
     ],
   },
   campusVideo: {
@@ -266,7 +266,7 @@ export const onlinePgpCoursePage: CoursePageConfig = {
       title: "Talk to a Counsellor",
       description:
         "Our admissions counsellors are here to provide clarity on the process and answer your questions ensuring every decision you make is well-informed.",
-      primary: { label: "Book a call", href: "/online-pgp#apply" },
+      primary: { label: "Book a call", href: "/fellowship-gtm-revenue-ai#apply" },
       secondary: { label: "Download Brochure", href: "/PGP-Offline-Brochure.pdf" },
     },
   ],
@@ -276,7 +276,7 @@ export const onlinePgpCoursePage: CoursePageConfig = {
       eyebrow: "Sprint 1",
       title: "SaaS from a Founders Lens",
       description: "Build a 360° view of SaaS - from business models and revenue metrics to the 0-1 founder journey and global case studies.",
-      imageUrl: "https://pub-760fa3db0e0e491da59597144b40ce1f.r2.dev/images/timeline/month1.webp",
+      imageUrl: asset("images/timeline/month1.webp"),
       bullets: [
         { number: "1", text: "SaaS Business & Revenue Models - Understand ARR, MRR, churn, CAC, LTV, retention, and unit economics that drive SaaS growth." },
         { number: "2", text: "0-1 Startup Journey - Follow the founder path from problem discovery to MVP, PMF, GTM, and building competitive moats." },
@@ -288,7 +288,7 @@ export const onlinePgpCoursePage: CoursePageConfig = {
       eyebrow: "Sprint 2",
       title: "Breaking down GTM for B2B SaaS",
       description: "Learn to design and execute SaaS GTM strategies - from ICPs and funnel math to building scalable, multi-channel motions.",
-      imageUrl: "https://pub-760fa3db0e0e491da59597144b40ce1f.r2.dev/images/timeline/month2.webp",
+      imageUrl: asset("images/master-photos/AD SHOOT - 3 MAY PICS/DSC07890.JPG"),
       bullets: [
         { number: "1", text: "GTM Frameworks & Funnel Math - Apply AIDA, TOFU-MOFU-BOFU, and buyer journey models to map acquisition and conversion." },
         { number: "2", text: "Comparing GTM Motions - Evaluate inbound, outbound, and PLG with CAC/LTV trade-offs, ROI, and scaling limits." },
@@ -300,7 +300,7 @@ export const onlinePgpCoursePage: CoursePageConfig = {
       eyebrow: "Sprint 3",
       title: "Demand Generation",
       description: "Master modern B2B demand generation - from outbound channels to live sales conversations and SaaS prospecting tools.",
-      imageUrl: "https://pub-760fa3db0e0e491da59597144b40ce1f.r2.dev/images/timeline/month3.webp",
+      imageUrl: asset("images/master-photos/AD SHOOT - 3 MAY PICS/DSC07885.JPG"),
       bullets: [
         { number: "1", text: "Outbound Systems - Cold email frameworks, AI-driven sequencing, and structured follow-ups that convert." },
         { number: "2", text: "Live Sales Practice - Cold calling, objection handling, and mock call drills simulating SDR workflows." },
@@ -312,7 +312,7 @@ export const onlinePgpCoursePage: CoursePageConfig = {
       eyebrow: "Sprint 4",
       title: "AI and tech in SaaS",
       description: "Leverage AI and sales tech to build efficient, scalable, and personalized workflows for B2B SaaS.",
-      imageUrl: "https://pub-760fa3db0e0e491da59597144b40ce1f.r2.dev/images/timeline/month4.webp",
+      imageUrl: asset("images/master-photos/AD SHOOT - 3 MAY PICS/DSC07857.JPG"),
       bullets: [
         { number: "1", text: "AI for Outreach - Draft emails, automate sequences, and personalize outreach at scale." },
         { number: "2", text: "Personal Tech Stack - Integrate tools like Sales Navigator, Apollo, Gong, and CRMs into one workflow." },
@@ -324,7 +324,7 @@ export const onlinePgpCoursePage: CoursePageConfig = {
       eyebrow: "Sprint 5",
       title: "Closing in the GTM Function",
       description: "Sharpen Account Executive skills - from managing pipelines to negotiating deals and closing revenue.",
-      imageUrl: "https://pub-760fa3db0e0e491da59597144b40ce1f.r2.dev/images/timeline/month5.webp",
+      imageUrl: asset("images/master-photos/AD SHOOT - 3 MAY PICS/DSC07898.JPG"),
       bullets: [
         { number: "1", text: "Pipeline & Deal Management - Qualify opportunities, run discovery, and move prospects through multi-stage pipelines." },
         { number: "2", text: "Negotiation & Objection Handling - Apply pricing frameworks, handle objections, and lead enterprise-level discussions." },
@@ -356,39 +356,49 @@ export const onlinePgpCoursePage: CoursePageConfig = {
   },
   faqs: {
     eyebrow: "FAQs",
-    statement: "Frequently Asked",
-    emphasis: "Questions",
-    description: `Everything you need to know about the ${ONLINE_PGP_PROGRAMME_TITLE}.`,
+    statement: "Questions you're",
+    emphasis: "probably asking",
+    description: `Everything you need to know about the ${FELLOWSHIP_PROGRAMME_TITLE}.`,
     items: [
       {
-        question: `What is ${ONLINE_PGP_PROGRAMME_TITLE}?`,
+        question: `What is ${FELLOWSHIP_PROGRAMME_TITLE}?`,
         answer:
-          "A 6-month part-time fellowship in GTM, revenue, and AI with live projects, hands-on mentorship, and a Delhi bootcamp — where every sprint builds toward commercial outcomes in B2B, SaaS, and tech sales.",
+          "A 6-month part-time fellowship built around GTM, revenue, and AI — not classroom theory. You work through five live sprints (SaaS fundamentals, B2B GTM, demand generation, AI in sales, and closing), build a portfolio of real capstone projects, and finish with a 4-day residential bootcamp in Delhi where you pitch before revenue leaders.",
       },
       {
-        question: `Who is ${ONLINE_PGP_PROGRAMME_TITLE} for?`,
+        question: `Who is ${FELLOWSHIP_PROGRAMME_TITLE} for?`,
         answer:
-          "The program is designed for aspiring sales professionals who want to break into B2B SaaS and Tech sales, learning from India's Top 1% in the industry.",
+          "Early-career professionals and ambitious operators who want to break into or accelerate in B2B SaaS and tech sales — BDR/SDR, GTM, RevOps, or founder's office tracks. You might be a working professional, recent graduate, or career-switcher. No prior sales title is required; we look for intent, hustle, and comfort learning in public.",
       },
       {
-        question: "Is this a full-time program?",
+        question: "Is this a full-time programme?",
         answer:
-          "No, this is a flexible, online 6-month part-time format designed to accommodate working professionals or full-time students, culminating in a 4-day offline residential bootcamp in Delhi.",
+          "No. It is a flexible, online, 6-month part-time format designed around working professionals and students. Live sprints, mentor sessions, and project work run on a structured weekly rhythm online, with a mandatory 4-day offline residential bootcamp in Delhi at the end of the journey.",
       },
       {
-        question: "What are the fees and EMI options?",
+        question: "What will I build during the fellowship?",
         answer:
-          "Total fee including GST is ₹2,95,000. EMI options start at ~₹10,000/month via NBFC partners. Scholarships are available for women in revenue, opportunity candidates, and high performers.",
+          "A portfolio of proof-of-work across outbound GTM playbooks, full GTM capstones for real SaaS companies, AI-driven outreach workflows, and live sales artefacts. Highlights include the GTM Challenge, Cold Call Battle, and Salespreneur Pitch — each tested in front of mentors, peers, or industry professionals.",
       },
       {
-        question: "What outcomes can I expect?",
+        question: "What are the fees, EMI options, and scholarships?",
         answer:
-          "Average CTC of ₹14.76 LPA, highest of ₹30 LPA. Roles include BDR/SDR, Founding BDR, Account Executive, and Sales Leadership tracks at SaaS and tech companies.",
+          "Admission fee is ₹50,000 and programme fee is ₹2,00,000 (₹2,50,000 total before GST). With 18% GST, total fee is ₹2,95,000. EMI options start at ~₹10,000/month via NBFC partners. Scholarships are available under Women in Revenue, Opportunity, and Excellence categories — only one scholarship can be applied per candidate.",
       },
       {
-        question: "How does the Delhi Bootcamp work?",
+        question: "How does admissions work?",
         answer:
-          "The 4-day residential bootcamp in Delhi brings the entire cohort together offline. You'll work alongside Team Hive to refine your capstone, then pitch live in front of sales leaders and revenue heads.",
+          "Three stages: a discovery call with Head of Admissions to understand your background and goals, a business case evaluation to test problem-solving and strategic thinking, and a culture fit conversation to assess cohort alignment. The process is selective — we optimise for ambition, collaboration, and long-term revenue careers.",
+      },
+      {
+        question: "What career outcomes can I expect?",
+        answer:
+          "Edition 1 (2024–25) cohort outcomes include an average CTC of ₹14.76 LPA, highest of ₹30 LPA, and a 2× average salary jump. Graduates move into BDR/SDR, Founding BDR, Account Executive, RevOps, GTM Associate, and sales leadership tracks at SaaS and tech companies — supported by HiveSchool's recruiter network and alumni ecosystem.",
+      },
+      {
+        question: "How does the Delhi bootcamp work?",
+        answer:
+          "The entire cohort comes together for a 4-day residential immersion in Delhi. Days are packed with capstone prep, mentor reviews, and rehearsal sprints. The bootcamp culminates in high-stakes presentations before revenue heads, hiring managers, and future recruiters — the same room where your Salespreneur pitch is evaluated live.",
       },
     ],
   },

@@ -37,7 +37,7 @@ const FORM_GUID_ENV: Record<ProgramSlug, string | undefined> = {
   pgp: process.env.NEXT_PUBLIC_HUBSPOT_FORM_PGP,
   "ai-marketing": process.env.NEXT_PUBLIC_HUBSPOT_FORM_AI_MARKETING,
   ug: process.env.NEXT_PUBLIC_HUBSPOT_FORM_UG,
-  "online-pgp": process.env.NEXT_PUBLIC_HUBSPOT_FORM_ONLINE_PGP ?? process.env.NEXT_PUBLIC_HUBSPOT_FORM_PGP,
+  "fellowship-gtm-revenue-ai": process.env.NEXT_PUBLIC_HUBSPOT_FORM_ONLINE_PGP ?? process.env.NEXT_PUBLIC_HUBSPOT_FORM_PGP,
 };
 
 export function getHubSpotPortalId(): string | undefined {

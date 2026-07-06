@@ -7,7 +7,7 @@ import type { LeadTrackingContext } from "@/lib/tracking/types";
 import type { ProgramSlug } from "@/data/programPages/types";
 import { buildThankYouUrl } from "@/data/formThankYou";
 
-const PROGRAM_SLUGS = new Set<ProgramSlug>(["pgp", "ai-marketing", "ug"]);
+const PROGRAM_SLUGS = new Set<ProgramSlug>(["pgp", "ai-marketing", "ug", "fellowship-gtm-revenue-ai"]);
 const HUBSPOT_UTK_COOKIE = /(?:^|;\s*)hubspotutk=([^;]*)/;
 
 function getClientIp(request: Request): string | undefined {

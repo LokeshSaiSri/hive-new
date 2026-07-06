@@ -16,18 +16,18 @@ import { CampusVideoHero } from "@/components/ui/CampusVideoHero";
 import { ProgramMentors } from "@/components/program/ProgramMentors";
 import { mentors } from "@/data/mentors";
 import {
-  onlinePgpCoursePage,
+  fellowshipGtmRevenueAiCoursePage,
   launchpadBootcampPillars,
   launchpadAlumniQuotes,
   launchpadAlumniVideoIds,
   launchpadAlumniImages,
   launchpadAdmissionRounds,
   launchpadInsightVideos,
-} from "@/data/coursePages/online-pgp";
+} from "@/data/coursePages/fellowship-gtm-revenue-ai";
 
 export const metadata: Metadata = {
-  title: onlinePgpCoursePage.meta.title,
-  description: onlinePgpCoursePage.meta.description,
+  title: fellowshipGtmRevenueAiCoursePage.meta.title,
+  description: fellowshipGtmRevenueAiCoursePage.meta.description,
 };
 
 /** Build CohortStory[] from launchpadAlumniQuotes + their video / image maps */
@@ -53,24 +53,26 @@ const fellowshipMentors = mentors
     category: mentor.category === "Sales" ? ("Revenue" as (typeof mentors)[number]["category"]) : mentor.category,
   }));
 
-export default function OnlinePgpPage() {
-  const { hero, sprints, timeline, fees, faqs, pillars, campusVideo } = onlinePgpCoursePage;
+export default function FellowshipGtmRevenueAiPage() {
+  const { hero, sprints, timeline, fees, faqs, pillars, campusVideo } = fellowshipGtmRevenueAiCoursePage;
   void pillars; // pillars used in ProgramPlacements / ProofOfWorkStrip; available if needed
+  void timeline;
+  void launchpadStories;
 
   return (
-    <ProgramPageLayout slug="online-pgp" activeTab="overview" lead={<CourseHero hero={hero} />}>
+    <ProgramPageLayout slug="fellowship-gtm-revenue-ai" activeTab="overview" lead={<CourseHero hero={hero} />}>
 
       {/* ── 1. APPLY IN 60 SEC ─────────────────────────────────────────── */}
       <CourseApplicationForm
-        courseSlug="online-pgp"
-        title={onlinePgpCoursePage.applicationForm?.title ?? "Fellowship Application Form"}
-        headline={onlinePgpCoursePage.applicationForm?.headline ?? "Fellowship: GTM, Revenue & AI application"}
+        courseSlug="fellowship-gtm-revenue-ai"
+        title={fellowshipGtmRevenueAiCoursePage.applicationForm?.title ?? "Fellowship Application Form"}
+        headline={fellowshipGtmRevenueAiCoursePage.applicationForm?.headline ?? "Fellowship: GTM, Revenue & AI application"}
         metrics={hero.meta}
         showPlacementCharts={false}
       />
 
       {/* ── 2. PLACEMENTS — video + Career Trajectory chart ─────────────── */}
-      <ProgramPlacements slug="online-pgp" />
+      <ProgramPlacements slug="fellowship-gtm-revenue-ai" />
 
       {/* ── 3. BOOTCAMP CAPSTONES — animated 2x2 grid ────────────────────── */}
       {pillars && (
@@ -156,11 +158,9 @@ export default function OnlinePgpPage() {
       <ProgramFaq
         faqs={faqs}
         variant="theatre"
-        applyHref="/online-pgp#apply"
+        applyHref="/fellowship-gtm-revenue-ai#apply"
       />
 
     </ProgramPageLayout>
   );
 }
-
-

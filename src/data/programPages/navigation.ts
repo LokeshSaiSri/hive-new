@@ -1,5 +1,5 @@
 import type { ProgramNavConfig, ProgramSlug, ProgramTab } from "@/data/programPages/types";
-import { ONLINE_PGP_PROGRAMME_TITLE } from "@/data/coursePages/online-pgp";
+import { FELLOWSHIP_PROGRAMME_TITLE } from "@/data/coursePages/fellowship-gtm-revenue-ai";
 
 type TabDef = { id: ProgramTab; label: string; segment: string };
 
@@ -14,18 +14,18 @@ const PROGRAM_TITLES: Record<ProgramSlug, string> = {
   pgp: "PGP in Revenue & Marketing",
   "ai-marketing": "AI Marketing Fellowship",
   ug: "UG Program",
-  "online-pgp": ONLINE_PGP_PROGRAMME_TITLE,
+  "fellowship-gtm-revenue-ai": FELLOWSHIP_PROGRAMME_TITLE,
 };
 
 const DEFAULT_PROGRAMME_LABELS: Record<ProgramSlug, string> = {
   pgp: "PGP in Revenue, AI & Entrepreneurship",
   "ai-marketing": "AI Marketing & Entrepreneurship Fellowship",
   ug: "Undergraduate Programme",
-  "online-pgp": ONLINE_PGP_PROGRAMME_TITLE,
+  "fellowship-gtm-revenue-ai": FELLOWSHIP_PROGRAMME_TITLE,
 };
 
 function tabsForSlug(slug: ProgramSlug): TabDef[] {
-  if (slug === "ug" || slug === "online-pgp") {
+  if (slug === "ug" || slug === "fellowship-gtm-revenue-ai") {
     return BASE_TABS.filter((tab) => tab.id === "overview");
   }
   if (slug === "ai-marketing") {
@@ -53,7 +53,7 @@ export const programNavigation: Record<ProgramSlug, ProgramNavConfig> = {
   pgp: buildNav("pgp"),
   "ai-marketing": buildNav("ai-marketing"),
   ug: buildNav("ug"),
-  "online-pgp": buildNav("online-pgp"),
+  "fellowship-gtm-revenue-ai": buildNav("fellowship-gtm-revenue-ai"),
 };
 
 export function getProgramNav(slug: ProgramSlug): ProgramNavConfig {
@@ -64,4 +64,4 @@ export function getDefaultProgrammeLabel(slug: ProgramSlug): string {
   return DEFAULT_PROGRAMME_LABELS[slug];
 }
 
-export const PROGRAM_SLUGS: ProgramSlug[] = ["pgp", "ai-marketing", "ug", "online-pgp"];
+export const PROGRAM_SLUGS: ProgramSlug[] = ["pgp", "ai-marketing", "ug", "fellowship-gtm-revenue-ai"];

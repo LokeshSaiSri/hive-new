@@ -31,6 +31,7 @@ export function mapCourseApplicationFields(
   if (courseSlug === "pgp") programmeTitle = "PGP in Revenue, AI & Entrepreneurship";
   else if (courseSlug === "ai-marketing") programmeTitle = "AI Marketing & Entrepreneurship Fellowship";
   else if (courseSlug === "ug") programmeTitle = "Undergraduate Programme";
+  else if (courseSlug === "fellowship-gtm-revenue-ai") programmeTitle = "Fellowship: GTM, Revenue & AI";
 
   return [
     { name: HUBSPOT_CONTACT_FIELDS.firstName, value: firstname },

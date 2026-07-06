@@ -26,8 +26,8 @@ export function ProgramPlacements({
   const row1 = hiringPartnerLogos.slice(0, half);
   const row2 = hiringPartnerLogos.slice(half);
   
-  const isOnlinePgp = slug === "online-pgp";
-  const videoToUse = isOnlinePgp ? "vWvTOfz_XAc" : placementReportVideoId;
+  const isFellowshipGtm = slug === "fellowship-gtm-revenue-ai";
+  const videoToUse = isFellowshipGtm ? "vWvTOfz_XAc" : placementReportVideoId;
   const reportLink = placementReportDownloadPath("year-2");
 
   return (
@@ -77,11 +77,11 @@ export function ProgramPlacements({
 
             <div className="border-t border-white/10 px-5 py-3 sm:px-10 lg:px-14">
               <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-white/45">
-                {isOnlinePgp ? "Placement Report · Data Breakdown" : cohortLabel}
+                {isFellowshipGtm ? "Placement Report · Data Breakdown" : cohortLabel}
               </p>
             </div>
 
-            {isOnlinePgp ? <LaunchpadStatsCharts /> : <PlacementStatsCharts />}
+            {isFellowshipGtm ? <LaunchpadStatsCharts /> : <PlacementStatsCharts />}
 
             <div className="flex flex-col items-stretch gap-3 border-t border-white/10 px-5 py-6 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-4 sm:px-6 sm:py-10">
               <PillButton variant="highlight" tone="dark" href={applyHref} className="w-full sm:w-auto">

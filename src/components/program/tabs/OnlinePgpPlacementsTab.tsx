@@ -21,7 +21,7 @@ import { getCoursePageConfig } from "@/data/coursePages/registry";
 import { testimonials } from "@/data/testimonials";
 
 export function OnlinePgpPlacementsTab() {
-  const config = getCoursePageConfig("online-pgp");
+  const config = getCoursePageConfig("fellowship-gtm-revenue-ai");
 
   return (
     <>
@@ -30,9 +30,9 @@ export function OnlinePgpPlacementsTab() {
       <ProgramCohortVoices stories={buildCohortStories(pgpAlumniQuotes, testimonials)} />
       
       <ProgramPlacements
-        slug="online-pgp"
+        slug="fellowship-gtm-revenue-ai"
         cohortLabel="Placement Report 2025–26 · Fellowship Cohort Year 2"
-        applyHref="/online-pgp#apply"
+        applyHref="/fellowship-gtm-revenue-ai#apply"
       />
       
       <PlacementsSystemDeck pillars={pgpPlacementSystem} intro={pgpPlacementSystemIntro} />
@@ -43,8 +43,8 @@ export function OnlinePgpPlacementsTab() {
       <PlacementsCareerPathways groups={pgpCareerPathways} className="pt-0 border-t-0" />
       <PlacementsNewsGrid articles={pgpPlacementNews} className="pt-0 border-t-0" />
       
-      {/* We reuse the generic config FAQ structure, which has faqs on online-pgp.ts */}
-      <ProgramFaq faqs={config.faqs} variant="theatre" applyHref="/online-pgp#apply" />
+      {/* We reuse the generic config FAQ structure from fellowship-gtm-revenue-ai.ts */}
+      <ProgramFaq faqs={config.faqs} variant="theatre" applyHref="/fellowship-gtm-revenue-ai#apply" />
     </>
   );
 }

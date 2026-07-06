@@ -70,6 +70,12 @@ const METRIC_HINTS: Record<string, string> = {
   Network: "100+ hiring partners across D2C, agencies, and consumer tech for placements.",
 };
 
+function intakeChipFromMetrics(metrics: CourseMetaItem[]): string {
+  const commencement = metrics.find((m) => m.label === "Commencement");
+  if (commencement?.value) return `${commencement.value} intake`;
+  return "October 2026 intake";
+}
+
 const SOCIAL_PROOF = [
   "Growth lead from Bengaluru applied today",
   "Consultant from Delhi joined the waitlist",
@@ -143,6 +149,7 @@ function initialsFromName(name: string) {
 
 function MetricSpotlight({
   metrics,
+  intakeChip,
   activeIndex,
   onSelect,
   paused,
@@ -150,6 +157,7 @@ function MetricSpotlight({
   onResume,
 }: {
   metrics: CourseMetaItem[];
+  intakeChip: string;
   activeIndex: number;
   onSelect: (index: number) => void;
   paused: boolean;
@@ -191,7 +199,7 @@ function MetricSpotlight({
               className={`h-1.5 w-1.5 rounded-full bg-accent ${paused ? "" : "animate-pulse"}`}
               aria-hidden
             />
-            October 2026 intake
+            {intakeChip}
           </span>
         </div>
 
@@ -508,6 +516,8 @@ export function CourseApplicationForm({
   const [metricPaused, setMetricPaused] = useState(false);
   const [focusedField, setFocusedField] = useState<FieldKey | null>(null);
 
+  const intakeChip = useMemo(() => intakeChipFromMetrics(metrics), [metrics]);
+
   const advanceMetric = useCallback(
     () => setActiveMetric((i) => (i + 1) % metrics.length),
     [metrics.length],
@@ -616,6 +626,7 @@ export function CourseApplicationForm({
               ) : (
                 <MetricSpotlight
                   metrics={metrics}
+                  intakeChip={intakeChip}
                   activeIndex={activeMetric}
                   onSelect={setActiveMetric}
                   paused={metricPaused}

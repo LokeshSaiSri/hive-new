@@ -57,6 +57,16 @@ const nextConfig: NextConfig = {
         destination: "/pgp-revenue-tech-entrepreneurship/:path*",
         permanent: true,
       },
+      {
+        source: "/online-pgp",
+        destination: "/fellowship-gtm-revenue-ai",
+        permanent: true,
+      },
+      {
+        source: "/online-pgp/:path*",
+        destination: "/fellowship-gtm-revenue-ai/:path*",
+        permanent: true,
+      },
       { source: "/careers", destination: "/", permanent: false },
       { source: "/event-index", destination: "/", permanent: false },
       { source: "/event-index/:path*", destination: "/", permanent: false },

@@ -5,7 +5,7 @@ export const FORM_THANK_YOU_PATHS: Record<ProgramSlug, string> = {
   pgp: "/pgp-revenue-tech-entrepreneurship-form-submitted",
   "ai-marketing": "/ai-marketing-fellowship-form-submitted",
   ug: "/ug-programme-form-submitted",
-  "online-pgp": "/launchpad-form-submitted",
+  "fellowship-gtm-revenue-ai": "/launchpad-form-submitted",
 };
 
 export function buildThankYouUrl(

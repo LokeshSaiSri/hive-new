@@ -67,7 +67,7 @@ export function ProgramTabPage({ slug, tab }: ProgramTabPageProps) {
         <CourseTimeline timeline={config.timeline} />
       )}
 
-      {tab === "placements" && slug === "online-pgp" && (
+      {tab === "placements" && slug === "fellowship-gtm-revenue-ai" && (
         <OnlinePgpPlacementsTab />
       )}
 
