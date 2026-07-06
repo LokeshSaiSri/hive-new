@@ -1,4 +1,5 @@
 import type { ProgramNavConfig, ProgramSlug, ProgramTab } from "@/data/programPages/types";
+import { ONLINE_PGP_PROGRAMME_TITLE } from "@/data/coursePages/online-pgp";
 
 type TabDef = { id: ProgramTab; label: string; segment: string };
 
@@ -13,14 +14,14 @@ const PROGRAM_TITLES: Record<ProgramSlug, string> = {
   pgp: "PGP in Revenue & Marketing",
   "ai-marketing": "AI Marketing Fellowship",
   ug: "UG Program",
-  "online-pgp": "Online Launchpad",
+  "online-pgp": ONLINE_PGP_PROGRAMME_TITLE,
 };
 
 const DEFAULT_PROGRAMME_LABELS: Record<ProgramSlug, string> = {
   pgp: "PGP in Revenue, AI & Entrepreneurship",
   "ai-marketing": "AI Marketing & Entrepreneurship Fellowship",
   ug: "Undergraduate Programme",
-  "online-pgp": "Launchpad : B2B, Saas and Tech Sales",
+  "online-pgp": ONLINE_PGP_PROGRAMME_TITLE,
 };
 
 function tabsForSlug(slug: ProgramSlug): TabDef[] {

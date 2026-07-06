@@ -8,6 +8,8 @@ import type {
 import { placementReportDownloadPath } from "@/data/placementReportAccess";
 import { asset } from "@/lib/assets";
 
+export const ONLINE_PGP_PROGRAMME_TITLE = "Fellowship: GTM, Revenue & AI";
+
 // ─── Bootcamp Capstone Pillars (for LaunchpadBootcampDeck) ───────────────────
 export const launchpadBootcampPillars: PlacementSystemPillar[] = [
   {
@@ -67,7 +69,7 @@ export const launchpadAlumniQuotes: AlumniQuote[] = [
     role: "Sr. SDR",
     company: "Almabase",
     quote:
-      "Launchpad gave me the exact outbound systems and tech stack knowledge I needed to double my meeting book rate in just two months.",
+      "The fellowship gave me the exact outbound systems and tech stack knowledge I needed to double my meeting book rate in just two months.",
   },
 ];
 
@@ -115,7 +117,7 @@ export const launchpadAdmissionRounds: AdmissionRound[] = [
     round: "Stage 03",
     title: "Culture Fit Conversation",
     description:
-      "Assess your professional mindset, collaboration style, and long-term goals for cohort alignment. The Launchpad is a high-intensity programme — we want to make sure you'll thrive in this environment and contribute to the cohort around you.",
+      "Assess your professional mindset, collaboration style, and long-term goals for cohort alignment. This fellowship is a high-intensity programme — we want to make sure you'll thrive in this environment and contribute to the cohort around you.",
   },
 ];
 
@@ -158,20 +160,20 @@ export const launchpadInsightVideos: InsightVideo[] = [
 // ─── Main Course Page Config ─────────────────────────────────────────────────
 export const onlinePgpCoursePage: CoursePageConfig = {
   slug: "online-pgp",
-  programmeTitle: "Launchpad : B2B, Saas and Tech Sales",
+  programmeTitle: ONLINE_PGP_PROGRAMME_TITLE,
   meta: {
-    title: "Launchpad : B2B, Saas and Tech Sales | HiveSchool",
+    title: `${ONLINE_PGP_PROGRAMME_TITLE} | HiveSchool`,
     description:
-      "6-month part-time Launchpad with live projects, hands-on mentorship, and a Delhi bootcamp — where every sprint builds toward commercial outcomes.",
+      "6-month part-time fellowship in GTM, revenue, and AI with live projects, hands-on mentorship, and a Delhi bootcamp — where every sprint builds toward commercial outcomes.",
   },
   hero: {
-    badge: "Online Launchpad",
+    badge: "Fellowship Programme",
     location: "Online + Delhi Bootcamp",
     intake: "November 2026",
-    title: "Launchpad : B2B,",
-    emphasis: "Saas and Tech Sales",
+    title: "Fellowship:",
+    emphasis: "GTM, Revenue & AI",
     description:
-      "6-month part-time Launchpad with live projects, hands-on mentorship, and a Delhi bootcamp — where every sprint builds toward commercial outcomes. Learn from India's Top 1% in Sales.",
+      "6-month part-time fellowship with live projects, hands-on mentorship, and a Delhi bootcamp — where every sprint builds toward commercial outcomes. Learn from India's Top 1% in Sales.",
     videoId: "rFZLsmtruzM",
     backgroundVideo: "https://www.youtube.com/watch?v=v_mgwD9wvG4",
     posterVideoId: "v_mgwD9wvG4",
@@ -193,8 +195,8 @@ export const onlinePgpCoursePage: CoursePageConfig = {
   campusVideo: {
     videoId: "MnlO5h2Dnkk",
     eyebrow: "The 3-Day Delhi Bootcamp",
-    statement: "Experience",
-    emphasis: "Our Campus",
+    statement: "Delhi",
+    emphasis: "Bootcamp",
     description:
       "72 hours of intensity and collaboration - live with your cohort, learn from mentors, sharpen your capstones, and close it all with a graduation that marks the start of your next chapter.",
   },
@@ -334,16 +336,16 @@ export const onlinePgpCoursePage: CoursePageConfig = {
     eyebrow: "Investment",
     statement: "Fee",
     emphasis: "structure",
-    badge: "Launchpad",
+    badge: "Fellowship",
     intake: "November 2026",
     description:
       "The program fee can be paid upfront or through flexible EMI options, starting at ~₹10,000/month via NBFC partners. This ensures affordability without compromising quality.",
     lines: [
-      { label: "Admission Fee", amount: "₹40,000" },
-      { label: "Tuition Fee", amount: "₹1,10,000" },
-      { label: "Total Fee", amount: "₹1,50,000" },
-      { label: "GST", amount: "₹27,000" },
-      { label: "Total Fee + GST", amount: "₹1,77,000", highlight: true },
+      { label: "Admission Fee", amount: "₹50,000" },
+      { label: "Program Fee", amount: "₹2,00,000" },
+      { label: "Total Fee", amount: "₹2,50,000" },
+      { label: "GST", amount: "₹45,000" },
+      { label: "Total Fee + GST", amount: "₹2,95,000", highlight: true },
     ],
     scholarships: [
       { title: "Women in Revenue Scholarship", description: "For women aspiring to build careers in sales." },
@@ -356,15 +358,15 @@ export const onlinePgpCoursePage: CoursePageConfig = {
     eyebrow: "FAQs",
     statement: "Frequently Asked",
     emphasis: "Questions",
-    description: "Everything you need to know about the Launchpad program.",
+    description: `Everything you need to know about the ${ONLINE_PGP_PROGRAMME_TITLE}.`,
     items: [
       {
-        question: "What is Launchpad?",
+        question: `What is ${ONLINE_PGP_PROGRAMME_TITLE}?`,
         answer:
-          "Launchpad is a 6-month part-time program with live projects, hands-on mentorship, and a Delhi bootcamp — where every sprint builds toward commercial outcomes in B2B, SaaS and Tech Sales.",
+          "A 6-month part-time fellowship in GTM, revenue, and AI with live projects, hands-on mentorship, and a Delhi bootcamp — where every sprint builds toward commercial outcomes in B2B, SaaS, and tech sales.",
       },
       {
-        question: "Who is the Launchpad program for?",
+        question: `Who is ${ONLINE_PGP_PROGRAMME_TITLE} for?`,
         answer:
           "The program is designed for aspiring sales professionals who want to break into B2B SaaS and Tech sales, learning from India's Top 1% in the industry.",
       },
@@ -376,7 +378,7 @@ export const onlinePgpCoursePage: CoursePageConfig = {
       {
         question: "What are the fees and EMI options?",
         answer:
-          "Total fee including GST is ₹1,77,000. EMI options start at ~₹10,000/month via NBFC partners. Scholarships are available for women in revenue, opportunity candidates, and high performers.",
+          "Total fee including GST is ₹2,95,000. EMI options start at ~₹10,000/month via NBFC partners. Scholarships are available for women in revenue, opportunity candidates, and high performers.",
       },
       {
         question: "What outcomes can I expect?",
@@ -391,8 +393,8 @@ export const onlinePgpCoursePage: CoursePageConfig = {
     ],
   },
   applicationForm: {
-    title: "Launchpad Application Form",
-    headline: "Launchpad application",
+    title: "Fellowship Application Form",
+    headline: "Fellowship: GTM, Revenue & AI application",
   },
   sections: {
     placement: true,

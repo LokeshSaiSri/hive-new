@@ -31,7 +31,7 @@ export function OnlinePgpPlacementsTab() {
       
       <ProgramPlacements
         slug="online-pgp"
-        cohortLabel="Placement Report 2025–26 · Launchpad Cohort Year 2"
+        cohortLabel="Placement Report 2025–26 · Fellowship Cohort Year 2"
         applyHref="/online-pgp#apply"
       />
       

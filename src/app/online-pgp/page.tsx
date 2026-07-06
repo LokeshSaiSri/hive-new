@@ -14,6 +14,7 @@ import { LaunchpadBootcampDeck } from "@/components/program/ui/LaunchpadBootcamp
 import { LaunchpadInsightsReels } from "@/components/program/ui/LaunchpadInsightsReels";
 import { CampusVideoHero } from "@/components/ui/CampusVideoHero";
 import { ProgramMentors } from "@/components/program/ProgramMentors";
+import { mentors } from "@/data/mentors";
 import {
   onlinePgpCoursePage,
   launchpadBootcampPillars,
@@ -43,6 +44,15 @@ function buildLaunchpadStories() {
 
 const launchpadStories = buildLaunchpadStories();
 
+const fellowshipMentorCategories = ["Revenue", "GTM", "Data and AI"] as const;
+
+const fellowshipMentors = mentors
+  .filter((mentor) => mentor.category !== "Marketing")
+  .map((mentor) => ({
+    ...mentor,
+    category: mentor.category === "Sales" ? ("Revenue" as (typeof mentors)[number]["category"]) : mentor.category,
+  }));
+
 export default function OnlinePgpPage() {
   const { hero, sprints, timeline, fees, faqs, pillars, campusVideo } = onlinePgpCoursePage;
   void pillars; // pillars used in ProgramPlacements / ProofOfWorkStrip; available if needed
@@ -53,8 +63,8 @@ export default function OnlinePgpPage() {
       {/* ── 1. APPLY IN 60 SEC ─────────────────────────────────────────── */}
       <CourseApplicationForm
         courseSlug="online-pgp"
-        title="Launchpad Application"
-        headline="Online PGP application"
+        title={onlinePgpCoursePage.applicationForm?.title ?? "Fellowship Application Form"}
+        headline={onlinePgpCoursePage.applicationForm?.headline ?? "Fellowship: GTM, Revenue & AI application"}
         metrics={hero.meta}
         showPlacementCharts={false}
       />
@@ -90,7 +100,7 @@ export default function OnlinePgpPage() {
 
         <div className="section-container relative section-py">
           <ScrollReveal className="mx-auto max-w-2xl text-center">
-            <SectionEyebrow>Launchpad Alumni</SectionEyebrow>
+            <SectionEyebrow>Fellowship Alumni</SectionEyebrow>
 
             <h2 className="mt-5 text-[clamp(2.5rem,6vw,4.25rem)] font-bold leading-[0.95] tracking-tight text-white">
               Hear Straight from <em className="font-serif font-medium not-italic text-accent">Our Alumni</em>
@@ -131,7 +141,10 @@ export default function OnlinePgpPage() {
       )}
 
       {/* ── 6.75. MENTORS ──────────────────────────────────────────────────── */}
-      <ProgramMentors />
+      <ProgramMentors
+        categoryOverride={fellowshipMentorCategories}
+        mentorsOverride={fellowshipMentors}
+      />
 
       {/* ── 7. ADMISSIONS — 3-stage step-through deck ────────────────────── */}
       <AdmissionsProcessDeck rounds={launchpadAdmissionRounds} />

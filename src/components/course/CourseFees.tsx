@@ -42,7 +42,15 @@ export function CourseFees({ fees, className }: CourseFeesProps) {
                       line.highlight ? "border-accent/30" : ""
                     }`}
                   >
-                    <span className="text-sm text-white/70">{line.label}</span>
+                    <span className="text-sm text-white/70">
+                      {line.label === "Total Fee + GST" ? (
+                        <>
+                          Total Fee <span className="text-xs font-normal text-white/45">+ GST</span>
+                        </>
+                      ) : (
+                        line.label
+                      )}
+                    </span>
                     <span
                       className={`font-semibold ${
                         line.highlight ? "text-2xl text-accent" : "text-white"

@@ -55,7 +55,7 @@ export function ProgramMentors({
   const [category, setCategory] = useState<string>(activeCategories[0]);
   const filtered = activeMentors.filter((m) => m.category === category);
 
-  const isOneLine = ["Sales", "GTM", "Growth"].includes(category);
+  const isOneLine = ["Sales", "Revenue", "GTM", "Growth"].includes(category);
   const midpoint = isOneLine ? filtered.length : Math.ceil(filtered.length / 2);
   const topRowMentors = filtered.slice(0, midpoint);
   const bottomRowMentors = filtered.slice(midpoint);
