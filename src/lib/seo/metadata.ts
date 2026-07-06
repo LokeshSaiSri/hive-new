@@ -46,6 +46,9 @@ export function buildPageMetadata({
         {
           url: imageUrl,
           alt: SITE_NAME,
+          width: 200,
+          height: 200,
+          type: "image/png",
         },
       ],
     },

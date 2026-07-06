@@ -3,9 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { asset, videoAsset } from "@/lib/assets";
+import { extractYoutubeId, youtubePreviewEmbedUrl } from "@/lib/youtube";
 
 const DEFAULT_VIDEO_SRC = videoAsset("videos/hero-campus.mp4");
 const DEFAULT_POSTER_SRC = asset("images/misc/hero-campus-poster.jpg");
+const YOUTUBE_READY_DELAY_MS = 2800;
 
 type HeroBackgroundVideoProps = {
   videoSrc?: string;
@@ -22,11 +24,9 @@ export function HeroBackgroundVideo({
   const [videoReady, setVideoReady] = useState(false);
   const [activeSrc, setActiveSrc] = useState<string | null>(null);
   const isRemotePoster = posterSrc.startsWith("http");
-  
-  const isYouTube = activeSrc?.includes("youtube.com") || activeSrc?.includes("youtu.be");
-  const youtubeId = isYouTube 
-    ? activeSrc?.split("v=")[1]?.split("&")[0] || activeSrc?.split("youtu.be/")[1]?.split("?")[0]
-    : null;
+
+  const youtubeId = activeSrc ? extractYoutubeId(activeSrc) : null;
+  const isYouTube = Boolean(youtubeId);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -58,15 +58,13 @@ export function HeroBackgroundVideo({
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video || !activeSrc) return;
+    if (!video || !activeSrc || isYouTube) return;
 
     let mounted = true;
 
     const tryPlay = () => {
-      if (!isYouTube) {
-        video.muted = true;
-        void video.play().catch(() => undefined);
-      }
+      video.muted = true;
+      void video.play().catch(() => undefined);
     };
 
     const markReady = () => {
@@ -88,7 +86,11 @@ export function HeroBackgroundVideo({
       video.removeEventListener("loadeddata", markReady);
       video.removeEventListener("playing", markReady);
     };
-  }, [activeSrc]);
+  }, [activeSrc, isYouTube]);
+
+  const markYoutubeReady = () => {
+    window.setTimeout(() => setVideoReady(true), YOUTUBE_READY_DELAY_MS);
+  };
 
   const wrapperClass =
     variant === "full"
@@ -97,23 +99,32 @@ export function HeroBackgroundVideo({
 
   return (
     <div className={wrapperClass}>
-      <Image
-        src={posterSrc}
-        alt=""
-        fill
-        priority
-        unoptimized={isRemotePoster}
-        className={`object-cover transition-opacity duration-700 ${
-          videoReady ? "opacity-0" : "opacity-100"
-        }`}
-        sizes="100vw"
-      />
+      {activeSrc && isYouTube && youtubeId && (
+        <div className="hero-video absolute inset-0 z-[1] overflow-hidden" aria-hidden>
+          <iframe
+            key={activeSrc}
+            className="pointer-events-none absolute left-1/2 top-1/2 select-none"
+            style={{
+              width: "100vw",
+              height: "56.25vw",
+              minHeight: "100vh",
+              minWidth: "177.77vh",
+              transform: "translate(-50%, -50%) scale(1.12)",
+            }}
+            src={youtubePreviewEmbedUrl(youtubeId)}
+            allow="autoplay; encrypted-media"
+            onLoad={markYoutubeReady}
+            tabIndex={-1}
+            title=""
+          />
+        </div>
+      )}
 
       {activeSrc && !isYouTube && (
         <video
           key={activeSrc}
           ref={videoRef}
-          className={`hero-video absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
+          className={`hero-video absolute inset-0 z-[1] h-full w-full object-cover transition-opacity duration-700 ${
             videoReady ? "opacity-100" : "opacity-0"
           }`}
           autoPlay
@@ -134,23 +145,20 @@ export function HeroBackgroundVideo({
         </video>
       )}
 
-      {activeSrc && isYouTube && youtubeId && (
-        <div className={`hero-video absolute inset-0 overflow-hidden pointer-events-none transition-opacity duration-1000 ${videoReady ? "opacity-100" : "opacity-0"}`}>
-          <iframe
-            key={activeSrc}
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none"
-            style={{ width: "100vw", height: "56.25vw", minHeight: "100vh", minWidth: "177.77vh" }}
-            src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${youtubeId}&modestbranding=1&rel=0&playsinline=1&disablekb=1&iv_load_policy=3&fs=0`}
-            allow="autoplay; encrypted-media"
-            onLoad={() => setTimeout(() => setVideoReady(true), 1500)}
-            tabIndex={-1}
-            aria-hidden
-          />
-        </div>
-      )}
+      <Image
+        src={posterSrc}
+        alt=""
+        fill
+        priority
+        unoptimized={isRemotePoster}
+        className={`absolute inset-0 z-[2] object-cover transition-opacity duration-700 ${
+          videoReady ? "pointer-events-none opacity-0" : "opacity-100"
+        }`}
+        sizes="100vw"
+      />
 
       {variant === "wedge" && (
-        <div className="hero-video-edge-fade pointer-events-none absolute inset-0 z-[2]" aria-hidden />
+        <div className="hero-video-edge-fade pointer-events-none absolute inset-0 z-[3]" aria-hidden />
       )}
     </div>
   );

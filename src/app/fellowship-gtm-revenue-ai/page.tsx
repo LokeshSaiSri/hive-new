@@ -24,11 +24,9 @@ import {
   launchpadAdmissionRounds,
   launchpadInsightVideos,
 } from "@/data/coursePages/fellowship-gtm-revenue-ai";
+import { buildCourseOverviewMetadata } from "@/lib/seo/program-metadata";
 
-export const metadata: Metadata = {
-  title: fellowshipGtmRevenueAiCoursePage.meta.title,
-  description: fellowshipGtmRevenueAiCoursePage.meta.description,
-};
+export const metadata: Metadata = buildCourseOverviewMetadata("fellowship-gtm-revenue-ai");
 
 /** Build CohortStory[] from launchpadAlumniQuotes + their video / image maps */
 function buildLaunchpadStories() {

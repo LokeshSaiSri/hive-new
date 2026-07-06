@@ -5,7 +5,7 @@ export const SITE_DEFAULT_DESCRIPTION =
   "India's definitive education in revenue, marketing, and entrepreneurship — for people who intend to lead what drives every business.";
 export const SITE_LOCALE = "en_IN";
 
-export const DEFAULT_OG_IMAGE = "/assets/images/misc/hiveschool-logo.png";
+export const DEFAULT_OG_IMAGE = "/assets/images/og/hiveschool-og.png";
 
 export const SOCIAL_PROFILES = [
   "https://instagram.com/hiveschool.co",
