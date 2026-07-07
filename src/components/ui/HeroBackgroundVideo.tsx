@@ -7,7 +7,7 @@ import { extractYoutubeId, youtubePreviewEmbedUrl } from "@/lib/youtube";
 
 const DEFAULT_VIDEO_SRC = videoAsset("videos/hero-campus.mp4");
 const DEFAULT_POSTER_SRC = asset("images/misc/hero-campus-poster.jpg");
-const YOUTUBE_READY_DELAY_MS = 2800;
+const YOUTUBE_READY_DELAY_MS = 500;
 
 type HeroBackgroundVideoProps = {
   videoSrc?: string;
@@ -31,29 +31,7 @@ export function HeroBackgroundVideo({
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setVideoReady(false);
-    setActiveSrc(null);
-
-    let cancelled = false;
-    let idleId: number | undefined;
-
-    const activate = () => {
-      if (!cancelled) setActiveSrc(videoSrc);
-    };
-
-    if (typeof requestIdleCallback === "function") {
-      idleId = requestIdleCallback(activate, { timeout: 1200 });
-    } else {
-      idleId = window.setTimeout(activate, 400);
-    }
-
-    return () => {
-      cancelled = true;
-      if (typeof requestIdleCallback === "function" && idleId !== undefined) {
-        cancelIdleCallback(idleId);
-      } else if (idleId !== undefined) {
-        window.clearTimeout(idleId);
-      }
-    };
+    setActiveSrc(videoSrc);
   }, [videoSrc]);
 
   useEffect(() => {

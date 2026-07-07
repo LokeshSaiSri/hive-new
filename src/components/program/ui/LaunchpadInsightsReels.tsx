@@ -13,16 +13,38 @@ type LaunchpadInsightsReelsProps = {
 
 /** Embed a YouTube video in a 16:9 horizontal container */
 function YoutubeEmbed({ videoId, title }: { videoId: string; title: string }) {
+  const [isPlaying, setIsPlaying] = useState(false);
+
   return (
     <div className="relative w-full overflow-hidden rounded-xl bg-black" style={{ aspectRatio: "16/9" }}>
-      <iframe
-        src={`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&playsinline=1`}
-        title={title}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-        className="absolute inset-0 h-full w-full"
-        loading="lazy"
-      />
+      {isPlaying ? (
+        <iframe
+          src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1`}
+          title={title}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          className="absolute inset-0 h-full w-full"
+        />
+      ) : (
+        <div 
+          className="absolute inset-0 cursor-pointer group"
+          onClick={() => setIsPlaying(true)}
+        >
+          <img 
+            src={`https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`} 
+            alt={title}
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="flex h-16 w-16 items-center justify-center rounded-full bg-blue-600/90 text-white shadow-lg backdrop-blur-sm transition-transform group-hover:scale-110">
+              <svg viewBox="0 0 24 24" fill="currentColor" className="ml-1 h-8 w-8">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </span>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

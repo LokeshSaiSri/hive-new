@@ -339,13 +339,11 @@ export const fellowshipGtmRevenueAiCoursePage: CoursePageConfig = {
     badge: "Fellowship",
     intake: "November 2026",
     description:
-      "The program fee can be paid upfront or through flexible EMI options, starting at ~₹10,000/month via NBFC partners. This ensures affordability without compromising quality.",
+      "The program fee can be paid upfront or through flexible EMI options via NBFC partners. This ensures affordability without compromising quality.",
     lines: [
       { label: "Admission Fee", amount: "₹50,000" },
       { label: "Program Fee", amount: "₹2,00,000" },
-      { label: "Total Fee", amount: "₹2,50,000" },
-      { label: "GST", amount: "₹45,000" },
-      { label: "Total Fee + GST", amount: "₹2,95,000", highlight: true },
+      { label: "Total Fee", amount: "₹2,50,000", highlight: true },
     ],
     scholarships: [
       { title: "Women in Revenue Scholarship", description: "For women aspiring to build careers in sales." },
@@ -383,7 +381,7 @@ export const fellowshipGtmRevenueAiCoursePage: CoursePageConfig = {
       {
         question: "What are the fees, EMI options, and scholarships?",
         answer:
-          "Admission fee is ₹50,000 and programme fee is ₹2,00,000 (₹2,50,000 total before GST). With 18% GST, total fee is ₹2,95,000. EMI options start at ~₹10,000/month via NBFC partners. Scholarships are available under Women in Revenue, Opportunity, and Excellence categories — only one scholarship can be applied per candidate.",
+          "Admission fee is ₹50,000 and programme fee is ₹2,00,000 (₹2,50,000 total). Flexible EMI options are available via NBFC partners. Scholarships are available under Women in Revenue, Opportunity, and Excellence categories — only one scholarship can be applied per candidate.",
       },
       {
         question: "How does admissions work?",

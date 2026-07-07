@@ -42,44 +42,85 @@ export function ProgramFaq({ faqs, variant = "default", className, applyHref = "
               </div>
             </ScrollReveal>
 
-            <div className="program-faq-theatre__shell">
-              <div className="program-faq-theatre__list" role="tablist" aria-label="Frequently asked questions">
-                {faqs.items.map((item, index) => {
-                  const isActive = index === openIndex;
-                  return (
-                    <button
-                      suppressHydrationWarning
-                      key={item.question}
-                      type="button"
-                      role="tab"
-                      aria-selected={isActive}
-                      onClick={() => setOpenIndex(index)}
-                      className={`program-faq-theatre__item ${isActive ? "is-active" : ""}`}
-                    >
-                      <span className="program-faq-theatre__item-index">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
-                      <span className="program-faq-theatre__item-question">{item.question}</span>
-                    </button>
-                  );
-                })}
-              </div>
+            {/* Desktop Theatre View */}
+            <div className="hidden md:block">
+              <div className="program-faq-theatre__shell">
+                <div className="program-faq-theatre__list" role="tablist" aria-label="Frequently asked questions">
+                  {faqs.items.map((item, index) => {
+                    const isActive = index === openIndex;
+                    return (
+                      <button
+                        suppressHydrationWarning
+                        key={item.question}
+                        type="button"
+                        role="tab"
+                        aria-selected={isActive}
+                        onClick={() => setOpenIndex(index)}
+                        className={`program-faq-theatre__item ${isActive ? "is-active" : ""}`}
+                      >
+                        <span className="program-faq-theatre__item-index">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                        <span className="program-faq-theatre__item-question">{item.question}</span>
+                      </button>
+                    );
+                  })}
+                </div>
 
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={current.question}
-                  role="tabpanel"
-                  initial={prefersReducedMotion ? false : { opacity: 0, x: 16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={prefersReducedMotion ? undefined : { opacity: 0, x: -12 }}
-                  transition={{ duration: 0.4, ease: easeHive }}
-                  className="program-faq-theatre__answer"
-                >
-                  <p className="program-faq-theatre__answer-kicker">Answer</p>
-                  <h3 className="program-faq-theatre__answer-question">{current.question}</h3>
-                  <p className="program-faq-theatre__answer-copy">{current.answer}</p>
-                </motion.div>
-              </AnimatePresence>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={current.question}
+                    role="tabpanel"
+                    initial={prefersReducedMotion ? false : { opacity: 0, x: 16 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={prefersReducedMotion ? undefined : { opacity: 0, x: -12 }}
+                    transition={{ duration: 0.4, ease: easeHive }}
+                    className="program-faq-theatre__answer"
+                  >
+                    <p className="program-faq-theatre__answer-kicker">Answer</p>
+                    <h3 className="program-faq-theatre__answer-question">{current.question}</h3>
+                    <p className="program-faq-theatre__answer-copy">{current.answer}</p>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </div>
+
+            {/* Mobile Accordion View */}
+            <div className="mt-8 space-y-4 md:hidden">
+              {faqs.items.map((item, index) => {
+                const isOpen = openIndex === index;
+
+                return (
+                  <ScrollReveal key={item.question} delay={index * 0.04}>
+                    <article className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 sm:p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
+                      <button
+                        suppressHydrationWarning
+                        type="button"
+                        className="flex w-full items-start justify-between gap-4 text-left"
+                        aria-expanded={isOpen}
+                        onClick={() => setOpenIndex(isOpen ? -1 : index)}
+                      >
+                        <span className="text-base font-semibold text-white sm:text-lg">
+                          {item.question}
+                        </span>
+                        <span
+                          className={`mt-1 shrink-0 text-xl font-light text-accent transition-transform ${
+                            isOpen ? "rotate-45" : ""
+                          }`}
+                          aria-hidden
+                        >
+                          +
+                        </span>
+                      </button>
+                      {isOpen && (
+                        <p className="mt-4 text-sm leading-relaxed text-white/70 sm:text-base">
+                          {item.answer}
+                        </p>
+                      )}
+                    </article>
+                  </ScrollReveal>
+                );
+              })}
             </div>
           </div>
         </div>

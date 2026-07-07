@@ -55,7 +55,7 @@ function YoutubeBackCard({ reel, side, onSelect }: YoutubeBackCardProps) {
         >
           <div className="reel-back-card-screen overflow-hidden">
             <div className="absolute inset-0 bg-ink" />
-            <img 
+            <img
               src={`https://i.ytimg.com/vi/${reel.id}/hqdefault.jpg`}
               alt=""
               className="absolute inset-0 h-full w-full object-cover opacity-50"
@@ -85,6 +85,7 @@ export function YoutubePhoneShowcase({
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [slideDirection, setSlideDirection] = useState<1 | -1>(1);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const activeIndexRef = useRef(0);
   const pointerStartX = useRef<number | null>(null);
@@ -96,6 +97,14 @@ export function YoutubePhoneShowcase({
 
   activeIndexRef.current = activeIndex;
 
+  useEffect(() => {
+    if (!shouldLoadVideo || isPlaying) return;
+    const timer = setTimeout(() => {
+      setIsPlaying(true);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, [shouldLoadVideo, isPlaying, activeIndex]);
+
   const selectReel = useCallback(
     (index: number, direction?: 1 | -1) => {
       if (total <= 0) return;
@@ -105,6 +114,7 @@ export function YoutubePhoneShowcase({
 
       setSlideDirection(direction ?? getSlideDirection(current, next, total));
       setActiveIndex(next);
+      setIsPlaying(false);
     },
     [total],
   );
@@ -152,6 +162,7 @@ export function YoutubePhoneShowcase({
       suppressClickRef.current = false;
       return;
     }
+    setIsPlaying(true);
   }, []);
 
   if (!reel || total === 0) return null;
@@ -162,9 +173,8 @@ export function YoutubePhoneShowcase({
   return (
     <div
       ref={containerRef}
-      className={`reel-showcase mx-auto flex w-full flex-col items-center ${
-        embedded ? "reel-showcase--embedded" : "max-w-5xl"
-      }`}
+      className={`reel-showcase mx-auto flex w-full flex-col items-center ${embedded ? "reel-showcase--embedded" : "max-w-5xl"
+        }`}
     >
       <div className="reel-stage">
         <div className="reel-stage-track">
@@ -181,48 +191,65 @@ export function YoutubePhoneShowcase({
 
             <div
               suppressHydrationWarning
-              className="reel-phone-screen relative"
+              className="reel-phone-screen relative overflow-hidden"
             >
-              <AnimatePresence mode="wait" initial={false} custom={slideDirection}>
+              <AnimatePresence initial={false} custom={slideDirection}>
                 <motion.div
                   key={reel.id}
                   custom={slideDirection}
                   className="absolute inset-0 bg-ink"
+                  style={{ willChange: "transform" }}
                   variants={{
                     enter: (dir: 1 | -1) => ({
-                      x: prefersReducedMotion ? 0 : dir * SLIDE_OFFSET_PX,
-                      opacity: prefersReducedMotion ? 1 : 0.55,
+                      x: prefersReducedMotion ? 0 : `${dir * 100}%`,
+                      zIndex: 10,
                     }),
-                    center: { x: 0, opacity: 1 },
+                    center: { x: 0, zIndex: 10 },
                     exit: (dir: 1 | -1) => ({
-                      x: prefersReducedMotion ? 0 : dir * -SLIDE_OFFSET_PX,
-                      opacity: prefersReducedMotion ? 1 : 0.55,
+                      x: prefersReducedMotion ? 0 : `${dir * -100}%`,
+                      zIndex: 0,
                     }),
                   }}
                   initial="enter"
                   animate="center"
                   exit="exit"
-                  transition={{ duration: 0.28, ease: easeHive }}
+                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  {shouldLoadVideo && (
+                  {shouldLoadVideo && isPlaying ? (
                     <iframe
-                      src={`https://www.youtube.com/embed/${reel.id}?autoplay=1&mute=1&controls=0&loop=1&playlist=${reel.id}&modestbranding=1&playsinline=1&rel=0`}
-                      className="absolute inset-0 h-full w-full border-0 pointer-events-none"
+                      src={`https://www.youtube.com/embed/${reel.id}?autoplay=1&mute=1&controls=1&loop=1&playlist=${reel.id}&modestbranding=1&playsinline=1&rel=0`}
+                      className="absolute inset-0 h-full w-full border-0 pointer-events-auto"
                       allow="autoplay; encrypted-media"
                       allowFullScreen
                       tabIndex={-1}
                     />
+                  ) : (
+                    <>
+                      <img
+                        src={`https://i.ytimg.com/vi/${reel.id}/hqdefault.jpg`}
+                        alt=""
+                        className="absolute inset-0 h-full w-full object-cover"
+                      />
+                      <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+                        <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm transition-transform hover:scale-110">
+                          <svg viewBox="0 0 24 24" fill="currentColor" className="ml-1 h-8 w-8 text-white">
+                            <path d="M8 5v14l11-7z" />
+                          </svg>
+                        </span>
+                      </div>
+                    </>
                   )}
                 </motion.div>
               </AnimatePresence>
 
-              {/* Transparent overlay to catch swipes and prevent iframe interaction */}
-              <div 
-                className="absolute inset-0 z-10 touch-pan-y" 
-                onPointerDown={handleScreenPointerDown}
-                onPointerUp={handleScreenPointerUp}
-                onClick={handleScreenClick}
-              />
+              {!isPlaying && (
+                <div
+                  className="absolute inset-0 z-10 touch-pan-y cursor-pointer"
+                  onPointerDown={handleScreenPointerDown}
+                  onPointerUp={handleScreenPointerUp}
+                  onClick={handleScreenClick}
+                />
+              )}
             </div>
           </div>
         </div>

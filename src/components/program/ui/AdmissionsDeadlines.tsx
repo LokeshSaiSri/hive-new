@@ -34,10 +34,10 @@ export function AdmissionsDeadlines({ deadlines }: AdmissionsDeadlinesProps) {
                   <span className="admissions-deadlines__round">{item.round}</span>
                   <span
                     className={`admissions-deadlines__status ${
-                      item.status === "active" ? "is-active" : ""
+                      item.status === "active" ? "is-active" : item.status === "expired" ? "is-expired" : ""
                     }`}
                   >
-                    {item.status === "active" ? "Currently active" : "Upcoming"}
+                    {item.status === "active" ? "Currently active" : item.status === "expired" ? "Closed" : "Upcoming"}
                   </span>
                 </div>
                 <h3 className="admissions-deadlines__label">{item.label}</h3>
