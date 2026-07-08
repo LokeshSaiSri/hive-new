@@ -26,6 +26,10 @@ export const navItems: NavItem[] = [
         href: "/ai-marketing",
       },
       {
+        label: "Fellowship: GTM, Revenue & AI",
+        href: "/fellowship-gtm-revenue-ai",
+      },
+      {
         label: "Undergraduate Programme",
         href: "/ug",
       },
@@ -39,6 +43,7 @@ export const navItems: NavItem[] = [
 export const programmeOptions = [
   "PGP in Revenue AI & Entrepreneurship",
   "AI Marketing Fellowship",
+  "Fellowship: GTM, Revenue & AI",
   "Undergraduate Programme",
 ] as const;
 
