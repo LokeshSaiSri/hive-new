@@ -3,29 +3,43 @@ import type { NextRequest } from "next/server";
 import {
   GATED_PLACEMENT_REPORT_PATHS,
   PLACEMENT_REPORT_ACCESS_COOKIE,
-  placementReportDownloadPath,
 } from "@/data/placementReportAccess";
 import { verifyAdminToken } from "@/lib/admin/auth";
 
 const ADMIN_SLUG = "hive-control-hub";
+const UNLOCK_COOKIE = "hive_admin_unlock";
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // ── Admin route protection ───────────────────────────────────────────────
+  // Unauthenticated visitors get a 404 — the portal is invisible.
+  // Login only opens after the keyboard shortcut unlocks a short-lived cookie
+  // (Ctrl/Cmd + Shift + H on the public site).
   if (pathname.startsWith(`/${ADMIN_SLUG}`)) {
-    // Login page is always accessible
-    if (pathname === `/${ADMIN_SLUG}/login`) {
-      return NextResponse.next();
-    }
+    const hideAdmin = () =>
+      NextResponse.rewrite(new URL("/__admin-hidden-404", request.url), { status: 404 });
 
-    // Verify JWT cookie
     const token = request.cookies.get("hive_admin_token")?.value;
-    if (!token || !verifyAdminToken(token)) {
-      return NextResponse.redirect(new URL(`/${ADMIN_SLUG}/login`, request.url));
+    const isAuthed = !!token && verifyAdminToken(token) !== null;
+    const unlocked = request.cookies.get(UNLOCK_COOKIE)?.value === "1";
+
+    if (pathname === `/${ADMIN_SLUG}/login`) {
+      if (isAuthed) {
+        return NextResponse.redirect(new URL(`/${ADMIN_SLUG}`, request.url));
+      }
+      if (!unlocked) {
+        return hideAdmin();
+      }
+      const response = NextResponse.next();
+      response.headers.set("X-Robots-Tag", "noindex, nofollow, noarchive");
+      return response;
     }
 
-    // Authenticated — add noindex header so crawlers skip admin
+    if (!isAuthed) {
+      return hideAdmin();
+    }
+
     const response = NextResponse.next();
     response.headers.set("X-Robots-Tag", "noindex, nofollow, noarchive");
     return response;

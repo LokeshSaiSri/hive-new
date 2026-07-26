@@ -59,7 +59,8 @@ export function AdminSidebar() {
   async function handleLogout() {
     setLoggingOut(true);
     await fetch("/api/admin/logout", { method: "POST" });
-    router.push("/hive-control-hub/login");
+    // Login page 404s without the secret key, so land on the homepage
+    router.push("/");
   }
 
   return (

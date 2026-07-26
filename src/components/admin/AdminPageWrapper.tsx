@@ -15,8 +15,8 @@ export function AdminPageWrapper({
 }) {
   return (
     <div className="flex min-h-screen bg-gradient-to-br from-[#060f32] via-[#0a1848] to-[#04070d]">
-      {/* Sidebar */}
-      <div className="hidden lg:flex lg:shrink-0">
+      {/* Sidebar — sticky so it stays in view while the page scrolls */}
+      <div className="hidden lg:sticky lg:top-0 lg:flex lg:h-screen lg:shrink-0 lg:self-start">
         <AdminSidebar />
       </div>
 

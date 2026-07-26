@@ -7,10 +7,12 @@ export interface IEvent {
   tagline: string;
   description: string;
   posterUrl: string;
+  posterUrls: string[];
   date: Date;
   endDate?: Date;
   venue: string;
   venueLink?: string;
+  isOnline: boolean;
   capacity?: number;
   registrationCount: number;
   isPublished: boolean;
@@ -27,10 +29,12 @@ const EventSchema = new Schema<IEvent>(
     tagline: { type: String, default: "" },
     description: { type: String, required: true },
     posterUrl: { type: String, default: "" },
+    posterUrls: { type: [String], default: [] },
     date: { type: Date, required: true },
     endDate: { type: Date },
     venue: { type: String, required: true },
     venueLink: { type: String },
+    isOnline: { type: Boolean, default: false },
     capacity: { type: Number },
     registrationCount: { type: Number, default: 0 },
     isPublished: { type: Boolean, default: false },
@@ -41,17 +45,22 @@ const EventSchema = new Schema<IEvent>(
 );
 
 // Auto-generate slug from title if not provided
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-EventSchema.pre("validate", function (this: any, next: any) {
-  if (!this.slug && this.title) {
-    this.slug = String(this.title)
+EventSchema.pre("validate", function () {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const doc = this as any;
+  if (!doc.slug && doc.title) {
+    doc.slug = String(doc.title)
       .toLowerCase()
       .replace(/[^a-z0-9\s-]/g, "")
       .replace(/\s+/g, "-")
       .replace(/-+/g, "-")
       .trim();
   }
-  next();
 });
 
-export const Event = models.Event || model<IEvent>("Event", EventSchema);
+// In dev, drop the cached model so schema/middleware edits apply on HMR
+if (process.env.NODE_ENV !== "production" && models.Event) {
+  delete models.Event;
+}
+
+export const Event = (models.Event as mongoose.Model<IEvent>) || model<IEvent>("Event", EventSchema);

@@ -7,6 +7,7 @@ import { HubSpotTracking } from "@/components/providers/HubSpotTracking";
 import { GoogleTagManager } from "@/components/providers/GoogleTagManager";
 import { MetaClickCapture } from "@/components/providers/MetaClickCapture";
 import { PlacementReportModal } from "@/components/providers/PlacementReportModal";
+import { AdminShortcut } from "@/components/providers/AdminShortcut";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { asset } from "@/lib/assets";
 import { buildRootMetadata } from "@/lib/seo/metadata";
@@ -57,6 +58,7 @@ export default function RootLayout({
           <VideoProvider>{children}</VideoProvider>
         </SmoothScroll>
         <PlacementReportModal />
+        <AdminShortcut />
       </body>
     </html>
   );

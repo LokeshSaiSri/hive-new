@@ -28,10 +28,12 @@ export async function POST(request: NextRequest) {
     tagline?: string;
     description?: string;
     posterUrl?: string;
+    posterUrls?: string[];
     date?: string;
     endDate?: string;
     venue?: string;
     venueLink?: string;
+    isOnline?: boolean;
     capacity?: number;
     isPublished?: boolean;
     isFeatured?: boolean;
@@ -53,15 +55,26 @@ export async function POST(request: NextRequest) {
 
   try {
     await connectDB();
+    const title = body.title.trim();
+    const slug = title
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, "")
+      .replace(/\s+/g, "-")
+      .replace(/-+/g, "-")
+      .trim();
+
     const event = await Event.create({
-      title: body.title.trim(),
+      title,
+      slug,
       tagline: body.tagline?.trim() || "",
       description: body.description.trim(),
-      posterUrl: body.posterUrl || "",
+      posterUrls: body.posterUrls ?? [],
+      posterUrl: body.posterUrl || body.posterUrls?.[0] || "",
       date: new Date(body.date),
       endDate: body.endDate ? new Date(body.endDate) : undefined,
       venue: body.venue.trim(),
       venueLink: body.venueLink || "",
+      isOnline: body.isOnline ?? false,
       capacity: body.capacity,
       isPublished: body.isPublished ?? false,
       isFeatured: body.isFeatured ?? false,
@@ -71,6 +84,12 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ event }, { status: 201 });
   } catch (error) {
     console.error("Admin create event:", error);
-    return NextResponse.json({ error: "Failed to create event" }, { status: 500 });
+    const message =
+      error instanceof Error && error.message.includes("duplicate key")
+        ? "An event with this title already exists"
+        : error instanceof Error
+        ? error.message
+        : "Failed to create event";
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }

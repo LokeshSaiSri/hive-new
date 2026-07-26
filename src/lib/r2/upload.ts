@@ -1,5 +1,4 @@
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
-import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import crypto from "crypto";
 
 const R2_ACCOUNT_ID = process.env.R2_ACCOUNT_ID!;
@@ -17,6 +16,9 @@ function getR2Client(): S3Client {
       secretAccessKey: R2_SECRET_ACCESS_KEY,
     },
     forcePathStyle: true,
+    // Avoid AWS SDK v3 default CRC32 checksums that R2 rejects on some paths
+    requestChecksumCalculation: "WHEN_REQUIRED",
+    responseChecksumValidation: "WHEN_REQUIRED",
   });
 }
 
@@ -37,25 +39,27 @@ export function getMimeType(filename: string): string {
   }
 }
 
-/** Generate a presigned PUT URL for direct browser → R2 upload */
-export async function getPresignedUploadUrl(
+/** Upload a file buffer to R2 from the server (avoids browser CORS). */
+export async function uploadPosterToR2(
+  body: Buffer | Uint8Array,
   filename: string,
   contentType: string
-): Promise<{ uploadUrl: string; publicUrl: string; key: string }> {
+): Promise<{ publicUrl: string; key: string }> {
   const ext = filename.split(".").pop()?.toLowerCase() || "jpg";
   const unique = crypto.randomBytes(8).toString("hex");
   const key = `events/posters/${unique}.${ext}`;
 
   const client = getR2Client();
-  const command = new PutObjectCommand({
-    Bucket: R2_BUCKET_NAME,
-    Key: key,
-    ContentType: contentType,
-    CacheControl: "public, max-age=31536000, immutable",
-  });
+  await client.send(
+    new PutObjectCommand({
+      Bucket: R2_BUCKET_NAME,
+      Key: key,
+      Body: body,
+      ContentType: contentType,
+      CacheControl: "public, max-age=31536000, immutable",
+    })
+  );
 
-  const uploadUrl = await getSignedUrl(client, command, { expiresIn: 300 });
-  const publicUrl = `${CDN_URL}/${key}`;
-
-  return { uploadUrl, publicUrl, key };
+  const publicUrl = `${CDN_URL.replace(/\/$/, "")}/${key}`;
+  return { publicUrl, key };
 }

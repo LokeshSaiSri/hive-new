@@ -4,7 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion, useMotionValue, useSpring, useTransform, useMotionTemplate } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { SitePageLayout } from "@/components/layout/SitePageLayout";
+import { PosterCarousel } from "@/components/events/PosterCarousel";
 import { easeHive } from "@/lib/motion";
 
 type EventData = {
@@ -14,10 +16,12 @@ type EventData = {
   tagline: string;
   description: string;
   posterUrl: string;
+  posterUrls?: string[];
   date: string;
   endDate?: string;
   venue: string;
   venueLink?: string;
+  isOnline?: boolean;
   capacity?: number;
   registrationCount: number;
   isFeatured: boolean;
@@ -54,6 +58,97 @@ function useMousePosition() {
 }
 
 // ============================================================================
+// Featured Hero Card — sits beside hero copy
+// ============================================================================
+function FeaturedHeroCard({ event }: { event: EventData }) {
+  const prefersReducedMotion = useReducedMotion();
+  const router = useRouter();
+  const date = formatDate(event.date);
+  const isFull = event.capacity ? event.registrationCount >= event.capacity : false;
+  const posters =
+    event.posterUrls && event.posterUrls.length > 0
+      ? event.posterUrls
+      : event.posterUrl
+      ? [event.posterUrl]
+      : [];
+
+  return (
+    <motion.div
+      initial={prefersReducedMotion ? false : { opacity: 0, x: 40, y: 16 }}
+      animate={{ opacity: 1, x: 0, y: 0 }}
+      transition={{ duration: 0.85, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+      className="relative w-full max-w-md lg:max-w-none lg:justify-self-end"
+    >
+      <div
+        className="pointer-events-none absolute -inset-6 rounded-[2.5rem] bg-electric-blue/20 blur-3xl"
+        aria-hidden
+      />
+
+      <div
+        role="link"
+        tabIndex={0}
+        onClick={() => router.push(`/events/${event.slug}`)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            router.push(`/events/${event.slug}`);
+          }
+        }}
+        className="group relative cursor-pointer overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/[0.04] shadow-[0_24px_80px_rgba(0,0,0,0.45)] backdrop-blur-xl transition-transform duration-500 hover:-translate-y-1.5"
+      >
+        <div className="relative aspect-[4/5] w-full overflow-hidden sm:aspect-[3/4]">
+          {posters.length > 0 ? (
+            <PosterCarousel
+              images={posters}
+              alt={event.title}
+              priority
+              controls={posters.length > 1}
+              className="absolute inset-0 h-full w-full"
+              sizes="(max-width: 1024px) 90vw, 420px"
+            />
+          ) : (
+            <div className="absolute inset-0 bg-gradient-to-br from-[#060f32] to-[#0a1542]" />
+          )}
+
+          <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-[#020512] via-[#020512]/70 to-transparent" />
+
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 p-5 sm:p-6">
+            <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.22em] text-blue-glow">
+              Featured event
+            </p>
+            <h2 className="text-xl font-bold leading-tight tracking-tight text-white sm:text-2xl">
+              {event.title}
+            </h2>
+            {event.tagline && (
+              <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-white/55">
+                {event.tagline}
+              </p>
+            )}
+            <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-medium text-white/60">
+              <span>
+                {date.day} {date.month} · {date.time}
+              </span>
+              <span className="truncate">{event.isOnline ? `Online · ${event.venue}` : event.venue}</span>
+              {event.capacity != null && (
+                <span className={isFull ? "text-red-400" : "text-white/50"}>
+                  {isFull ? "Fully booked" : `${event.registrationCount}/${event.capacity} registered`}
+                </span>
+              )}
+            </div>
+            <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors group-hover:text-blue-glow">
+              View event
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1">
+                <path d="M3 8h10M9 4.5L12.5 8 9 11.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+// ============================================================================
 // Event Card Component (Glassmorphism & Spotlight)
 // ============================================================================
 function EventCard({ event, index }: { event: EventData; index: number }) {
@@ -63,6 +158,8 @@ function EventCard({ event, index }: { event: EventData; index: number }) {
   const date = formatDate(event.date);
   const isFull = event.capacity ? event.registrationCount >= event.capacity : false;
   const spotsLeft = event.capacity ? event.capacity - event.registrationCount : null;
+  const coverUrl =
+    (event.posterUrls && event.posterUrls.find(Boolean)) || event.posterUrl || "";
   const cardRef = useRef<HTMLAnchorElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [localMouse, setLocalMouse] = useState({ x: 0, y: 0 });
@@ -104,9 +201,9 @@ function EventCard({ event, index }: { event: EventData; index: number }) {
         <div className="relative z-10 flex h-full flex-col backdrop-blur-3xl">
           {/* Image Area */}
           <div className="relative aspect-[4/3] overflow-hidden rounded-t-[2rem]">
-            {event.posterUrl ? (
+            {coverUrl ? (
               <Image
-                src={event.posterUrl}
+                src={coverUrl}
                 alt={event.title}
                 fill
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
@@ -171,7 +268,9 @@ function EventCard({ event, index }: { event: EventData; index: number }) {
                   <path d="M8 1.5C5.515 1.5 3.5 3.515 3.5 6c0 3.5 4.5 8.5 4.5 8.5S12.5 9.5 12.5 6c0-2.485-2.015-4.5-4.5-4.5z" />
                   <circle cx="8" cy="6" r="1.5" />
                 </svg>
-                <span className="truncate font-medium">{event.venue}</span>
+                <span className="truncate font-medium">
+                  {event.isOnline ? `Online · ${event.venue}` : event.venue}
+                </span>
               </div>
 
               <div className="flex items-center justify-between gap-4">
@@ -274,6 +373,12 @@ export function EventsHubPage() {
     return true;
   });
 
+  // Prefer upcoming featured; fall back to any featured event
+  const featuredEvent =
+    events.find((e) => e.isFeatured && new Date(e.date) >= now) ||
+    events.find((e) => e.isFeatured) ||
+    null;
+
   return (
     <SitePageLayout>
       <div className="relative min-h-screen bg-[#040a22] selection:bg-electric-blue selection:text-white">
@@ -338,120 +443,102 @@ export function EventsHubPage() {
 
         {/* Hero Section */}
         <section className="relative z-10 pt-48 pb-32 px-6 sm:px-12 lg:px-24 overflow-hidden">
-          <div className="mx-auto max-w-7xl relative">
+          <div className="mx-auto max-w-7xl relative grid items-center gap-14 lg:grid-cols-[minmax(0,1.15fr)_minmax(280px,420px)] lg:gap-16 xl:gap-20">
 
-            {/* Magnetic/Glowing Border Tag */}
-            <motion.div
-              initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, ease: easeHive }}
-              className="mb-8 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.03] px-5 py-2.5 backdrop-blur-md shadow-2xl relative overflow-hidden group"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-glow opacity-80"></span>
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-glow shadow-[0_0_8px_#00ffff]"></span>
-              </span>
-              <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-white/80">The Event Nexus</span>
-            </motion.div>
-
-            {/* Kinetic Staggered Typography */}
-            <h1 className="text-6xl font-black leading-[1.05] tracking-tighter text-white sm:text-7xl lg:text-[7.5rem] relative z-10">
+            {/* Left: copy + CTA */}
+            <div className="min-w-0">
+              {/* Magnetic/Glowing Border Tag */}
               <motion.div
-                initial={prefersReducedMotion ? false : { opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="overflow-hidden"
+                initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, ease: easeHive }}
+                className="mb-8 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.03] px-5 py-2.5 backdrop-blur-md shadow-2xl relative overflow-hidden group"
               >
-                Where ideas
-              </motion.div>
-              <motion.div
-                initial={prefersReducedMotion ? false : { opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="relative inline-block"
-              >
-                <span className="relative z-10 bg-gradient-to-r from-white via-[#b3c5ff] to-[#4070ff] bg-clip-text text-transparent">
-                  come alive.
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-glow opacity-80"></span>
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-glow shadow-[0_0_8px_#00ffff]"></span>
                 </span>
-                {/* Flowing Aurora behind text */}
-                <span className="absolute inset-0 bg-gradient-to-r from-blue-glow via-electric-blue to-accent opacity-20 blur-2xl z-0 animate-pulse" />
+                <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-white/80">The Event Nexus</span>
               </motion.div>
-            </h1>
 
-            <motion.p
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: easeHive }}
-              className="mt-10 max-w-2xl text-lg leading-relaxed text-white/50 sm:text-2xl font-light tracking-wide"
-            >
-              Step into the nexus of innovation. Immerse yourself in masterclasses and high-velocity networking sessions built for the top 1% of founders.
-            </motion.p>
-
-            {/* Magnetic CTA Button & Avatars Area */}
-            <motion.div
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: easeHive }}
-              className="mt-14 flex flex-col items-start gap-5"
-            >
-              <div className="flex flex-col sm:flex-row items-center gap-6 relative z-20">
-                <motion.button
-                  ref={ctaRef}
-                  onMouseMove={handleMouseMove}
-                  onMouseLeave={handleMouseLeave}
-                  onClick={() => {
-                    const el = document.getElementById("events-grid");
-                    if (el) el.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  style={{ transform }}
-                  className="relative group overflow-visible rounded-full bg-electric-blue px-10 py-5 font-bold text-white shadow-[0_0_40px_rgba(30,68,226,0.4)] transition-all duration-200"
+              {/* Kinetic Staggered Typography */}
+              <h1 className="text-5xl font-black leading-[1.05] tracking-tighter text-white sm:text-6xl lg:text-7xl xl:text-[5.5rem] relative z-10">
+                <motion.div
+                  initial={prefersReducedMotion ? false : { opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  className="overflow-hidden"
                 >
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out pointer-events-none" />
-                  <span className="relative flex items-center gap-3">
-                    Explore Masterclasses
-                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1">
-                      <path d="M3 8h10M9 4.5L12.5 8 9 11.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
+                  Where ideas
+                </motion.div>
+                <motion.div
+                  initial={prefersReducedMotion ? false : { opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className="relative inline-block"
+                >
+                  <span className="relative z-10 bg-gradient-to-r from-white via-[#b3c5ff] to-[#4070ff] bg-clip-text text-transparent">
+                    come alive.
                   </span>
-                  {/* Magnetic glowing drop shadow layer */}
-                  <motion.div
-                    className="absolute inset-0 -z-10 rounded-full bg-electric-blue blur-xl opacity-0 group-hover:opacity-70 transition-opacity duration-300 pointer-events-none"
-                    style={{ x: useTransform(mouseX, [-100, 100], [-10, 10]), y: useTransform(mouseY, [-100, 100], [-10, 10]) }}
-                  />
-                </motion.button>
+                  {/* Flowing Aurora behind text */}
+                  <span className="absolute inset-0 bg-gradient-to-r from-blue-glow via-electric-blue to-accent opacity-20 blur-2xl z-0 animate-pulse" />
+                </motion.div>
+              </h1>
 
-                {/* Real-Avatar Fan-Out */}
-                <div className="group flex items-center gap-4 text-sm font-semibold text-white/50 hover:text-white transition-colors cursor-default">
-                  <div className="flex -space-x-3 relative">
-                    {[
-                      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=faces",
-                      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=faces",
-                      "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150&h=150&fit=crop&crop=faces"
-                    ].map((src, i) => (
-                      <div
-                        key={i}
-                        className="relative h-11 w-11 rounded-full border-2 border-[#040a22] overflow-hidden bg-white/10 transition-transform duration-500 ease-out"
-                        style={{
-                          transformOrigin: "bottom center",
-                        }}
-                      >
-                        <Image src={src} alt="Builder Avatar" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
-                      </div>
-                    ))}
-                    {/* Invisible hover trigger that spans the expanded area */}
-                    <div className="absolute inset-0 w-[120%] -left-[10%] group-hover:w-full group-hover:left-0 transition-all z-10" />
-                    {/* Dynamic CSS classes to spread avatars on hover */}
-                    <style jsx>{`
-                      .group:hover > div > div:nth-child(1) { transform: translateX(-12px) rotate(-8deg); z-index: 3; }
-                      .group:hover > div > div:nth-child(2) { transform: translateY(-4px) scale(1.05); z-index: 4; }
-                      .group:hover > div > div:nth-child(3) { transform: translateX(12px) rotate(8deg); z-index: 3; }
-                    `}</style>
-                  </div>
-                  <span>Join 500+ builders</span>
+              <motion.p
+                initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2, ease: easeHive }}
+                className="mt-8 max-w-xl text-lg leading-relaxed text-white/50 sm:text-xl font-light tracking-wide"
+              >
+                Step into the nexus of innovation. Immerse yourself in masterclasses and high-velocity networking sessions built for the top 1% of founders.
+              </motion.p>
+
+              {/* Magnetic CTA Button & Avatars Area */}
+              <motion.div
+                initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3, ease: easeHive }}
+                className="mt-12 flex flex-col items-start gap-5"
+              >
+                <div className="flex flex-col sm:flex-row items-center gap-6 relative z-20">
+                  <motion.button
+                    ref={ctaRef}
+                    onMouseMove={handleMouseMove}
+                    onMouseLeave={handleMouseLeave}
+                    onClick={() => {
+                      const el = document.getElementById("events-grid");
+                      if (el) el.scrollIntoView({ behavior: "smooth" });
+                    }}
+                    style={{ transform }}
+                    className="relative group overflow-visible rounded-full bg-electric-blue px-10 py-5 font-bold text-white shadow-[0_0_40px_rgba(30,68,226,0.4)] transition-all duration-200"
+                  >
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out pointer-events-none" />
+                    <span className="relative flex items-center gap-3">
+                      Explore Masterclasses
+                      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1">
+                        <path d="M3 8h10M9 4.5L12.5 8 9 11.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </span>
+                    {/* Magnetic glowing drop shadow layer */}
+                    <motion.div
+                      className="absolute inset-0 -z-10 rounded-full bg-electric-blue blur-xl opacity-0 group-hover:opacity-70 transition-opacity duration-300 pointer-events-none"
+                      style={{ x: useTransform(mouseX, [-100, 100], [-10, 10]), y: useTransform(mouseY, [-100, 100], [-10, 10]) }}
+                    />
+                  </motion.button>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </div>
+
+            {/* Right: featured event card */}
+            {featuredEvent ? (
+              <FeaturedHeroCard event={featuredEvent} />
+            ) : !loading ? (
+              <div className="hidden lg:block" aria-hidden />
+            ) : (
+              <div className="hidden aspect-[3/4] w-full max-w-md animate-pulse rounded-[1.75rem] bg-white/5 lg:block lg:justify-self-end" />
+            )}
           </div>
         </section>
 

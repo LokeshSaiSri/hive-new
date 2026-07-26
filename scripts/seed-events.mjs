@@ -61,7 +61,7 @@ async function seed() {
         date: new Date(now.getTime() + 14 * 24 * 60 * 60 * 1000), // 14 days from now
         venue: "Taj West End, Bengaluru",
         capacity: 500,
-        registrationCount: 124,
+        registrationCount: 0,
         isPublished: true,
         isFeatured: true,
         tags: ["Networking", "Keynotes", "Premium"],
@@ -75,7 +75,7 @@ async function seed() {
         date: new Date(now.getTime() + 5 * 24 * 60 * 60 * 1000), // 5 days from now
         venue: "Virtual Event (Zoom)",
         capacity: 50,
-        registrationCount: 48, // 2 spots left! (Urgent)
+        registrationCount: 0,
         isPublished: true,
         isFeatured: false,
         tags: ["Masterclass", "SaaS", "Virtual"],
@@ -89,7 +89,7 @@ async function seed() {
         date: new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000), // 30 days ago (Past)
         venue: "Hive HQ, Cyber City",
         capacity: 200,
-        registrationCount: 200,
+        registrationCount: 0,
         isPublished: true,
         isFeatured: false,
         tags: ["Design", "AI", "Workshop"],

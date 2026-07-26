@@ -8,11 +8,12 @@ type EventFormData = {
   title: string;
   tagline: string;
   description: string;
-  posterUrl: string;
+  posterUrls: string[];
   date: string;
   endDate: string;
   venue: string;
   venueLink: string;
+  isOnline: boolean;
   capacity: string;
   isPublished: boolean;
   isFeatured: boolean;
@@ -20,7 +21,13 @@ type EventFormData = {
 };
 
 type Props = {
-  initialData?: Partial<EventFormData> & { _id?: string; tags?: string[] | string };
+  initialData?: Partial<Omit<EventFormData, "posterUrls">> & {
+    _id?: string;
+    tags?: string[] | string;
+    posterUrl?: string;
+    posterUrls?: string[];
+    isOnline?: boolean;
+  };
   mode: "create" | "edit";
 };
 
@@ -59,11 +66,17 @@ export function AdminEventForm({ initialData, mode }: Props) {
     title: initialData?.title ?? "",
     tagline: initialData?.tagline ?? "",
     description: initialData?.description ?? "",
-    posterUrl: initialData?.posterUrl ?? "",
+    posterUrls:
+      initialData?.posterUrls && initialData.posterUrls.length > 0
+        ? initialData.posterUrls
+        : initialData?.posterUrl
+        ? [initialData.posterUrl]
+        : [],
     date: initialData?.date ? new Date(initialData.date).toISOString().slice(0, 16) : "",
     endDate: initialData?.endDate ? new Date(initialData.endDate).toISOString().slice(0, 16) : "",
     venue: initialData?.venue ?? "",
     venueLink: initialData?.venueLink ?? "",
+    isOnline: initialData?.isOnline ?? false,
     capacity: initialData?.capacity?.toString() ?? "",
     isPublished: initialData?.isPublished ?? false,
     isFeatured: initialData?.isFeatured ?? false,
@@ -85,11 +98,13 @@ export function AdminEventForm({ initialData, mode }: Props) {
       title: form.title.trim(),
       tagline: form.tagline.trim(),
       description: form.description.trim(),
-      posterUrl: form.posterUrl,
+      posterUrls: form.posterUrls,
+      posterUrl: form.posterUrls[0] ?? "",
       date: form.date,
       endDate: form.endDate || undefined,
       venue: form.venue.trim(),
       venueLink: form.venueLink.trim(),
+      isOnline: form.isOnline,
       capacity: form.capacity ? parseInt(form.capacity, 10) : undefined,
       isPublished: form.isPublished,
       isFeatured: form.isFeatured,
@@ -189,23 +204,53 @@ export function AdminEventForm({ initialData, mode }: Props) {
           </FormField>
         </div>
 
-        <FormField label="Venue" required>
+        <div className="flex gap-2 rounded-xl border border-white/10 bg-white/5 p-1">
+          {([
+            { value: false, label: "In person" },
+            { value: true, label: "Online" },
+          ] as const).map((opt) => (
+            <button
+              key={String(opt.value)}
+              type="button"
+              onClick={() => {
+                set("isOnline", opt.value);
+                if (opt.value && !form.venue.trim()) set("venue", "Online");
+              }}
+              className={`flex-1 rounded-lg px-4 py-2.5 text-sm font-semibold transition-all duration-200 ${
+                form.isOnline === opt.value
+                  ? "bg-electric-blue text-white shadow-[0_4px_16px_rgba(30,68,226,0.35)]"
+                  : "text-white/50 hover:text-white"
+              }`}
+            >
+              {opt.label}
+            </button>
+          ))}
+        </div>
+
+        <FormField
+          label={form.isOnline ? "Platform / Label" : "Venue"}
+          required
+          hint={form.isOnline ? "e.g. Zoom, Google Meet, Virtual Event" : undefined}
+        >
           <input
             type="text"
             value={form.venue}
             onChange={(e) => set("venue", e.target.value)}
-            placeholder="The Circle, HiveSchool Campus, Gurugram"
+            placeholder={form.isOnline ? "Zoom" : "The Circle, HiveSchool Campus, Gurugram"}
             className={inputClass}
             required
           />
         </FormField>
 
-        <FormField label="Venue Link (Google Maps URL)">
+        <FormField
+          label={form.isOnline ? "Join Link (Zoom / Meet URL)" : "Venue Link (Google Maps URL)"}
+          hint={form.isOnline ? "Attendees will open this to join the session" : undefined}
+        >
           <input
             type="url"
             value={form.venueLink}
             onChange={(e) => set("venueLink", e.target.value)}
-            placeholder="https://maps.google.com/..."
+            placeholder={form.isOnline ? "https://zoom.us/j/..." : "https://maps.google.com/..."}
             className={inputClass}
           />
         </FormField>
@@ -236,10 +281,13 @@ export function AdminEventForm({ initialData, mode }: Props) {
 
       {/* Poster */}
       <div className="card-premium-dark rounded-2xl p-6">
-        <h3 className="mb-4 text-sm font-bold uppercase tracking-[0.14em] text-white/40">Event Poster</h3>
+        <h3 className="mb-1 text-sm font-bold uppercase tracking-[0.14em] text-white/40">Event Posters</h3>
+        <p className="mb-4 text-xs text-white/40">
+          Add one or more images. When multiple are added, they auto-slide on the event page.
+        </p>
         <R2ImageUploader
-          value={form.posterUrl}
-          onChange={(url) => set("posterUrl", url)}
+          values={form.posterUrls}
+          onChange={(urls) => set("posterUrls", urls)}
           disabled={saving}
         />
       </div>

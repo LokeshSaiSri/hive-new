@@ -1,3 +1,9 @@
+/**
+ * Clears all event registrations.
+ * Does NOT insert mock/demo members.
+ *
+ * Usage: node scripts/seed-registrations.mjs
+ */
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import { fileURLToPath } from "url";
@@ -5,21 +11,16 @@ import { dirname, resolve } from "path";
 import fs from "fs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const envPath = resolve(__dirname, "../.env.local");
-
-if (fs.existsSync(envPath)) {
-  dotenv.config({ path: envPath });
+for (const file of [".env.local", ".env"]) {
+  const envPath = resolve(__dirname, "..", file);
+  if (fs.existsSync(envPath)) dotenv.config({ path: envPath });
 }
 
 const MONGODB_URI = process.env.MONGODB_URI;
-
 if (!MONGODB_URI) {
-  console.error("Please define the MONGODB_URI environment variable in .env.local");
+  console.error("Please define MONGODB_URI in .env or .env.local");
   process.exit(1);
 }
-
-const EventSchema = new mongoose.Schema({ title: String }, { strict: false });
-const Event = mongoose.models.Event || mongoose.model("Event", EventSchema);
 
 const RegistrationSchema = new mongoose.Schema(
   {
@@ -34,72 +35,29 @@ const RegistrationSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Registration = mongoose.models.Registration || mongoose.model("Registration", RegistrationSchema);
+const Registration =
+  mongoose.models.Registration || mongoose.model("Registration", RegistrationSchema);
 
-async function seedRegistrations() {
+const EventSchema = new mongoose.Schema(
+  { registrationCount: { type: Number, default: 0 } },
+  { strict: false }
+);
+const Event = mongoose.models.Event || mongoose.model("Event", EventSchema);
+
+async function clearRegistrations() {
   try {
     await mongoose.connect(MONGODB_URI);
-    console.log("Connected to MongoDB.");
+    const deleted = await Registration.deleteMany({});
+    console.log(`Removed ${deleted.deletedCount} registration(s).`);
 
-    // Fetch the featured event
-    const summitEvent = await Event.findOne({ slug: "hive-founders-summit-2026" });
-    const masterclassEvent = await Event.findOne({ slug: "scaling-to-1m-arr" });
-
-    if (!summitEvent || !masterclassEvent) {
-      console.error("Could not find the events. Make sure you ran seed-events.mjs first!");
-      process.exit(1);
-    }
-
-    await Registration.deleteMany({});
-    console.log("Cleared existing dummy registrations.");
-
-    const registrations = [
-      {
-        eventId: summitEvent._id,
-        eventTitle: summitEvent.title,
-        name: "Aisha Patel",
-        email: "aisha.patel@example.com",
-        phone: "+91 98765 43210",
-        linkedin: "linkedin.com/in/aishapatel",
-        ipHash: "dummy-hash-1",
-      },
-      {
-        eventId: summitEvent._id,
-        eventTitle: summitEvent.title,
-        name: "Rahul Sharma",
-        email: "rahul.s@techstartup.in",
-        phone: "+91 91234 56789",
-        linkedin: "https://linkedin.com/in/rahulsharma-tech",
-        ipHash: "dummy-hash-2",
-      },
-      {
-        eventId: masterclassEvent._id,
-        eventTitle: masterclassEvent.title,
-        name: "Priya Desai",
-        email: "priyadesai99@gmail.com",
-        phone: "+91 88888 77777",
-        linkedin: "", // Testing missing linkedin
-        ipHash: "dummy-hash-3",
-      },
-      {
-        eventId: masterclassEvent._id,
-        eventTitle: masterclassEvent.title,
-        name: "Karan Singh",
-        email: "karan@vc-fund.co",
-        phone: "+91 77777 66666",
-        linkedin: "linkedin.com/in/karansinghvc",
-        ipHash: "dummy-hash-4",
-      }
-    ];
-
-    await Registration.insertMany(registrations);
-    console.log("Successfully seeded 4 dummy registrations!");
+    const reset = await Event.updateMany({}, { $set: { registrationCount: 0 } });
+    console.log(`Reset registrationCount on ${reset.modifiedCount} event(s).`);
 
     process.exit(0);
   } catch (error) {
-    console.error("Error seeding registrations:", error);
+    console.error("Error clearing registrations:", error);
     process.exit(1);
   }
 }
 
-seedRegistrations();
+clearRegistrations();
