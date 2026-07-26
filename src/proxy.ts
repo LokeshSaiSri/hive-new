@@ -25,9 +25,9 @@ export function proxy(request: NextRequest) {
     const unlocked = request.cookies.get(UNLOCK_COOKIE)?.value === "1";
 
     if (pathname === `/${ADMIN_SLUG}/login`) {
-      if (isAuthed) {
-        return NextResponse.redirect(new URL(`/${ADMIN_SLUG}`, request.url));
-      }
+      // Login is only reachable after the keyboard unlock cookie is set.
+      // Do not auto-redirect to the dashboard here — unlock clears the session
+      // so the password form is always shown.
       if (!unlocked) {
         return hideAdmin();
       }
