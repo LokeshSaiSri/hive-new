@@ -31,6 +31,14 @@ export const gatedDocuments: GatedDocument[] = [
     description: "Share your details and we'll start the download immediately.",
     hubspotLabel: "Brochure — AI Marketing Fellowship",
   },
+  {
+    id: "ug-brochure",
+    pdfHref: "/Hive-UG-Program-Brochure.pdf",
+    eyebrow: "UG Brochure",
+    title: "Get the undergraduate brochure",
+    description: "Share your details and we'll start the download immediately.",
+    hubspotLabel: "Brochure — Undergraduate Programme",
+  },
 ];
 
 export function getGatedDocumentById(id: string | null | undefined): GatedDocument | undefined {

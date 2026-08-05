@@ -19,7 +19,7 @@ export const ugCoursePage: CoursePageConfig = {
     videoId: "gpXQDETej2k",
     backgroundVideo: "videos/campus-hero.mp4",
     primaryCta: { label: "Apply for Class of 2030", href: "#apply" },
-    secondaryCta: { label: "Download brochure", href: "#apply" },
+    secondaryCta: { label: "Download brochure", href: "/Hive-UG-Program-Brochure.pdf" },
     stats: [
       { value: "3", label: "Year programme" },
       { value: "12 Months", label: "Paid industry work" },
@@ -93,7 +93,7 @@ export const ugCoursePage: CoursePageConfig = {
       description:
         "Faculty and mentors bring real GTM, sales, and growth playbooks — not textbook theory.",
       primary: { label: "Apply now", href: "#apply" },
-      secondary: { label: "Download brochure", href: "#apply" },
+      secondary: { label: "Download brochure", href: "/Hive-UG-Program-Brochure.pdf" },
     },
     {
       id: "curriculum",
@@ -113,7 +113,7 @@ export const ugCoursePage: CoursePageConfig = {
       description:
         "August 2027 · Gurugram · Residential. Applications open. Fewer than 1 in 10 will be admitted.",
       primary: { label: "Apply for Class of 2030", href: "#apply" },
-      secondary: { label: "Download brochure", href: "#apply" },
+      secondary: { label: "Download brochure", href: "/Hive-UG-Program-Brochure.pdf" },
     },
     {
       id: "placements",
