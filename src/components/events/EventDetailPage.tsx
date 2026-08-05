@@ -81,12 +81,13 @@ export function EventDetailPage({ event }: { event: EventData }) {
             >
               {/* Poster(s) — first */}
               {posters.length > 0 && (
-                <div className="relative mb-8 aspect-video w-full overflow-hidden rounded-2xl shadow-2xl">
+                <div className="relative mb-8 w-full overflow-hidden rounded-2xl bg-black/40 shadow-2xl">
                   <PosterCarousel
                     images={posters}
                     alt={event.title}
                     priority
-                    className="absolute inset-0 h-full w-full"
+                    layout="natural"
+                    className="w-full"
                     sizes="(max-width: 1024px) 100vw, 760px"
                   />
                 </div>
