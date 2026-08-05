@@ -123,10 +123,20 @@ export default function AdminEventsPage() {
                   </td>
                   <td className="px-4 py-4">
                     <p className="text-xs text-white/60">
-                      {new Date(event.date).toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" })}
+                      {new Date(event.date).toLocaleDateString("en-IN", {
+                        timeZone: "Asia/Kolkata",
+                        day: "2-digit",
+                        month: "short",
+                        year: "numeric",
+                      })}
                     </p>
                     <p className="text-xs text-white/35">
-                      {new Date(event.date).toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit", hour12: true })}
+                      {new Date(event.date).toLocaleTimeString("en-IN", {
+                        timeZone: "Asia/Kolkata",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        hour12: true,
+                      })}
                     </p>
                   </td>
                   <td className="px-4 py-4">

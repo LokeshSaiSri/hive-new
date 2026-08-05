@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { isAdminAuthenticated } from "@/lib/admin/auth";
 import { connectDB } from "@/lib/db/mongodb";
 import { Event } from "@/lib/db/models/Event";
+import { istLocalInputToDate } from "@/lib/timezone";
 
 type RouteParams = { params: Promise<{ id: string }> };
 
@@ -44,12 +45,12 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
     }
 
     if (typeof body.date === "string" && body.date) {
-      $set.date = new Date(body.date);
+      $set.date = istLocalInputToDate(body.date);
     }
     if (body.endDate === "" || body.endDate === null || body.endDate === undefined) {
       $set.endDate = null;
     } else if (typeof body.endDate === "string") {
-      $set.endDate = new Date(body.endDate);
+      $set.endDate = istLocalInputToDate(body.endDate);
     }
 
     if (posterUrls) {

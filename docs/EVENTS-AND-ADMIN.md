@@ -95,8 +95,8 @@ Do **not** share the keyboard shortcut or password outside the team.
 
 | Field | Notes |
 |-------|--------|
-| **Start date & time** | Required |
-| **End date & time** | Optional |
+| **Start date & time** | Required — always **India time (IST)** |
+| **End date & time** | Optional — also IST |
 | **In person / Online** | Toggle |
 | **Venue** (in person) | Address or place name |
 | **Venue link** (in person) | Optional Google Maps URL |

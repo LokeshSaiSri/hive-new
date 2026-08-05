@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { isAdminAuthenticated } from "@/lib/admin/auth";
 import { connectDB } from "@/lib/db/mongodb";
 import { Event } from "@/lib/db/models/Event";
+import { istLocalInputToDate } from "@/lib/timezone";
 
 export async function GET() {
   if (!(await isAdminAuthenticated())) {
@@ -70,8 +71,8 @@ export async function POST(request: NextRequest) {
       description: body.description.trim(),
       posterUrls: body.posterUrls ?? [],
       posterUrl: body.posterUrl || body.posterUrls?.[0] || "",
-      date: new Date(body.date),
-      endDate: body.endDate ? new Date(body.endDate) : undefined,
+      date: istLocalInputToDate(body.date),
+      endDate: body.endDate ? istLocalInputToDate(body.endDate) : undefined,
       venue: body.venue.trim(),
       venueLink: body.venueLink || "",
       isOnline: body.isOnline ?? false,

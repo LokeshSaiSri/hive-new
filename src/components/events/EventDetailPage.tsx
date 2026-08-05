@@ -7,6 +7,7 @@ import { SitePageLayout } from "@/components/layout/SitePageLayout";
 import { EventRegistrationForm } from "@/components/events/EventRegistrationForm";
 import { PosterCarousel } from "@/components/events/PosterCarousel";
 import { easeHive } from "@/lib/motion";
+import { formatEventDate } from "@/lib/timezone";
 
 type EventData = {
   _id: string;
@@ -27,27 +28,10 @@ type EventData = {
   tags: string[];
 };
 
-function formatDate(dateStr: string) {
-  const d = new Date(dateStr);
-  return {
-    day: d.toLocaleString("en-IN", { day: "2-digit" }),
-    month: d.toLocaleString("en-IN", { month: "short" }).toUpperCase(),
-    year: d.getFullYear(),
-    time: d.toLocaleString("en-IN", { hour: "2-digit", minute: "2-digit", hour12: true }),
-    full: d.toLocaleString("en-IN", {
-      weekday: "long",
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    }),
-    dayOfWeek: d.toLocaleString("en-IN", { weekday: "short" }).toUpperCase(),
-  };
-}
-
 export function EventDetailPage({ event }: { event: EventData }) {
   const prefersReducedMotion = useReducedMotion();
   const hasFired = useRef(false);
-  const date = formatDate(event.date);
+  const date = formatEventDate(event.date);
   const isPast = new Date(event.date) < new Date();
   const isFull = event.capacity ? event.registrationCount >= event.capacity : false;
   const posters =

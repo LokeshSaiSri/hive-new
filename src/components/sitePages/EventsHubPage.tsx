@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { SitePageLayout } from "@/components/layout/SitePageLayout";
 import { PosterCarousel } from "@/components/events/PosterCarousel";
 import { easeHive } from "@/lib/motion";
+import { formatEventDate } from "@/lib/timezone";
 
 type EventData = {
   _id: string;
@@ -28,23 +29,6 @@ type EventData = {
   tags: string[];
 };
 
-function formatDate(dateStr: string) {
-  const d = new Date(dateStr);
-  return {
-    day: d.toLocaleString("en-IN", { day: "2-digit" }),
-    month: d.toLocaleString("en-IN", { month: "short" }).toUpperCase(),
-    year: d.getFullYear(),
-    time: d.toLocaleString("en-IN", { hour: "2-digit", minute: "2-digit", hour12: true }),
-    full: d.toLocaleString("en-IN", {
-      weekday: "long",
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    }),
-  };
-}
-
-// Custom hook for cursor tracking glow effect
 function useMousePosition() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   useEffect(() => {
@@ -63,7 +47,7 @@ function useMousePosition() {
 function FeaturedHeroCard({ event }: { event: EventData }) {
   const prefersReducedMotion = useReducedMotion();
   const router = useRouter();
-  const date = formatDate(event.date);
+  const date = formatEventDate(event.date);
   const isFull = event.capacity ? event.registrationCount >= event.capacity : false;
   const posters =
     event.posterUrls && event.posterUrls.length > 0
@@ -155,7 +139,7 @@ function EventCard({ event, index }: { event: EventData; index: number }) {
   const prefersReducedMotion = useReducedMotion();
   const mousePosition = useMousePosition();
 
-  const date = formatDate(event.date);
+  const date = formatEventDate(event.date);
   const isFull = event.capacity ? event.registrationCount >= event.capacity : false;
   const spotsLeft = event.capacity ? event.capacity - event.registrationCount : null;
   const coverUrl =

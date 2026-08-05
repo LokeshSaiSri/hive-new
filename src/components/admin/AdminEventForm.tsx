@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { R2ImageUploader } from "@/components/admin/R2ImageUploader";
+import { dateToIstLocalInput } from "@/lib/timezone";
 
 type EventFormData = {
   title: string;
@@ -72,8 +73,8 @@ export function AdminEventForm({ initialData, mode }: Props) {
         : initialData?.posterUrl
         ? [initialData.posterUrl]
         : [],
-    date: initialData?.date ? new Date(initialData.date).toISOString().slice(0, 16) : "",
-    endDate: initialData?.endDate ? new Date(initialData.endDate).toISOString().slice(0, 16) : "",
+    date: initialData?.date ? dateToIstLocalInput(initialData.date) : "",
+    endDate: initialData?.endDate ? dateToIstLocalInput(initialData.endDate) : "",
     venue: initialData?.venue ?? "",
     venueLink: initialData?.venueLink ?? "",
     isOnline: initialData?.isOnline ?? false,
@@ -184,7 +185,7 @@ export function AdminEventForm({ initialData, mode }: Props) {
         <h3 className="text-sm font-bold uppercase tracking-[0.14em] text-white/40">Schedule & Location</h3>
 
         <div className="grid gap-4 sm:grid-cols-2">
-          <FormField label="Start Date & Time" required>
+          <FormField label="Start Date & Time" required hint="India time (IST)">
             <input
               type="datetime-local"
               value={form.date}
@@ -194,7 +195,7 @@ export function AdminEventForm({ initialData, mode }: Props) {
             />
           </FormField>
 
-          <FormField label="End Date & Time (Optional)">
+          <FormField label="End Date & Time (Optional)" hint="India time (IST)">
             <input
               type="datetime-local"
               value={form.endDate}
