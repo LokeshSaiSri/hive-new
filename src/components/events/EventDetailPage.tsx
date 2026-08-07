@@ -72,16 +72,17 @@ export function EventDetailPage({ event }: { event: EventData }) {
             <span className="text-white/60">{event.title}</span>
           </motion.div>
 
-          <div className="grid gap-12 lg:grid-cols-[1fr_400px] lg:gap-16">
-            {/* Left: Event info */}
-            <motion.div
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.65, ease: easeHive }}
-            >
-              {/* Poster(s) — first */}
-              {posters.length > 0 && (
-                <div className="relative mb-8 w-full overflow-hidden rounded-2xl bg-black/40 shadow-2xl">
+          {/* Mobile: poster → form → details. Desktop: poster+details | sticky form */}
+          <div className="grid gap-8 lg:grid-cols-[1fr_400px] lg:gap-x-16 lg:gap-y-0">
+            {/* Poster */}
+            {posters.length > 0 && (
+              <motion.div
+                initial={prefersReducedMotion ? false : { opacity: 0, y: 28 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.65, ease: easeHive }}
+                className="order-1 lg:col-start-1 lg:row-start-1"
+              >
+                <div className="relative w-full overflow-hidden rounded-2xl bg-black/40 shadow-2xl">
                   <PosterCarousel
                     images={posters}
                     alt={event.title}
@@ -91,8 +92,31 @@ export function EventDetailPage({ event }: { event: EventData }) {
                     sizes="(max-width: 1024px) 100vw, 760px"
                   />
                 </div>
-              )}
+              </motion.div>
+            )}
 
+            {/* Registration form — right after poster on mobile; sticky sidebar on desktop */}
+            <motion.div
+              initial={prefersReducedMotion ? false : { opacity: 0, x: 24 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.65, delay: 0.12, ease: easeHive }}
+              className="order-2 lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:sticky lg:top-28 lg:self-start lg:pb-16"
+            >
+              <EventRegistrationForm
+                eventId={event._id}
+                eventTitle={event.title}
+                isPast={isPast}
+                isFull={isFull}
+              />
+            </motion.div>
+
+            {/* Event details */}
+            <motion.div
+              initial={prefersReducedMotion ? false : { opacity: 0, y: 28 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.65, delay: 0.08, ease: easeHive }}
+              className={`order-3 lg:col-start-1 lg:pb-16 ${posters.length > 0 ? "lg:row-start-2 lg:pt-8" : "lg:row-start-1"}`}
+            >
               {/* Tags */}
               {event.tags.length > 0 && (
                 <div className="mb-4 flex flex-wrap gap-2">
@@ -175,7 +199,7 @@ export function EventDetailPage({ event }: { event: EventData }) {
               </div>
 
               {/* Description */}
-              <div className="mt-10 pb-16">
+              <div className="mt-10 pb-16 lg:pb-0">
                 <h2 className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-white/40">About This Event</h2>
                 <div className="prose prose-invert max-w-none">
                   {event.description.split("\n\n").map((para, i) => (
@@ -185,21 +209,6 @@ export function EventDetailPage({ event }: { event: EventData }) {
                   ))}
                 </div>
               </div>
-            </motion.div>
-
-            {/* Right: Registration form — sticky while scrolling event content */}
-            <motion.div
-              initial={prefersReducedMotion ? false : { opacity: 0, x: 24 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.65, delay: 0.12, ease: easeHive }}
-              className="lg:sticky lg:top-28 lg:self-start lg:pb-16"
-            >
-              <EventRegistrationForm
-                eventId={event._id}
-                eventTitle={event.title}
-                isPast={isPast}
-                isFull={isFull}
-              />
             </motion.div>
           </div>
         </div>
