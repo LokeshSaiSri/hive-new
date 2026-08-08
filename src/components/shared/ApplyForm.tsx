@@ -489,7 +489,15 @@ export function ApplyForm({
                 </div>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} noValidate className="mt-6" data-hs-cf-bound="true">
+              <form
+                id="admissions-form"
+                data-hive-track
+                onSubmit={handleSubmit}
+                noValidate
+                className="mt-6"
+                data-hs-cf-bound="true"
+              >
+                <input type="hidden" name="session_id" defaultValue="" />
                 <div className="mb-3 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.22em] text-white/35">
                   <span>
                     {step + 1} / {STEPS.length}

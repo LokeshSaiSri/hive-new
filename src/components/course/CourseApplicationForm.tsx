@@ -694,7 +694,15 @@ export function CourseApplicationForm({
                 {submitted ? (
                   <SuccessState />
                 ) : (
-                  <form onSubmit={handleSubmit} noValidate className="mt-8" data-hs-cf-bound="true">
+                  <form
+                    id="admissions-form"
+                    data-hive-track
+                    onSubmit={handleSubmit}
+                    noValidate
+                    className="mt-8"
+                    data-hs-cf-bound="true"
+                  >
+                    <input type="hidden" name="session_id" defaultValue="" />
                     <div className="grid gap-5 sm:grid-cols-2">
                       {FIELD_ORDER.slice(0, 2).map((key) => (
                         <FormField

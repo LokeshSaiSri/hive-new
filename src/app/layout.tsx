@@ -29,6 +29,11 @@ const fraunces = Fraunces({
   display: "swap",
 });
 
+const crmBase =
+  process.env.CRM_BASE_URL?.replace(/\/+$/, "") ??
+  "https://hive-crm-sigma.vercel.app";
+const crmConfig = `window.HIVE_TRACK = { crmBase: ${JSON.stringify(crmBase).replace(/</g, "\\u003c")} };`;
+
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
   ...buildRootMetadata(),
@@ -52,6 +57,8 @@ export default function RootLayout({
         <JsonLd data={buildGlobalSchemas()} />
         <ScrollToTopOnLoad />
         <GoogleTagManager />
+        <script dangerouslySetInnerHTML={{ __html: crmConfig }} />
+        <script id="hive-track-script" src="/hive-track.js" data-crm-base={crmBase} defer />
         <MetaClickCapture />
         <HubSpotTracking />
         <SmoothScroll>
