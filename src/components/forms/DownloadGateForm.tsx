@@ -135,6 +135,7 @@ export function DownloadGateForm({
           </div>
         ) : (
           <form
+            data-hive-track
             onSubmit={handleSubmit}
             noValidate
             data-hs-cf-bound="true"
@@ -142,6 +143,7 @@ export function DownloadGateForm({
               compact ? "p-5 sm:p-8" : "p-8"
             }`}
           >
+            <input type="hidden" name="session_id" defaultValue="" />
             <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-accent">
               {eyebrow}
             </p>

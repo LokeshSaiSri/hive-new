@@ -26,6 +26,10 @@ export function DocumentDownloadForm({ document: doc, compact = false }: Documen
           : undefined
       }
       onSubmit={async (form) => {
+        const fromTracker = window.HiveTrack?.getSessionId?.();
+        const fromCookie = document.cookie.match(/(?:^|;\s*)hs_session_id=([^;]*)/)?.[1];
+        const sessionId =
+          fromTracker || (fromCookie ? decodeURIComponent(fromCookie) : undefined);
         const response = await fetch("/api/placement-report/submit", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -38,6 +42,7 @@ export function DocumentDownloadForm({ document: doc, compact = false }: Documen
             pageUri: window.location.href,
             pageName: document.title,
             hutk: getHubspotUtk(),
+            session_id: sessionId,
           }),
         });
 

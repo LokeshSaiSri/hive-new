@@ -31,9 +31,22 @@ function getHubspotUtk(): string | undefined {
 function getHiveSessionId(): string | undefined {
   const fromTracker = window.HiveTrack?.getSessionId();
   if (fromTracker) return fromTracker;
+
   const input = document.querySelector<HTMLInputElement>('input[name="session_id"]');
-  return input?.value || undefined;
+  if (input?.value) return input.value;
+
+  const match = document.cookie.match(/(?:^|;\s*)hs_session_id=([^;]*)/);
+  return match?.[1] ? decodeURIComponent(match[1]) : undefined;
 }
+
+type DualWriteResponse = {
+  ok?: boolean;
+  thankYouUrl?: string;
+  eventId?: string;
+  error?: string;
+  crm?: { ok?: boolean; error?: string };
+  hubspot?: { ok?: boolean; error?: string };
+};
 
 export async function submitLeadForm(
   course: ProgramSlug,
@@ -44,14 +57,16 @@ export async function submitLeadForm(
   const fieldMap = new Map(fields.map((field) => [field.name, field.value.trim()]));
   const sessionId = getHiveSessionId();
 
-  const crmSubmission = fetch("/api/admissions", {
+  const response = await fetch("/api/admissions", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
+      course,
+      fields,
       name: [lead.firstName, lead.lastName].filter(Boolean).join(" "),
       phone: lead.phone,
       email: lead.email ?? null,
-      course_id: course,
+      course_id: null,
       cohort_id: null,
       source: "website",
       linkedin: fieldMap.get(HUBSPOT_CONTACT_FIELDS.linkedin) || null,
@@ -59,26 +74,9 @@ export async function submitLeadForm(
       preferred_industry: null,
       intent_score: null,
       session_id: sessionId ?? null,
-    }),
-  }).then(async (crmResponse) => {
-    if (!crmResponse.ok) {
-      const detail = await crmResponse.text();
-      throw new Error(`CRM submission failed (${crmResponse.status}): ${detail}`);
-    }
-  }).catch((error) => {
-    console.error("CRM admissions submission failed:", error);
-  });
-
-  const response = await fetch("/api/forms/submit", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      course,
-      fields,
       pageUri: window.location.href,
       pageName: document.title,
       hutk: getHubspotUtk(),
-      session_id: sessionId,
       tracking: {
         eventId,
         fbc: getMetaFbc(),
@@ -88,17 +86,27 @@ export async function submitLeadForm(
     }),
   });
 
-  const data = (await response.json()) as { thankYouUrl?: string; error?: string };
+  const data = (await response.json()) as DualWriteResponse;
 
-  if (!response.ok) {
-    await crmSubmission;
+  if (!response.ok || !data.ok) {
+    if (data.crm && !data.crm.ok) {
+      console.error("CRM admissions submission failed:", data.crm.error);
+    }
+    if (data.hubspot && !data.hubspot.ok) {
+      console.error("HubSpot admissions submission failed:", data.hubspot.error);
+    }
     throw new Error(data.error ?? "Could not submit application. Please try again.");
   }
 
-  await crmSubmission;
+  if (data.crm && !data.crm.ok) {
+    console.error("CRM admissions submission failed:", data.crm.error);
+  }
+  if (data.hubspot && !data.hubspot.ok) {
+    console.error("HubSpot admissions submission failed:", data.hubspot.error);
+  }
 
   pushGoogleLeadEvent({
-    eventId,
+    eventId: data.eventId ?? eventId,
     course,
     email: lead.email,
     phone: lead.phone,
@@ -108,6 +116,8 @@ export async function submitLeadForm(
 
   return (
     data.thankYouUrl ??
-    `/pgp-revenue-tech-entrepreneurship-form-submitted?submissionGuid=${encodeURIComponent(eventId)}`
+    `/pgp-revenue-tech-entrepreneurship-form-submitted?submissionGuid=${encodeURIComponent(
+      data.eventId ?? eventId,
+    )}`
   );
 }
