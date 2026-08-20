@@ -433,7 +433,7 @@ export const pgpAdmissionsIntro = {
     { value: "<7%", label: "Acceptance" },
     { value: "50", label: "Handpicked cohort", highlight: true },
     { value: "9 months", label: "Duration" },
-    { value: "July 15, '26", label: "Round 1 closes" },
+    { value: "August 15, '26", label: "Round 2 closes" },
   ],
 };
 

@@ -342,8 +342,8 @@ export const aiMarketingAdmissionEvaluators: AdmissionEvaluator[] = [
 ];
 
 export const aiMarketingAdmissionDeadlines: AdmissionDeadline[] = [
-  { round: "01", label: "Round 1 deadline", date: "July 31, '26", status: "active" },
-  { round: "02", label: "Round 2 deadline", date: "August 31, '26", status: "upcoming" },
+  { round: "01", label: "Round 1 deadline", date: "July 31, '26", status: "expired" },
+  { round: "02", label: "Round 2 deadline", date: "August 31, '26", status: "active" },
   { round: "03", label: "Round 3 deadline", date: "September 25, '26", status: "upcoming" },
 ];
 
