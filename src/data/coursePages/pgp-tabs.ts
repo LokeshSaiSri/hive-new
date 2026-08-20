@@ -433,7 +433,7 @@ export const pgpAdmissionsIntro = {
     { value: "<7%", label: "Acceptance" },
     { value: "50", label: "Handpicked cohort", highlight: true },
     { value: "9 months", label: "Duration" },
-    { value: "May 15, '26", label: "Round 1 closes" },
+    { value: "July 15, '26", label: "Round 1 closes" },
   ],
 };
 
@@ -489,9 +489,9 @@ export const pgpAdmissionEvaluators: AdmissionEvaluator[] = [
 ];
 
 export const pgpAdmissionDeadlines: AdmissionDeadline[] = [
-  { round: "01", label: "Round 1 deadline", date: "May 15, '26", status: "expired" },
-  { round: "02", label: "Round 2 deadline", date: "June 30, '26", status: "expired" },
-  { round: "03", label: "Round 3 deadline", date: "August 15, '26", status: "active" },
+  { round: "01", label: "Round 1 deadline", date: "July 15, '26", status: "expired" },
+  { round: "02", label: "Round 2 deadline", date: "August 15, '26", status: "expired" },
+  { round: "03", label: "Round 3 deadline", date: "September 15, '26", status: "active" },
 ];
 
 export const pgpScholarships: ScholarshipCard[] = [
