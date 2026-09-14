@@ -97,16 +97,20 @@ const CHARTS: ChartConfig[] = [
 
 function useChartInView() {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const isInView = useInView(ref, { margin: "-80px", amount: 0.2 });
   const prefersReducedMotion = useReducedMotion();
-  const [active, setActive] = useState(false);
+  const [hasEntered, setHasEntered] = useState(false);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    if (isInView || prefersReducedMotion) setActive(true);
+    if (isInView || prefersReducedMotion) setHasEntered(true);
   }, [isInView, prefersReducedMotion]);
 
-  return { ref, active: active || !!prefersReducedMotion };
+  return {
+    ref,
+    active: hasEntered || !!prefersReducedMotion,
+    visible: isInView,
+  };
 }
 
 function useChartAnimation(chartKey: ChartKey, enabled: boolean) {
@@ -577,7 +581,7 @@ function ChartContextPanel({
 
 export function PlacementStatsCharts({ variant = "default" }: { variant?: "default" | "compact" }) {
   const compact = variant === "compact";
-  const { ref, active: sectionActive } = useChartInView();
+  const { ref, active: sectionActive, visible: chartsVisible } = useChartInView();
   const prefersReducedMotion = useReducedMotion();
   const [selected, setSelected] = useState<ChartKey>("ctc");
   const chart = CHARTS.find((c) => c.key === selected)!;
@@ -591,7 +595,7 @@ export function PlacementStatsCharts({ variant = "default" }: { variant?: "defau
   }, []);
 
   useAutoAdvance(CHARTS.length, advanceChart, {
-    enabled: sectionActive && !prefersReducedMotion,
+    enabled: sectionActive && chartsVisible && !prefersReducedMotion,
     resetKey: selected,
     intervalMs: compact ? 5000 : undefined,
   });
@@ -665,7 +669,7 @@ export function PlacementStatsCharts({ variant = "default" }: { variant?: "defau
 
             <ChartStepRail charts={CHARTS} activeKey={selected} onSelect={setSelected} />
 
-            <div className="mt-6 min-h-[340px] sm:min-h-[280px] lg:min-h-[300px]">
+            <div className="mt-6 min-h-[22rem] sm:min-h-[24rem] lg:min-h-[26rem] [overflow-anchor:none]">
               <ChartContextPanel chart={chart} />
             </div>
           </div>
@@ -684,7 +688,7 @@ export function PlacementStatsCharts({ variant = "default" }: { variant?: "defau
                 </span>
               </div>
 
-              <div className="flex min-h-[280px] sm:min-h-[320px] lg:min-h-[340px] flex-1 flex-col justify-center">
+              <div className="flex min-h-[280px] sm:min-h-[320px] lg:min-h-[340px] flex-1 flex-col justify-center [overflow-anchor:none]">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={selected}

@@ -48,3 +48,7 @@ next-env.d.ts
 
 # Original uncompressed source PDF (231MB) — only the compressed public/ copy is committed
 /startup Handbook.pdf
+
+# Day Zero report source (102MB Chrome export) — served from R2
+/Day Zero Rpeort final final.pdf
+/public/Salespreneur-Report.pdf

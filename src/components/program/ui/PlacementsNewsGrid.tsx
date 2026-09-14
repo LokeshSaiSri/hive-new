@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { HorizontalScroller } from "@/components/ui/HorizontalScroller";
@@ -10,7 +11,11 @@ type PlacementsNewsGridProps = {
   articles: NewsArticle[];
   compact?: boolean;
   className?: string;
+  description?: ReactNode;
 };
+
+const DEFAULT_DESCRIPTION =
+  "Latest · Year 2 PGP Cohort 1: ₹16.47L average · ₹27.8L highest · +184% average salary jump";
 
 function isExternalHref(href: string) {
   return href.startsWith("http");
@@ -112,7 +117,12 @@ function PressNewsCard({ article }: { article: NewsArticle }) {
   );
 }
 
-export function PlacementsNewsGrid({ articles, compact = false, className }: PlacementsNewsGridProps) {
+export function PlacementsNewsGrid({
+  articles,
+  compact = false,
+  className,
+  description = DEFAULT_DESCRIPTION,
+}: PlacementsNewsGridProps) {
   return (
     <section className={`program-tab-section hive-dark-band overflow-hidden section-py ${className ?? ""}`}>
       <div className="section-container">
@@ -120,7 +130,7 @@ export function PlacementsNewsGrid({ articles, compact = false, className }: Pla
           eyebrow="In the news"
           statement="As featured in India's"
           emphasis="leading publications."
-          description="Latest · Year 2 PGP Cohort 1: ₹16.47L average · ₹27.8L highest · +184% average salary jump"
+          description={description || undefined}
           light={false}
           align="left"
         />

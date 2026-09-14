@@ -8,7 +8,7 @@ import {
   PLACEMENT_REPORT_ACCESS_COOKIE,
   getPlacementReportEdition,
 } from "@/data/placementReportAccess";
-import { getGatedDocumentById } from "@/data/gatedDocuments";
+import { getGatedDocumentById, getGatedDocumentFileHref } from "@/data/gatedDocuments";
 import { buildHubSpotSubmissionContext, resolveHubSpotPageUri } from "@/lib/hubspot/context";
 import { submitToHubSpot, type HubSpotSubmissionField } from "@/lib/hubspot/submit";
 import {
@@ -139,7 +139,7 @@ export async function POST(request: Request) {
   // Downloads should still succeed for the user even if one CRM/HubSpot side fails.
   const downloadUrl = edition
     ? `/api/placement-report/download?edition=${encodeURIComponent(edition.id)}`
-    : gatedDocument!.pdfHref;
+    : getGatedDocumentFileHref(gatedDocument!);
 
   const response = NextResponse.json({
     ok: true,

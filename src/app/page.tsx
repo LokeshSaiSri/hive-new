@@ -16,6 +16,13 @@ const HomeNewsSection = dynamic(
   () => import("@/components/sections/HomeNewsSection").then((m) => m.HomeNewsSection),
   { loading: () => <SectionFallback /> },
 );
+const SalespreneurReportStrip = dynamic(
+  () =>
+    import("@/components/sections/SalespreneurReportStrip").then(
+      (m) => m.SalespreneurReportStrip,
+    ),
+  { loading: () => <SectionFallback minHeight="min-h-[40vh]" /> },
+);
 const HandsOnLearning = dynamic(
   () => import("@/components/sections/HandsOnLearning").then((m) => m.HandsOnLearning),
   { loading: () => <SectionFallback /> },
@@ -81,6 +88,7 @@ export default function Home() {
       <main>
         <Hero />
         <PlacementStats />
+        <SalespreneurReportStrip />
         <HomeNewsSection />
         <HandsOnLearning />
         <WhyRevenue />

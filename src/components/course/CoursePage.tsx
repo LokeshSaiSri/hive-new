@@ -24,6 +24,7 @@ import { ProgramCampus } from "@/components/program/ProgramCampus";
 import { PlacementsCohortGallery } from "@/components/program/ui/PlacementsCohortGallery";
 import { StartupsBuiltGallery } from "@/components/program/ui/StartupsBuiltGallery";
 import { ProofOfWorkStrip } from "@/components/program/ui/ProofOfWorkStrip";
+import { SalespreneurReportStrip } from "@/components/sections/SalespreneurReportStrip";
 import { mentors } from "@/data/mentors";
 import { pgpPortfolioDeliverables } from "@/data/coursePages/pgp-tabs";
 import { aiMarketingPortfolioDeliverables } from "@/data/coursePages/ai-marketing-tabs";
@@ -115,6 +116,8 @@ export function CoursePage({ config, slug }: CoursePageProps) {
       {cta2 && <CourseInlineCtaBand cta={cta2} />}
 
       {config.sections.placement && <ProgramPlacements />}
+
+      {slug === "pgp" && <SalespreneurReportStrip />}
 
       {slug === "pgp" && <PlacementsCohortGallery className="pt-0 border-t-0" />}
 

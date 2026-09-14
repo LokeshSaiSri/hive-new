@@ -1,7 +1,11 @@
+import { cdnAsset } from "@/lib/assets";
+
 export type GatedDocument = {
   id: string;
-  /** Public PDF path served from /public. */
+  /** Site path used to intercept the download click and open the gate. */
   pdfHref: string;
+  /** Actual file URL after the form is submitted. Defaults to pdfHref. */
+  fileHref?: string;
   eyebrow: string;
   title: string;
   description: string;
@@ -39,6 +43,17 @@ export const gatedDocuments: GatedDocument[] = [
     description: "Share your details and we'll start the download immediately.",
     hubspotLabel: "Brochure — Undergraduate Programme",
   },
+  {
+    id: "salespreneur-report",
+    pdfHref: "/Salespreneur-Report.pdf",
+    fileHref: cdnAsset("docs/Day-Zero-Report.pdf"),
+    eyebrow: "Day Zero Report",
+    title: "Get the Day Zero report",
+    description:
+      "Share your details and we'll start the download — PGP Cohort 02 Day Zero placements, 2026–27.",
+    hubspotLabel: "Report — Day Zero PGP C2 2026-27",
+    coverImage: cdnAsset("images/misc/salespreneur-cohort.jpg"),
+  },
 ];
 
 export function getGatedDocumentById(id: string | null | undefined): GatedDocument | undefined {
@@ -48,4 +63,8 @@ export function getGatedDocumentById(id: string | null | undefined): GatedDocume
 
 export function getGatedDocumentByHref(pathname: string): GatedDocument | undefined {
   return gatedDocuments.find((doc) => doc.pdfHref === pathname);
+}
+
+export function getGatedDocumentFileHref(doc: GatedDocument): string {
+  return doc.fileHref ?? doc.pdfHref;
 }

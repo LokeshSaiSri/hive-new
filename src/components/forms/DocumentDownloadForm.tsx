@@ -1,7 +1,7 @@
 "use client";
 
 import { DownloadGateForm } from "@/components/forms/DownloadGateForm";
-import type { GatedDocument } from "@/data/gatedDocuments";
+import { getGatedDocumentFileHref, type GatedDocument } from "@/data/gatedDocuments";
 import { mapDocumentDownloadFields } from "@/lib/hubspot/fields";
 import { getHubspotUtk, triggerFileDownload } from "@/lib/downloadFile";
 
@@ -11,7 +11,9 @@ type DocumentDownloadFormProps = {
 };
 
 export function DocumentDownloadForm({ document: doc, compact = false }: DocumentDownloadFormProps) {
-  const filename = doc.pdfHref.split("/").pop() ?? "download.pdf";
+  const fileHref = getGatedDocumentFileHref(doc);
+  const filename =
+    decodeURIComponent(fileHref.split("/").pop()?.split("?")[0] ?? "") || "download.pdf";
 
   return (
     <DownloadGateForm
@@ -55,7 +57,7 @@ export function DocumentDownloadForm({ document: doc, compact = false }: Documen
         // so the UI immediately advances to the 'Download started' success state.
         triggerFileDownload(data.downloadUrl, filename).catch(console.error);
       }}
-      onDownloadAgain={() => triggerFileDownload(doc.pdfHref, filename)}
+      onDownloadAgain={() => triggerFileDownload(fileHref, filename)}
     />
   );
 }

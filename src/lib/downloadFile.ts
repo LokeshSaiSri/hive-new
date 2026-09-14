@@ -5,19 +5,28 @@ export function getHubspotUtk(): string | undefined {
 }
 
 export async function triggerFileDownload(url: string, filename: string) {
-  const response = await fetch(url, { credentials: "same-origin" });
-  if (!response.ok) {
-    throw new Error("Could not download file. Please try again.");
-  }
+  const remote = /^https?:\/\//i.test(url);
+  try {
+    const response = await fetch(url, { credentials: remote ? "omit" : "same-origin" });
+    if (!response.ok) {
+      throw new Error("Could not download file. Please try again.");
+    }
 
-  const blob = await response.blob();
-  const objectUrl = URL.createObjectURL(blob);
-  const anchor = document.createElement("a");
-  anchor.href = objectUrl;
-  anchor.download = filename;
-  anchor.rel = "noopener";
-  document.body.appendChild(anchor);
-  anchor.click();
-  anchor.remove();
-  URL.revokeObjectURL(objectUrl);
+    const blob = await response.blob();
+    const objectUrl = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+    anchor.href = objectUrl;
+    anchor.download = filename;
+    anchor.rel = "noopener";
+    document.body.appendChild(anchor);
+    anchor.click();
+    anchor.remove();
+    URL.revokeObjectURL(objectUrl);
+  } catch (error) {
+    if (remote) {
+      window.open(url, "_blank", "noopener,noreferrer");
+      return;
+    }
+    throw error;
+  }
 }
