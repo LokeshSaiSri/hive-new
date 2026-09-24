@@ -245,7 +245,7 @@ export { pgpAlumniQuotes as aiMarketingAlumniQuotes } from "@/data/coursePages/p
 export const aiMarketingPlacementNews: NewsArticle[] = [
   {
     outlet: "Placement Report",
-    title: "Year 2 PGP · ₹16.47L average · ₹27.8L highest",
+    title: "Year 2 PGP · ₹16.47L average · ₹31L highest",
     date: "2025–26",
     image: cdnAsset("images/news/annual-placement.jpg"),
     href: "/pgp-revenue-tech-entrepreneurship/placements",

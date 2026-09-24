@@ -35,7 +35,7 @@ const CHARTS: ChartConfig[] = [
     index: "01",
     title: "CTC Distribution",
     subtitle: "How salaries spread from median to highest offer in the cohort.",
-    kpiValue: "₹27.8L",
+    kpiValue: "₹31L",
     kpiLabel: "Highest CTC",
     takeaways: [
       "Average CTC sits at ₹16.47L across the batch.",

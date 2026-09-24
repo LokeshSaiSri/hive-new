@@ -25,7 +25,7 @@ export const pgpCoursePage: CoursePageConfig = {
     stats: [
       { value: "09", label: "Months full-time residential" },
       { value: "₹16.47L", label: "Average CTC" },
-      { value: "₹27.8L", label: "Highest CTC" },
+      { value: "₹31L", label: "Highest CTC" },
       { value: "100+", label: "Hiring partners" },
     ],
     meta: [
@@ -228,7 +228,7 @@ export const pgpCoursePage: CoursePageConfig = {
       {
         question: "What are the latest placement outcomes?",
         answer:
-          "Year 2 PGP Cohort 1 (residential, audited): ₹16.47L average CTC, ₹15L median, ₹27.8L highest, ₹21.93L top-25% average, and +184% average post-MBA salary jump. Inaugural online cohort: ₹14.76L average, ₹30L highest.",
+          "Year 2 PGP Cohort 1 (residential, audited): ₹16.47L average CTC, ₹15L median, ₹31L highest, ₹21.93L top-25% average, and +184% average post-MBA salary jump. Inaugural online cohort: ₹14.76L average, ₹30L highest.",
       },
       {
         question: "What kind of challenges will I work on?",

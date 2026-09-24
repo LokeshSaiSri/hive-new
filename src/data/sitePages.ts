@@ -108,7 +108,7 @@ export const programmePlacementSummaries = [
     title: "PGP in Revenue AI & Entrepreneurship",
     href: "/pgp-revenue-tech-entrepreneurship/placements",
     avgCtc: "₹16.47L",
-    highest: "₹27.8L",
+    highest: "₹31L",
     highlight: "Year 2 residential cohort",
     cta: "PGP placement report",
   },

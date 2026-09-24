@@ -45,7 +45,7 @@ export const placementReportEditions: PlacementReportEdition[] = [
     label: "Year 2",
     subtitle: "PGP Cohort 1 · Residential",
     avgCtc: "₹16.47L",
-    highest: "₹27.8L",
+    highest: "₹31L",
     median: "₹15L",
     jump: "+184%",
     coverImage: asset("images/placement-reports/year-2-pdf-cover.jpg"),

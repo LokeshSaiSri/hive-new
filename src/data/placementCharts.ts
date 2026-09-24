@@ -13,7 +13,7 @@ export const ctcDistribution: PlacementBar[] = [
   { label: "Top 75%", value: "₹17.65L", amount: 17.65, visualHeight: 56 },
   { label: "Top 50%", value: "₹18.63L", amount: 18.63, visualHeight: 60 },
   { label: "Top 25%", value: "₹21.93L", amount: 21.93, visualHeight: 68 },
-  { label: "Highest", value: "₹27.8L", amount: 27.8, visualHeight: 84, highlight: true },
+  { label: "Highest", value: "₹31L", amount: 31, visualHeight: 94, highlight: true },
 ];
 
 export const salaryByExperience: PlacementBar[] = [

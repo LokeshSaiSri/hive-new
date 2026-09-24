@@ -13,7 +13,7 @@ export const whyHiveStats: MegaStat[] = [
     description: "in PGP Cohort placements",
   },
   {
-    value: "₹27.8L",
+    value: "₹31L",
     title: "Highest CTC",
     shortLabel: "Highest",
     description: "offered to HiveSchool graduates",

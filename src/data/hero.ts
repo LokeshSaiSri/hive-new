@@ -4,7 +4,7 @@ export const heroStudents = testimonials;
 
 export const heroStats = [
   { value: "₹16.47L", label: "Average CTC" },
-  { value: "₹27.8L", label: "Highest CTC" },
+  { value: "₹31L", label: "Highest CTC" },
   { value: "100+", label: "Hiring Partners" },
 ] as const;
 

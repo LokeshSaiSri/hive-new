@@ -15,7 +15,7 @@ type PlacementsNewsGridProps = {
 };
 
 const DEFAULT_DESCRIPTION =
-  "Latest · Year 2 PGP Cohort 1: ₹16.47L average · ₹27.8L highest · +184% average salary jump";
+  "Latest · Year 2 PGP Cohort 1: ₹16.47L average · ₹31L highest · +184% average salary jump";
 
 function isExternalHref(href: string) {
   return href.startsWith("http");

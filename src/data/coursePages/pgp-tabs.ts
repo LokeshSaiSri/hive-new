@@ -106,10 +106,10 @@ export const pgpTabHero: Record<"curriculum" | "placements" | "admissions", Prog
     statement: "Revenue, growth & entrepreneurship roles —",
     emphasis: "that's the goal.",
     description:
-      "100+ hiring partners. Man-to-man career tracking. The placement infrastructure behind ₹16.47L average CTC and ₹27.8L highest offers for PGP fellows in Gurugram.",
+      "100+ hiring partners. Man-to-man career tracking. The placement infrastructure behind ₹16.47L average CTC and ₹31L highest offers for PGP fellows in Gurugram.",
     stats: [
       { value: "₹16.47L", label: "Average CTC" },
-      { value: "₹27.8L", label: "Highest CTC" },
+      { value: "₹31L", label: "Highest CTC" },
       { value: "100+", label: "Hiring partners" },
       { value: "1:1", label: "Man-to-man tracking" },
     ],
@@ -370,7 +370,7 @@ export const pgpAlumniQuotes: AlumniQuote[] = [
 export const pgpPlacementNews: NewsArticle[] = [
   {
     outlet: "Placement Report",
-    title: "Year 2 PGP · ₹16.47L average · ₹27.8L highest",
+    title: "Year 2 PGP · ₹16.47L average · ₹31L highest",
     date: "2025–26",
     image: cdnAsset("images/placement-reports/year-2-pdf-cover.jpg"),
     href: placementReportDownloadPath("year-2"),
