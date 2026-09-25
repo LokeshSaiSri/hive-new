@@ -12,7 +12,7 @@ export const pgpCoursePage: CoursePageConfig = {
   hero: {
     badge: "Post Graduate Programme",
     location: "Gurugram",
-    intake: "October 2026",
+    intake: "November 2026",
     title: "Revenue, AI &",
     emphasis: "Entrepreneurship",
     description:
@@ -30,7 +30,7 @@ export const pgpCoursePage: CoursePageConfig = {
     ],
     meta: [
       { label: "Duration", value: "9 months" },
-      { label: "Commencement", value: "October 2026" },
+      { label: "Commencement", value: "November 2026" },
       { label: "Format", value: "Full-time" },
       { label: "Location", value: "Gurugram" },
     ],
@@ -172,7 +172,7 @@ export const pgpCoursePage: CoursePageConfig = {
     statement: "Fees and",
     emphasis: "scholarships",
     badge: "Post Graduate Programme",
-    intake: "October 2026",
+    intake: "November 2026",
     description:
       "9-month full-time residential. Includes tuition, tools, mentorship & placement support. Banking partners and financial assistance available.",
     lines: [

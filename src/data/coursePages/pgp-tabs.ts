@@ -119,7 +119,7 @@ export const pgpTabHero: Record<"curriculum" | "placements" | "admissions", Prog
   admissions: {
     eyebrow: "Post Graduate Programme · Admissions",
     statement: "PGP in Revenue, AI & Entrepreneurship ·",
-    emphasis: "October 2026 · Gurugram",
+    emphasis: "November 2026 · Gurugram",
     description:
       "We evaluate candidates through conversations and case discussions. We're looking for people with the drive to build in revenue and growth, the clarity to communicate, and the hunger to lead.",
     stats: [
@@ -423,7 +423,7 @@ export const pgpPlacementNews: NewsArticle[] = [
 ];
 
 export const pgpAdmissionsIntro = {
-  eyebrow: "Admissions · October 2026",
+  eyebrow: "Admissions · November 2026",
   statement: "How we decide",
   emphasis: "who gets in.",
   description:
@@ -433,7 +433,7 @@ export const pgpAdmissionsIntro = {
     { value: "<7%", label: "Acceptance" },
     { value: "50", label: "Handpicked cohort", highlight: true },
     { value: "9 months", label: "Duration" },
-    { value: "August 15, '26", label: "Round 2 closes" },
+    { value: "October 10, '26", label: "Round 3 closes" },
   ],
 };
 
@@ -490,8 +490,8 @@ export const pgpAdmissionEvaluators: AdmissionEvaluator[] = [
 
 export const pgpAdmissionDeadlines: AdmissionDeadline[] = [
   { round: "01", label: "Round 1 deadline", date: "July 15, '26", status: "expired" },
-  { round: "02", label: "Round 2 deadline", date: "August 15, '26", status: "expired" },
-  { round: "03", label: "Round 3 deadline", date: "September 15, '26", status: "active" },
+  { round: "02", label: "Round 2 deadline", date: "September 1, '26", status: "expired" },
+  { round: "03", label: "Round 3 deadline", date: "October 10, '26", status: "active" },
 ];
 
 export const pgpScholarships: ScholarshipCard[] = [

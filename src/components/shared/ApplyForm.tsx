@@ -439,7 +439,7 @@ export function ApplyForm({
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
           <div className={isHome ? "lg:col-span-7" : "lg:col-span-12"}>
             <p className="text-[10px] font-bold uppercase tracking-[0.34em] text-accent">
-              {isHome ? "Round 2 applications open" : "Start your application"}
+              {isHome ? "Round 3 applications open" : "Start your application"}
             </p>
 
             {submitted ? (

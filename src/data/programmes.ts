@@ -23,7 +23,7 @@ export const programmes: Programme[] = [
     eligibility: "0-5 years experience",
     format: "On Campus (Opt-in Residential)",
     duration: "9 Months",
-    status: "Round 2 Applications Open",
+    status: "Round 3 Applications Open",
     learnMoreHref: "/pgp-revenue-tech-entrepreneurship",
     enrolHref: "/pgp-revenue-tech-entrepreneurship#apply",
   },

@@ -61,7 +61,7 @@ const FIELD_META: Record<
 
 const METRIC_HINTS: Record<string, string> = {
   Duration: "Nine months of live challenges, operator sprints, and a built-in placement system.",
-  Commencement: "October 2026 intake — residential cohort starts in Gurugram.",
+  Commencement: "November 2026 intake — residential cohort starts in Gurugram.",
   Format: "Full-time immersion. You’re on campus, in the room, building proof-of-work.",
   Location: "Gurugram — India’s revenue and startup corridor, minutes from hiring partners.",
   Portfolio: "Ten live capstone projects — campaigns, brands, and AI workflows in your portfolio.",
