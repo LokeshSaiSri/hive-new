@@ -35,10 +35,11 @@ export const mentors: Mentor[] = [
     category: "Sales",
   },
   {
-    name: "Srivardhana Manamalai",
-    role: "Founder",
-    companyLabel: "Sales Tantra",
+    name: "Srivaradha Vanamamalai",
+    role: "Former Business Development Representative",
+    companyLabel: "Freshworks",
     image: cdnAsset("images/mentors/srivardhana-manamalai.png"),
+    companyLogo: asset("images/logos/freshworks.png"),
     category: "Sales",
   },
   {
