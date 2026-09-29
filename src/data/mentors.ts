@@ -36,10 +36,9 @@ export const mentors: Mentor[] = [
   },
   {
     name: "Srivardhana Manamalai",
-    role: "Head of New Acquisition Sales (North America)",
-    companyLabel: "Google",
+    role: "Founder",
+    companyLabel: "Sales Tantra",
     image: cdnAsset("images/mentors/srivardhana-manamalai.png"),
-    companyLogo: cdnAsset("images/logos/google.png"),
     category: "Sales",
   },
   {
