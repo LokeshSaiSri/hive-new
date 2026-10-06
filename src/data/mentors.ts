@@ -119,9 +119,10 @@ export const mentors: Mentor[] = [
     category: "Marketing",
   },
   {
-    name: "Havish Madhypaty",
-    role: "Vice President",
-    companyLabel: "J.P. Morgan Chase & Co.",
+    name: "Havish Madhvapaty",
+    role: "Founder and CEO",
+    companyLabel: "Havish M Consulting",
+    companyLogo: cdnAsset("images/logos/hmc.png"),
     image: cdnAsset("images/mentors/havish-madhypaty.png"),
     category: "Data and AI",
   },
