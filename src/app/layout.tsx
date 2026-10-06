@@ -31,7 +31,7 @@ const fraunces = Fraunces({
 
 const crmBase =
   process.env.CRM_BASE_URL?.replace(/\/+$/, "") ??
-  "https://hive-crm-sigma.vercel.app";
+  "https://hivecrm-nu.vercel.app";
 const crmConfig = `window.HIVE_TRACK = { crmBase: ${JSON.stringify(crmBase).replace(/</g, "\\u003c")} };`;
 
 export const metadata: Metadata = {

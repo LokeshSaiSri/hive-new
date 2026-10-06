@@ -6,7 +6,7 @@
   "rewrites": [
     {
       "source": "/go/:slug*",
-      "destination": "https://hive-crm-sigma.vercel.app/go/:slug*"
+      "destination": "https://hivecrm-nu.vercel.app/go/:slug*"
     }
   ]
 }
