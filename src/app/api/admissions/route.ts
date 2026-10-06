@@ -184,7 +184,14 @@ export async function POST(request: Request) {
       email,
       course_id: body.course_id ?? null,
       cohort_id: body.cohort_id ?? null,
-      source: body.source?.trim() || (programmeLabel ? `website:${programmeLabel}` : "website"),
+      // A bare "website" source (sent by the apply forms) dropped the programme, so
+      // the CRM couldn't tell UG / PGP / AI Marketing — always attach the programme.
+      source:
+        body.source?.trim() && body.source.trim() !== "website"
+          ? body.source.trim()
+          : programmeLabel
+            ? `website:${programmeLabel}`
+            : "website",
       linkedin,
       years_experience: body.years_experience ?? null,
       preferred_industry: body.preferred_industry ?? null,

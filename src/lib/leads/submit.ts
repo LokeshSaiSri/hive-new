@@ -68,7 +68,7 @@ export async function submitLeadForm(
       email: lead.email ?? null,
       course_id: null,
       cohort_id: null,
-      source: "website",
+      source: `website:${course}`,
       linkedin: fieldMap.get(HUBSPOT_CONTACT_FIELDS.linkedin) || null,
       years_experience: null,
       preferred_industry: null,
