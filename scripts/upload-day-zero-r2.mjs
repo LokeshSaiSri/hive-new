@@ -4,8 +4,8 @@ import { join } from "node:path";
 import { S3Client, PutObjectCommand, HeadObjectCommand } from "@aws-sdk/client-s3";
 
 const root = process.cwd();
-const file = join(root, "public", "Salespreneur-Report.pdf");
-const key = "docs/Day-Zero-Report.pdf";
+const file = join(root, "public", "Interim-Placement-Report.pdf");
+const key = "docs/Interim-Placement-Report.pdf";
 
 const accountId = process.env.R2_ACCOUNT_ID?.trim();
 const accessKeyId = process.env.R2_ACCESS_KEY_ID?.trim();
@@ -26,7 +26,7 @@ for (const [name, value] of [
 }
 
 if (!existsSync(file)) {
-  console.error("upload-day-zero-r2: public/Salespreneur-Report.pdf not found");
+  console.error("upload-day-zero-r2: public/Interim-Placement-Report.pdf not found");
   process.exit(1);
 }
 
@@ -47,7 +47,7 @@ await client.send(
     Key: key,
     Body: createReadStream(file),
     ContentType: "application/pdf",
-    ContentDisposition: 'inline; filename="Day-Zero-Report.pdf"',
+    ContentDisposition: 'inline; filename="Interim-Placement-Report.pdf"',
     CacheControl: "public, max-age=86400",
   }),
 );

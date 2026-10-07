@@ -47,13 +47,33 @@ export function Nav() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 flex flex-col ${
         scrolled || mobileOpen
           ? "border-b border-white/10 bg-[#060f32]/80 shadow-lg backdrop-blur-xl"
           : "bg-gradient-to-b from-ink/85 to-transparent"
       }`}
     >
-      <div className="section-container flex items-center justify-between py-3 sm:py-4">
+      <div className="relative z-50 flex w-full overflow-hidden bg-accent py-1.5 border-b border-white/10">
+        <Link href="/Interim-Placement-Report.pdf" className="flex w-full hover:opacity-80 transition-opacity" target="_blank">
+          <div className="flex animate-marquee-fast whitespace-nowrap">
+            {[...Array(6)].map((_, i) => (
+              <span key={i} className="flex shrink-0 items-center gap-2.5 px-5 text-[10px] font-bold uppercase tracking-widest text-ink sm:text-[11px]">
+                <span className="flex h-1.5 w-1.5 shrink-0 rounded-full bg-ink relative"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ink opacity-75"></span></span>
+                Interim Placement Report Cohort - 2 Live →
+              </span>
+            ))}
+          </div>
+          <div className="flex animate-marquee-fast whitespace-nowrap" aria-hidden="true">
+            {[...Array(6)].map((_, i) => (
+              <span key={`dup-${i}`} className="flex shrink-0 items-center gap-2.5 px-5 text-[10px] font-bold uppercase tracking-widest text-ink sm:text-[11px]">
+                <span className="flex h-1.5 w-1.5 shrink-0 rounded-full bg-ink relative"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ink opacity-75"></span></span>
+                Interim Placement Report Cohort - 2 Live →
+              </span>
+            ))}
+          </div>
+        </Link>
+      </div>
+      <div className="section-container flex items-center justify-between py-3 sm:py-4 w-full">
         <Link
           href="/"
           className="relative z-10 flex shrink-0 items-center rounded-lg p-1 transition-opacity duration-200 hover:opacity-80"

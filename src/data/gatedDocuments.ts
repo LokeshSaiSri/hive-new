@@ -45,13 +45,13 @@ export const gatedDocuments: GatedDocument[] = [
   },
   {
     id: "salespreneur-report",
-    pdfHref: "/Salespreneur-Report.pdf",
-    fileHref: cdnAsset("docs/Day-Zero-Report.pdf"),
-    eyebrow: "Day Zero Report",
-    title: "Get the Day Zero report",
+    pdfHref: "/Interim-Placement-Report.pdf",
+    fileHref: cdnAsset("docs/Interim-Placement-Report.pdf"),
+    eyebrow: "Interim Placement Report",
+    title: "Get the Interim placement report",
     description:
-      "Share your details and we'll start the download — PGP Cohort 02 Day Zero placements, 2026–27.",
-    hubspotLabel: "Report — Day Zero PGP C2 2026-27",
+      "Share your details and we'll start the download — PGP Cohort Interim placements.",
+    hubspotLabel: "Report — Interim Placement",
     coverImage: cdnAsset("images/misc/salespreneur-cohort.jpg"),
   },
 ];

@@ -35,7 +35,7 @@ export function SalespreneurReportStrip() {
   const sectionRef = useRef<HTMLElement>(null);
   const prefersReducedMotion = useReducedMotion();
   const doc = getGatedDocumentById("salespreneur-report");
-  const href = doc?.pdfHref ?? "/Salespreneur-Report.pdf";
+  const href = doc?.pdfHref ?? "/Interim-Placement-Report.pdf";
   const item = prefersReducedMotion ? copyItemReduced : copyItem;
 
   const { scrollYProgress } = useScroll({
@@ -62,7 +62,7 @@ export function SalespreneurReportStrip() {
       <motion.div className="absolute inset-0 will-change-transform" style={{ scale: photoScale, y: photoY }}>
         <Image
           src={BACKGROUND_SRC}
-          alt="HiveSchool Salespreneur cohort"
+          alt="HiveSchool Interim Placement cohort"
           fill
           sizes="100vw"
           className="object-cover object-[50%_68%] md:object-[62%_46%]"
@@ -95,7 +95,7 @@ export function SalespreneurReportStrip() {
         transition={{ duration: 0.9, ease: easeHive }}
         className="hero-side-label pointer-events-none absolute left-3 top-1/2 z-10 hidden -translate-y-1/2 text-[10px] font-bold uppercase tracking-[0.45em] text-white lg:block"
       >
-        Salespreneur · Report
+        Interim Placement · Report
       </motion.p>
 
       <div className="relative z-10 flex min-h-[100svh] items-start md:items-center">
@@ -112,7 +112,7 @@ export function SalespreneurReportStrip() {
               className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.24em] text-white/80"
             >
               <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden />
-              Salespreneur Report
+              Interim Placement Report
             </motion.p>
 
             <motion.h2
