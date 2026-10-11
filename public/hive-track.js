@@ -46,11 +46,18 @@
     return "";
   }
 
-  function getSessionId() {
-    var existing = readCookie(cookieName);
-    if (existing) return existing;
+  var UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
-    var sessionId = window.crypto.randomUUID();
+  function readStored() {
+    try {
+      var v = window.localStorage.getItem(cookieName);
+      return v && UUID_RE.test(v) ? v : "";
+    } catch (_error) {
+      return "";
+    }
+  }
+
+  function writeCookie(sessionId) {
     var secure = window.location.protocol === "https:" ? "; Secure" : "";
     document.cookie =
       cookieName +
@@ -60,6 +67,23 @@
       cookieMaxAge +
       "; Path=/; SameSite=Lax" +
       secure;
+  }
+
+  // Browser id: the server-set cookie (src/proxy.ts) first, then a
+  // localStorage copy (Safari can drop JS cookies), else a new one. The CRM
+  // uses it to recognise a lead who comes back to the site.
+  function getSessionId() {
+    var existing = readCookie(cookieName);
+    var stored = readStored();
+    var sessionId = existing || stored || window.crypto.randomUUID();
+    if (!existing) writeCookie(sessionId);
+    if (stored !== sessionId) {
+      try {
+        window.localStorage.setItem(cookieName, sessionId);
+      } catch (_error) {
+        /* private mode */
+      }
+    }
     return sessionId;
   }
 
@@ -97,6 +121,10 @@
     return "Other";
   }
 
+  // Links in HiveSchool emails carry ?hs_lid=<lead id> — tells the CRM who
+  // this browser is, even on a phone they never filled a form on
+  var leadRef = queryValue("hs_lid");
+
   var attribution = {
     referrer_url: referrerUrl,
     utm_source: queryValue("utm_source"),
@@ -117,6 +145,8 @@
     details = details || {};
     return {
       session_id: sessionId,
+      visitor_id: sessionId,
+      lead_ref: leadRef,
       event_type: eventType,
       page_url: details.page_url || window.location.href,
       page_title: document.title || null,

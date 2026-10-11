@@ -9,7 +9,37 @@ import { verifyAdminToken } from "@/lib/admin/auth";
 const ADMIN_SLUG = "hive-control-hub";
 const UNLOCK_COOKIE = "hive_admin_unlock";
 
+const VISITOR_COOKIE = "hs_session_id"; // read by /hive-track.js and the form routes
+const VISITOR_REFRESHED = "hs_vr";
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+const YEAR = 365 * 24 * 60 * 60;
+
+/**
+ * Keep the browser id (hs_session_id) as a server-set cookie. Safari caps
+ * cookies written by JavaScript at 7 days (24h after an ad click), so leads
+ * coming back later looked like strangers in the CRM. Refreshed at most once
+ * a day per browser; the value never changes once set.
+ */
+function keepVisitorCookie(request: NextRequest, response: NextResponse) {
+  if (request.cookies.get(VISITOR_REFRESHED)?.value === "1") return response;
+  const current = request.cookies.get(VISITOR_COOKIE)?.value;
+  const id = current && UUID_RE.test(current) ? current : crypto.randomUUID();
+  const secure = request.nextUrl.protocol === "https:";
+  response.cookies.set(VISITOR_COOKIE, id, { path: "/", maxAge: YEAR, sameSite: "lax", secure, httpOnly: false });
+  response.cookies.set(VISITOR_REFRESHED, "1", { path: "/", maxAge: 24 * 60 * 60, sameSite: "lax", secure, httpOnly: true });
+  return response;
+}
+
 export function proxy(request: NextRequest) {
+  const response = route(request);
+  // Pages only (not admin, redirects or 404s)
+  if (response.status === 200 && !request.nextUrl.pathname.startsWith(`/${ADMIN_SLUG}`)) {
+    return keepVisitorCookie(request, response);
+  }
+  return response;
+}
+
+function route(request: NextRequest): NextResponse {
   const { pathname } = request.nextUrl;
 
   // ── Admin route protection ───────────────────────────────────────────────
@@ -69,5 +99,7 @@ export const config = {
     "/hive-control-hub/:path*",
     "/HiveSchool Placement Report 2025-26.pdf",
     "/HIVESCHOOL-Brochure-Digital.pdf",
+    // Every page (not API, Next assets or files) — for the browser id cookie
+    "/((?!api/|_next/|_vercel/|.*\\..*).*)",
   ],
 };
