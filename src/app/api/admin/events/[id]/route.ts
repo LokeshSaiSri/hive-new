@@ -3,6 +3,8 @@ import { isAdminAuthenticated } from "@/lib/admin/auth";
 import { connectDB } from "@/lib/db/mongodb";
 import { Event } from "@/lib/db/models/Event";
 import { istLocalInputToDate } from "@/lib/timezone";
+import { sanitizeDescriptionLinks, sanitizeQuestions } from "@/lib/events/custom-fields";
+import { buildEventSlug } from "@/lib/events/slug";
 
 type RouteParams = { params: Promise<{ id: string }> };
 
@@ -30,6 +32,16 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
     const $set: Record<string, unknown> = {};
 
     if (typeof body.title === "string") $set.title = body.title.trim();
+    // A new programme / slug changes the page address (links already shared stop working)
+    if (typeof body.slug === "string" || typeof body.program === "string") {
+      const title = typeof body.title === "string" ? body.title.trim() : "";
+      const next = buildEventSlug(typeof body.program === "string" ? body.program : "", typeof body.slug === "string" ? body.slug : "", title);
+      if (next) {
+        const clash = await Event.findOne({ slug: next, _id: { $ne: id } }).select("_id").lean();
+        if (clash) return NextResponse.json({ error: `Another event already uses /events/${next}` }, { status: 409 });
+        $set.slug = next;
+      }
+    }
     if (typeof body.tagline === "string") $set.tagline = body.tagline.trim();
     if (typeof body.description === "string") $set.description = body.description.trim();
     if (typeof body.venue === "string") $set.venue = body.venue.trim();
@@ -38,6 +50,8 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
     if (typeof body.isPublished === "boolean") $set.isPublished = body.isPublished;
     if (typeof body.isFeatured === "boolean") $set.isFeatured = body.isFeatured;
     if (Array.isArray(body.tags)) $set.tags = body.tags;
+    if (Array.isArray(body.questions)) $set.questions = sanitizeQuestions(body.questions);
+    if (Array.isArray(body.descriptionLinks)) $set.descriptionLinks = sanitizeDescriptionLinks(body.descriptionLinks);
     if (body.capacity === null || body.capacity === undefined || body.capacity === "") {
       // leave capacity unchanged unless explicitly provided as number
     } else if (typeof body.capacity === "number") {

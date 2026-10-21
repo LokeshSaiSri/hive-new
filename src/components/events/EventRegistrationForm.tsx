@@ -3,6 +3,7 @@
 import { useState, useId } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { easeHive } from "@/lib/motion";
+import type { EventQuestion } from "@/lib/events/custom-fields";
 
 type Field = {
   id: string;
@@ -20,6 +21,7 @@ type Props = {
   eventTitle: string;
   isPast?: boolean;
   isFull?: boolean;
+  questions?: EventQuestion[];
 };
 
 type FormState = {
@@ -128,11 +130,13 @@ function InputField({
   );
 }
 
-export function EventRegistrationForm({ eventId, eventTitle, isPast, isFull }: Props) {
+export function EventRegistrationForm({ eventId, eventTitle, isPast, isFull, questions = [] }: Props) {
   const uid = useId();
   const prefersReducedMotion = useReducedMotion();
 
   const [form, setForm] = useState<FormState>({ name: "", email: "", phone: "", linkedin: "" });
+  const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [answerErrors, setAnswerErrors] = useState<Record<string, string>>({});
   const [errors, setErrors] = useState<Partial<FormState>>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [serverError, setServerError] = useState("");
@@ -184,7 +188,14 @@ export function EventRegistrationForm({ eventId, eventTitle, isPast, isFull }: P
     if (!form.phone.trim()) errs.phone = "Phone is required";
     else if (!/^[+\d\s\-()]{7,20}$/.test(form.phone.trim())) errs.phone = "Enter a valid phone number";
     setErrors(errs);
-    return Object.keys(errs).length === 0;
+
+    const nextAnswerErrors: Record<string, string> = {};
+    for (const question of questions) {
+      const value = (answers[question.id] ?? "").trim();
+      if (question.required && !value) nextAnswerErrors[question.id] = "This question is required";
+    }
+    setAnswerErrors(nextAnswerErrors);
+    return Object.keys(errs).length === 0 && Object.keys(nextAnswerErrors).length === 0;
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -198,7 +209,14 @@ export function EventRegistrationForm({ eventId, eventTitle, isPast, isFull }: P
       const res = await fetch("/api/events/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ eventId, ...form }),
+        body: JSON.stringify({
+          eventId,
+          ...form,
+          answers: questions.map((question) => ({
+            questionId: question.id,
+            value: answers[question.id] ?? "",
+          })),
+        }),
       });
       const data = await res.json();
 
@@ -336,6 +354,59 @@ export function EventRegistrationForm({ eventId, eventTitle, isPast, isFull }: P
                       ))}
                     </div>
                   </div>
+
+                  {questions.length > 0 && (
+                    <div className="mb-6 flex flex-col gap-3">
+                      {questions.map((question) => (
+                        <div key={question.id}>
+                          <label htmlFor={`${uid}-${question.id}`} className="mb-1.5 block text-xs font-semibold uppercase tracking-[0.14em] text-ink/70">
+                            {question.label}
+                            {question.required && <span className="ml-0.5 text-electric-blue">*</span>}
+                          </label>
+                          {question.type === "dropdown" ? (
+                            <select
+                              id={`${uid}-${question.id}`}
+                              value={answers[question.id] ?? ""}
+                              disabled={isDisabled}
+                              onChange={(e) =>
+                                setAnswers((prev) => ({ ...prev, [question.id]: e.target.value }))
+                              }
+                              className={`w-full rounded-xl border bg-white px-4 py-3.5 text-sm text-ink outline-none transition-all duration-200 ${
+                                answerErrors[question.id]
+                                  ? "border-red-400"
+                                  : "border-border-soft focus:border-electric-blue focus:shadow-[0_0_0_4px_rgba(30,68,226,0.12)]"
+                              }`}
+                            >
+                              <option value="">Select</option>
+                              {question.options.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}
+                                </option>
+                              ))}
+                            </select>
+                          ) : (
+                            <input
+                              id={`${uid}-${question.id}`}
+                              type="text"
+                              value={answers[question.id] ?? ""}
+                              disabled={isDisabled}
+                              onChange={(e) =>
+                                setAnswers((prev) => ({ ...prev, [question.id]: e.target.value }))
+                              }
+                              className={`w-full rounded-xl border bg-white px-4 py-3.5 text-sm text-ink outline-none transition-all duration-200 ${
+                                answerErrors[question.id]
+                                  ? "border-red-400"
+                                  : "border-border-soft focus:border-electric-blue focus:shadow-[0_0_0_4px_rgba(30,68,226,0.12)]"
+                              }`}
+                            />
+                          )}
+                          {answerErrors[question.id] && (
+                            <p className="mt-1.5 text-xs text-red-500">{answerErrors[question.id]}</p>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
 
                   {/* Server error */}
                   <AnimatePresence>

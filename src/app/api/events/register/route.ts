@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "@/lib/db/mongodb";
 import { Registration } from "@/lib/db/models/Registration";
 import { Event } from "@/lib/db/models/Event";
+import { collectAnswers, sanitizeQuestions } from "@/lib/events/custom-fields";
 import crypto from "crypto";
 
 // Simple in-memory rate limit: max 3 per IP per 15 min
@@ -45,7 +46,14 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  let body: { eventId?: string; name?: string; email?: string; phone?: string; linkedin?: string };
+  let body: {
+    eventId?: string;
+    name?: string;
+    email?: string;
+    phone?: string;
+    linkedin?: string;
+    answers?: unknown;
+  };
   try {
     body = await request.json();
   } catch {
@@ -79,6 +87,12 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "This event is fully booked" }, { status: 409 });
     }
 
+    const questions = sanitizeQuestions(event.questions);
+    const collected = collectAnswers(questions, body.answers);
+    if (!collected.ok) {
+      return NextResponse.json({ error: collected.error }, { status: 400 });
+    }
+
     // Hash IP for storage — no raw PII
     const ipHash = crypto.createHash("sha256").update(ip + Date.now().toString().slice(0, 8)).digest("hex").slice(0, 16);
 
@@ -89,6 +103,7 @@ export async function POST(request: NextRequest) {
       email: email.toLowerCase().trim(),
       phone: phone.trim(),
       linkedin: (linkedin || "").trim(),
+      answers: collected.answers,
       ipHash,
     });
 

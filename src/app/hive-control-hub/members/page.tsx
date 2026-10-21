@@ -3,6 +3,7 @@
 import { useEffect, useState, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { AdminPageWrapper } from "@/components/admin/AdminPageWrapper";
+import type { RegistrationAnswer } from "@/lib/events/custom-fields";
 
 type Registration = {
   _id: string;
@@ -13,6 +14,7 @@ type Registration = {
   eventTitle: string;
   eventId: string;
   createdAt: string;
+  answers?: RegistrationAnswer[];
 };
 
 type Meta = { total: number; page: number; pages: number };
@@ -67,7 +69,12 @@ function MembersContent() {
         (r) =>
           r.name.toLowerCase().includes(search.toLowerCase()) ||
           r.email.toLowerCase().includes(search.toLowerCase()) ||
-          r.eventTitle.toLowerCase().includes(search.toLowerCase())
+          r.eventTitle.toLowerCase().includes(search.toLowerCase()) ||
+          (r.answers ?? []).some(
+            (answer) =>
+              answer.label.toLowerCase().includes(search.toLowerCase()) ||
+              answer.value.toLowerCase().includes(search.toLowerCase()),
+          )
       )
     : data;
 
@@ -187,7 +194,7 @@ function MembersContent() {
             <table className="w-full text-left">
               <thead>
                 <tr className="border-b border-white/8 bg-white/3">
-                  {["Name", "Email", "Phone", "LinkedIn", "Event", "Registered"].map((col) => (
+                  {["Name", "Email", "Phone", "LinkedIn", "Event", "Answers", "Registered"].map((col) => (
                     <th key={col} className="px-4 py-3 text-[10px] font-bold uppercase tracking-[0.18em] text-white/35">
                       {col}
                     </th>
@@ -217,6 +224,20 @@ function MembersContent() {
                     </td>
                     <td className="px-4 py-3.5">
                       <p className="max-w-[160px] truncate text-xs text-white/60">{reg.eventTitle}</p>
+                    </td>
+                    <td className="px-4 py-3.5">
+                      {reg.answers && reg.answers.length > 0 ? (
+                        <ul className="max-w-[220px] space-y-1">
+                          {reg.answers.map((answer) => (
+                            <li key={answer.questionId} className="text-xs text-white/70">
+                              <span className="text-white/40">{answer.label}: </span>
+                              {answer.value}
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <span className="text-xs text-white/25">—</span>
+                      )}
                     </td>
                     <td className="px-4 py-3.5">
                       <p className="text-xs text-white/40">

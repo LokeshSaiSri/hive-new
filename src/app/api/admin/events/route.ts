@@ -3,6 +3,8 @@ import { isAdminAuthenticated } from "@/lib/admin/auth";
 import { connectDB } from "@/lib/db/mongodb";
 import { Event } from "@/lib/db/models/Event";
 import { istLocalInputToDate } from "@/lib/timezone";
+import { sanitizeDescriptionLinks, sanitizeQuestions } from "@/lib/events/custom-fields";
+import { buildEventSlug } from "@/lib/events/slug";
 
 export async function GET() {
   if (!(await isAdminAuthenticated())) {
@@ -39,6 +41,12 @@ export async function POST(request: NextRequest) {
     isPublished?: boolean;
     isFeatured?: boolean;
     tags?: string[];
+    questions?: unknown;
+    descriptionLinks?: unknown;
+    /** Programme prefix for the page address: "ug" | "pgp" | "ai-marketing" | "" */
+    program?: string;
+    /** The rest of the address; blank = from the title */
+    slug?: string;
   };
 
   try {
@@ -57,12 +65,8 @@ export async function POST(request: NextRequest) {
   try {
     await connectDB();
     const title = body.title.trim();
-    const slug = title
-      .toLowerCase()
-      .replace(/[^a-z0-9\s-]/g, "")
-      .replace(/\s+/g, "-")
-      .replace(/-+/g, "-")
-      .trim();
+    // Programme prefix + custom text (else the title): /events/ug-founders-meetup
+    const slug = buildEventSlug(body.program, body.slug, title);
 
     const event = await Event.create({
       title,
@@ -80,6 +84,8 @@ export async function POST(request: NextRequest) {
       isPublished: body.isPublished ?? false,
       isFeatured: body.isFeatured ?? false,
       tags: body.tags ?? [],
+      questions: sanitizeQuestions(body.questions),
+      descriptionLinks: sanitizeDescriptionLinks(body.descriptionLinks),
     });
 
     return NextResponse.json({ event }, { status: 201 });
@@ -87,7 +93,7 @@ export async function POST(request: NextRequest) {
     console.error("Admin create event:", error);
     const message =
       error instanceof Error && error.message.includes("duplicate key")
-        ? "An event with this title already exists"
+        ? "An event with this web address already exists. Change the title or the URL slug."
         : error instanceof Error
         ? error.message
         : "Failed to create event";

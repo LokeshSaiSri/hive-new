@@ -8,6 +8,7 @@ import { EventRegistrationForm } from "@/components/events/EventRegistrationForm
 import { PosterCarousel } from "@/components/events/PosterCarousel";
 import { easeHive } from "@/lib/motion";
 import { formatEventDate } from "@/lib/timezone";
+import type { EventDescriptionLink, EventQuestion } from "@/lib/events/custom-fields";
 
 type EventData = {
   _id: string;
@@ -26,7 +27,36 @@ type EventData = {
   registrationCount: number;
   isFeatured: boolean;
   tags: string[];
+  questions?: EventQuestion[];
+  descriptionLinks?: EventDescriptionLink[];
 };
+
+const descriptionLinkPattern = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)|(https?:\/\/[^\s<]+)/g;
+
+function renderDescriptionText(text: string) {
+  const nodes: React.ReactNode[] = [];
+  let last = 0;
+  for (const match of text.matchAll(descriptionLinkPattern)) {
+    const index = match.index ?? 0;
+    if (index > last) nodes.push(text.slice(last, index));
+    const href = match[2] || match[3];
+    const label = match[1] || href;
+    nodes.push(
+      <a
+        key={`${index}-${href}`}
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-blue-glow underline decoration-blue-glow/40 underline-offset-2 hover:decoration-blue-glow"
+      >
+        {label}
+      </a>,
+    );
+    last = index + match[0].length;
+  }
+  if (last < text.length) nodes.push(text.slice(last));
+  return nodes;
+}
 
 export function EventDetailPage({ event }: { event: EventData }) {
   const prefersReducedMotion = useReducedMotion();
@@ -107,6 +137,7 @@ export function EventDetailPage({ event }: { event: EventData }) {
                 eventTitle={event.title}
                 isPast={isPast}
                 isFull={isFull}
+                questions={event.questions}
               />
             </motion.div>
 
@@ -204,9 +235,25 @@ export function EventDetailPage({ event }: { event: EventData }) {
                 <div className="prose prose-invert max-w-none">
                   {event.description.split("\n\n").map((para, i) => (
                     <p key={i} className="mb-4 leading-relaxed text-white/70">
-                      {para}
+                      {renderDescriptionText(para)}
                     </p>
                   ))}
+                  {event.descriptionLinks && event.descriptionLinks.length > 0 && (
+                    <ul className="mt-2 flex flex-col gap-2">
+                      {event.descriptionLinks.map((link) => (
+                        <li key={link.url}>
+                          <a
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 text-sm font-semibold text-blue-glow underline decoration-blue-glow/40 underline-offset-2 hover:decoration-blue-glow"
+                          >
+                            {link.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               </div>
             </motion.div>

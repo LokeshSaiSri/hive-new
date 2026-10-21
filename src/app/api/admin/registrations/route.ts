@@ -2,6 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { isAdminAuthenticated } from "@/lib/admin/auth";
 import { connectDB } from "@/lib/db/mongodb";
 import { Registration } from "@/lib/db/models/Registration";
+import type { RegistrationAnswer } from "@/lib/events/custom-fields";
+
+function csvCell(value: string) {
+  return `"${value.replace(/"/g, '""')}"`;
+}
 
 export async function GET(request: NextRequest) {
   if (!(await isAdminAuthenticated())) {
@@ -31,15 +36,25 @@ export async function GET(request: NextRequest) {
     // CSV export
     if (format === "csv") {
       const allRegistrations = await Registration.find(filter).sort({ createdAt: -1 }).lean();
-      const headers = ["Name", "Email", "Phone", "LinkedIn", "Event", "Registered At"];
-      const rows = allRegistrations.map((r) => [
-        `"${r.name}"`,
-        `"${r.email}"`,
-        `"${r.phone}"`,
-        `"${r.linkedin}"`,
-        `"${r.eventTitle}"`,
-        `"${new Date(r.createdAt).toISOString()}"`,
-      ]);
+      const answerLabels: string[] = [];
+      for (const registration of allRegistrations) {
+        for (const answer of (registration.answers ?? []) as RegistrationAnswer[]) {
+          if (answer.label && !answerLabels.includes(answer.label)) answerLabels.push(answer.label);
+        }
+      }
+      const headers = ["Name", "Email", "Phone", "LinkedIn", "Event", ...answerLabels, "Registered At"];
+      const rows = allRegistrations.map((r) => {
+        const answers = (r.answers ?? []) as RegistrationAnswer[];
+        return [
+          csvCell(r.name),
+          csvCell(r.email),
+          csvCell(r.phone),
+          csvCell(r.linkedin),
+          csvCell(r.eventTitle),
+          ...answerLabels.map((label) => csvCell(answers.find((answer) => answer.label === label)?.value ?? "")),
+          csvCell(new Date(r.createdAt).toISOString()),
+        ];
+      });
       const csv = [headers.join(","), ...rows.map((r) => r.join(","))].join("\n");
       return new NextResponse(csv, {
         headers: {
