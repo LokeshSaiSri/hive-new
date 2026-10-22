@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "@/lib/db/mongodb";
 import { Registration } from "@/lib/db/models/Registration";
 import { Event } from "@/lib/db/models/Event";
-import { collectAnswers, sanitizeQuestions } from "@/lib/events/custom-fields";
+import { collectAnswers, sanitizeLinkedinField, sanitizeQuestions } from "@/lib/events/custom-fields";
 import crypto from "crypto";
 
 // Simple in-memory rate limit: max 3 per IP per 15 min
@@ -87,6 +87,11 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "This event is fully booked" }, { status: 409 });
     }
 
+    const linkedinField = sanitizeLinkedinField(event.linkedinField);
+    if (linkedinField === "required" && !(linkedin || "").trim()) {
+      return NextResponse.json({ error: "Please add your LinkedIn profile" }, { status: 400 });
+    }
+
     const questions = sanitizeQuestions(event.questions);
     const collected = collectAnswers(questions, body.answers);
     if (!collected.ok) {
@@ -102,7 +107,7 @@ export async function POST(request: NextRequest) {
       name: name.trim(),
       email: email.toLowerCase().trim(),
       phone: phone.trim(),
-      linkedin: (linkedin || "").trim(),
+      linkedin: linkedinField === "hidden" ? "" : (linkedin || "").trim(),
       answers: collected.answers,
       ipHash,
     });

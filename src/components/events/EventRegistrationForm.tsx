@@ -22,6 +22,8 @@ type Props = {
   isPast?: boolean;
   isFull?: boolean;
   questions?: EventQuestion[];
+  /** LinkedIn on the form; set per event in admin (missing = hidden) */
+  linkedinField?: "hidden" | "optional" | "required";
 };
 
 type FormState = {
@@ -130,7 +132,7 @@ function InputField({
   );
 }
 
-export function EventRegistrationForm({ eventId, eventTitle, isPast, isFull, questions = [] }: Props) {
+export function EventRegistrationForm({ eventId, eventTitle, isPast, isFull, questions = [], linkedinField = "hidden" }: Props) {
   const uid = useId();
   const prefersReducedMotion = useReducedMotion();
 
@@ -141,7 +143,7 @@ export function EventRegistrationForm({ eventId, eventTitle, isPast, isFull, que
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [serverError, setServerError] = useState("");
 
-  const fields: Field[] = [
+  const allFields: Field[] = [
     {
       id: `${uid}-name`,
       label: "Full Name",
@@ -174,11 +176,13 @@ export function EventRegistrationForm({ eventId, eventTitle, isPast, isFull, que
       label: "LinkedIn Profile",
       type: "url",
       placeholder: "linkedin.com/in/yourname",
-      required: false,
+      required: linkedinField === "required",
       autoComplete: "url",
       icon: <LinkedInIcon />,
     },
   ];
+
+  const fields = allFields.filter((f) => !(f.id.endsWith("-linkedin") && linkedinField === "hidden"));
 
   function validate(): boolean {
     const errs: Partial<FormState> = {};
@@ -187,6 +191,7 @@ export function EventRegistrationForm({ eventId, eventTitle, isPast, isFull, que
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) errs.email = "Enter a valid email";
     if (!form.phone.trim()) errs.phone = "Phone is required";
     else if (!/^[+\d\s\-()]{7,20}$/.test(form.phone.trim())) errs.phone = "Enter a valid phone number";
+    if (linkedinField === "required" && !form.linkedin.trim()) errs.linkedin = "LinkedIn profile is required";
     setErrors(errs);
 
     const nextAnswerErrors: Record<string, string> = {};

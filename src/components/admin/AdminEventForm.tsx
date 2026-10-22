@@ -23,6 +23,8 @@ type EventFormData = {
   tags: string;
   questions: EventQuestion[];
   descriptionLinks: EventDescriptionLink[];
+  /** LinkedIn on the public form */
+  linkedinField: "hidden" | "optional" | "required";
   /** Page address: programme prefix + slug (blank = from the title) */
   program: string;
   slug: string;
@@ -93,6 +95,7 @@ export function AdminEventForm({ initialData, mode }: Props) {
       : (initialData?.tags as string | undefined) ?? "",
     questions: initialData?.questions ?? [],
     descriptionLinks: initialData?.descriptionLinks ?? [],
+    linkedinField: initialData?.linkedinField ?? "hidden",
     program: initialData?.slug ? programFromSlug(initialData.slug) : "",
     slug: initialData?.slug ? slugWithoutProgram(initialData.slug) : "",
   });
@@ -156,6 +159,7 @@ export function AdminEventForm({ initialData, mode }: Props) {
         .map((t) => t.trim())
         .filter(Boolean),
       questions: form.questions,
+      linkedinField: form.linkedinField,
       descriptionLinks: form.descriptionLinks.filter((link) => link.label.trim() && link.url.trim()),
       // On edit the address only changes when someone changes the programme or slug
       ...(mode === "create" || previewSlug !== startSlug ? { program: form.program, slug: form.slug.trim() } : {}),
@@ -449,8 +453,32 @@ export function AdminEventForm({ initialData, mode }: Props) {
           </button>
         </div>
 
+        <div className="flex flex-wrap items-center gap-3 rounded-xl border border-white/10 px-4 py-3">
+          <div className="mr-auto">
+            <p className="text-sm font-semibold text-white/80">LinkedIn profile</p>
+            <p className="text-xs text-white/40">Show the LinkedIn field on this event&apos;s form?</p>
+          </div>
+          <div className="flex rounded-full border border-white/15 p-0.5 text-xs font-semibold">
+            {(["hidden", "optional", "required"] as const).map((v) => (
+              <button
+                key={v}
+                type="button"
+                onClick={() => set("linkedinField", v)}
+                className={`rounded-full px-3 py-1.5 transition-colors ${
+                  form.linkedinField === v ? "bg-white text-[#0B0F26]" : "text-white/60 hover:text-white"
+                }`}
+              >
+                {v === "hidden" ? "Don't ask" : v === "optional" ? "Optional" : "Required"}
+              </button>
+            ))}
+          </div>
+        </div>
+
         {form.questions.length === 0 && (
-          <p className="text-sm text-white/35">No custom questions yet. Name, email, phone, and LinkedIn stay on every form.</p>
+          <p className="text-sm text-white/35">
+            No custom questions yet. Name, email and phone are on every form
+            {form.linkedinField === "hidden" ? "." : `, plus LinkedIn (${form.linkedinField}).`}
+          </p>
         )}
 
         {form.questions.map((question, index) => (

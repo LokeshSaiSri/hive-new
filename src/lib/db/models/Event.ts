@@ -1,5 +1,5 @@
 import mongoose, { Schema, model, models } from "mongoose";
-import type { EventDescriptionLink, EventQuestion } from "@/lib/events/custom-fields";
+import type { EventDescriptionLink, EventQuestion, LinkedinField } from "@/lib/events/custom-fields";
 
 export interface IEvent {
   _id: mongoose.Types.ObjectId;
@@ -21,6 +21,8 @@ export interface IEvent {
   isFeatured: boolean;
   tags: string[];
   questions: EventQuestion[];
+  /** LinkedIn on the registration form (events saved before this have none = hidden) */
+  linkedinField?: LinkedinField;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -64,6 +66,7 @@ const EventSchema = new Schema<IEvent>(
       ],
       default: [],
     },
+    linkedinField: { type: String, enum: ["hidden", "optional", "required"], default: "hidden" },
   },
   { timestamps: true }
 );

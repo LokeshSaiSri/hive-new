@@ -116,3 +116,9 @@ export function collectAnswers(
 
   return { ok: true, answers };
 }
+
+/** LinkedIn on the registration form: hidden (default, also for older events), optional or required */
+export type LinkedinField = "hidden" | "optional" | "required";
+export function sanitizeLinkedinField(v: unknown): LinkedinField {
+  return v === "optional" || v === "required" ? v : "hidden";
+}

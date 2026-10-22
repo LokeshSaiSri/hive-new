@@ -29,6 +29,7 @@ type EventData = {
   tags: string[];
   questions?: EventQuestion[];
   descriptionLinks?: EventDescriptionLink[];
+  linkedinField?: "hidden" | "optional" | "required";
 };
 
 const descriptionLinkPattern = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)|(https?:\/\/[^\s<]+)/g;
@@ -138,6 +139,7 @@ export function EventDetailPage({ event }: { event: EventData }) {
                 isPast={isPast}
                 isFull={isFull}
                 questions={event.questions}
+                linkedinField={event.linkedinField}
               />
             </motion.div>
 

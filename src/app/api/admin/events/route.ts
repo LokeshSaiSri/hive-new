@@ -3,7 +3,7 @@ import { isAdminAuthenticated } from "@/lib/admin/auth";
 import { connectDB } from "@/lib/db/mongodb";
 import { Event } from "@/lib/db/models/Event";
 import { istLocalInputToDate } from "@/lib/timezone";
-import { sanitizeDescriptionLinks, sanitizeQuestions } from "@/lib/events/custom-fields";
+import { sanitizeDescriptionLinks, sanitizeLinkedinField, sanitizeQuestions } from "@/lib/events/custom-fields";
 import { buildEventSlug } from "@/lib/events/slug";
 
 export async function GET() {
@@ -43,6 +43,7 @@ export async function POST(request: NextRequest) {
     tags?: string[];
     questions?: unknown;
     descriptionLinks?: unknown;
+    linkedinField?: unknown;
     /** Programme prefix for the page address: "ug" | "pgp" | "ai-marketing" | "" */
     program?: string;
     /** The rest of the address; blank = from the title */
@@ -86,6 +87,7 @@ export async function POST(request: NextRequest) {
       tags: body.tags ?? [],
       questions: sanitizeQuestions(body.questions),
       descriptionLinks: sanitizeDescriptionLinks(body.descriptionLinks),
+      linkedinField: sanitizeLinkedinField(body.linkedinField),
     });
 
     return NextResponse.json({ event }, { status: 201 });

@@ -3,7 +3,7 @@ import { isAdminAuthenticated } from "@/lib/admin/auth";
 import { connectDB } from "@/lib/db/mongodb";
 import { Event } from "@/lib/db/models/Event";
 import { istLocalInputToDate } from "@/lib/timezone";
-import { sanitizeDescriptionLinks, sanitizeQuestions } from "@/lib/events/custom-fields";
+import { sanitizeDescriptionLinks, sanitizeLinkedinField, sanitizeQuestions } from "@/lib/events/custom-fields";
 import { buildEventSlug } from "@/lib/events/slug";
 
 type RouteParams = { params: Promise<{ id: string }> };
@@ -52,6 +52,7 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
     if (Array.isArray(body.tags)) $set.tags = body.tags;
     if (Array.isArray(body.questions)) $set.questions = sanitizeQuestions(body.questions);
     if (Array.isArray(body.descriptionLinks)) $set.descriptionLinks = sanitizeDescriptionLinks(body.descriptionLinks);
+    if (typeof body.linkedinField === "string") $set.linkedinField = sanitizeLinkedinField(body.linkedinField);
     if (body.capacity === null || body.capacity === undefined || body.capacity === "") {
       // leave capacity unchanged unless explicitly provided as number
     } else if (typeof body.capacity === "number") {
