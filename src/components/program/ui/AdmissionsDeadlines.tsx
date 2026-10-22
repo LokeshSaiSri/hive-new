@@ -15,7 +15,7 @@ export function AdmissionsDeadlines({ deadlines }: AdmissionsDeadlinesProps) {
           <SectionIntro
             eyebrow="Application rounds"
             statement="Round deadlines"
-            emphasis="for November 2026."
+            emphasis="for May 2027."
             description="Banking partners and financial assistance available for admitted students."
             light={false}
             align="left"

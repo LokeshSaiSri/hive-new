@@ -43,9 +43,11 @@ export function AdmissionsFeesDeadlines({ fees, deadlines, className, applyHref 
                 </div>
 
                 <div className="admissions-fees-deadlines__total">
-                  <span className="admissions-fees-deadlines__price-label">Total program fee</span>
+                  <span className="admissions-fees-deadlines__price-label">
+                    Total program fee <span className="text-xs font-normal opacity-60">+ GST</span>
+                  </span>
                   <span className="admissions-fees-deadlines__total-amount">
-                    {fees.lines.find((line) => line.highlight)?.amount ?? "₹4,50,000"}
+                    {fees.lines.find((line) => line.highlight)?.amount ?? "₹5,00,000"}
                   </span>
                 </div>
 

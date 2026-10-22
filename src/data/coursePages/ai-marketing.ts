@@ -411,7 +411,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
       {
         question: "What is the programme fee?",
         answer:
-          "₹4,50,000. The fee covers on-campus learning, live campaign budgets, tool access, and AI subscriptions during the fellowship.",
+          "₹5,00,000 + GST. The fee covers on-campus learning, live campaign budgets, tool access, and AI subscriptions during the fellowship.",
       },
       {
         question: "How does admissions work?",
@@ -428,7 +428,7 @@ export const aiMarketingCoursePage: CoursePageConfig = {
     intake: "October 2026",
     description:
       "Programme fee includes ad budgets for live campaigns, tool access, and AI subscriptions during the fellowship.",
-    lines: [{ label: "Programme fee", amount: "₹4,50,000", highlight: true }],
+    lines: [{ label: "Total Fee + GST", amount: "₹5,00,000", highlight: true }],
     scholarships: [
       {
         title: "Merit Scholarship",

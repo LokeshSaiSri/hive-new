@@ -284,7 +284,7 @@ export const aiMarketingAdmissionsIntro: AiMarketingAdmissionsIntro = {
   videoId: "vCfoRUGuszE",
   stats: [
     { value: "3", label: "Admission steps" },
-    { value: "₹4.5L", label: "Programme fee", highlight: true },
+    { value: "₹5L + GST", label: "Programme fee", highlight: true },
     { value: "6 months", label: "On-campus" },
     { value: "October '26", label: "Next intake" },
   ],
