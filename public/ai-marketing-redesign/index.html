@@ -1549,7 +1549,7 @@ footer.cl-foot .wrap{display:block}
   </div>
   <div class="hx-marq" aria-label="What you will learn"><div><span>Brand</span><span>Growth</span><span>Performance</span><span>Content and video</span><span>Creators</span><span>E-commerce</span><span>Quick commerce</span><span>CRM</span><span>Retail</span><span>PR</span><span>AI marketing</span><span>Brand</span><span>Growth</span><span>Performance</span><span>Content and video</span><span>Creators</span><span>E-commerce</span><span>Quick commerce</span><span>CRM</span><span>Retail</span><span>PR</span><span>AI marketing</span><span>Brand</span><span>Growth</span><span>Performance</span><span>Content and video</span><span>Creators</span><span>E-commerce</span><span>Quick commerce</span><span>CRM</span><span>Retail</span><span>PR</span><span>AI marketing</span><span>Brand</span><span>Growth</span><span>Performance</span><span>Content and video</span><span>Creators</span><span>E-commerce</span><span>Quick commerce</span><span>CRM</span><span>Retail</span><span>PR</span><span>AI marketing</span></div></div>
 </section>
-<div class="subnav"><div class="wrap"><nav aria-label="Fellowship sections" id="sn"><a href="#top" data-s="top" class=is-active>Overview</a><a href="#marketers" data-s="marketers">Marketers</a><a href="#mentors" data-s="mentors">Mentors</a><a href="#journey" data-s="journey">Journey</a><a href="#page" data-s="page">Page assignment</a><a href="#challenges" data-s="challenges">Challenges</a><a href="#proof" data-s="proof">Proof</a><a href="#careers" data-s="careers">Why this</a><a href="#outcomes" data-s="outcomes">Placements</a><a href="#curriculum" data-s="curriculum">Curriculum</a><a href="#week" data-s="week">A week</a><a href="#admissions" data-s="admissions">Admissions</a><a href="#faq" data-s="faq">FAQ</a></nav></div></div>
+<div class="subnav"><div class="wrap"><nav aria-label="Fellowship sections" id="sn"><a href="#top" data-s="top" class=is-active>Overview</a><a href="#mentors" data-s="mentors">Mentors</a><a href="#curriculum" data-s="curriculum">Curriculum</a><a href="#outcomes" data-s="outcomes">Placements</a><a href="#admissions" data-s="admissions">Admissions</a></nav></div></div>
 
 <section class="band dark lf-sec lf2 lf3" id="lead" data-sec="lead" aria-labelledby="lf-h">
     <div class="wrap section-container">
@@ -3034,12 +3034,10 @@ footer.site-footer{margin-top:0!important}
 /* desktop: scale every section (except the overview) to 90% so nothing feels zoomed */
 @media(min-width:1200px){main>section:not(.hero):not(#challenges),.cl-end,footer.site-footer{zoom:.9}}
 /* keep the content column as wide on screen as before the scale, so no extra side gaps; keep sticky offsets */
-@media(min-width:1200px){main>section:not(.hero):not(#challenges) .wrap,.cl-end .wrap,footer.site-footer .wrap{max-width:calc(92rem / .9)}.pc-slide{top:calc(166px + var(--i)*16px)}}
+@media(min-width:1200px){main>section:not(.hero):not(#challenges) .wrap,.cl-end .wrap,footer.site-footer .wrap{max-width:calc(92rem / .9)}}
 /* leaders on campus: smaller photos */
 .lc-cards{max-width:none}.lc-card{aspect-ratio:16/8.5!important}.lc-card>img{object-position:50% 25%}
 /* challenge cards: a little more height; the last (verdict) card hugs its content */
-@media(min-width:801px){.pc-body{padding:clamp(1.5rem,3.4vw,2.8rem)!important;min-height:min(30rem,calc(100vh - 220px))!important}/* keep the stacked layers pinned until the last card has covered them */
-.pc-body{justify-content:flex-start!important}}
 /* pills: small and identical everywhere */
 .eyebrow,.fo .eb,.lf3 .eyebrow{font-size:.66rem!important;letter-spacing:.18em!important;padding:.36rem .85rem!important;margin-bottom:.9rem!important}
 /* application section: compact card, fuller left side */
@@ -3066,10 +3064,47 @@ section.band,.pw-sec,.pf-sec,.cs-sec,.band.lf-sec.lf2.lf3{padding-block:clamp(40
 @media(min-width:1000px){#careers .two{grid-template-columns:1.1fr .9fr!important}#careers h2{font-size:clamp(2.4rem,5.2vw,4.4rem)!important;max-width:15ch!important}#careers .two .copy p{max-width:60ch!important}#careers .two .copy p.lead{font-size:1.75rem!important}#careers .two .copy p:not(.lead){font-size:1.3rem!important}#careers .rs{padding:1.2rem 0!important}#careers .rs .card{padding:1.3rem 1.5rem!important}#careers .rs b{font-size:1.55rem!important}#careers .rs p{font-size:1.02rem!important}}
 /* darker blue for the 25+ */
 .pw-count .count{color:#0c1950!important}
-/* challenge stack: plain sticky layers, no per-frame scaling, darkening or sheen (removes the repaint glitches) */
-.pc-fr{transform:none!important;will-change:auto}
-.pc-body::before,.pc-body::after{display:none!important}
-.pc-slide{contain:layout}
+/* challenges rebuilt
+   desktop: sticky stack of equal-height cards; motion is transform + opacity only, set directly by JS
+   phones: native swipe carousel, because cards are taller than the screen */
+.pc-body::before,.pc-body::after{display:none}
+.pc-fr{position:relative;transform:none;background:linear-gradient(145deg,rgba(148,162,255,.75) 0%,rgba(30,68,226,.55) 30%,rgba(18,37,96,.88) 65%,rgba(6,15,50,.98) 100%)}
+.pc-dim{position:absolute;inset:0;z-index:4;border-radius:inherit;background:#04070d;opacity:0;pointer-events:none}
+.pc-pg{display:none}
+@media(min-width:801px) and (min-height:701px){
+ .pc-stack{--pc-h:32rem}
+ .pc-slide{position:sticky;top:calc(166px + var(--i)*10px);margin-bottom:5vh}
+ .pc-slide:last-child{margin-bottom:0}
+ .pc-fr{transform-origin:50% 0;will-change:transform}
+ .pc-body{min-height:var(--pc-h);padding:clamp(1.5rem,3.4vw,2.8rem);justify-content:flex-start}
+ .pc-intro,.pc-days,.pc-verd{flex:1}
+ .pc-intro .pc-card,.pc-days .pc-card,.pc-verd .pc-card{display:flex;flex-direction:column;justify-content:center}
+ .pc-intro .pc-card p{font-size:clamp(1.1rem,1.5vw,1.3rem);line-height:1.5}
+ .pc-days .pc-card h4,.pc-verd .pc-card h4{font-size:clamp(1.7rem,2.8vw,2.5rem)}
+ .pc-days .pc-card p,.pc-verd .pc-card p{font-size:clamp(1.05rem,1.4vw,1.2rem);line-height:1.5}
+}
+@media(max-width:800px){
+ .pc-stack{display:flex;align-items:stretch;gap:12px;margin-inline:-18px;padding:0 18px 4px;scroll-padding-inline:18px;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+ .pc-stack::-webkit-scrollbar{display:none}
+ .pc-slide{position:relative;top:auto;flex:0 0 min(86vw,26rem);display:flex;margin:0;scroll-snap-align:start;scroll-snap-stop:always}
+ .pc-fr{flex:1;min-width:0;display:flex}
+ .pc-body{flex:1;min-width:0;min-height:0;justify-content:flex-start;padding:1.15rem}
+ .pc-pg{display:flex;align-items:center;gap:.8rem;margin-top:1rem;font-size:.8rem;font-weight:700;color:rgba(255,255,255,.8)}
+ .pc-pg i{position:relative;flex:1;height:3px;border-radius:3px;background:rgba(255,255,255,.16);overflow:hidden}
+ .pc-pg i b{position:absolute;inset:0;background:var(--accent);transform-origin:0 50%;transform:scaleX(.11)}
+}
+/* mobile fixes */
+@media(max-width:800px){
+ .mp-body{grid-template-columns:minmax(0,1fr)!important}
+ .mp-end{padding-right:0!important}
+ .sr-player{aspect-ratio:auto;width:100%;min-height:20rem}
+}
+@media(max-width:560px){
+ .subnav .wrap{padding-left:10px;padding-right:10px}
+ .subnav nav{justify-content:space-between;gap:0}
+ .subnav a{padding:.45rem .34rem;font-size:clamp(.7rem,3.3vw,.8rem)}
+ .pc-l .pf-logo{width:44px;height:44px;border-radius:12px}
+}
 /* why this fellowship: larger text and taller cards */
 @media(min-width:1000px){#careers .two .copy p.lead{font-size:1.6rem!important}#careers .two .copy p:not(.lead){font-size:1.2rem!important;line-height:1.6}#careers .rs{padding:1.5rem 0!important}#careers .rs .card{padding:1.5rem 1.7rem!important}#careers .rs b{font-size:1.8rem!important}#careers .rs p{font-size:1.12rem!important}#careers .rs .yr{font-size:.75rem!important}}
 /* demo day banner (placements): taller, bigger text, faces in frame */
@@ -3314,12 +3349,35 @@ function tabs(btns,panels,onShow){return i=>{btns.forEach((b,k)=>b.setAttribute(
   new IntersectionObserver(es=>{vis=es[0].isIntersecting},{threshold:.3}).observe(r);
   let last=performance.now();(function lp(now){const dt=now-last;last=now;if(!stopped&&!paused&&vis&&dt<200){t+=dt;bar.style.width=Math.min(100,t/DUR*100)+'%';if(t>=DUR)show((cur+1)%sl.length)}requestAnimationFrame(lp)})(last)})();
 /* challenge slides: scroll-driven cover + sheen */
-(function(){const sl=$$('.pc-slide');if(!sl.length||reduce)return;let tick=false;
+(function(){const stack=$('#pcs');if(!stack)return;const sl=$$('.pc-slide',stack),n=sl.length;
+  const bodies=sl.map(x=>$('.pc-body',x)),frames=sl.map(x=>$('.pc-fr',x));
+  const dims=frames.map(f=>{const d=document.createElement('span');d.className='pc-dim';d.setAttribute('aria-hidden','true');f.appendChild(d);return d});
+  const hint=$('.pc-hint',stack),hintT=hint?hint.textContent:'';
+  const pg=document.createElement('div');pg.className='pc-pg';pg.setAttribute('aria-hidden','true');pg.innerHTML='<span>1 / '+n+'</span><i><b></b></i>';stack.after(pg);
+  const pgT=$('span',pg),pgB=$('b',pg);
+  const mqDesk=matchMedia('(min-width:801px) and (min-height:701px)'),mqMob=matchMedia('(max-width:800px)');
   const cl=v=>Math.min(1,Math.max(0,v));
-  function upd(){tick=false;sl.forEach((s,i)=>{const fr=$('.pc-fr',s),r=s.getBoundingClientRect(),n=sl[i+1];let cv=0;
-      if(n&&getComputedStyle(s).position==='sticky'){const nr=n.getBoundingClientRect();cv=cl((r.top+r.height-nr.top)/r.height)}
-      fr.style.setProperty('--cv',cv.toFixed(3));fr.style.setProperty('--sp',cl((innerHeight-r.top)/(innerHeight*.9)).toFixed(3))})}
-  const req=()=>{if(!tick){tick=true;requestAnimationFrame(upd)}};addEventListener('scroll',req,{passive:true});addEventListener('resize',req);upd()})();
+  let pins=[],last=[],tick=false,busy=false,lastW=0;
+  function paint(p,i){if(last[i]===p)return;last[i]=p;frames[i].style.transform=p?'scale('+(1-.05*p).toFixed(4)+')':'';dims[i].style.opacity=p?(.6*p).toFixed(3):''}
+  function upd(){tick=false;if(!mqDesk.matches||reduce||!pins.length)return;const y=scrollY;
+    for(let i=0;i<n-1;i++)paint(cl((y-pins[i])/(pins[i+1]-pins[i])),i)}
+  function pager(){const w=sl[1].offsetLeft-sl[0].offsetLeft;if(!w)return;const i=Math.min(n-1,Math.round(stack.scrollLeft/w));pgT.textContent=(i+1)+' / '+n;pgB.style.transform='scaleX('+((i+1)/n).toFixed(3)+')'}
+  function measure(){busy=true;lastW=innerWidth;
+    if(hint)hint.textContent=mqMob.matches?hintT.replace('Scroll','Swipe'):hintT;
+    last=[];frames.forEach(f=>{f.style.transform=''});dims.forEach(d=>{d.style.opacity=''});pins=[];
+    if(mqDesk.matches){stack.style.setProperty('--pc-h','0px');
+      stack.style.setProperty('--pc-h',Math.max.apply(0,bodies.map(b=>b.offsetHeight))+'px');
+      const gap=parseFloat(getComputedStyle(sl[0]).marginBottom)||0;let f=stack.getBoundingClientRect().top+scrollY;
+      sl.forEach((x,i)=>{pins.push(f-parseFloat(getComputedStyle(x).top));f+=x.offsetHeight+gap})}
+    else{stack.style.removeProperty('--pc-h');pager()}
+    upd();requestAnimationFrame(()=>{busy=false})}
+  const req=()=>{if(!tick){tick=true;requestAnimationFrame(upd)}};
+  let rt;const re=()=>{if(busy)return;clearTimeout(rt);rt=setTimeout(measure,150)};
+  addEventListener('scroll',req,{passive:true});stack.addEventListener('scroll',pager,{passive:true});
+  /* phones fire resize when the address bar hides: ignore height-only changes */
+  addEventListener('resize',()=>{if(innerWidth!==lastW||mqDesk.matches)re()});addEventListener('load',measure);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(measure);
+  measure()})();
 
 /* curriculum: one month open at a time */
 const cms=$$('.cm');cms.forEach(d=>d.addEventListener('toggle',()=>{if(d.open)cms.forEach(o=>{if(o!==d)o.open=false})}));
