@@ -10,6 +10,7 @@ type FormSubmittedPageProps = {
   downloadLabel?: string;
   downloadHref?: string;
   downloadFileName?: string;
+  admissionsHref?: string;
 };
 
 export function FormSubmittedPage({
@@ -18,6 +19,7 @@ export function FormSubmittedPage({
   downloadLabel = "Download Placement Report",
   downloadHref = placementReportDownloadPath("year-2"),
   downloadFileName,
+  admissionsHref = "/pgp-revenue-tech-entrepreneurship/admissions",
 }: FormSubmittedPageProps) {
   return (
     <>
@@ -52,9 +54,9 @@ export function FormSubmittedPage({
 
           <p className="mt-8 text-sm text-white/45">
             Questions?{" "}
-            <Link href="/pgp-revenue-tech-entrepreneurship/admissions" className="text-white/70 underline underline-offset-4">
+            <a href={admissionsHref} className="text-white/70 underline underline-offset-4">
               Talk to admissions
-            </Link>
+            </a>
           </p>
         </div>
       </main>

@@ -3822,5 +3822,12 @@ document.querySelectorAll('.mp-h h3').forEach(function(h){var t=h.textContent.tr
  bs.forEach(function(b,i){b.addEventListener('click',function(){show(i)})});show(0)}
  var r=document.querySelector('.ld-steps');if(r)r.addEventListener('click',function(e){var b=e.target.closest('.ld-step');if(b&&r.scrollWidth>r.clientWidth)r.scrollTo({left:b.offsetLeft-r.offsetLeft-18,behavior:'smooth'})})})();
 </script>
+<script>
+/* links from other pages (#admissions etc): land correctly once sections have settled */
+(function(){var id=location.hash.slice(1);if(!id)return;var e=document.getElementById(id);if(!e)return;var moved=false;
+['wheel','touchmove','keydown'].forEach(function(t){addEventListener(t,function(){moved=true},{passive:true,once:true})});
+function fix(){if(moved)return;var y=e.getBoundingClientRect().top+scrollY-parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop||0);window.scrollTo({top:y,behavior:'instant'})}
+addEventListener('load',function(){fix();[300,900,1800].forEach(function(t){setTimeout(fix,t)})})})();
+</script>
 </body>
 </html>
