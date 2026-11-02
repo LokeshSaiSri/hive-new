@@ -7,9 +7,18 @@ import { PillButton } from "@/components/ui/PillButton";
 type FormSubmittedPageProps = {
   programme: string;
   applyHref: string;
+  downloadLabel?: string;
+  downloadHref?: string;
+  downloadFileName?: string;
 };
 
-export function FormSubmittedPage({ programme, applyHref }: FormSubmittedPageProps) {
+export function FormSubmittedPage({
+  programme,
+  applyHref,
+  downloadLabel = "Download Placement Report",
+  downloadHref = placementReportDownloadPath("year-2"),
+  downloadFileName,
+}: FormSubmittedPageProps) {
   return (
     <>
       <Nav />
@@ -33,8 +42,8 @@ export function FormSubmittedPage({ programme, applyHref }: FormSubmittedPagePro
           </p>
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <PillButton variant="highlight" tone="dark" href={placementReportDownloadPath("year-2")}>
-              Download Placement Report
+            <PillButton variant="highlight" tone="dark" href={downloadHref} download={downloadFileName}>
+              {downloadLabel}
             </PillButton>
             <PillButton variant="secondary" tone="dark" href={applyHref}>
               Back to programme

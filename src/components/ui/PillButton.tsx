@@ -10,6 +10,8 @@ type PillButtonProps = {
   children: ReactNode;
   className?: string;
   onClick?: () => void;
+  /** File name: makes a file link download instead of opening. */
+  download?: string;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const toneStyles = {
@@ -38,6 +40,7 @@ export function PillButton({
   children,
   className = "",
   onClick,
+  download,
   ...props
 }: PillButtonProps) {
   const base =
@@ -53,8 +56,10 @@ export function PillButton({
           href={href}
           className={classes}
           onClick={onClick}
-          target={href.endsWith(".pdf") ? "_blank" : undefined}
-          rel={href.endsWith(".pdf") ? "noopener noreferrer" : undefined}
+          download={download}
+          data-skip-gate={download ? "" : undefined}
+          target={href.endsWith(".pdf") && !download ? "_blank" : undefined}
+          rel={href.endsWith(".pdf") && !download ? "noopener noreferrer" : undefined}
         >
           {children}
         </a>

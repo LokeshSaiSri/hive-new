@@ -14,6 +14,9 @@ export default function AiMarketingFormSubmittedPage() {
     <FormSubmittedPage
       programme="AI Marketing Fellowship"
       applyHref="/#programmes"
+      downloadLabel="Download Brochure"
+      downloadHref="/AI-Marketing-Fellowship-Brochure.pdf"
+      downloadFileName="AI-Marketing-Fellowship-Brochure.pdf"
     />
   );
 }

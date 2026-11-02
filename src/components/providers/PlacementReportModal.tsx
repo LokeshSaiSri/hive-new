@@ -58,6 +58,8 @@ export function PlacementReportModal() {
 
       const anchor = node.closest("a[href]") as HTMLAnchorElement | null;
       if (!anchor) return;
+      // People who already gave their details (e.g. after applying) download directly.
+      if (anchor.hasAttribute("data-skip-gate")) return;
 
       let next: OpenTarget | null = null;
 
