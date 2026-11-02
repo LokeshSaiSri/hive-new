@@ -138,7 +138,7 @@ export function Footer() {
               </ul>
             </div>
             <div>
-              <p className="text-sm font-semibold text-white">AI Marketing Fellowship</p>
+              <p className="text-sm font-semibold text-white">AI Marketing &amp; Entrepreneurship Fellowship</p>
               <ul className="mt-4 space-y-2.5">
                 {fellowshipLinks.map((link) => (
                   <li key={link.label}>

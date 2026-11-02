@@ -29,15 +29,6 @@ const nextConfig: NextConfig = {
     ],
     formats: ["image/avif", "image/webp"],
   },
-  async rewrites() {
-    return {
-      // /ai-marketing serves the redesigned static page (public/ai-marketing-redesign).
-      // Sub-pages (/curriculum, /admissions, /placements) keep their own routes.
-      beforeFiles: [
-        { source: "/ai-marketing", destination: "/ai-marketing-redesign/index.html" },
-      ],
-    };
-  },
   async redirects() {
     return [
       // Canonical domain — www → apex (Vercel + Next.js)
