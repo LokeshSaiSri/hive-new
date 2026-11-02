@@ -117,19 +117,6 @@ export async function POST(request: Request) {
         });
         hubspotRedirectUri = hubspotResult.redirectUri;
         hubspot = { ok: true, status: 200 };
-
-        try {
-          await trackLeadConversion({
-            course: courseSlug,
-            fields: body.fields,
-            tracking: { ...body.tracking, eventId },
-            pageUri: trackingPageUri,
-            pageName: body.pageName,
-            ipAddress: getClientIp(request),
-          });
-        } catch (error) {
-          console.error("Lead conversion tracking failed in API route:", error);
-        }
       } catch (error) {
         const message =
           error instanceof Error ? error.message : "HubSpot submission failed";
@@ -152,6 +139,12 @@ export async function POST(request: Request) {
         source: lead.programme ? `website:${lead.programme}` : `website:${courseSlug}`,
         linkedin: fieldMap.get(HUBSPOT_CONTACT_FIELDS.linkedin) || null,
         session_id: sessionId,
+        event_id: eventId,
+        fbp: body.tracking?.fbp ?? null,
+        fbc: body.tracking?.fbc ?? null,
+        page_url: trackingPageUri ?? null,
+        client_ip: getClientIp(request) ?? null,
+        client_user_agent: body.tracking?.userAgent ?? request.headers.get("user-agent"),
       });
     }
   }
@@ -160,6 +153,22 @@ export async function POST(request: Request) {
     (wantHubSpot && hubspot.ok) ||
     (wantCrm && crm.ok) ||
     (!wantHubSpot && !wantCrm);
+
+  // Lead event whenever the lead was saved anywhere, not only after HubSpot succeeded
+  if (anyOk) {
+    try {
+      await trackLeadConversion({
+        course: courseSlug,
+        fields: body.fields,
+        tracking: { ...body.tracking, eventId },
+        pageUri: trackingPageUri,
+        pageName: body.pageName,
+        ipAddress: getClientIp(request),
+      });
+    } catch (error) {
+      console.error("Lead conversion tracking failed in API route:", error);
+    }
+  }
 
   const thankYouUrl = buildThankYouUrl(courseSlug, eventId, hubspotRedirectUri);
 

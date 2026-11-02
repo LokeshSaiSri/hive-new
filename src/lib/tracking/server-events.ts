@@ -12,13 +12,15 @@ type TrackLeadConversionInput = {
   pageUri?: string;
   pageName?: string;
   ipAddress?: string;
+  /** Used when the form sent no field list (name / phone / email came as plain values) */
+  lead?: { email?: string; phone?: string; firstName?: string; lastName?: string };
 };
 
 /** Fire server-side conversion events. Failures are logged, never thrown to the client. */
 export async function trackLeadConversion(input: TrackLeadConversionInput): Promise<void> {
   if (!input.tracking?.eventId) return;
 
-  const lead = parseLeadFields(input.fields);
+  const lead = input.fields.length ? parseLeadFields(input.fields) : { ...input.lead, programme: undefined, city: undefined };
 
   const payload = {
     eventId: input.tracking.eventId,

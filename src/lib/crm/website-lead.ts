@@ -10,6 +10,13 @@ export type WebsiteLeadPayload = {
   preferred_industry?: string | null;
   intent_score?: number | null;
   session_id?: string | null;
+  /** Meta matching, so the CRM can send its own Lead event (same event_id → Meta counts once) */
+  event_id?: string | null;
+  fbp?: string | null;
+  fbc?: string | null;
+  page_url?: string | null;
+  client_ip?: string | null;
+  client_user_agent?: string | null;
 };
 
 export type TargetResult = {
@@ -69,6 +76,12 @@ export async function forwardWebsiteLeadToCrm(
         preferred_industry: payload.preferred_industry ?? null,
         intent_score: payload.intent_score ?? null,
         session_id: payload.session_id ?? null,
+        event_id: payload.event_id ?? null,
+        fbp: payload.fbp ?? null,
+        fbc: payload.fbc ?? null,
+        page_url: payload.page_url ?? null,
+        client_ip: payload.client_ip ?? null,
+        client_user_agent: payload.client_user_agent ?? null,
       }),
       cache: "no-store",
     });

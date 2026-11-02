@@ -147,19 +147,6 @@ export async function POST(request: Request) {
           });
           hubspotRedirectUri = hubspotResult.redirectUri;
           hubspot = { ok: true, status: 200 };
-
-          try {
-            await trackLeadConversion({
-              course: courseSlug,
-              fields: body.fields,
-              tracking: { ...body.tracking, eventId },
-              pageUri: trackingPageUri,
-              pageName: body.pageName,
-              ipAddress: getClientIp(request),
-            });
-          } catch (error) {
-            console.error("Lead conversion tracking failed in admissions route:", error);
-          }
         } catch (error) {
           const message =
             error instanceof Error ? error.message : "HubSpot submission failed";
@@ -197,6 +184,12 @@ export async function POST(request: Request) {
       preferred_industry: body.preferred_industry ?? null,
       intent_score: body.intent_score ?? null,
       session_id: sessionId,
+      event_id: eventId,
+      fbp: body.tracking?.fbp ?? null,
+      fbc: body.tracking?.fbc ?? null,
+      page_url: trackingPageUri ?? null,
+      client_ip: getClientIp(request) ?? null,
+      client_user_agent: body.tracking?.userAgent ?? request.headers.get("user-agent"),
     });
   }
 
@@ -204,6 +197,29 @@ export async function POST(request: Request) {
     (wantHubSpot && hubspot.ok) ||
     (wantCrm && crm.ok) ||
     (!wantHubSpot && !wantCrm);
+
+  // Meta / GA4 Lead event whenever the lead was saved anywhere. It used to fire only
+  // after HubSpot succeeded, so a HubSpot error or SUBMIT_TARGETS=crm sent no Lead at all.
+  if (anyOk && courseSlug) {
+    try {
+      await trackLeadConversion({
+        course: courseSlug,
+        fields,
+        lead: {
+          email: email ?? undefined,
+          phone,
+          firstName: name.split(/\s+/)[0],
+          lastName: name.split(/\s+/).slice(1).join(" ") || undefined,
+        },
+        tracking: { ...body.tracking, eventId },
+        pageUri: trackingPageUri,
+        pageName: body.pageName,
+        ipAddress: getClientIp(request),
+      });
+    } catch (error) {
+      console.error("Lead conversion tracking failed in admissions route:", error);
+    }
+  }
 
   const thankYouUrl = courseSlug
     ? buildThankYouUrl(courseSlug, eventId, hubspotRedirectUri)

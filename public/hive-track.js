@@ -141,12 +141,53 @@
     os: osName(),
   };
 
+  // Meta match keys. The Pixel (loaded late through GTM, or blocked) normally sets _fbp and
+  // _fbc; set them here when missing so the CRM can still send PageView / Lead to Meta.
+  function metaCookieDomain() {
+    var host = window.location.hostname;
+    if (/(^|\.)hiveschool\.co$/.test(host)) return ".hiveschool.co";
+    return "";
+  }
+
+  function writeMetaCookie(name, value) {
+    var domain = metaCookieDomain();
+    var secure = window.location.protocol === "https:" ? "; Secure" : "";
+    document.cookie =
+      name +
+      "=" +
+      encodeURIComponent(value) +
+      "; Max-Age=" +
+      90 * 24 * 60 * 60 +
+      "; Path=/; SameSite=Lax" +
+      (domain ? "; Domain=" + domain : "") +
+      secure;
+  }
+
+  function metaIds() {
+    var fbp = readCookie("_fbp");
+    if (!fbp) {
+      fbp = "fb.1." + Date.now() + "." + Math.floor(Math.random() * 1e10);
+      writeMetaCookie("_fbp", fbp);
+    }
+    var fbc = readCookie("_fbc");
+    var fbclid = queryValue("fbclid");
+    if (!fbc && fbclid) {
+      fbc = "fb.1." + Date.now() + "." + fbclid;
+      writeMetaCookie("_fbc", fbc);
+    }
+    return { fbp: fbp, fbc: fbc || null };
+  }
+
   function eventPayload(eventType, details) {
     details = details || {};
+    var meta = metaIds();
     return {
       session_id: sessionId,
       visitor_id: sessionId,
       lead_ref: leadRef,
+      fbp: meta.fbp,
+      fbc: meta.fbc,
+      event_id: details.event_id || null,
       event_type: eventType,
       page_url: details.page_url || window.location.href,
       page_title: document.title || null,
@@ -203,7 +244,12 @@
   }
 
   function trackPageview() {
-    send(eventPayload("pageview"), false);
+    // One id per page view, shared with the CRM's server-side PageView and (via the
+    // dataLayer, for a GTM variable) the Meta Pixel's, so Meta counts it once.
+    var eventId = "pv_" + window.crypto.randomUUID();
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: "hive_pageview", event_id: eventId });
+    send(eventPayload("pageview", { event_id: eventId }), false);
   }
 
   function cssEscape(value) {
