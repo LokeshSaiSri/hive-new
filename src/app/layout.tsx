@@ -4,6 +4,7 @@ import { VideoProvider } from "@/components/providers/VideoProvider";
 import { ScrollToTopOnLoad } from "@/components/providers/ScrollToTopOnLoad";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import { HubSpotTracking } from "@/components/providers/HubSpotTracking";
+import { GoogleAnalytics } from "@/components/providers/GoogleAnalytics";
 import { GoogleTagManager } from "@/components/providers/GoogleTagManager";
 import { MetaClickCapture } from "@/components/providers/MetaClickCapture";
 import { PlacementReportModal } from "@/components/providers/PlacementReportModal";
@@ -57,6 +58,7 @@ export default function RootLayout({
         <JsonLd data={buildGlobalSchemas()} />
         <ScrollToTopOnLoad />
         <GoogleTagManager />
+        <GoogleAnalytics />
         <script dangerouslySetInnerHTML={{ __html: crmConfig }} />
         <script id="hive-track-script" src="/hive-track.js" data-crm-base={crmBase} defer />
         <MetaClickCapture />
