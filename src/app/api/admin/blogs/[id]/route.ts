@@ -1,0 +1,47 @@
+import { NextRequest, NextResponse } from "next/server";
+import { connectDB } from "@/lib/db/mongodb";
+import { Blog } from "@/lib/db/models/Blog";
+
+export async function PATCH(
+  req: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const resolvedParams = await params;
+    const body = await req.json();
+    await connectDB();
+
+    const blog = await Blog.findByIdAndUpdate(
+      resolvedParams.id,
+      { $set: body },
+      { new: true, runValidators: true }
+    );
+
+    if (!blog) {
+      return NextResponse.json({ error: "Not found" }, { status: 404 });
+    }
+
+    return NextResponse.json(blog);
+  } catch (error: any) {
+    if (error.code === 11000) {
+      return NextResponse.json({ error: "Slug must be unique" }, { status: 400 });
+    }
+    return NextResponse.json({ error: "Failed to update blog" }, { status: 500 });
+  }
+}
+
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const resolvedParams = await params;
+    await connectDB();
+    const blog = await Blog.findByIdAndDelete(resolvedParams.id);
+    if (!blog) return NextResponse.json({ error: "Not found" }, { status: 404 });
+    
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    return NextResponse.json({ error: "Failed to delete" }, { status: 500 });
+  }
+}

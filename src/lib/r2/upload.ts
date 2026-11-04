@@ -63,3 +63,27 @@ export async function uploadPosterToR2(
   const publicUrl = `${CDN_URL.replace(/\/$/, "")}/${key}`;
   return { publicUrl, key };
 }
+
+export async function uploadBlogCoverToR2(
+  body: Buffer | Uint8Array,
+  filename: string,
+  contentType: string
+): Promise<{ publicUrl: string; key: string }> {
+  const ext = filename.split(".").pop()?.toLowerCase() || "jpg";
+  const unique = crypto.randomBytes(8).toString("hex");
+  const key = `blogs/covers/${unique}.${ext}`;
+
+  const client = getR2Client();
+  await client.send(
+    new PutObjectCommand({
+      Bucket: R2_BUCKET_NAME,
+      Key: key,
+      Body: body,
+      ContentType: contentType,
+      CacheControl: "public, max-age=31536000, immutable",
+    })
+  );
+
+  const publicUrl = `${CDN_URL.replace(/\/$/, "")}/${key}`;
+  return { publicUrl, key };
+}

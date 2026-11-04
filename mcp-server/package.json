@@ -1,0 +1,14 @@
+{
+  "name": "hiveschool-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP Server that allows Claude Desktop to publish and draft blog posts directly to HiveSchool",
+  "type": "module",
+  "main": "index.mjs",
+  "scripts": {
+    "start": "node index.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "dotenv": "^16.0.0"
+  }
+}
