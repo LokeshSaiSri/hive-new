@@ -61,16 +61,13 @@ const nextConfig: NextConfig = {
         destination: "/pgp-revenue-tech-entrepreneurship/:path*",
         permanent: true,
       },
-      {
-        source: "/online-pgp",
-        destination: "/fellowship-gtm-revenue-ai",
-        permanent: true,
-      },
-      {
-        source: "/online-pgp/:path*",
-        destination: "/fellowship-gtm-revenue-ai/:path*",
-        permanent: true,
-      },
+      // Fellowship: GTM, Revenue & AI is paused. The pages are hidden; to bring them back,
+      // remove these redirects and restore the nav, sitemap and programme-option entries.
+      { source: "/fellowship-gtm-revenue-ai", destination: "/", permanent: false },
+      { source: "/fellowship-gtm-revenue-ai/:path*", destination: "/", permanent: false },
+      { source: "/launchpad-form-submitted", destination: "/", permanent: false },
+      { source: "/online-pgp", destination: "/", permanent: false },
+      { source: "/online-pgp/:path*", destination: "/", permanent: false },
       { source: "/careers", destination: "/", permanent: false },
       { source: "/event-index", destination: "/", permanent: false },
       { source: "/event-index/:path*", destination: "/", permanent: false },
