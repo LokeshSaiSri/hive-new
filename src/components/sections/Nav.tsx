@@ -7,6 +7,7 @@ import Image from "next/image";
 import { navItems } from "@/data/nav";
 import { PillButton } from "@/components/ui/PillButton";
 import { hiveLogo } from "@/data/partners";
+import { cdnAsset } from "@/lib/assets";
 
 const desktopNavLink =
   "group relative px-1 py-2 text-sm font-medium text-white/75 transition-colors duration-300 hover:text-white after:pointer-events-none after:absolute after:-bottom-0.5 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-white after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100";
@@ -54,7 +55,7 @@ export function Nav() {
       }`}
     >
       <div className="relative z-50 flex w-full overflow-hidden bg-accent py-1.5 border-b border-white/10">
-        <Link href="/Interim-Placement-Report.pdf" className="flex w-full hover:opacity-80 transition-opacity" target="_blank">
+        <a href={cdnAsset("docs/Interim-Placement-Report.pdf")} className="flex w-full hover:opacity-80 transition-opacity" target="_blank">
           <div className="flex animate-marquee-fast whitespace-nowrap">
             {[...Array(6)].map((_, i) => (
               <span key={i} className="flex shrink-0 items-center gap-2.5 px-5 text-[10px] font-bold uppercase tracking-widest text-ink sm:text-[11px]">
@@ -71,7 +72,7 @@ export function Nav() {
               </span>
             ))}
           </div>
-        </Link>
+        </a>
       </div>
       <div className="section-container flex items-center justify-between py-3 sm:py-4 w-full">
         <Link

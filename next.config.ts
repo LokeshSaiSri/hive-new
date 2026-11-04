@@ -68,6 +68,12 @@ const nextConfig: NextConfig = {
       { source: "/launchpad-form-submitted", destination: "/", permanent: false },
       { source: "/online-pgp", destination: "/", permanent: false },
       { source: "/online-pgp/:path*", destination: "/", permanent: false },
+      // The report PDF lives on the media CDN, not in /public. Keep old links working.
+      {
+        source: "/Interim-Placement-Report.pdf",
+        destination: `${(process.env.NEXT_PUBLIC_MEDIA_CDN_URL ?? "https://pub-760fa3db0e0e491da59597144b40ce1f.r2.dev").replace(/\/+$/, "")}/docs/Interim-Placement-Report.pdf`,
+        permanent: false,
+      },
       { source: "/careers", destination: "/", permanent: false },
       { source: "/event-index", destination: "/", permanent: false },
       { source: "/event-index/:path*", destination: "/", permanent: false },

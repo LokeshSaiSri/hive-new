@@ -35,7 +35,7 @@ export function SalespreneurReportStrip() {
   const sectionRef = useRef<HTMLElement>(null);
   const prefersReducedMotion = useReducedMotion();
   const doc = getGatedDocumentById("salespreneur-report");
-  const href = doc?.pdfHref ?? "/Interim-Placement-Report.pdf";
+  const href = doc?.fileHref ?? cdnAsset("docs/Interim-Placement-Report.pdf");
   const item = prefersReducedMotion ? copyItemReduced : copyItem;
 
   const { scrollYProgress } = useScroll({
