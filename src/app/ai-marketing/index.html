@@ -15,6 +15,24 @@
 
   gtag('config', 'G-4V5EQ77YLK');
 </script>
+<!-- Same tracking as the rest of the site (layout.tsx): CRM tracker + Google Tag Manager (holds the Meta Pixel) -->
+<script>window.HIVE_TRACK = { crmBase: "https://hivecrm-nu.vercel.app" };</script>
+<script id="hive-track-script" src="/hive-track.js" data-crm-base="https://hivecrm-nu.vercel.app" defer></script>
+<script>
+(function(){
+  function load(){
+    if(document.getElementById('gtm-script'))return;
+    window.dataLayer=window.dataLayer||[];
+    window.dataLayer.push({'gtm.start':Date.now(),event:'gtm.js'});
+    var s=document.createElement('script');s.id='gtm-script';s.async=true;
+    s.src='https://www.googletagmanager.com/gtm.js?id=GTM-5L9FJ8GW';
+    document.head.appendChild(s);
+  }
+  window.addEventListener('load',function(){
+    if(typeof requestIdleCallback==='function')requestIdleCallback(load,{timeout:3000});else setTimeout(load,2000);
+  });
+})();
+</script>
 <meta property="og:title" content="Fellowship: AI Marketing &amp; Entrepreneurship | HiveSchool">
 <meta property="og:description" content="Marketing meets Entrepreneurship. Build a brand in six months, grow a live page, and finish with placements or incubation.">
 <meta property="og:image" content="https://hiveschool.co/ai-marketing/media/campus-fellows.jpg">
@@ -1489,6 +1507,7 @@ footer.cl-foot .wrap{display:block}
 <link rel="preload" as="image" href="/ai-marketing/media/film-culture-circle.jpg">
 </head>
 <body>
+<noscript><iframe title="Google Tag Manager" src="https://www.googletagmanager.com/ns.html?id=GTM-5L9FJ8GW" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div id="prog"></div>
 <div class="head">
