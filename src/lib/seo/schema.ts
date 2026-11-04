@@ -19,13 +19,19 @@ function metaValue(
   return config.hero.meta?.find((item) => item.label === label)?.value;
 }
 
-function courseMode(format?: string): string | undefined {
+/** schema.org courseMode values are "online", "onsite" or "blended" — never free text. */
+function courseMode(format?: string): "online" | "onsite" | "blended" | undefined {
   if (!format) return undefined;
-  if (/full[- ]time/i.test(format)) return "full time";
-  if (/part[- ]time/i.test(format)) return "part time";
   if (/online/i.test(format)) return "online";
-  if (/on-campus|campus|residential/i.test(format)) return "onsite";
-  return format.toLowerCase();
+  if (/blended|hybrid/i.test(format)) return "blended";
+  return "onsite";
+}
+
+/** "9 months" -> "P9M". timeRequired must be an ISO 8601 duration. */
+function isoDuration(value?: string): string | undefined {
+  const m = value?.match(/(\d+)\s*(year|month|week|day)s?/i);
+  if (!m) return undefined;
+  return `P${m[1]}${{ year: "Y", month: "M", week: "W", day: "D" }[m[2].toLowerCase() as "year"]}`;
 }
 
 export function buildOrganizationSchema() {
@@ -77,7 +83,7 @@ export function buildCourseSchema(slug: ProgramSlug) {
       name: SITE_NAME,
       url: getSiteUrl(),
     },
-    ...(duration ? { timeRequired: duration } : {}),
+    ...(isoDuration(duration) ? { timeRequired: isoDuration(duration) } : {}),
     hasCourseInstance: {
       "@type": "CourseInstance",
       courseMode: mode ?? "onsite",
