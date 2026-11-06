@@ -34,6 +34,7 @@ export const navItems: NavItem[] = [
   { type: "link", label: "Placements", href: "/placements" },
   { type: "link", label: "Mentors", href: "/mentors" },
   { type: "link", label: "Events", href: "/events" },
+  { type: "link", label: "Blogs", href: "/blogs" },
   { type: "link", label: "Campus", href: "/campus" },
 ];
 
