@@ -65,8 +65,6 @@ const nextConfig: NextConfig = {
       // remove these redirects and restore the nav, sitemap and programme-option entries.
       { source: "/fellowship-gtm-revenue-ai", destination: "/", permanent: false },
       { source: "/fellowship-gtm-revenue-ai/:path*", destination: "/", permanent: false },
-      // Young CEO Challenge hidden for now: remove this redirect, then restore the nav child and sitemap entry.
-      { source: "/ug/young-ceo-challenge", destination: "/ug", permanent: false },
       { source: "/launchpad-form-submitted", destination: "/", permanent: false },
       { source: "/online-pgp", destination: "/", permanent: false },
       { source: "/online-pgp/:path*", destination: "/", permanent: false },

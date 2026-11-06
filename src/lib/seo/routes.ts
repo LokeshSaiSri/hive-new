@@ -37,6 +37,7 @@ export const INDEXABLE_ROUTES: SitemapRoute[] = [
   { path: "/ai-marketing/curriculum", changeFrequency: "monthly", priority: 0.85, lastModified: "2026-06-15" },
   { path: "/ai-marketing/admissions", changeFrequency: "monthly", priority: 0.85, lastModified: "2026-06-15" },
   { path: "/ug", changeFrequency: "weekly", priority: 0.9, lastModified: "2026-07-05" },
+  { path: "/ug/young-ceo-challenge", changeFrequency: "weekly", priority: 0.9, lastModified: "2026-11-06" },
   { path: "/placements", changeFrequency: "weekly", priority: 0.8, lastModified: "2026-06-01" },
   { path: "/mentors", changeFrequency: "monthly", priority: 0.75, lastModified: "2026-05-01" },
   { path: "/blogs", changeFrequency: "weekly", priority: 0.7, lastModified: "2026-11-06" },
