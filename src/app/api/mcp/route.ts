@@ -1,6 +1,7 @@
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js";
 import { CallToolRequestSchema, ListToolsRequestSchema } from "@modelcontextprotocol/sdk/types.js";
+import { timingSafeEqual } from "node:crypto";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -113,7 +114,13 @@ function initializeServer() {
 
     const siteUrl = process.env.HIVESCHOOL_SITE_URL || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "http://localhost:3000");
     const webhookUrl = `${siteUrl}/api/blogs/webhook`;
-    const WEBHOOK_SECRET = process.env.HIVESCHOOL_WEBHOOK_SECRET || "hive-claude-secure-secret-2026!";
+    const WEBHOOK_SECRET = process.env.HIVESCHOOL_WEBHOOK_SECRET || process.env.CLAUDE_WEBHOOK_SECRET;
+    if (!WEBHOOK_SECRET) {
+      return {
+        content: [{ type: "text", text: "Webhook secret is not configured (set HIVESCHOOL_WEBHOOK_SECRET)." }],
+        isError: true,
+      };
+    }
 
     try {
       const response = await fetch(webhookUrl, {
@@ -168,12 +175,30 @@ function getTransport() {
   return transport;
 }
 
+/** Requires "Authorization: Bearer <MCP_AUTH_TOKEN>". Fails closed when the token is not configured. */
+function authorize(req: Request): Response | null {
+  const expected = process.env.MCP_AUTH_TOKEN;
+  if (!expected) {
+    return Response.json({ error: "MCP endpoint is not configured" }, { status: 503 });
+  }
+  const a = Buffer.from(req.headers.get("authorization") ?? "");
+  const b = Buffer.from(`Bearer ${expected}`);
+  if (a.length !== b.length || !timingSafeEqual(a, b)) {
+    return Response.json({ error: "Unauthorized" }, { status: 401 });
+  }
+  return null;
+}
+
 export async function GET(req: Request) {
+  const denied = authorize(req);
+  if (denied) return denied;
   const t = getTransport();
   return t.handleRequest(req);
 }
 
 export async function POST(req: Request) {
+  const denied = authorize(req);
+  if (denied) return denied;
   const t = getTransport();
   return t.handleRequest(req);
 }
