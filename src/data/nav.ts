@@ -30,7 +30,7 @@ export const navItems: NavItem[] = [
       {
         label: "Undergraduate Programme",
         href: "/ug",
-        children: [{ label: "Young CEO Challenge", href: "/ug/young-ceo-challenge" }],
+        // Young CEO Challenge hidden for now: re-add children: [{ label: "Young CEO Challenge", href: "/ug/young-ceo-challenge" }]
       },
     ],
   },
