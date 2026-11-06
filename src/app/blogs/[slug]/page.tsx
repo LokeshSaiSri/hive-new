@@ -9,6 +9,8 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { ReadingProgress, StickySidebar } from "@/components/blogs/BlogClientElements";
 
+export const revalidate = 60;
+
 export async function generateMetadata({
   params,
 }: {

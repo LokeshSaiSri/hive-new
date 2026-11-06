@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { connectDB } from "@/lib/db/mongodb";
 import { Blog } from "@/lib/db/models/Blog";
 import { isAdminAuthenticated } from "@/lib/admin/auth";
@@ -32,6 +33,8 @@ export async function POST(req: NextRequest) {
     });
 
     await blog.save();
+    revalidatePath("/blogs");
+    revalidatePath(`/blogs/${blog.slug}`);
     return NextResponse.json(blog, { status: 201 });
   } catch (error: any) {
     if (error.code === 11000) {

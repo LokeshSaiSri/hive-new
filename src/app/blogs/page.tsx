@@ -6,6 +6,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { FeaturedCarousel } from "@/components/blogs/FeaturedCarousel";
 
+// Refresh the list regularly; the admin hub also revalidates it on every save
+export const revalidate = 60;
+
 export const metadata = {
   title: "Insights & Perspectives | HiveSchool",
   description:

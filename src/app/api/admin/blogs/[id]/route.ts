@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { connectDB } from "@/lib/db/mongodb";
 import { Blog } from "@/lib/db/models/Blog";
 import { isAdminAuthenticated } from "@/lib/admin/auth";
@@ -25,6 +26,8 @@ export async function PATCH(
       return NextResponse.json({ error: "Not found" }, { status: 404 });
     }
 
+    revalidatePath("/blogs");
+    revalidatePath(`/blogs/${blog.slug}`);
     return NextResponse.json(blog);
   } catch (error: any) {
     if (error.code === 11000) {
@@ -47,6 +50,8 @@ export async function DELETE(
     const blog = await Blog.findByIdAndDelete(resolvedParams.id);
     if (!blog) return NextResponse.json({ error: "Not found" }, { status: 404 });
     
+    revalidatePath("/blogs");
+    revalidatePath(`/blogs/${blog.slug}`);
     return NextResponse.json({ success: true });
   } catch (error) {
     return NextResponse.json({ error: "Failed to delete" }, { status: 500 });
