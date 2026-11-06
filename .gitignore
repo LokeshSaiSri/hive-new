@@ -2,10 +2,7 @@
 
 # dependencies
 /node_modules
-/mcp-server/node_modules
 
-# mcp-server env (contains secrets)
-/mcp-server/.env
 /.pnp
 .pnp.*
 .yarn/*
@@ -43,7 +40,6 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 !.env.example
-!mcp-server/.env.example
 
 # scratch scripts
 scratch/
