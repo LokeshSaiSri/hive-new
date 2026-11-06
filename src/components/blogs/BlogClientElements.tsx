@@ -31,12 +31,10 @@ export function ReadingProgress() {
 }
 
 export function StickySidebar({ title }: { title: string }) {
-  const handleShare = (platform: "twitter" | "linkedin") => {
+  const handleShare = (platform: "linkedin") => {
     const url = encodeURIComponent(window.location.href);
     const text = encodeURIComponent(title);
-    if (platform === "twitter") {
-      window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, "_blank");
-    } else {
+    if (platform === "linkedin") {
       window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${text}`, "_blank");
     }
   };
@@ -49,16 +47,20 @@ export function StickySidebar({ title }: { title: string }) {
           Share
         </p>
         <div className="flex gap-2">
-          <button
-            onClick={() => handleShare("twitter")}
-            aria-label="Share on X"
+          <a
+            href="https://instagram.com/hiveschool.co"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="HiveSchool on Instagram"
             className="flex flex-1 items-center justify-center gap-2 py-2.5 rounded-[0.75rem] border border-border-soft bg-surface-lavender text-ink/70 hover:text-ink hover:border-border-soft/80 hover:bg-surface-muted transition-all duration-200 text-xs font-semibold shadow-sm hover:shadow-md"
           >
-            <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-current shrink-0">
-              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none" />
             </svg>
-            X / Twitter
-          </button>
+            Instagram
+          </a>
           <button
             onClick={() => handleShare("linkedin")}
             aria-label="Share on LinkedIn"
