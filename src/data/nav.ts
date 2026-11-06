@@ -6,6 +6,8 @@ export type NavLink = {
 export type NavDropdownItem = {
   label: string;
   href: string;
+  /** Sub-options shown indented under this item */
+  children?: NavLink[];
 };
 
 export type NavItem =
@@ -28,6 +30,7 @@ export const navItems: NavItem[] = [
       {
         label: "Undergraduate Programme",
         href: "/ug",
+        children: [{ label: "Young CEO Challenge", href: "/ug/young-ceo-challenge" }],
       },
     ],
   },

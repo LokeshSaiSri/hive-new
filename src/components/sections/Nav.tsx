@@ -20,6 +20,12 @@ const mobileNavLink =
 const dropdownNavLink =
   "group relative block px-4 py-3 text-sm text-white/80 transition-colors duration-300 hover:text-white after:pointer-events-none after:absolute after:bottom-2 after:left-4 after:h-px after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-[calc(100%-2rem)]";
 
+const dropdownSubLink =
+  "flex items-center gap-2.5 py-2 pl-9 pr-4 text-[13px] text-white/60 transition-colors duration-300 hover:text-white";
+
+const mobileSubLink =
+  "flex items-center gap-2.5 rounded-lg py-2.5 pl-8 pr-2 text-[13px] text-white/65 transition-colors duration-300 hover:bg-white/5 hover:text-white";
+
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -126,13 +132,17 @@ export function Nav() {
                   <div className="absolute left-0 top-full z-50 w-72 pt-2">
                     <div className="rounded-2xl border border-white/10 chart-panel-metallic p-2 shadow-2xl">
                       {item.items.map((sub) => (
-                        <Link
-                          key={sub.href}
-                          href={sub.href}
-                          className={dropdownNavLink}
-                        >
-                          {sub.label}
-                        </Link>
+                        <div key={sub.href}>
+                          <Link href={sub.href} className={dropdownNavLink}>
+                            {sub.label}
+                          </Link>
+                          {sub.children?.map((child) => (
+                            <Link key={child.href} href={child.href} className={dropdownSubLink}>
+                              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden />
+                              {child.label}
+                            </Link>
+                          ))}
+                        </div>
                       ))}
                     </div>
                   </div>
@@ -186,14 +196,22 @@ export function Nav() {
                     {item.label}
                   </p>
                   {item.items.map((sub) => (
-                    <Link
-                      key={sub.href}
-                      href={sub.href}
-                      className={mobileNavLink}
-                      onClick={() => setMobileOpen(false)}
-                    >
-                      {sub.label}
-                    </Link>
+                    <div key={sub.href}>
+                      <Link href={sub.href} className={mobileNavLink} onClick={() => setMobileOpen(false)}>
+                        {sub.label}
+                      </Link>
+                      {sub.children?.map((child) => (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          className={mobileSubLink}
+                          onClick={() => setMobileOpen(false)}
+                        >
+                          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden />
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
                   ))}
                 </div>
               ) : (

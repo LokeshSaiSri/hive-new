@@ -40,6 +40,16 @@ const navItems = [
     ),
   },
   {
+    href: "/hive-control-hub/young-ceo",
+    label: "Young CEO",
+    icon: (
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-4.5 w-4.5">
+        <path d="M3 7l3.5 3L10 4l3.5 6L17 7l-1.5 8h-11L3 7z" strokeLinejoin="round" />
+        <path d="M4.5 17.5h11" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
     href: "/hive-control-hub/analytics",
     label: "Analytics",
     icon: (
