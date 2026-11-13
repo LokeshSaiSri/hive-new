@@ -16,6 +16,7 @@ import {
   getCrmSessionIdFromRequest,
   type TargetResult,
 } from "@/lib/crm/website-lead";
+import { getAttributionFromRequest } from "@/lib/crm/attribution-cookies";
 import {
   getSubmitTargets,
   shouldSubmitToCrm,
@@ -122,6 +123,7 @@ export async function POST(request: Request) {
       crm = { ok: false, error: "Name and phone are required for CRM submission" };
     } else {
       crm = await forwardWebsiteLeadToCrm({
+        ...getAttributionFromRequest(request),
         name,
         phone: lead.phone,
         email: lead.email ?? null,

@@ -17,6 +17,10 @@ export type WebsiteLeadPayload = {
   page_url?: string | null;
   client_ip?: string | null;
   client_user_agent?: string | null;
+  /** First-touch attribution: GA4 visitor / session ids and the site's first-visit cookie (see attribution-cookies.ts) */
+  ga_client_id?: string | null;
+  ga_session_id?: string | null;
+  first_touch?: string | null;
 };
 
 export type TargetResult = {
@@ -82,6 +86,9 @@ export async function forwardWebsiteLeadToCrm(
         page_url: payload.page_url ?? null,
         client_ip: payload.client_ip ?? null,
         client_user_agent: payload.client_user_agent ?? null,
+        ga_client_id: payload.ga_client_id ?? null,
+        ga_session_id: payload.ga_session_id ?? null,
+        first_touch: payload.first_touch ?? null,
       }),
       cache: "no-store",
     });

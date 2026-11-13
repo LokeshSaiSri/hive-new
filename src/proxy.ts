@@ -5,6 +5,7 @@ import {
   PLACEMENT_REPORT_ACCESS_COOKIE,
 } from "@/data/placementReportAccess";
 import { verifyAdminToken } from "@/lib/admin/auth";
+import { FIRST_TOUCH_COOKIE, buildFirstTouch } from "@/lib/crm/attribution-cookies";
 
 const ADMIN_SLUG = "hive-control-hub";
 const UNLOCK_COOKIE = "hive_admin_unlock";
@@ -30,11 +31,35 @@ function keepVisitorCookie(request: NextRequest, response: NextResponse) {
   return response;
 }
 
+/**
+ * First-touch attribution: on a browser's first page view, remember where that
+ * visit came from (hs_ft, 1 year, never overwritten). Forms send it to the CRM.
+ * Set here, not in JavaScript, so Safari keeps it, and from the document
+ * request so the referrer is the real outside site.
+ */
+function keepFirstTouchCookie(request: NextRequest, response: NextResponse) {
+  if (request.cookies.get(FIRST_TOUCH_COOKIE)?.value) return response;
+  // Client-side navigations and prefetches aren't a new arrival
+  if (request.headers.get("rsc") || request.headers.get("next-router-prefetch") || request.headers.get("purpose") === "prefetch") {
+    return response;
+  }
+  const seenBefore = !!request.cookies.get(VISITOR_COOKIE)?.value;
+  const value = buildFirstTouch(request.nextUrl, request.headers.get("referer"), seenBefore);
+  response.cookies.set(FIRST_TOUCH_COOKIE, value, {
+    path: "/",
+    maxAge: YEAR,
+    sameSite: "lax",
+    secure: request.nextUrl.protocol === "https:",
+    httpOnly: true,
+  });
+  return response;
+}
+
 export function proxy(request: NextRequest) {
   const response = route(request);
   // Pages only (not admin, redirects or 404s)
   if (response.status === 200 && !request.nextUrl.pathname.startsWith(`/${ADMIN_SLUG}`)) {
-    return keepVisitorCookie(request, response);
+    return keepVisitorCookie(request, keepFirstTouchCookie(request, response));
   }
   return response;
 }
