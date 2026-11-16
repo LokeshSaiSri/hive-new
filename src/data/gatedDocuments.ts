@@ -15,6 +15,13 @@ export type GatedDocument = {
 };
 
 /**
+ * The current interim placement report (PGP C2, Interim Update 1, October 2026).
+ * Each edition gets its own file name on the CDN, so a new report never serves a stale cached copy.
+ * Used by the top banner, the report strip and the download form.
+ */
+export const INTERIM_REPORT_FILE = cdnAsset("docs/Interim-Placement-Report-C2-Update-1.pdf");
+
+/**
  * Direct PDF downloads that are gated behind the lead-capture form popup.
  * These reuse the same HubSpot form as the placement report.
  */
@@ -46,11 +53,11 @@ export const gatedDocuments: GatedDocument[] = [
   {
     id: "salespreneur-report",
     pdfHref: "/Interim-Placement-Report.pdf",
-    fileHref: cdnAsset("docs/Interim-Placement-Report.pdf"),
+    fileHref: INTERIM_REPORT_FILE,
     eyebrow: "Interim Placement Report",
     title: "Get the Interim placement report",
     description:
-      "Share your details and we'll start the download — PGP Cohort Interim placements.",
+      "Share your details and we'll start the download — PGP Cohort 2, Interim Update 1 (October 2026).",
     hubspotLabel: "Report — Interim Placement",
     coverImage: cdnAsset("images/misc/salespreneur-cohort.jpg"),
   },

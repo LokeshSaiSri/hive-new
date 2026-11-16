@@ -4,7 +4,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { PillButton } from "@/components/ui/PillButton";
-import { getGatedDocumentById } from "@/data/gatedDocuments";
+import { INTERIM_REPORT_FILE, getGatedDocumentById } from "@/data/gatedDocuments";
 import { cdnAsset } from "@/lib/assets";
 import { easeHive } from "@/lib/motion";
 
@@ -35,7 +35,7 @@ export function SalespreneurReportStrip() {
   const sectionRef = useRef<HTMLElement>(null);
   const prefersReducedMotion = useReducedMotion();
   const doc = getGatedDocumentById("salespreneur-report");
-  const href = doc?.fileHref ?? cdnAsset("docs/Interim-Placement-Report.pdf");
+  const href = doc?.fileHref ?? INTERIM_REPORT_FILE;
   const item = prefersReducedMotion ? copyItemReduced : copyItem;
 
   const { scrollYProgress } = useScroll({
