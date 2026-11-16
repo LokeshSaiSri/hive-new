@@ -19,7 +19,7 @@ export type GatedDocument = {
  * Each edition gets its own file name on the CDN, so a new report never serves a stale cached copy.
  * Used by the top banner, the report strip and the download form.
  */
-export const INTERIM_REPORT_FILE = cdnAsset("docs/Interim-Placement-Report-C2-Update-1.pdf");
+export const INTERIM_REPORT_FILE = cdnAsset("docs/Interim-Placement-Report-C2-Update-1-r2.pdf");
 
 /**
  * Direct PDF downloads that are gated behind the lead-capture form popup.
