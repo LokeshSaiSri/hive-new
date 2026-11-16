@@ -12,6 +12,10 @@ function SectionFallback({ minHeight = "min-h-[28vh]" }: { minHeight?: string })
   return <div className={minHeight} aria-hidden />;
 }
 
+const FeaturedVideo = dynamic(
+  () => import("@/components/sections/FeaturedVideo").then((m) => m.FeaturedVideo),
+  { loading: () => <SectionFallback minHeight="min-h-[50vh]" /> },
+);
 const HomeNewsSection = dynamic(
   () => import("@/components/sections/HomeNewsSection").then((m) => m.HomeNewsSection),
   { loading: () => <SectionFallback /> },
@@ -90,6 +94,13 @@ export default function Home() {
         <PlacementStats />
         <SalespreneurReportStrip />
         <HomeNewsSection />
+        <FeaturedVideo
+          videoId="MFYZivwKJzY"
+          statement="Another strong placement season,"
+          emphasis="India's top 20 B-schools next."
+          description="Watch the story behind HiveSchool's latest placement season."
+          caption="Hive School sees another strong placement season as it targets India's top 20 B-schools"
+        />
         <HandsOnLearning />
         <WhyRevenue />
         <Programmes className="pt-0" />

@@ -12,6 +12,7 @@ import {
 import { CourseApplicationForm } from "@/components/course/CourseApplicationForm";
 import { CourseHero } from "@/components/course/CourseHero";
 import { CourseInlineCtaBand } from "@/components/course/CourseInlineCtaBand";
+import { FeaturedVideo } from "@/components/sections/FeaturedVideo";
 import { CoursePillars } from "@/components/course/CoursePillars";
 import { CourseTimeline } from "@/components/course/CourseTimeline";
 import { CourseFees } from "@/components/course/CourseFees";
@@ -91,6 +92,16 @@ export function CoursePage({ config, slug }: CoursePageProps) {
       )}
 
       {cta1 && <CourseInlineCtaBand cta={cta1} />}
+
+      {slug === "pgp" && (
+        <FeaturedVideo
+          videoId="MFYZivwKJzY"
+          statement="Another strong placement season,"
+          emphasis="India's top 20 B-schools next."
+          description="Watch the story behind HiveSchool's latest placement season."
+          caption="Hive School sees another strong placement season as it targets India's top 20 B-schools"
+        />
+      )}
 
       {config.sections.visualStory &&
         config.pillars &&
