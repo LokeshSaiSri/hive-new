@@ -9,8 +9,13 @@ export type GatedDocument = {
   eyebrow: string;
   title: string;
   description: string;
-  /** Value sent to HubSpot's "programme of interest" field. */
+  /** Value sent to HubSpot (message field) as the requested document. */
   hubspotLabel: string;
+  /**
+   * Name used in the CRM lead source (website:document:<this>). The CRM reads the programme from
+   * this text (e.g. "pgp"), so name the programme in it. Defaults to the document id.
+   */
+  crmSourceId?: string;
   coverImage?: string;
 };
 
@@ -58,7 +63,8 @@ export const gatedDocuments: GatedDocument[] = [
     title: "Get the Interim placement report",
     description:
       "Share your details and we'll start the download — PGP Cohort 2, Interim Update 1 (October 2026).",
-    hubspotLabel: "Report — Interim Placement",
+    hubspotLabel: "Report — PGP Interim Placement",
+    crmSourceId: "pgp-interim-report",
     coverImage: cdnAsset("images/misc/salespreneur-cohort.jpg"),
   },
 ];

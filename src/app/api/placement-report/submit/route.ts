@@ -130,7 +130,7 @@ export async function POST(request: Request) {
         course_id: null,
         source: edition
           ? `website:placement-report:${edition.id}`
-          : `website:document:${gatedDocument!.id}`,
+          : `website:document:${gatedDocument!.crmSourceId ?? gatedDocument!.id}`,
         linkedin: null,
         session_id:
           body.session_id?.trim() || getCrmSessionIdFromRequest(request) || null,
