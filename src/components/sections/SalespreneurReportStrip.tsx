@@ -4,7 +4,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { PillButton } from "@/components/ui/PillButton";
-import { INTERIM_REPORT_FILE, getGatedDocumentById } from "@/data/gatedDocuments";
+import { getGatedDocumentById } from "@/data/gatedDocuments";
 import { cdnAsset } from "@/lib/assets";
 import { easeHive } from "@/lib/motion";
 
@@ -35,7 +35,8 @@ export function SalespreneurReportStrip() {
   const sectionRef = useRef<HTMLElement>(null);
   const prefersReducedMotion = useReducedMotion();
   const doc = getGatedDocumentById("salespreneur-report");
-  const href = doc?.fileHref ?? INTERIM_REPORT_FILE;
+  // The gate path: clicking opens the lead-capture form, and the file downloads after submit.
+  const href = doc?.pdfHref ?? "/Interim-Placement-Report.pdf";
   const item = prefersReducedMotion ? copyItemReduced : copyItem;
 
   const { scrollYProgress } = useScroll({
